@@ -42,6 +42,8 @@ test('mobil menü açılıp kapanıyor', async ({ page, isMobile }) => {
 });
 
 test('adresle doğrudan açılan bölüm beklemeden gösteriliyor', async ({ page }) => {
+  // CI makinesinde 3D sahne yazılımla çiziliyor; ilk açılışta sayfa bir süre meşgul kalabiliyor
+  test.slow();
   await page.goto('about:blank');
   await page.goto('/#uretim');
   await page.waitForTimeout(600);

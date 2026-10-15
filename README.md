@@ -18,25 +18,20 @@ Site **https://alufortis.gkh.ro** adresinde, GreenGeeks'te `public_html/aluforti
 `.github/workflows/deploy.yml`:
 
 - Her PR'da ve `main` dalında siteyi derler (`npm run build`) ve Playwright testlerini çalıştırır.
-- Yalnızca `main` dalında ve testler geçtikten sonra `out/` içeriğini GreenGeeks'e yükler. Yükleme yalnızca `public_html/alufortis.gkh.ro` dizinini değiştirir.
-- Yöntem `DEPLOY_METHOD` depo değişkeniyle seçilir: `ssh` (varsayılan, SSH + rsync) ya da `ftps`.
+- Yalnızca `main` dalında ve testler geçtikten sonra `out/` içeriğini **FTPS** ile yükler. Bağlantı port 21 üzerinden explicit TLS ile kurulur ve TLS sertifikası doğrulanır (`security: strict`).
+- FTP hesabının kökü `public_html/alufortis.gkh.ro` olduğu için yükleme hedefi `/` dizinidir. Hesap başka dizinlere erişemez.
+- Silme işlemi yalnızca bu iş akışının daha önce yüklediği ve yeni build'de artık bulunmayan dosyaları kapsar. Bu dosyalar `.ftp-deploy-sync-state.json` ile izlenir. `.well-known`, `cgi-bin` ve `.user.ini` ayrıca korunur.
+- Yükleme başarısız olursa iş akışı da başarısız olur.
+- **Kuru çalıştırma:** Actions sekmesinde "Run workflow" seçilip "kuru çalıştırma" işaretli bırakılırsa iş akışı sunucuya bağlanır ve yapılacak değişiklikleri listeler, hiçbir dosyayı değiştirmez.
 
-Gerekli GitHub Secrets (Settings > Secrets and variables > Actions):
-
-| Yöntem | Secret | Açıklama |
-|---|---|---|
-| ssh | `GG_SSH_HOST` | GreenGeeks sunucu adı |
-| ssh | `GG_SSH_PORT` | SSH portu (boşsa 22) |
-| ssh | `GG_SSH_USER` | cPanel kullanıcı adı |
-| ssh | `GG_SSH_KEY` | Yalnızca bu iş için oluşturulan özel SSH anahtarı |
-| ssh | `GG_SSH_KNOWN_HOSTS` | `ssh-keyscan -p PORT HOST` çıktısı (sunucu doğrulaması) |
-| ftps | `GG_FTP_HOST`, `GG_FTP_USER`, `GG_FTP_PASSWORD` | Yalnızca `public_html/alufortis.gkh.ro` dizinine erişebilen FTP hesabı |
+Gerekli GitHub Repository Secrets: `GG_FTP_SERVER`, `GG_FTP_USERNAME`, `GG_FTP_PASSWORD`.
 
 `.htaccess` (`public/.htaccess` ve build sonrası üretilen `out/_next/static/.htaccess`):
 
 - 404 için Next.js'in `404.html` sayfasını gösterir.
 - HTTP isteklerini HTTPS'e yönlendirir.
 - Yalnızca adı hash içeren `_next/static/` dosyalarını bir yıl boyunca önbelleğe alır. HTML ve diğer dosyalar her istekte doğrulanır.
+- FTPS durum dosyasının dışarıdan okunmasını engeller.
 
 Elle yüklemek için: `npm ci && npm run build`, ardından `out/` klasörünün **içeriğini** (gizli `.htaccess` dosyaları dahil) `public_html/alufortis.gkh.ro/` dizinine yükleyin.
 

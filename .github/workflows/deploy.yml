@@ -1,21 +1,23 @@
-name: GitHub Pages'e yayınla
+name: Derle, test et ve GreenGeeks'e yayınla
 
+# PR'larda ve main'de: derleme + Playwright testleri.
+# Yalnızca main dalında ve testler geçtikten sonra: GreenGeeks'e yayın.
 on:
   push:
     branches: [main]
+  pull_request:
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
-concurrency:
-  group: pages
-  cancel-in-progress: true
+env:
+  # Yayın hedefi: yalnızca alufortis.gkh.ro'ya ayrılmış dizin (hesabın ana dizinine göre).
+  DEPLOY_DIR: public_html/alufortis.gkh.ro
 
 jobs:
-  build:
+  build-test:
+    name: Derle ve test et
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -23,24 +25,138 @@ jobs:
         with:
           node-version: 22
           cache: npm
-      - uses: actions/configure-pages@v5
       - run: npm ci
-      - name: Derle
+      - name: Derle (out/ klasörü + denetim)
         run: npm run build
-      - name: Playwright testleri
-        run: |
-          npx playwright install --with-deps chromium
-          npx playwright test
-      - uses: actions/upload-pages-artifact@v3
+      - name: Playwright tarayıcısını kur
+        run: npx playwright install --with-deps chromium
+      - name: Playwright testleri (masaüstü ve mobil)
+        run: npx playwright test
+      - name: Test raporunu sakla
+        if: failure()
+        uses: actions/upload-artifact@v4
         with:
+          name: playwright-report
+          path: test-results
+          retention-days: 7
+      - name: Yayın dosyalarını sakla
+        uses: actions/upload-artifact@v4
+        with:
+          name: site
           path: out
+          include-hidden-files: true # .htaccess dosyaları
+          retention-days: 7
 
   deploy:
-    needs: build
+    name: GreenGeeks'e yayınla
+    needs: build-test
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      name: greengeeks
+      url: https://alufortis.gkh.ro
+    concurrency:
+      group: greengeeks-deploy
+      cancel-in-progress: false
+    env:
+      # 'ssh' (varsayılan, SFTP/SSH + rsync) ya da 'ftps'
+      DEPLOY_METHOD: ${{ vars.DEPLOY_METHOD || 'ssh' }}
     steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: out
+
+      - name: Yayın dosyalarını denetle
+        run: |
+          test -f out/index.html
+          test -f out/.htaccess
+          test -f out/_next/static/.htaccess
+          test ! -e out/CNAME
+
+      - name: Hedef dizini doğrula
+        env:
+          FTP_SERVER_DIR: ${{ vars.GG_FTP_SERVER_DIR || './' }}
+        run: |
+          # Yalnızca alufortis.gkh.ro dizinine yazılabilir; üst dizinlere çıkılamaz.
+          case "$DEPLOY_DIR" in
+            *..*|/*) echo "Geçersiz DEPLOY_DIR: $DEPLOY_DIR"; exit 1 ;;
+            */alufortis.gkh.ro) ;;
+            *) echo "DEPLOY_DIR alufortis.gkh.ro ile bitmeli: $DEPLOY_DIR"; exit 1 ;;
+          esac
+          if [ "$DEPLOY_METHOD" = "ftps" ]; then
+            case "$FTP_SERVER_DIR" in
+              *..*) echo "Geçersiz GG_FTP_SERVER_DIR"; exit 1 ;;
+              ./|*/alufortis.gkh.ro/) ;;
+              *) echo "GG_FTP_SERVER_DIR './' (dizine kısıtlı FTP hesabı) ya da .../alufortis.gkh.ro/ olmalı"; exit 1 ;;
+            esac
+          elif [ "$DEPLOY_METHOD" != "ssh" ]; then
+            echo "DEPLOY_METHOD 'ssh' ya da 'ftps' olmalı"; exit 1
+          fi
+
+      # --- SFTP/SSH (rsync) ---
+      - name: SSH anahtarını hazırla
+        if: env.DEPLOY_METHOD == 'ssh'
+        env:
+          GG_SSH_KEY: ${{ secrets.GG_SSH_KEY }}
+          GG_SSH_KNOWN_HOSTS: ${{ secrets.GG_SSH_KNOWN_HOSTS }}
+        run: |
+          if [ -z "$GG_SSH_KEY" ] || [ -z "$GG_SSH_KNOWN_HOSTS" ]; then
+            echo "GG_SSH_KEY ve GG_SSH_KNOWN_HOSTS secret'ları tanımlı olmalı"; exit 1
+          fi
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$GG_SSH_KEY" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          printf '%s\n' "$GG_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+      - name: rsync ile yükle
+        if: env.DEPLOY_METHOD == 'ssh'
+        env:
+          GG_SSH_HOST: ${{ secrets.GG_SSH_HOST }}
+          GG_SSH_USER: ${{ secrets.GG_SSH_USER }}
+          GG_SSH_PORT: ${{ secrets.GG_SSH_PORT }}
+        run: |
+          PORT="${GG_SSH_PORT:-22}"
+          SSH="ssh -p $PORT -i $HOME/.ssh/id_deploy -o StrictHostKeyChecking=yes -o BatchMode=yes"
+          # Dizin cPanel'de önceden oluşturulmuş olmalı; yanlış hedefe yazmamak için burada oluşturulmaz.
+          $SSH "$GG_SSH_USER@$GG_SSH_HOST" "test -d \"$DEPLOY_DIR\"" \
+            || { echo "Sunucuda $DEPLOY_DIR bulunamadı"; exit 1; }
+          # --delete yalnızca hedef dizin içinde çalışır; sunucunun kendi dosyaları korunur.
+          rsync -rltz --checksum --delete --delay-updates \
+            --chmod=D755,F644 \
+            --filter='P .well-known/' \
+            --filter='P cgi-bin/' \
+            --filter='P .user.ini' \
+            --filter='P php.ini' \
+            --filter='P error_log' \
+            -e "$SSH" \
+            out/ "$GG_SSH_USER@$GG_SSH_HOST:$DEPLOY_DIR/"
+
+      - name: SSH anahtarını sil
+        if: always() && env.DEPLOY_METHOD == 'ssh'
+        run: rm -f ~/.ssh/id_deploy
+
+      # --- FTPS (yedek yöntem) ---
+      - name: FTPS ile yükle
+        if: env.DEPLOY_METHOD == 'ftps'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.GG_FTP_HOST }}
+          username: ${{ secrets.GG_FTP_USER }}
+          password: ${{ secrets.GG_FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          local-dir: ./out/
+          # Önerilen: yalnızca public_html/alufortis.gkh.ro dizinine erişebilen FTP hesabı ve './'
+          server-dir: ${{ vars.GG_FTP_SERVER_DIR || './' }}
+          # Yalnızca bu iş akışının daha önce yüklediği dosyaları siler (dangerous-clean-slate kapalı)
+          dangerous-clean-slate: false
+
+      - name: Yayını kontrol et
+        continue-on-error: true
+        run: |
+          sleep 5
+          curl -fsS --max-time 20 https://alufortis.gkh.ro/ | grep -q "Kalite ve" \
+            && echo "Site yayında" \
+            || echo "::warning::https://alufortis.gkh.ro/ henüz yeni sürümü göstermiyor (DNS/SSL bekleniyor olabilir)"

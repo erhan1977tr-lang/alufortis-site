@@ -40,3 +40,23 @@ test('mobil menü açılıp kapanıyor', async ({ page, isMobile }) => {
   await page.locator('#mobil-menu').getByRole('link', { name: 'Üretim' }).click();
   await expect(page.locator('#mobil-menu')).toHaveCount(0);
 });
+
+test('adresle doğrudan açılan bölüm beklemeden gösteriliyor', async ({ page }) => {
+  await page.goto('about:blank');
+  await page.goto('/#uretim');
+  await page.waitForTimeout(600);
+  const top = await page.locator('#uretim').evaluate((el) => el.getBoundingClientRect().top);
+  expect(Math.abs(top - 64)).toBeLessThan(24);
+});
+
+test('menüden bölüme yumuşak kaydırma korunuyor', async ({ page, isMobile }) => {
+  test.skip(!!isMobile, 'masaüstü menüsü');
+  await page.waitForTimeout(500);
+  await page.getByRole('navigation', { name: 'Ana menü' }).getByRole('link', { name: 'Kataloglar' }).click();
+  const target = await page.locator('#kataloglar').evaluate((el) => el.getBoundingClientRect().top + scrollY - 64);
+  await page.waitForTimeout(60);
+  const mid = await page.evaluate(() => scrollY);
+  expect(mid).toBeLessThan(target - 50);
+  await expect.poll(() => page.evaluate(() => scrollY), { timeout: 8000 }).toBeGreaterThan(target - 5);
+  expect(page.url()).toContain('#kataloglar');
+});

@@ -8,6 +8,7 @@
   --color-steel: #56626e;
   --color-ink: #17202a;
   --color-bronze: #8c5a2b;
+  --color-night: #07090c;
   --font-sans: 'Archivo Variable', system-ui, sans-serif;
 }
 
@@ -80,3 +81,29 @@ body {
   background-position: 100% 100%;
 }
 
+
+/* Sinematik açılış: koyu zemin, renkli ışık halesi ve vinyet */
+.hero-glow {
+  background:
+    radial-gradient(60% 55% at 78% 38%, rgb(255 138 61 / 0.22), transparent 70%),
+    radial-gradient(50% 50% at 92% 85%, rgb(47 140 255 / 0.2), transparent 70%),
+    radial-gradient(40% 45% at 12% 20%, rgb(197 107 255 / 0.1), transparent 70%),
+    radial-gradient(120% 90% at 50% 50%, transparent 55%, rgb(0 0 0 / 0.55));
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-glow {
+    animation: hero-glow 14s ease-in-out infinite alternate;
+  }
+}
+@keyframes hero-glow {
+  to {
+    opacity: 0.7;
+    transform: scale(1.06) translate3d(-1.5%, 1%, 0);
+  }
+}
+.hero-gradient {
+  background: linear-gradient(100deg, #f4c79c 0%, #ff9a5a 35%, #9fc4ff 75%, #c9b5ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}

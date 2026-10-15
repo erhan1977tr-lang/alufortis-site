@@ -1,0 +1,82 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/archivo/wdth.css';
+
+@theme {
+  --color-paper: #e3e6e9;
+  --color-paper-2: #d4d9dd;
+  --color-rule: #b4bcc4;
+  --color-steel: #56626e;
+  --color-ink: #17202a;
+  --color-bronze: #8c5a2b;
+  --font-sans: 'Archivo Variable', system-ui, sans-serif;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Bölüm bağlantıları sabit menünün altında kalmasın */
+[id] {
+  scroll-margin-top: 4rem;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-variation-settings: 'wdth' 100;
+  font-feature-settings: 'tnum' 0;
+  text-rendering: optimizeLegibility;
+}
+
+/* Geniş (expanded) kesim: başlıkların karakteri */
+.wide {
+  font-stretch: 125%;
+  font-variation-settings: 'wdth' 125;
+}
+.semiwide {
+  font-stretch: 112%;
+  font-variation-settings: 'wdth' 112;
+}
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+.display {
+  font-stretch: 125%;
+  font-variation-settings: 'wdth' 125;
+  font-weight: 640;
+  letter-spacing: -0.035em;
+  line-height: 0.92;
+}
+
+/* Teknik çizim tarama deseni: kesit yüzeyleri için */
+.hatch {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent 0 7px,
+    color-mix(in oklab, var(--color-ink) 18%, transparent) 7px 8px
+  );
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-bronze);
+  outline-offset: 3px;
+}
+
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 100% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s ease;
+}
+.link-underline:hover {
+  background-size: 0% 1px;
+  background-position: 100% 100%;
+}
+

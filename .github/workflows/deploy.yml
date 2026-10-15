@@ -1,0 +1,119 @@
+name: Derle, test et ve GreenGeeks'e yayınla
+
+# PR'larda ve main'de: derleme + Playwright testleri.
+# Yayın: yalnızca main dalında, testler geçtikten sonra, FTPS ile.
+# Elle çalıştırmada "kuru çalıştırma" seçilirse sunucuya bağlanıp
+# yapılacak değişiklikleri listeler, hiçbir dosyayı değiştirmez.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      kuru_calistirma:
+        description: "Kuru çalıştırma: yalnızca bağlantıyı ve yapılacak değişiklikleri göster"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+jobs:
+  build-test:
+    name: Derle ve test et
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Derle (out/ klasörü + denetim)
+        run: npm run build
+      - name: Playwright tarayıcısını kur
+        run: npx playwright install --with-deps chromium
+      - name: Playwright testleri (masaüstü ve mobil)
+        run: npx playwright test
+      - name: Test raporunu sakla
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: test-results
+          retention-days: 7
+      - name: Yayın dosyalarını sakla
+        uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: out
+          include-hidden-files: true # .htaccess dosyaları
+          retention-days: 7
+
+  deploy:
+    name: GreenGeeks'e yayınla (FTPS)
+    needs: build-test
+    # Gerçek yayın: yalnızca main dalı. Kuru çalıştırma: elle başlatılır, sunucuda değişiklik yapmaz.
+    if: >-
+      (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+      (github.event_name == 'workflow_dispatch' && (inputs.kuru_calistirma || github.ref == 'refs/heads/main'))
+    runs-on: ubuntu-latest
+    environment:
+      name: greengeeks
+      url: https://alufortis.gkh.ro
+    concurrency:
+      group: greengeeks-deploy
+      cancel-in-progress: false
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: out
+
+      - name: Yayın dosyalarını ve secret'ları denetle
+        env:
+          GG_FTP_SERVER: ${{ secrets.GG_FTP_SERVER }}
+          GG_FTP_USERNAME: ${{ secrets.GG_FTP_USERNAME }}
+          GG_FTP_PASSWORD: ${{ secrets.GG_FTP_PASSWORD }}
+        run: |
+          test -f out/index.html
+          test -f out/.htaccess
+          test -f out/_next/static/.htaccess
+          test ! -e out/CNAME
+          for v in GG_FTP_SERVER GG_FTP_USERNAME GG_FTP_PASSWORD; do
+            if [ -z "${!v}" ]; then echo "::error::$v secret'ı tanımlı değil"; exit 1; fi
+          done
+
+      # FTP hesabının kökü public_html/alufortis.gkh.ro olduğu için "/" yalnızca bu siteyi kapsar.
+      # Silme: yalnızca bu iş akışının önceki yayında yüklediği ve artık build'de olmayan dosyalar
+      # (.ftp-deploy-sync-state.json ile izlenir). Sunucudaki diğer dosyalara dokunulmaz;
+      # .well-known, cgi-bin ve .user.ini ayrıca exclude ile korunur.
+      - name: FTPS ile yükle
+        uses: SamKirkland/FTP-Deploy-Action@110f9186c050f71550953127052e77650219c287 # v4.4.0
+        with:
+          server: ${{ secrets.GG_FTP_SERVER }}
+          username: ${{ secrets.GG_FTP_USERNAME }}
+          password: ${{ secrets.GG_FTP_PASSWORD }}
+          protocol: ftps # port 21 üzerinde explicit FTPS (AUTH TLS)
+          port: 21
+          security: strict # TLS sertifikası doğrulanır (eylemin varsayılanı "loose")
+          local-dir: ./out/
+          server-dir: /
+          dangerous-clean-slate: false
+          dry-run: ${{ github.event_name == 'workflow_dispatch' && inputs.kuru_calistirma }}
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/.well-known/**
+            **/cgi-bin/**
+            **/.user.ini
+
+      - name: Yayını kontrol et
+        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.kuru_calistirma) }}
+        continue-on-error: true
+        run: |
+          sleep 5
+          curl -fsS --max-time 20 https://alufortis.gkh.ro/ | grep -q "Kalite ve" \
+            && echo "Site yayında" \
+            || echo "::warning::https://alufortis.gkh.ro/ henüz yeni sürümü göstermiyor (DNS/SSL bekleniyor olabilir)"

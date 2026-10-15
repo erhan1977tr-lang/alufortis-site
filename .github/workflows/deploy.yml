@@ -51,7 +51,7 @@ jobs:
           retention-days: 7
 
   deploy:
-    name: ${{ github.event_name == 'workflow_dispatch' && inputs.kuru_calistirma && 'FTPS kuru çalıştırma (değişiklik yapmaz)' || 'GreenGeeks''e yayınla (FTPS)' }}
+    name: GreenGeeks'e yayınla (FTPS)
     needs: build-test
     # Gerçek yayın: yalnızca main dalı. Kuru çalıştırma: elle başlatılır, sunucuda değişiklik yapmaz.
     if: >-

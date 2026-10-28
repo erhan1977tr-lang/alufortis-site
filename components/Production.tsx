@@ -4,7 +4,8 @@ import { useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import { finishes, production } from '@/lib/content';
+import { finishes, stages, type FinishKey } from '@/lib/content';
+import type { Dict } from '@/lib/i18n';
 import { productionState } from '@/lib/sceneState';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -20,13 +21,13 @@ const stagePose: Record<string, { length: number; die: number }> = {
   'mekanik-islem': { length: 2.2, die: 0 },
 };
 
-export default function Production() {
+export default function Production({ t }: { t: Dict['production'] }) {
   const root = useRef<HTMLElement>(null);
   const [active, setActive] = useState(0);
-  const [finishKey, setFinishKey] = useState<string>(production[0].finish);
+  const [finishKey, setFinishKey] = useState<FinishKey>(stages[0].finish);
 
-  const apply = (i: number, finish?: string) => {
-    const step = production[i];
+  const apply = (i: number, finish?: FinishKey) => {
+    const step = stages[i];
     const f = finish ?? step.finish;
     productionState.finish = finishes[f];
     productionState.length = stagePose[step.id].length;
@@ -54,11 +55,8 @@ export default function Production() {
     <section ref={root} id="uretim" className="relative border-t border-ink/15 bg-paper-2">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-8">
         <header className="max-w-[46rem] pt-24 pb-10 md:pt-32">
-          <h2 className="display text-[clamp(2.4rem,6vw,5rem)]">Kalıptan nihai ürüne</h2>
-          <p className="mt-6 text-lg leading-[1.55] text-ink/80">
-            Profilin geçtiği her aşama kendi tesisimizde. Aşağı kaydırdıkça profil, üretim hattındaki yolculuğunu
-            izler.
-          </p>
+          <h2 className="display text-[clamp(2.4rem,6vw,5rem)]">{t.title}</h2>
+          <p className="mt-6 text-lg leading-[1.55] text-ink/80">{t.lead}</p>
         </header>
 
         <div className="grid gap-x-12 md:grid-cols-[1fr_1fr]">
@@ -67,15 +65,17 @@ export default function Production() {
             <ProductionScene />
             <div className="pointer-events-none absolute bottom-3 left-4 flex items-center gap-2 text-[13px] text-steel sm:left-8 md:left-0">
               <span className="inline-block h-3 w-3 rounded-full border border-ink/20" style={{ background: finishes[finishKey].color }} />
-              {finishes[finishKey].name}
+              {t.finishes[finishKey]}
             </div>
           </div>
 
           <ol className="pb-24 md:pb-40">
-            {production.map((step, i) => (
+            {stages.map((stage, i) => {
+              const step = t.steps[stage.id];
+              return (
               <li
-                key={step.id}
-                id={step.id}
+                key={stage.id}
+                id={stage.id}
                 data-step
                 className={`flex min-h-[70svh] flex-col justify-center border-t border-ink/15 py-14 transition-opacity duration-500 md:min-h-[85svh] ${
                   active === i ? 'opacity-100' : 'opacity-45'
@@ -83,7 +83,7 @@ export default function Production() {
               >
                 <p className="semiwide num text-[15px] font-semibold text-bronze">
                   {String(i + 1).padStart(2, '0')}
-                  <span className="text-steel"> / {String(production.length).padStart(2, '0')}</span>
+                  <span className="text-steel"> / {String(stages.length).padStart(2, '0')}</span>
                 </p>
                 <h3 className="semiwide mt-3 text-[clamp(1.8rem,3.4vw,2.8rem)] leading-[1.05] font-[640] tracking-[-0.02em]">
                   {step.title}
@@ -101,11 +101,11 @@ export default function Production() {
                   </dl>
                 )}
 
-                {'swatches' in step && (
+                {'swatches' in stage && (
                   <div className="mt-8">
-                    <p className="text-[14px] text-steel">Renk tonunu seçin</p>
-                    <div className="mt-3 flex flex-wrap gap-2" role="radiogroup" aria-label="Eloksal renkleri">
-                      {step.swatches.map((s) => (
+                    <p className="text-[14px] text-steel">{t.pickTone}</p>
+                    <div className="mt-3 flex flex-wrap gap-2" role="radiogroup" aria-label={t.tonesLabel}>
+                      {stage.swatches.map((s) => (
                         <button
                           key={s}
                           role="radio"
@@ -116,7 +116,7 @@ export default function Production() {
                           }`}
                         >
                           <span className="h-6 w-6 rounded-full border border-ink/15" style={{ background: finishes[s].color }} />
-                          {finishes[s].name.replace(' eloksal', '')}
+                          {t.toneShort[s as keyof typeof t.toneShort]}
                         </button>
                       ))}
                     </div>
@@ -133,7 +133,8 @@ export default function Production() {
                   </ul>
                 )}
               </li>
-            ))}
+              );
+            })}
           </ol>
         </div>
       </div>

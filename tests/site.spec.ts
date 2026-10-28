@@ -4,17 +4,19 @@ test.beforeEach(async ({ page }) => {
   const errors: string[] = [];
   page.on('pageerror', (e) => errors.push(e.message));
   (page as unknown as { _errors: string[] })._errors = errors;
-  await page.goto('/');
+  await page.goto('/tr/');
 });
 
+const langs = (process.env.SITE_LANGS || 'tr').split(',').map((l) => l.trim());
+
 test('ana başlık ve 3D sahne yükleniyor', async ({ page }) => {
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Kalite ve');
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('Alüminyumda');
   await expect(page.locator('#top canvas')).toBeVisible();
   expect((page as unknown as { _errors: string[] })._errors).toEqual([]);
 });
 
 test('tüm bölümler ve iletişim bilgileri mevcut', async ({ page }) => {
-  for (const id of ['kurumsal', 'uretim', 'kataloglar', 'iletisim']) {
+  for (const id of ['kurumsal', 'muhendislik', 'uretim', 'sektorler', 'kataloglar', 'iletisim']) {
     await expect(page.locator(`#${id}`)).toHaveCount(1);
   }
   await expect(page.locator('a[href="mailto:info@alufortis.com"]')).toBeVisible();
@@ -45,7 +47,7 @@ test('adresle doğrudan açılan bölüm beklemeden gösteriliyor', async ({ pag
   // CI makinesinde 3D sahne yazılımla çiziliyor; ilk açılışta sayfa bir süre meşgul kalabiliyor
   test.slow();
   await page.goto('about:blank');
-  await page.goto('/#uretim');
+  await page.goto('/tr/#uretim');
   await page.waitForTimeout(600);
   const top = await page.locator('#uretim').evaluate((el) => el.getBoundingClientRect().top);
   expect(Math.abs(top - 64)).toBeLessThan(24);
@@ -61,4 +63,45 @@ test('menüden bölüme yumuşak kaydırma korunuyor', async ({ page, isMobile }
   expect(mid).toBeLessThan(target - 50);
   await expect.poll(() => page.evaluate(() => scrollY), { timeout: 8000 }).toBeGreaterThan(target - 5);
   expect(page.url()).toContain('#kataloglar');
+});
+
+test('kök adres tarayıcı diline, yoksa Türkçeye yönleniyor', async ({ browser }) => {
+  for (const [locale, want] of [
+    ['tr-TR', 'tr'],
+    ['de-DE', langs.includes('de') ? 'de' : 'tr'],
+    ['fr-FR', 'tr'],
+  ]) {
+    const ctx = await browser.newContext({ locale });
+    const page = await ctx.newPage();
+    await page.goto('/');
+    await expect(page).toHaveURL(new RegExp(`/${want}/$`));
+    await expect(page.locator('html')).toHaveAttribute('lang', want);
+    await ctx.close();
+  }
+});
+
+test('yayındaki diller açılıyor, diğerleri yok', async ({ page, request }) => {
+  const titles: Record<string, string> = { tr: 'Alüminyumda', en: 'Precision in', de: 'Präzision in' };
+  for (const l of ['tr', 'en', 'de']) {
+    const res = await request.get(`/${l}/`);
+    if (!langs.includes(l)) {
+      expect(res.status()).toBe(404);
+      continue;
+    }
+    await page.goto(`/${l}/`);
+    await expect(page.locator('html')).toHaveAttribute('lang', l);
+    await expect(page.getByRole('heading', { level: 1 })).toContainText(titles[l]);
+    await expect(page.locator('body')).not.toContainText(/perpolio/i);
+  }
+});
+
+test('dil seçici yalnızca birden çok dil varken görünüyor', async ({ page, isMobile }) => {
+  test.skip(!!isMobile, 'masaüstü menüsü');
+  const sw = page.getByRole('list', { name: 'Dil seçimi' });
+  if (langs.length < 2) {
+    await expect(sw).toHaveCount(0);
+    return;
+  }
+  await sw.getByRole('link', { name: langs[1].toUpperCase() }).click();
+  await expect(page).toHaveURL(new RegExp(`/${langs[1]}/$`));
 });

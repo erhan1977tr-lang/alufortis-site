@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { heroState } from '@/lib/sceneState';
+import type { Dict } from '@/lib/i18n';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 // Yavaş cihazda açılış ağır çekime dönmesin: animasyonlar gerçek süresinde biter
@@ -12,14 +13,8 @@ gsap.ticker.lagSmoothing(0);
 
 const HeroScene = dynamic(() => import('./three/HeroScene'), { ssr: false });
 
-const facts = [
-  { label: 'Alüminyumda başlangıç', value: '1996' },
-  { label: 'Alufortis markası', value: '2024' },
-  { label: 'İş ortağı olan ülke', value: '11' },
-  { label: 'Yıllık ekstrüzyon', value: '20.000 t' },
-];
-
-export default function Hero() {
+export default function Hero({ t }: { t: Dict['hero'] }) {
+  const facts = t.facts;
   const root = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -65,34 +60,31 @@ export default function Hero() {
       </div>
 
       <div className="pointer-events-none relative mx-auto flex max-w-[1400px] flex-col px-4 pb-10 sm:px-8 md:min-h-[calc(100svh-4rem)] md:justify-center">
-        <div className="pointer-events-auto max-w-[760px]">
-          <h1 className="display text-[clamp(3rem,9.5vw,8.6rem)]">
-            <span className="block overflow-hidden pb-[0.06em]">
-              <span data-line className="block">Kalite ve</span>
-            </span>
-            <span className="block overflow-hidden pb-[0.06em]">
-              <span data-line className="block">güvenin</span>
-            </span>
-            <span className="block overflow-hidden pb-[0.06em]">
-              <span data-line className="hero-gradient block">sembolü</span>
-            </span>
+        <div className="pointer-events-auto max-w-[900px]">
+          <h1 className="display text-[clamp(2.4rem,6.6vw,6.6rem)]">
+            {t.lines.map((line, i) => (
+              <span key={line} className="block overflow-hidden pb-[0.06em]">
+                <span data-line className={`block ${i === t.lines.length - 1 ? 'hero-gradient' : ''}`}>
+                  {line}
+                </span>
+              </span>
+            ))}
           </h1>
           <p data-fade className="mt-6 max-w-[34rem] text-[17px] leading-[1.55] text-paper/75 sm:text-lg">
-            Tasarım, danışmanlık, ürün, lojistik ve size özel çözümleri tek noktadan sunuyoruz. Kalıptan nihai
-            ürüne kadar alüminyumun her aşaması bizde.
+            {t.lead}
           </p>
           <div data-fade className="mt-8 flex flex-wrap gap-3">
             <a
-              href="#kataloglar"
+              href="#muhendislik"
               className="rounded-full bg-paper px-6 py-3 text-[15px] font-medium text-night transition-colors hover:bg-[#f0b27a]"
             >
-              Katalogları inceleyin
+              {t.primary}
             </a>
             <a
-              href="#uretim"
+              href="#iletisim"
               className="rounded-full border border-paper/30 px-6 py-3 text-[15px] font-medium transition-colors hover:border-paper"
             >
-              Üretim tesislerimiz
+              {t.secondary}
             </a>
           </div>
         </div>
@@ -100,12 +92,12 @@ export default function Hero() {
         {/* Teknik çizim antet kutusu */}
         <dl
           data-fade
-          className="pointer-events-auto mt-10 grid grid-cols-2 border border-paper/15 bg-white/[0.04] backdrop-blur-md sm:grid-cols-4 md:absolute md:right-8 md:bottom-10 md:mt-0 md:w-[min(560px,46vw)]"
+          className="pointer-events-auto mt-10 grid grid-cols-3 border border-paper/15 bg-white/[0.04] backdrop-blur-md md:absolute md:right-8 md:bottom-10 md:mt-0 md:w-[min(460px,42vw)]"
         >
           {facts.map((f, i) => (
             <div
               key={f.label}
-              className={`px-4 py-3 ${i % 2 === 1 ? 'border-l' : ''} ${i > 1 ? 'border-t sm:border-t-0' : ''} ${i === 2 ? 'sm:border-l' : ''} border-paper/15`}
+              className={`flex flex-col justify-between px-3 py-3 sm:px-4 ${i > 0 ? 'border-l' : ''} border-paper/15`}
             >
               <dt className="text-[12px] leading-tight text-paper/55">{f.label}</dt>
               <dd className="semiwide num mt-1 text-[20px] font-semibold whitespace-nowrap lg:text-[22px]">{f.value}</dd>
@@ -116,7 +108,7 @@ export default function Hero() {
           data-fade
           className="mt-4 text-[11px] tracking-[0.14em] text-paper/40 uppercase md:absolute md:bottom-10 md:left-8 md:mt-0"
         >
-          Görseldeki profil kesiti temsilidir
+          {t.caption}
         </p>
       </div>
     </section>

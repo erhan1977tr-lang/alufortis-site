@@ -9,6 +9,8 @@ import type { Dict } from '@/lib/i18n';
 import { productionState } from '@/lib/sceneState';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
+// Yavaş cihazda animasyonlar ağır çekime dönmesin: gerçek süresinde biter
+gsap.ticker.lagSmoothing(0);
 
 const ProductionScene = dynamic(() => import('./three/ProductionScene'), { ssr: false });
 

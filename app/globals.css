@@ -107,3 +107,91 @@ body {
   background-clip: text;
   color: transparent;
 }
+
+/* Açılış filmi: masaüstünde kaydırmayla sarılır, uzun bölüm boyunca sahne sabit kalır */
+.film-hero {
+  height: 1000vh;
+}
+.film-video {
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+.film-stage.video-ready .film-video {
+  opacity: 1;
+}
+.film-band {
+  isolation: isolate;
+  text-shadow: 0 2px 18px rgb(5 8 12 / 0.55);
+}
+/* Yazının arkasında buzlu cam plaka: gündüz sahnelerinde de okunur */
+.film-band::before {
+  content: '';
+  position: absolute;
+  inset: -26px -32px;
+  z-index: -1;
+  border-radius: 20px;
+  border: 1px solid rgb(201 209 219 / 0.1);
+  background: rgb(7 9 12 / 0.78);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 30px 80px rgb(5 8 12 / 0.35);
+}
+.film-band > * {
+  opacity: clamp(0, var(--k, 1) * 1.6, 1);
+  transform: translateY(calc((1 - clamp(0, var(--k, 1) * 1.6, 1)) * 18px));
+}
+.film-band > .film-sub,
+.film-band > :nth-child(n + 3) {
+  opacity: clamp(0, (var(--k, 1) - 0.4) * 2.5, 1);
+  transform: translateY(calc((1 - clamp(0, (var(--k, 1) - 0.4) * 2.5, 1)) * 12px));
+}
+.film-band a,
+.film-band dl {
+  text-shadow: none;
+}
+.film-static {
+  display: none;
+}
+.film-stage.scrolled .film-cue {
+  opacity: 0;
+}
+.film-stage.loading .film-cue-arrow {
+  animation-duration: 0.9s;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .film-cue-arrow {
+    animation: film-cue 2.4s ease-in-out infinite;
+  }
+}
+@keyframes film-cue {
+  0%,
+  100% {
+    transform: translateY(-2px);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+}
+@media (max-width: 720px), (orientation: portrait) and (max-width: 1024px), (orientation: portrait) and (pointer: coarse), (orientation: landscape) and (pointer: coarse) and (max-height: 560px), (prefers-reduced-motion: reduce) {
+  .film-hero {
+    height: 100svh;
+  }
+  .film-band,
+  .film-cue {
+    display: none;
+  }
+  .film-static {
+    display: flex;
+  }
+  .film-caption {
+    display: none;
+  }
+  .film-stage.mobile-play .film-video {
+    opacity: 1;
+  }
+}
+@media (max-height: 560px) {
+  .film-cue {
+    display: none;
+  }
+}

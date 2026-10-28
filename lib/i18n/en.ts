@@ -38,7 +38,17 @@ const en: Dict = {
       { label: 'Available dies', value: '1800+' },
       { label: 'Countries served', value: '35+' },
     ],
-    caption: 'Profile section shown is representative',
+    caption: 'Footage is representative',
+    cue: 'Scroll',
+    // Açılış filmi: her satır filmin bir sahnesinin üstünde görünür; ilk sahnenin başlığı yukarıdaki lines
+    film: [
+      { title: '', sub: 'Every order starts with a click. Wherever you are.' },
+      { title: 'At the plant in seconds.', sub: 'It comes in through the front door as billet.' },
+      { title: 'From 700 to 4,500 tonnes.', sub: 'Five presses. One standard.' },
+      { title: 'Shaped in the die.', sub: 'Get the section right and everything is right.' },
+      { title: 'Out the back door on Alufortis trucks.', sub: 'Anodised, powder coated, machined. Ready for the road.' },
+      { title: 'Delivered to 35+ countries.', sub: 'Your trusted partner in aluminium.' },
+    ],
   },
   motto: ['Engineering excellence.', 'Building trust.', 'Every day, every project.'],
   about: {

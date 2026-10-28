@@ -9,9 +9,15 @@ test.beforeEach(async ({ page }) => {
 
 const langs = (process.env.SITE_LANGS || 'tr').split(',').map((l) => l.trim());
 
-test('ana başlık ve 3D sahne yükleniyor', async ({ page }) => {
+test('ana başlık ve açılış filmi yükleniyor', async ({ page, isMobile }) => {
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Alüminyumda');
-  await expect(page.locator('#top canvas')).toBeVisible();
+  await expect(page.locator('#top video')).toHaveCount(1);
+  if (!isMobile) {
+    // Masaüstünde film kaydırmaya bağlı: bütünüyle yüklenip hazır olmalı
+    await expect(page.locator('#top .film-stage')).toHaveClass(/video-ready/, { timeout: 20000 });
+    await page.evaluate(() => window.scrollTo(0, document.getElementById('top')!.offsetHeight * 0.5));
+    await expect.poll(() => page.locator('#top video').evaluate((v: HTMLVideoElement) => v.currentTime)).toBeGreaterThan(5);
+  }
   expect((page as unknown as { _errors: string[] })._errors).toEqual([]);
 });
 

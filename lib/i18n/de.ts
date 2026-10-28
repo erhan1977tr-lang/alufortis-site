@@ -38,7 +38,17 @@ const de: Dict = {
       { label: 'Verfügbare Werkzeuge', value: '1800+' },
       { label: 'Belieferte Länder', value: '35+' },
     ],
-    caption: 'Der gezeigte Profilquerschnitt ist beispielhaft',
+    caption: 'Aufnahmen sind beispielhaft',
+    cue: 'Scrollen',
+    // Açılış filmi: her satır filmin bir sahnesinin üstünde görünür; ilk sahnenin başlığı yukarıdaki lines
+    film: [
+      { title: '', sub: 'Jede Bestellung beginnt mit einem Klick. Wo immer Sie sind.' },
+      { title: 'In Sekunden im Werk.', sub: 'Durch das Vordertor kommt es als Pressbolzen.' },
+      { title: 'Von 700 bis 4.500 Tonnen.', sub: 'Fünf Pressen. Ein Anspruch.' },
+      { title: 'Im Werkzeug nimmt es Form an.', sub: 'Stimmt der Querschnitt, stimmt alles.' },
+      { title: 'Durch das Hintertor auf Alufortis-Lkw.', sub: 'Eloxiert, pulverbeschichtet, bearbeitet. Bereit für die Straße.' },
+      { title: 'In über 35 Länder geliefert.', sub: 'Ihr zuverlässiger Partner für Aluminium.' },
+    ],
   },
   motto: ['Technische Exzellenz.', 'Vertrauen schaffen.', 'Jeden Tag. In jedem Projekt.'],
   about: {

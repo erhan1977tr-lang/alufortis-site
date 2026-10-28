@@ -37,7 +37,17 @@ const tr = {
       { label: 'Kullanıma hazır kalıp', value: '1800+' },
       { label: 'Hizmet verilen ülke', value: '35+' },
     ],
-    caption: 'Görseldeki profil kesiti temsilidir',
+    caption: 'Görüntüler temsilidir',
+    cue: 'Kaydırın',
+    // Açılış filmi: her satır filmin bir sahnesinin üstünde görünür; ilk sahnenin başlığı yukarıdaki lines
+    film: [
+      { title: '', sub: 'Sipariş bir tıkla başlar. Nerede olursanız olun.' },
+      { title: 'Saniyeler içinde fabrikada.', sub: 'Ön kapıdan biyet olarak girer.' },
+      { title: '700\'den 4.500 tona.', sub: 'Beş pres. Tek basınç.' },
+      { title: 'Kalıpta forma bürünür.', sub: 'Kesit doğruysa, her şey doğrudur.' },
+      { title: 'Arka kapıdan Alufortis tırlarıyla çıkar.', sub: 'Eloksal, toz boya, mekanik işlem bitmiş. Yola hazır.' },
+      { title: '35+ ülkeye ulaşır.', sub: 'Alüminyumda güvenilir çözüm ortağınız.' },
+    ],
   },
   motto: ['Mühendislikte mükemmellik.', 'Güven inşa ediyoruz.', 'Her gün, her projede.'],
   about: {

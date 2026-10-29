@@ -390,6 +390,16 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
           <div className="text-[13px] lg:text-right">
             <p>© {new Date().getFullYear()} Alufortis. {t.ui.rights}</p>
             <p className="mt-1 text-paper/45">{t.ui.imagesNote}</p>
+            <p className="mt-3 text-paper/55">
+              Designed by{' '}
+              <a href="https://gkhdigital.ro" target="_blank" rel="noopener" className="link-underline text-paper/80 hover:text-paper">
+                gkhdigital.ro
+              </a>{' '}
+              &amp;{' '}
+              <a href="https://gkhdigital.com" target="_blank" rel="noopener" className="link-underline text-paper/80 hover:text-paper">
+                gkhdigital.com
+              </a>
+            </p>
           </div>
         </div>
       </footer>

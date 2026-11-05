@@ -33,7 +33,7 @@ jobs:
           GG_FTP_PASSWORD: ${{ secrets.GG_FTP_PASSWORD }}
         run: |
           cd yayin/alufortis-gkh
-          test -f index.html && test -f .htaccess && test -f assets/hero-scrub-v4.mp4
+          test -f index.html && test -f en/index.html && test -f de/index.html && test -f .htaccess && test -f assets/hero-scrub-v4.mp4
           grep -q "assets/hero-scrub-v4.mp4" index.html
           for v in GG_FTP_SERVER GG_FTP_USERNAME GG_FTP_PASSWORD; do
             if [ -z "${!v}" ]; then echo "::error::$v secret'ı tanımlı değil"; exit 1; fi
@@ -90,6 +90,8 @@ jobs:
           lftp -u "$GG_FTP_USERNAME","$GG_FTP_PASSWORD" "ftp://$GG_FTP_SERVER" -e "
             source ../../tls.lftp;
             mirror -R --no-perms --verbose=1 assets /assets;
+            mirror -R --no-perms --verbose=1 en /en;
+            mirror -R --no-perms --verbose=1 de /de;
             put .htaccess -o /.htaccess;
             put index.html -o /index.html;
             cls -l /assets/hero-scrub-v4.mp4 /index.html;
@@ -103,6 +105,9 @@ jobs:
             curl -fsS --max-time 30 https://alufortis.gkh.ro/ -o canli.html && break; sleep 5
           done
           grep -q "assets/hero-scrub-v4.mp4" canli.html && echo "index.html yeni sürüm" || { echo "::error::index.html eski görünüyor"; ok=0; }
+          for l in en de; do
+            curl -fsS --max-time 30 "https://alufortis.gkh.ro/$l/" | grep -q "<html lang=\"$l\">" && echo "$l/ yayında" || { echo "::error::$l/ açılmadı"; ok=0; }
+          done
           for p in assets/hero-scrub-v4.mp4 assets/vendor/gsap.min.js assets/vendor/ScrollTrigger.min.js assets/vendor/three/three.module.min.js assets/logo-dark.svg assets/profile-7800-1.json assets/land-110m.json; do
             want=$(stat -c %s "yayin/alufortis-gkh/$p")
             got=$(curl -fsSI --max-time 30 "https://alufortis.gkh.ro/$p" | tr -d '\r' | awk 'tolower($1)=="content-length:"{print $2}' | tail -1)

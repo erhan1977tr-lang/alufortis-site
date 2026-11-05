@@ -3,6 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="alternate" hreflang="tr" href="https://alufortis.gkh.ro/">
+<link rel="alternate" hreflang="en" href="https://alufortis.gkh.ro/en/">
+<link rel="alternate" hreflang="de" href="https://alufortis.gkh.ro/de/">
+<link rel="alternate" hreflang="x-default" href="https://alufortis.gkh.ro/">
+<link rel="canonical" href="https://alufortis.gkh.ro/">
 <title>Alufortis Alüminyum</title>
 <meta name="description" content="Alufortis: 1996'dan beri alüminyum profil. Ekstrüzyon, eloksal, elektrostatik toz boya, kalıphane ve mekanik işlem tek çatı altında. Pendik, İstanbul.">
 <meta name="theme-color" content="#0F141B">
@@ -350,6 +355,12 @@ form.sent .f,form.sent .btn{display:none}
 .stage .xout{position:absolute;inset:0;background:var(--canvas);opacity:0;pointer-events:none;z-index:4}
 .p3d .sweep{position:absolute;inset:0;pointer-events:none;opacity:0;background:linear-gradient(100deg,transparent 40%,rgba(120,200,255,.26) 48%,rgba(255,255,255,.38) 50%,rgba(120,200,255,.26) 52%,transparent 60%);background-size:300% 100%;background-repeat:no-repeat;background-position:calc(100% - var(--sx,0) * 100%) 0;mix-blend-mode:screen}
 @media (prefers-reduced-motion: reduce){.p3d .sweep,.stage .xout{display:none}}
+.nav-end{display:flex;align-items:center;gap:14px}
+.langs{display:flex;gap:2px;font-family:var(--mono);font-size:12px;letter-spacing:.08em}
+.langs a{text-decoration:none;color:var(--text-secondary);padding:8px 7px;border-radius:6px;transition:color .3s var(--ease),background .3s var(--ease)}
+.langs a:hover{color:var(--text-primary)}
+.langs a[aria-current]{color:var(--text-primary);background:rgba(255,255,255,.06)}
+@media (max-width:560px){.nav-end{gap:6px}.langs a{padding:8px 5px}.nav .btn-sm{padding:10px 12px;font-size:13px}}
 /* footer */
 footer{position:relative;z-index:1;background:var(--canvas);border-top:1px solid var(--line);padding:48px 0 32px;color:var(--text-secondary);font-size:14px}
 footer .row{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
@@ -387,7 +398,7 @@ footer .credit a{text-decoration:underline;text-underline-offset:3px}
     <li><a href="#sss">SSS</a></li>
     <li><a href="#teklif">İletişim</a></li>
   </ul>
-  <a class="btn btn-primary btn-sm" href="#teklif">Teklif İsteyin</a>
+  <div class="nav-end"><div class="langs" role="group" aria-label="Dil seçimi"><a href="./" hreflang="tr" lang="tr" title="Türkçe" aria-current="page">TR</a><a href="en/" hreflang="en" lang="en" title="English">EN</a><a href="de/" hreflang="de" lang="de" title="Deutsch">DE</a></div><a class="btn btn-primary btn-sm" href="#teklif">Teklif İsteyin</a></div>
 </nav>
 
 <header class="hero" id="top">

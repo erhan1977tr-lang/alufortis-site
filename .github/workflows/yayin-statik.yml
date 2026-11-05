@@ -3,7 +3,7 @@ name: Statik siteyi yedekle ve alufortis.gkh.ro'ya yayınla
 # Erhan'ın 2026-11-05 onayıyla: yayin/alufortis-gkh klasöründeki statik site
 # (düzeltilmiş açılış videosu v4 + GSAP ScrollTrigger akışı) GreenGeeks'e gider.
 # Önce canlı dosyaların tamamı sunucudaki erişime kapalı _yedek klasörüne kopyalanır.
-# Hiçbir dosya silinmez. FTPS: TLS zorunlu, sertifika ve ana makine adı doğrulanır.
+# Üç dil (TR, EN, DE) birlikte yüklenir. Hiçbir dosya silinmez. FTPS: TLS zorunlu, sertifika ve ana makine adı doğrulanır.
 on:
   push:
     branches: [claude/project-thread-3xxexf]

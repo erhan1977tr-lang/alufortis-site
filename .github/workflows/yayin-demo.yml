@@ -1,8 +1,8 @@
-name: Demo siteyi demo.gkh.ro/alufortis adresine yükle
+name: Görsel bölümlü ikinci sürümü alufortis.gkh.ro/v2 adresine yükle
 
-# Erhan'ın 2026-11-08 isteğiyle: görsel bölümleri eklenmiş site (yayin/demo-alufortis) demo.gkh.ro/alufortis klasörüne gider.
-# Canlı site (alufortis.gkh.ro) bu iş akışından etkilenmez. Demo sayfaları arama motorlarına kapalıdır (noindex).
-# FTP hesabının kök klasörü demo.gkh.ro'nun belge kökü olmalıdır. Hiçbir dosya silinmez.
+# Erhan'ın 2026-11-08 isteğiyle: görsel bölümleri eklenmiş ikinci sürüm (yayin/demo-alufortis) müşteriye ayrı bir
+# adresle gösterilir: https://alufortis.gkh.ro/v2/. Yalnızca /v2 klasörüne yazılır; ana sitenin dosyalarına
+# (/index.html, /assets, /en, /de, /.htaccess) dokunulmaz. Sayfalar arama motorlarına kapalıdır (noindex). Hiçbir dosya silinmez.
 # FTPS: TLS zorunlu, sertifika ve ana makine adı doğrulanır.
 on:
   workflow_dispatch:
@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: greengeeks
-      url: https://demo.gkh.ro/alufortis/
+      url: https://alufortis.gkh.ro/v2/
     concurrency:
       group: greengeeks-deploy
       cancel-in-progress: false
@@ -30,13 +30,13 @@ jobs:
       - name: Dosyaları ve secret'ları denetle
         env:
           GG_FTP_SERVER: ${{ secrets.GG_FTP_SERVER }}
-          GG_DEMO_FTP_USERNAME: ${{ secrets.GG_DEMO_FTP_USERNAME }}
-          GG_DEMO_FTP_PASSWORD: ${{ secrets.GG_DEMO_FTP_PASSWORD }}
+          GG_FTP_USERNAME: ${{ secrets.GG_FTP_USERNAME }}
+          GG_FTP_PASSWORD: ${{ secrets.GG_FTP_PASSWORD }}
         run: |
           cd yayin/demo-alufortis
           test -f index.html && test -f en/index.html && test -f de/index.html && test -f assets/hero-scrub-v4.mp4 && test -f assets/gorsel/tesis.webp
           grep -q 'name="robots" content="noindex' index.html
-          for v in GG_FTP_SERVER GG_DEMO_FTP_USERNAME GG_DEMO_FTP_PASSWORD; do
+          for v in GG_FTP_SERVER GG_FTP_USERNAME GG_FTP_PASSWORD; do
             if [ -z "${!v}" ]; then echo "::error::$v secret'ı tanımlı değil"; exit 1; fi
           done
           find . -type f -printf '%s %p\n' | sort -k2
@@ -47,8 +47,8 @@ jobs:
       - name: Yükle (önce varlıklar, en son index.html)
         env:
           GG_FTP_SERVER: ${{ secrets.GG_FTP_SERVER }}
-          GG_DEMO_FTP_USERNAME: ${{ secrets.GG_DEMO_FTP_USERNAME }}
-          GG_DEMO_FTP_PASSWORD: ${{ secrets.GG_DEMO_FTP_PASSWORD }}
+          GG_FTP_USERNAME: ${{ secrets.GG_FTP_USERNAME }}
+          GG_FTP_PASSWORD: ${{ secrets.GG_FTP_PASSWORD }}
         run: |
           set -euo pipefail
           cat > tls.lftp <<'EOF'
@@ -62,16 +62,16 @@ jobs:
           set net:timeout 30
           EOF
           cd yayin/demo-alufortis
-          lftp -u "$GG_DEMO_FTP_USERNAME","$GG_DEMO_FTP_PASSWORD" "ftp://$GG_FTP_SERVER" -e "
+          lftp -u "$GG_FTP_USERNAME","$GG_FTP_PASSWORD" "ftp://$GG_FTP_SERVER" -e "
             source ../../tls.lftp;
             echo '--- FTP kökü ---'; cls -1;
-            mkdir -p -f /alufortis;
-            mirror -R --no-perms --verbose=1 assets /alufortis/assets;
-            mirror -R --no-perms --verbose=1 en /alufortis/en;
-            mirror -R --no-perms --verbose=1 de /alufortis/de;
-            put .htaccess -o /alufortis/.htaccess;
-            put index.html -o /alufortis/index.html;
-            cls -l /alufortis/index.html /alufortis/assets/hero-scrub-v4.mp4;
+            mkdir -p -f /v2;
+            mirror -R --no-perms --verbose=1 assets /v2/assets;
+            mirror -R --no-perms --verbose=1 en /v2/en;
+            mirror -R --no-perms --verbose=1 de /v2/de;
+            put .htaccess -o /v2/.htaccess;
+            put index.html -o /v2/index.html;
+            cls -l /v2/index.html /v2/assets/hero-scrub-v4.mp4;
             bye"
 
       - name: Demoyu doğrula
@@ -79,8 +79,8 @@ jobs:
           set -u
           ok=1
           for p in "" en/ de/ assets/hero-scrub-v4.mp4 assets/gorsel/tesis.webp assets/vendor/gsap.min.js; do
-            code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 "https://demo.gkh.ro/alufortis/$p")
-            echo "/alufortis/$p http=$code"
+            code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 "https://alufortis.gkh.ro/v2/$p")
+            echo "/v2/$p http=$code"
             [ "$code" = "200" ] || ok=0
           done
-          [ "$ok" = 1 ] || echo "::warning::Dosyalar yüklendi ama https://demo.gkh.ro/alufortis/ henüz açılmıyor (DNS veya SSL bekleniyor olabilir)."
+          [ "$ok" = 1 ] || { echo "::error::https://alufortis.gkh.ro/v2/ açılmadı"; exit 1; }

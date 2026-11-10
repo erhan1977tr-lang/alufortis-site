@@ -76,7 +76,7 @@ footer .brand img{height:68px}
 
 /* hero */
 .hero{position:relative;height:1000vh;z-index:1}
-.stage{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--canvas)}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--canvas)}
 .stage canvas#scene{position:absolute;inset:0;width:100%;height:100%;display:block}
 .stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s var(--ease);transform:translateZ(0);pointer-events:none}
 .stage.video-ready video{opacity:1}
@@ -212,7 +212,7 @@ h2.t{font-family:var(--display);font-stretch:112%;font-weight:700;font-size:clam
 .prod.live .step:last-child{padding-bottom:clamp(40px,10vh,90px)}
 /* desktop: the whole section pins; the card stays, the steps slide up until 05 sits fully in view, then the page moves on to the catalogues */
 .prod.pinned{height:440vh;padding:0}
-.prod.pinned .pinp{position:sticky;top:0;height:100vh;overflow:hidden}
+.prod.pinned .pinp{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
 .prod.pinned .wrap{height:100%;display:grid;grid-template-columns:1fr 1.1fr;grid-template-rows:auto minmax(0,1fr);column-gap:clamp(32px,6vw,96px);padding:calc(var(--nav-h) + 26px) 0 26px}
 .prod.pinned .cols{display:contents}
 .prod.pinned .wrap>.rv{grid-column:1;grid-row:1}
@@ -995,10 +995,10 @@ stage.addEventListener('pointerleave', () => { mx = 0; my = 0; wake(); });
 
 /* ============ the video (optional: set HERO_VIDEO when the scrub footage exists) ============ */
 const HERO_VIDEO = 'assets/hero-scrub-v4.mp4', HERO_POSTER = 'assets/hero-poster.jpg', VIDEO_BYTES = 6973457;
-let seekBusy = false, pendingTime = null, heroInited = false, videoReady = false;
+let seekBusy = false, pendingTime = null, heroInited = false, videoReady = false, heroBlobTry = false;
 function requestSeek(t) { if (!video.duration) return; if (seekBusy) { pendingTime = t; return; } seekBusy = true; video.currentTime = t; }
 video.addEventListener('seeked', () => { seekBusy = false; if (pendingTime !== null) { const t = pendingTime; pendingTime = null; requestSeek(t); } });
-video.addEventListener('error', () => { seekBusy = false; pendingTime = null; failVideo(); });
+video.addEventListener('error', () => { seekBusy = false; pendingTime = null; if (heroBlobTry) return; failVideo(); });
 function failVideo() { stage.classList.remove('loading'); stage.classList.add('video-failed'); videoReady = false; wake(); }
 function initHeroOnce() {
   if (heroInited) return; heroInited = true;
@@ -1025,8 +1025,29 @@ async function loadHeroBlob() {
     if (now - lastRing > 100 || frac === 1) { lastRing = now; ring.style.setProperty('--ld', Math.round(126 * (1 - frac))); }
   }
   clearTimeout(wd); ring.style.setProperty('--ld', 0);
-  video.src = URL.createObjectURL(new Blob(chunks)); video.load();
-  video.addEventListener('canplay', () => { videoReady = true; requestSeek(heroProgress() * video.duration); stage.classList.add('video-ready'); stage.classList.remove('loading'); }, { once: true });
+  attachHeroSource(URL.createObjectURL(new Blob(chunks, { type: 'video/mp4' })), true);
+}
+// Safari (macOS, iPadOS) can refuse a blob video: then the same file plays from its URL, which the download above has just put in the cache
+function attachHeroSource(src, isBlob) {
+  heroBlobTry = isBlob;
+  let done = false, kick = 0;
+  const off = () => { video.removeEventListener('canplay', ok); video.removeEventListener('loadeddata', ok); video.removeEventListener('error', bad); clearTimeout(kick); };
+  const ok = () => {
+    if (done) return; done = true; off(); heroBlobTry = false;
+    if (!video.paused) video.pause();
+    videoReady = true; requestSeek(heroProgress() * video.duration);
+    stage.classList.remove('loading', 'video-failed'); stage.classList.add('video-ready'); wake();
+  };
+  const bad = () => {
+    if (done) return; done = true; off();
+    if (isBlob) { URL.revokeObjectURL(src); attachHeroSource(HERO_VIDEO, false); }
+    else { heroBlobTry = false; failVideo(); }
+  };
+  video.addEventListener('canplay', ok); video.addEventListener('loadeddata', ok); video.addEventListener('error', bad);
+  video.muted = true; video.playsInline = true; video.preload = 'auto';
+  video.src = src; video.load();
+  // iPadOS buffers nothing until the video is asked to play: a muted inline play, paused at once, starts it
+  kick = setTimeout(() => { if (!done && video.readyState < 2) { const p = video.play(); if (p && p.catch) p.catch(() => {}); } }, 1500);
 }
 
 /* ============ the five gates, decided live ============ */

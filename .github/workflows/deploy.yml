@@ -1,31 +1,25 @@
-name: Derle, test et ve GreenGeeks'e yayınla
+name: Derle ve test et
 
-# PR'larda ve main'de: derleme + Playwright testleri.
-# Yayın: yalnızca main dalında, testler geçtikten sonra, FTPS ile.
-# Elle çalıştırmada "kuru çalıştırma" seçilirse sunucuya bağlanıp
-# yapılacak değişiklikleri listeler, hiçbir dosyayı değiştirmez.
+# PR'larda ve main'de: yalnızca derleme + Playwright testleri.
+# Bu iş akışı artık sunucuya HİÇBİR ŞEY yüklemez. main'deki Next.js sitesi
+# canlı sürüm değildir; 2026-11-10'da main'e yapılan push'lar bu adımla
+# alufortis.gkh.ro ana sayfasının üzerine eski siteyi yüklemişti.
+# Canlı site yayin/ klasörlerinden, ayrı ve onaylı iş akışlarıyla yüklenir.
 on:
   push:
     branches: [main]
   pull_request:
   workflow_dispatch:
-    inputs:
-      kuru_calistirma:
-        description: "Kuru çalıştırma: yalnızca bağlantıyı ve yapılacak değişiklikleri göster"
-        type: boolean
-        default: true
 
 permissions:
   contents: read
 
 jobs:
   build-test:
-    name: Derle, test et ve uygun olaylarda yayınla
+    name: Derle ve test et
     runs-on: ubuntu-latest
-    environment:
-      name: ${{ github.event_name == 'pull_request' && 'ci' || 'greengeeks' }}
     concurrency:
-      group: alufortis-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
+      group: alufortis-ci-${{ github.ref }}
       cancel-in-progress: false
     steps:
       - uses: actions/checkout@v4
@@ -48,58 +42,3 @@ jobs:
           name: playwright-report
           path: test-results
           retention-days: 7
-      - name: Yayın dosyalarını ve secret'ları denetle
-        if: >-
-          (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
-          (github.event_name == 'workflow_dispatch' && (inputs.kuru_calistirma || github.ref == 'refs/heads/main'))
-        env:
-          GG_FTP_SERVER: ${{ secrets.GG_FTP_SERVER }}
-          GG_FTP_USERNAME: ${{ secrets.GG_FTP_USERNAME }}
-          GG_FTP_PASSWORD: ${{ secrets.GG_FTP_PASSWORD }}
-        run: |
-          test -f out/index.html
-          test -f out/.htaccess
-          test -f out/_next/static/.htaccess
-          test ! -e out/CNAME
-          for v in GG_FTP_SERVER GG_FTP_USERNAME GG_FTP_PASSWORD; do
-            if [ -z "${!v}" ]; then echo "::error::$v secret'ı tanımlı değil"; exit 1; fi
-          done
-
-      # FTP hesabının kökü public_html/alufortis.gkh.ro olduğu için "/" yalnızca bu siteyi kapsar.
-      # Silme: yalnızca bu iş akışının önceki yayında yüklediği ve artık build'de olmayan dosyalar
-      # (.ftp-deploy-sync-state.json ile izlenir). Sunucudaki diğer dosyalara dokunulmaz;
-      # .well-known, cgi-bin ve .user.ini ayrıca exclude ile korunur.
-      - name: FTPS ile yükle
-        if: >-
-          (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
-          (github.event_name == 'workflow_dispatch' && (inputs.kuru_calistirma || github.ref == 'refs/heads/main'))
-        uses: SamKirkland/FTP-Deploy-Action@110f9186c050f71550953127052e77650219c287 # v4.4.0
-        with:
-          server: ${{ secrets.GG_FTP_SERVER }}
-          username: ${{ secrets.GG_FTP_USERNAME }}
-          password: ${{ secrets.GG_FTP_PASSWORD }}
-          protocol: ftps # port 21 üzerinde explicit FTPS (AUTH TLS)
-          port: 21
-          security: strict # TLS sertifikası doğrulanır (eylemin varsayılanı "loose")
-          local-dir: ./out/
-          server-dir: /
-          dangerous-clean-slate: false
-          dry-run: ${{ github.event_name == 'workflow_dispatch' && inputs.kuru_calistirma }}
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
-            **/.well-known/**
-            **/cgi-bin/**
-            **/.user.ini
-
-      - name: Yayını kontrol et
-        if: >-
-          github.ref == 'refs/heads/main' &&
-          (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && !inputs.kuru_calistirma))
-        continue-on-error: true
-        run: |
-          sleep 5
-          curl -fsS --max-time 20 https://alufortis.gkh.ro/ | grep -q "Kalite ve" \
-            && echo "Site yayında" \
-            || echo "::warning::https://alufortis.gkh.ro/ henüz yeni sürümü göstermiyor (DNS/SSL bekleniyor olabilir)"

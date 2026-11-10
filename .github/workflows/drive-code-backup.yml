@@ -1,0 +1,61 @@
+name: Google Drive code backup
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '23 2 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: drive-code-backup
+  cancel-in-progress: false
+jobs:
+  backup:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Install and verify backup tools
+        run: |
+          set -euo pipefail
+          cd "$RUNNER_TEMP"
+          curl -fsSLo gitleaks.tar.gz https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz
+          echo '551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb  gitleaks.tar.gz' | sha256sum -c -
+          mkdir -p "$RUNNER_TEMP/backup-tools"
+          tar -xzf gitleaks.tar.gz -C "$RUNNER_TEMP/backup-tools" gitleaks
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends rclone
+      - name: Scan history and prepare archive
+        run: |
+          set -euo pipefail
+          baseline=()
+          if [ -f .github/backup-gitleaks-baseline.json ]; then baseline=(--baseline-path .github/backup-gitleaks-baseline.json); fi
+          "$RUNNER_TEMP/backup-tools/gitleaks" git . --log-opts=--all --redact --no-banner "${baseline[@]}"
+          mkdir -p "$RUNNER_TEMP/code-backup"
+          git bundle create "$RUNNER_TEMP/code-backup/history.bundle" --all
+          git bundle verify "$RUNNER_TEMP/code-backup/history.bundle"
+          git archive --format=zip --output="$RUNNER_TEMP/code-backup/source.zip" HEAD
+          git rev-parse HEAD > "$RUNNER_TEMP/code-backup/COMMIT.txt"
+          cd "$RUNNER_TEMP/code-backup"
+          sha256sum history.bundle source.zip COMMIT.txt > SHA256SUMS
+      - name: Upload to Drive and verify
+        env:
+          DRIVE_CONFIG: ${{ secrets.CODE_BACKUP_DRIVE_CONFIG }}
+        run: |
+          set -euo pipefail
+          if [ -z "$DRIVE_CONFIG" ]; then echo '::error::Missing CODE_BACKUP_DRIVE_CONFIG'; exit 1; fi
+          config=$(mktemp "$RUNNER_TEMP/drive-code.XXXXXX")
+          trap 'rm -f "$config"' EXIT
+          chmod 600 "$config"
+          printf '%s\n' "$DRIVE_CONFIG" > "$config"
+          unset DRIVE_CONFIG
+          destination="backup:Proje Yedekleri/${GITHUB_REPOSITORY#*/}/otomatik-kod/${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          rclone --config "$config" copy "$RUNNER_TEMP/code-backup" "$destination" --immutable --checksum --retries 5
+          rclone --config "$config" check "$RUNNER_TEMP/code-backup" "$destination" --one-way
+          printf 'Verified backup: %s\n' "$GITHUB_SHA" | rclone --config "$config" rcat "$destination/BACKUP-COMPLETE.txt"
+          printf 'Code backup uploaded and verified. Folder: `%s`\n' "${destination#backup:}" >> "$GITHUB_STEP_SUMMARY"

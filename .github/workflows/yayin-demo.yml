@@ -1,0 +1,86 @@
+name: Görsel bölümlü ikinci sürümü alufortis.gkh.ro/v2 adresine yükle
+
+# Erhan'ın 2026-11-08 isteğiyle: görsel bölümleri eklenmiş ikinci sürüm (yayin/demo-alufortis) müşteriye ayrı bir
+# adresle gösterilir: https://alufortis.gkh.ro/v2/. Yalnızca /v2 klasörüne yazılır; ana sitenin dosyalarına
+# (/index.html, /assets, /en, /de, /.htaccess) dokunulmaz. Sayfalar arama motorlarına kapalıdır (noindex). Hiçbir dosya silinmez.
+# FTPS: TLS zorunlu, sertifika ve ana makine adı doğrulanır.
+on:
+  workflow_dispatch:
+  push:
+    branches: [claude/project-thread-3xxexf]
+    paths:
+      - "yayin/demo-alufortis/**"
+      - ".github/workflows/yayin-demo.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    environment:
+      name: greengeeks
+      url: https://alufortis.gkh.ro/v2/
+    concurrency:
+      group: greengeeks-deploy
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Dosyaları ve secret'ları denetle
+        env:
+          GG_FTP_SERVER: ${{ secrets.GG_FTP_SERVER }}
+          GG_FTP_USERNAME: ${{ secrets.GG_FTP_USERNAME }}
+          GG_FTP_PASSWORD: ${{ secrets.GG_FTP_PASSWORD }}
+        run: |
+          cd yayin/demo-alufortis
+          test -f index.html && test -f en/index.html && test -f de/index.html && test -f assets/hero-scrub-v4.mp4 && test -f assets/gorsel/tesis.webp
+          grep -q 'name="robots" content="noindex' index.html
+          for v in GG_FTP_SERVER GG_FTP_USERNAME GG_FTP_PASSWORD; do
+            if [ -z "${!v}" ]; then echo "::error::$v secret'ı tanımlı değil"; exit 1; fi
+          done
+          find . -type f -printf '%s %p\n' | sort -k2
+
+      - name: lftp kur
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
+      - name: Yükle (önce varlıklar, en son index.html)
+        env:
+          GG_FTP_SERVER: ${{ secrets.GG_FTP_SERVER }}
+          GG_FTP_USERNAME: ${{ secrets.GG_FTP_USERNAME }}
+          GG_FTP_PASSWORD: ${{ secrets.GG_FTP_PASSWORD }}
+        run: |
+          set -euo pipefail
+          cat > tls.lftp <<'EOF'
+          set ftp:ssl-force true
+          set ftp:ssl-protect-data true
+          set ftp:ssl-protect-list true
+          set ssl:verify-certificate true
+          set ssl:check-hostname true
+          set ftp:passive-mode true
+          set net:max-retries 2
+          set net:timeout 30
+          EOF
+          cd yayin/demo-alufortis
+          lftp -u "$GG_FTP_USERNAME","$GG_FTP_PASSWORD" "ftp://$GG_FTP_SERVER" -e "
+            source ../../tls.lftp;
+            echo '--- FTP kökü ---'; cls -1;
+            mkdir -p -f /v2;
+            mirror -R --no-perms --verbose=1 assets /v2/assets;
+            mirror -R --no-perms --verbose=1 en /v2/en;
+            mirror -R --no-perms --verbose=1 de /v2/de;
+            put .htaccess -o /v2/.htaccess;
+            put index.html -o /v2/index.html;
+            cls -l /v2/index.html /v2/assets/hero-scrub-v4.mp4;
+            bye"
+
+      - name: Demoyu doğrula
+        run: |
+          set -u
+          ok=1
+          for p in "" en/ de/ assets/hero-scrub-v4.mp4 assets/gorsel/tesis.webp assets/vendor/gsap.min.js; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 "https://alufortis.gkh.ro/v2/$p")
+            echo "/v2/$p http=$code"
+            [ "$code" = "200" ] || ok=0
+          done
+          [ "$ok" = 1 ] || { echo "::error::https://alufortis.gkh.ro/v2/ açılmadı"; exit 1; }

@@ -1,0 +1,1427 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="alternate" hreflang="tr" href="https://alufortis.gkh.ro/">
+<link rel="alternate" hreflang="en" href="https://alufortis.gkh.ro/en/">
+<link rel="alternate" hreflang="de" href="https://alufortis.gkh.ro/de/">
+<link rel="alternate" hreflang="x-default" href="https://alufortis.gkh.ro/">
+<link rel="canonical" href="https://alufortis.gkh.ro/">
+<title>Alufortis Alüminyum</title>
+<meta name="description" content="Alufortis: 1996'dan beri alüminyum profil. Ekstrüzyon, eloksal, elektrostatik toz boya, kalıphane ve mekanik işlem tek çatı altında. Pendik, İstanbul.">
+<meta name="theme-color" content="#0F141B">
+<!-- DEPLOY STEP: patch og:url and og:image with the live absolute URL -->
+<meta property="og:title" content="Alufortis Alüminyum">
+<meta property="og:description" content="Kesit doğruysa, her şey doğrudur. 1996'dan beri alüminyum profil, tek çatı altında.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://alufortis.gkh.ro/">
+<meta property="og:image" content="https://alufortis.gkh.ro/assets/hero-ending.jpg">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,700&family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<script type="importmap">{"imports":{"three":"./assets/vendor/three/three.module.min.js","three/addons/":"./assets/vendor/three/addons/"}}</script>
+<style>
+:root{
+  --canvas:#0F141B;--canvas-2:#141B24;--panel:#1A232E;--line:#2A3644;--line-strong:#3B4A5C;
+  --silver:#C9D1DB;--accent:#4CB7FF;--accent-hover:#7CCBFF;--accent-muted:rgba(76,183,255,.16);
+  --text-secondary:#9AA7B6;--text-primary:#E8ECF1;
+  --display:"Archivo",system-ui,sans-serif;--body:"IBM Plex Sans",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;
+  --ease:cubic-bezier(.2,.7,.2,1);--ease-out:cubic-bezier(.16,1,.3,1);
+  --tshadow:0 1px 2px rgba(5,8,12,.95),0 3px 12px rgba(5,8,12,.78),0 10px 44px rgba(5,8,12,.8);
+  --nav-h:68px;
+}
+*{box-sizing:border-box}
+html,body{overflow-x:hidden;overflow-x:clip}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--canvas);color:var(--text-primary);font-family:var(--body);font-size:17px;line-height:1.6;animation:pagein 1.2s var(--ease) both}
+@keyframes pagein{from{opacity:0}to{opacity:1}}
+body.paused *,body.paused *::before,body.paused *::after{animation-play-state:paused!important}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.skip{position:absolute;left:12px;top:-60px;background:var(--accent);color:#0B1016;padding:10px 14px;border-radius:8px;z-index:100;font-weight:500;text-decoration:none}
+.skip:focus{top:12px}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* environment layer */
+.env{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.env::before{content:"";position:absolute;inset:-20%;background:
+  radial-gradient(ellipse 50% 40% at 30% 30%,rgba(76,183,255,.10),transparent 70%),
+  radial-gradient(ellipse 40% 50% at 75% 70%,rgba(201,209,219,.06),transparent 70%);
+  animation:envdrift 70s ease-in-out -20s infinite alternate}
+.env::after{content:"";position:absolute;inset:0;opacity:.055;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");mix-blend-mode:screen}
+@keyframes envdrift{from{transform:translate3d(-3%,-2%,0) scale(1)}to{transform:translate3d(3%,3%,0) scale(1.08)}}
+
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:50;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,48px);transition:background .5s var(--ease),border-color .5s var(--ease);border-bottom:1px solid transparent}
+.nav.scrolled{background:rgba(15,20,27,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:var(--line)}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-family:var(--display);font-stretch:112%;font-weight:700;letter-spacing:.14em;font-size:15px}
+.brand img{display:block;height:46px;width:auto}
+footer .brand img{height:68px}
+@media (max-width:560px){.brand img{height:40px}}
+.nav ul{list-style:none;margin:0;padding:0;display:flex;gap:28px;align-items:baseline}
+.nav ul a{text-decoration:none;font-size:14px;color:var(--text-secondary);transition:color .3s var(--ease)}
+.nav ul a:hover{color:var(--text-primary)}
+.btn{display:inline-block;text-decoration:none;font-family:var(--body);font-weight:500;font-size:15px;line-height:1;padding:14px 22px;border-radius:10px;border:1px solid transparent;cursor:pointer;transition:transform .45s var(--ease-out),background .35s var(--ease),border-color .35s var(--ease),color .35s var(--ease)}
+.btn-primary{background:var(--accent);color:#0B1016}
+.btn-primary:hover{background:var(--accent-hover);transform:translateY(-2px)}
+.btn-ghost{background:rgba(15,20,27,.35);color:var(--text-primary);border-color:var(--line-strong);backdrop-filter:blur(8px)}
+.btn-ghost:hover{border-color:var(--silver);transform:translateY(-2px)}
+.btn-sm{padding:11px 16px;font-size:14px}
+@media (pointer:coarse){.btn{min-height:44px;display:inline-flex;align-items:center;justify-content:center}}
+@media (max-width:860px){.nav ul{display:none}}
+
+/* hero */
+.hero{position:relative;height:1000vh;z-index:1}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--canvas)}
+.stage canvas#scene{position:absolute;inset:0;width:100%;height:100%;display:block}
+.stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s var(--ease);transform:translateZ(0);pointer-events:none}
+.stage.video-ready video{opacity:1}
+.stage .poster{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity .8s var(--ease)}
+.stage.has-poster .poster{opacity:1}
+.stage.video-failed .poster,.stage.video-failed video{opacity:0}
+.scrim{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 120% 90% at 50% 45%,rgba(10,13,18,0) 35%,rgba(10,13,18,.62) 100%)}
+.band{position:absolute;opacity:0;text-shadow:var(--tshadow);pointer-events:none;will-change:opacity;isolation:isolate}
+.band.on{pointer-events:auto}
+.band h1,.band h2,.band .hl{font-family:var(--display);font-stretch:112%;font-weight:700;line-height:1.02;letter-spacing:-.01em;margin:0;color:var(--text-primary)}
+.band .sub{margin:18px 0 0;font-size:clamp(16px,1.4vw,20px);color:var(--silver);max-width:40ch}
+.band .btn{text-shadow:none}
+/* the band plate: a blurred glass panel behind the words, deep enough for daylight footage, riding the band's --k */
+.band::before{content:"";position:absolute;inset:-26px -32px;border-radius:20px;pointer-events:none;opacity:calc(.55 + .45*var(--k,1));background:rgba(10,14,20,.80);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(201,209,219,.10);box-shadow:0 30px 80px rgba(5,8,12,.35);z-index:-1}
+.band-l{left:clamp(24px,6vw,96px);top:50%;transform:translateY(-50%);width:min(44vw,620px)}
+.band-ll{left:clamp(24px,6vw,96px);top:64%;transform:translateY(-50%);width:min(44vw,620px)}
+.band-r{right:clamp(24px,6vw,96px);top:50%;transform:translateY(-50%);width:min(40vw,560px);text-align:right}
+.band-r .sub{margin-left:auto}
+.band-settle{left:50%;top:calc(var(--nav-h) + 3vh);transform:translateX(-50%);width:min(92vw,900px);text-align:center}
+.band-settle .sub{margin-left:auto;margin-right:auto}
+.band-settle::before{inset:-30px -40px -30px;border-radius:24px}
+.band-1 h1{font-size:clamp(34px,4.4vw,66px)}
+.band-2 h2,.band-3 h2,.band-4 h2,.band-5 h2{font-size:clamp(30px,3.6vw,54px)}
+.band-settle h2{font-size:clamp(34px,4.2vw,64px)}
+.cta-row{display:flex;gap:12px;justify-content:center;margin-top:26px;flex-wrap:wrap}
+.band .w{display:inline-block;white-space:nowrap}
+.band .c{display:inline-block}
+.band .sp{display:inline-block;width:.28em}
+
+/* entrances, all transform + opacity, scrubbed off --k */
+.e-grid .c{--kc:clamp(0,(var(--k,0) - var(--th,0))*2.6,1);opacity:var(--kc);transform:translateX(calc((1 - var(--kc))*var(--jx,0px)))}
+.e-grid .sub{opacity:clamp(0,(var(--k,0) - .55)*3,1);transform:translateX(calc((1 - clamp(0,(var(--k,0) - .55)*3,1))*18px))}
+.e-depth .hl{--kc:clamp(0,var(--k,0)*1.6,1);opacity:var(--kc);transform:scale(calc(.84 + .16*var(--kc)));transform-origin:left center;position:relative}
+.e-depth .hl .soft{position:absolute;inset:0;filter:blur(10px);opacity:calc(1 - var(--kc));pointer-events:none}
+.e-depth .sub{opacity:clamp(0,(var(--k,0) - .5)*3,1);transform:translateY(calc((1 - clamp(0,(var(--k,0) - .5)*3,1))*10px))}
+.e-drift .w{--kc:clamp(0,(var(--k,0) - var(--th,0))*2.8,1);opacity:var(--kc);transform:translateY(calc((1 - var(--kc))*-26px))}
+.e-drift .sub{opacity:clamp(0,(var(--k,0) - .6)*3.5,1);transform:translateY(calc((1 - clamp(0,(var(--k,0) - .6)*3.5,1))*-10px))}
+.e-punch .w{--kc:clamp(0,(var(--k,0) - var(--th,0))*3,1);--ks:clamp(0,(var(--k,0) - var(--th,0) - .1)*3.2,1);opacity:var(--kc);transform:scale(calc(.6 + .52*var(--kc) - .12*var(--ks)));transform-origin:right center}
+.e-punch .sub{opacity:clamp(0,(var(--k,0) - .6)*3.5,1);transform:translateY(calc((1 - clamp(0,(var(--k,0) - .6)*3.5,1))*8px))}
+.e-settle .w{--kc:clamp(0,(var(--k,0) - var(--th,0))*3,1);opacity:var(--kc);transform:translateY(calc((1 - var(--kc))*22px))}
+.e-settle .sub{--ks:clamp(0,(var(--k,0) - .62)*4,1);opacity:var(--ks);transform:translateY(calc((1 - var(--ks))*12px))}
+.e-settle .cta-row{--kb:clamp(0,(var(--k,0) - .76)*5,1);opacity:var(--kb);transform:translateY(calc((1 - var(--kb))*12px))}
+
+.cue{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--silver);padding:9px 14px;border-radius:10px;background:rgba(8,12,18,.55);border:1px solid rgba(96,110,130,.3);backdrop-filter:blur(10px);text-shadow:0 1px 3px rgba(5,8,12,.85);transition:opacity .6s var(--ease);pointer-events:none}
+.cue svg{width:14px;height:14px;animation:cuebob 2.4s var(--ease) -1s infinite}
+@keyframes cuebob{0%,100%{transform:translateY(-2px)}50%{transform:translateY(3px)}}
+.stage.scrolled .cue{opacity:0}
+.ring{position:absolute;right:28px;bottom:28px;width:36px;height:36px;color:var(--accent);transform:rotate(-90deg);display:none}
+.stage.loading .ring{display:block}
+.ring circle{transition:stroke-dashoffset .2s linear}
+.static{display:none;position:absolute;inset:0;padding:calc(var(--nav-h) + 18px) 20px 32px;flex-direction:column;justify-content:flex-end;gap:14px;text-shadow:var(--tshadow);background:linear-gradient(180deg,rgba(15,20,27,.12) 22%,rgba(15,20,27,.82) 62%,rgba(15,20,27,.94) 100%)}
+.static h1{font-family:var(--display);font-stretch:112%;font-weight:700;font-size:clamp(34px,9vw,48px);line-height:1.02;margin:0;letter-spacing:-.01em}
+.static p{margin:0;color:var(--silver);max-width:34ch}
+.static .btn{text-shadow:none;align-self:flex-start;margin-top:8px}
+@media (max-height:560px){.cue{display:none}}
+
+/* the five static-hero gates, identical to the JS list */
+@media (max-width: 720px),(orientation: portrait) and (max-width: 1024px),(orientation: portrait) and (pointer: coarse),(orientation: landscape) and (pointer: coarse) and (max-height: 560px),(prefers-reduced-motion: reduce){
+  .hero{height:100vh;height:100svh}
+  .stage{position:relative;height:100vh;height:100svh}
+  .stage .band,.cue,.ring{display:none}
+  .static{display:flex}
+  /* phones: the journey plays on its own as a muted background film; reduced motion keeps the still */
+  .stage.mobile-play video{opacity:1}
+  .stage.mobile-play .poster{opacity:1}
+}
+@media (prefers-reduced-motion: reduce){.stage video,.stage .poster{display:none!important}}
+
+/* page */
+main{position:relative;z-index:1;background:var(--canvas)}
+.wrap{width:min(1180px,calc(100% - 2*clamp(16px,5vw,64px)));margin:0 auto}
+section{position:relative}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin:0 0 14px;display:flex;align-items:center;gap:10px}
+.kicker::before{content:"";width:22px;height:1px;background:var(--accent)}
+h2.t{font-family:var(--display);font-stretch:112%;font-weight:700;font-size:clamp(30px,4vw,54px);line-height:1.04;letter-spacing:-.012em;margin:0 0 18px;max-width:22ch}
+.lede{color:var(--text-secondary);font-size:clamp(17px,1.3vw,20px);max-width:52ch;margin:0}
+.rule{height:16px;background:repeating-linear-gradient(90deg,var(--line-strong) 0 1px,transparent 1px 12px) bottom/100% 6px no-repeat,repeating-linear-gradient(90deg,var(--line-strong) 0 1px,transparent 1px 60px) bottom/100% 12px no-repeat;opacity:.7}
+
+/* reveal choreography */
+.rv .part{opacity:0;transform:translateY(22px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv.in .part{opacity:1;transform:none}
+.rv.in .part:nth-child(2){transition-delay:.1s}.rv.in .part:nth-child(3){transition-delay:.2s}.rv.in .part:nth-child(4){transition-delay:.3s}.rv.in .part:nth-child(5){transition-delay:.4s}.rv.in .part:nth-child(6){transition-delay:.5s}.rv.in .part:nth-child(7){transition-delay:.6s}
+.rv.settled .part:nth-child(n){transition-delay:0s!important}
+
+/* A stats */
+.stats{padding:72px 0 56px}
+.stats .grid{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
+.stat{padding:22px 0 0;border-top:1px solid var(--line);position:relative}
+.stat::after{content:"";position:absolute;left:0;top:-1px;width:0;height:1px;background:var(--accent);transition:width 1.4s var(--ease) .2s}
+.rv.in .stat::after{width:36px}
+.stat .n{font-family:var(--mono);font-size:clamp(26px,2.6vw,38px);color:var(--text-primary);line-height:1.1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.stat .l{font-size:13px;color:var(--text-secondary);margin-top:8px;line-height:1.4}
+@media (max-width:980px){.stats .grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:560px){.stats .grid{grid-template-columns:repeat(2,1fr)}}
+
+/* B production */
+.prod{padding:96px 0 110px}
+.prod .cols{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(32px,6vw,96px);align-items:start}
+/* the 7800-1 profile turns with the five steps (three.js, the real section from the drawing) */
+.p3d{position:sticky;top:calc(var(--nav-h) + 24px);background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.p3d .view{position:relative;aspect-ratio:4/3;background:radial-gradient(ellipse 70% 62% at 50% 46%,#1D2733,#10161D 78%)}
+.p3d canvas{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab;touch-action:pan-y;opacity:0;transition:opacity 1s var(--ease)}
+.p3d canvas.ready{opacity:1}
+.p3d canvas:active{cursor:grabbing}
+.p3d .grid3d{position:absolute;inset:0;pointer-events:none;background:linear-gradient(rgba(76,183,255,.05) 1px,transparent 1px) 0 0/32px 32px,linear-gradient(90deg,rgba(76,183,255,.05) 1px,transparent 1px) 0 0/32px 32px;mask-image:radial-gradient(ellipse 60% 55% at 50% 50%,#000,transparent);-webkit-mask-image:radial-gradient(ellipse 60% 55% at 50% 50%,#000,transparent)}
+.p3d .tag{position:absolute;left:16px;top:14px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-secondary)}
+.p3d .drag{position:absolute;right:16px;top:14px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-secondary);opacity:.8}
+.p3d-ui{padding:16px 20px 18px;border-top:1px solid var(--line);display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:baseline}
+.p3d-ui .ix{font-family:var(--mono);font-size:12px;color:var(--accent);grid-row:span 2}
+.p3d-ui .nm{font-family:var(--display);font-stretch:112%;font-weight:700;font-size:19px;line-height:1.2}
+.p3d-ui .fx{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-secondary);display:flex;align-items:center;gap:8px}
+.p3d-ui .sw{width:10px;height:10px;border-radius:3px;background:var(--sw,#d9dde2);box-shadow:inset 0 0 0 1px rgba(255,255,255,.25)}
+.p3d-bar{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;padding:0 20px 18px}
+.p3d-bar i{height:2px;background:var(--line-strong);position:relative;overflow:hidden;border-radius:1px}
+.p3d-bar i::after{content:"";position:absolute;inset:0;background:var(--accent);transform:scaleX(var(--f,0));transform-origin:left}
+.p3d-note{margin:0;padding:10px 20px 14px;border-top:1px solid var(--line);font-size:12px;color:var(--text-secondary)}
+.timeline{position:relative;padding-left:46px;margin-top:8px}
+.timeline svg.tl{position:absolute;left:12px;top:6px;width:2px;height:calc(100% - 12px);overflow:visible}
+.timeline svg.tl line{stroke:var(--line-strong);stroke-width:2}
+.timeline svg.tl line.draw{stroke:var(--accent)}
+.step{position:relative;padding:0 0 40px}
+.step:last-child{padding-bottom:0}
+.step .dot{position:absolute;left:-46px;top:8px;width:26px;height:26px;border-radius:50%;border:1px solid var(--line-strong);background:var(--canvas);display:grid;place-items:center;font-family:var(--mono);font-size:11px;color:var(--text-secondary);transition:border-color .5s var(--ease),color .5s var(--ease),box-shadow .5s var(--ease)}
+.step h3{font-family:var(--display);font-stretch:112%;font-weight:700;font-size:clamp(20px,1.7vw,24px);margin:0 0 8px;line-height:1.15;display:flex;align-items:baseline;gap:12px}
+.step h3 svg{width:22px;height:22px;flex:none;align-self:center;color:var(--silver)}
+.step p{margin:0;color:var(--text-secondary);max-width:48ch}
+.step{transition:opacity .5s var(--ease)}
+.prod.live .step{opacity:.42}
+.prod.live .step.on{opacity:1}
+.step.on .dot{border-color:var(--accent);color:var(--accent);box-shadow:0 0 0 4px var(--accent-muted)}
+.step.on h3 svg{color:var(--accent)}
+.prod.live .step{padding-bottom:clamp(64px,16vh,150px)}
+.prod.live .step:last-child{padding-bottom:clamp(40px,10vh,90px)}
+/* desktop: the whole section pins; the card stays, the steps slide up until 05 sits fully in view, then the page moves on to the catalogues */
+.prod.pinned{height:440vh;padding:0}
+.prod.pinned .pinp{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+.prod.pinned .wrap{height:100%;display:grid;grid-template-columns:1fr 1.1fr;grid-template-rows:auto minmax(0,1fr);column-gap:clamp(32px,6vw,96px);padding:calc(var(--nav-h) + 26px) 0 26px}
+.prod.pinned .cols{display:contents}
+.prod.pinned .wrap>.rv{grid-column:1;grid-row:1}
+.prod.pinned .wrap>.rv h2.t{font-size:clamp(28px,2.8vw,42px);margin-bottom:10px}
+.prod.pinned .wrap>.rv .lede{font-size:16px}
+.prod.pinned .p3d{grid-column:1;grid-row:2;position:relative;top:auto;margin-top:20px!important;display:flex;flex-direction:column;min-height:0}
+.prod.pinned .p3d .view{aspect-ratio:auto;flex:1;min-height:160px}
+.prod.pinned .tlwin{grid-column:2;grid-row:1/3;overflow:hidden;padding-top:6px}
+.prod.pinned .timeline{transform:translateY(var(--ty,0px));will-change:transform}
+.prod.pinned .step{padding-bottom:clamp(28px,6vh,56px)}
+.prod.pinned .step:last-child{padding-bottom:8px}
+@media (max-height:760px){.prod.pinned .p3d-note{display:none}}
+@media (max-width:900px){
+  .prod .cols{display:block}
+  .p3d{top:calc(var(--nav-h) + 8px);z-index:2;margin-bottom:28px;box-shadow:0 18px 40px rgba(5,8,12,.55)}
+  .p3d .view{aspect-ratio:auto;height:min(34vh,300px)}
+  .p3d-note{display:none}
+  .p3d .drag{display:none}
+}
+
+/* C systems */
+.sys{padding:96px 0 110px;background:var(--canvas-2)}
+.sys .head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:40px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{display:block;text-decoration:none;position:relative;padding:26px 24px 24px;border:1px solid var(--line);border-radius:16px;background:var(--panel);overflow:hidden;transition:transform .5s var(--ease-out),border-color .4s var(--ease)}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 20% 0%,var(--accent-muted),transparent 70%);opacity:0;transition:opacity .5s var(--ease)}
+.card:hover{transform:translateY(-4px);border-color:var(--line-strong)}
+.card:hover::before{opacity:1}
+.card svg{width:64px;height:64px;color:var(--silver);display:block;margin-bottom:20px;transition:color .4s var(--ease)}
+.card:hover svg{color:var(--accent)}
+.card h3{font-family:var(--display);font-stretch:112%;font-weight:700;font-size:20px;margin:0 0 6px;line-height:1.2;color:var(--text-primary)}
+.card span{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-secondary)}
+.card .ix{position:absolute;right:20px;top:22px;font-family:var(--mono);font-size:12px;color:var(--text-secondary)}
+@media (max-width:900px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.cards{grid-template-columns:1fr}}
+/* the catalogue ring: six cards on a drum that turns with the scroll (CSS 3D); without JS or with reduced motion it stays the grid */
+.ring-meta{display:none}
+.sys:not(.spin) .drum{width:min(1180px,calc(100% - 2*clamp(16px,5vw,64px)));margin:0 auto}
+.sys:not(.spin) .floor{display:none}
+.sys.spin{height:330vh;padding:0}
+.sys.spin .pin{position:sticky;top:0;height:100vh;height:100svh;display:flex;flex-direction:column;justify-content:center;padding:calc(var(--nav-h) + 12px) 0 28px;overflow:hidden}
+.sys.spin .head{margin-bottom:0}
+.sys.spin .drum{position:relative;flex:1;max-height:440px;min-height:300px;perspective:1500px;perspective-origin:50% 35%}
+.sys.spin .cards{--cw:clamp(230px,24vw,290px);--r:300px;position:absolute;left:50%;top:50%;width:0;height:0;display:block;transform-style:preserve-3d;transform:translateZ(calc(-1 * var(--r))) rotateX(-7deg) rotateY(var(--rot,0deg))}
+.sys.spin .card{position:absolute;width:var(--cw);left:calc(var(--cw) / -2);top:-138px;height:276px;transform:rotateY(var(--a)) translateZ(var(--r));backface-visibility:hidden;-webkit-backface-visibility:hidden;background:linear-gradient(160deg,#202B38,var(--panel) 60%);box-shadow:0 30px 60px rgba(5,8,12,.45);transition:border-color .4s var(--ease),opacity .2s linear}
+.sys.spin .card:hover{transform:rotateY(var(--a)) translateZ(calc(var(--r) + 14px))}
+.sys.spin .card.front{border-color:rgba(76,183,255,.55)}
+.sys.spin .card.front::before{opacity:1}
+.sys.spin .card.front svg{color:var(--accent)}
+.sys.spin .floor{position:absolute;left:50%;bottom:4%;width:min(80vw,820px);height:120px;transform:translateX(-50%);background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(76,183,255,.12),transparent 70%);pointer-events:none}
+.sys.spin .ring-meta{display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-secondary)}
+.ring-meta .count{color:var(--text-primary)}
+.ring-meta .count b{color:var(--accent);font-weight:400}
+.ring-meta .dots{display:flex;gap:6px}
+.ring-meta .dots i{width:18px;height:2px;background:var(--line-strong);transition:background .3s var(--ease)}
+.ring-meta .dots i.on{background:var(--accent)}
+@media (max-width:560px){.sys.spin .cards{--cw:min(68vw,260px)}.sys.spin .card{height:250px;top:-125px}.sys.spin .head .lede{display:none}.ring-meta>span:last-child{display:none}}
+
+/* D quality */
+.qual{padding:104px 0}
+.qual .cols{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(32px,6vw,96px);align-items:center}
+.spec{list-style:none;margin:0;padding:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--panel);font-family:var(--mono);font-size:14px}
+.spec li{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:14px 20px;border-top:1px solid var(--line);position:relative}
+.spec li:first-child{border-top:0;background:var(--canvas-2);color:var(--text-secondary);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+.spec li span:first-child{color:var(--text-secondary)}
+.spec li span:last-child{color:var(--text-primary)}
+.spec li::after{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--accent);transform:scaleY(0);transform-origin:top;transition:transform .6s var(--ease)}
+.rv.in .spec li::after{transform:scaleY(1)}
+.rv.in .spec li:nth-child(2)::after{transition-delay:.1s}.rv.in .spec li:nth-child(3)::after{transition-delay:.2s}.rv.in .spec li:nth-child(4)::after{transition-delay:.3s}.rv.in .spec li:nth-child(5)::after{transition-delay:.4s}.rv.in .spec li:nth-child(6)::after{transition-delay:.5s}.rv.in .spec li:nth-child(7)::after{transition-delay:.6s}.rv.in .spec li:nth-child(8)::after{transition-delay:.7s}
+.qual .glow{position:absolute;right:-10%;top:20%;width:40vw;height:40vw;max-width:520px;max-height:520px;pointer-events:none;z-index:-1}
+.qual .glow::before{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,rgba(76,183,255,.16),transparent 65%);animation:pulse 6s ease-in-out -2s infinite}
+@keyframes pulse{0%,100%{opacity:.5}50%{opacity:1}}
+@media (max-width:900px){.qual .cols{grid-template-columns:1fr}}
+
+/* E global */
+.glob{padding:72px 0 80px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;overflow:clip}
+/* pinned: the copy and the globe hold still while the scroll turns the globe to Chile, then the page moves on */
+.glob.pinned{padding:0 0 72px}
+.glob.pinned .gpin{height:300vh}
+.glob.pinned .gstick{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center;padding:calc(var(--nav-h) + 12px) 0 16px}
+.glob.pinned .gstick .wrap{margin-bottom:0}
+.glob.pinned .globe{max-width:min(560px,calc(100svh - var(--nav-h) - 60px))}
+@media (max-width:900px){.glob.pinned .gstick{align-items:flex-start}.glob.pinned .globe{max-width:min(440px,calc(100svh - var(--nav-h) - 330px))}.glob.pinned .legend{display:none}}
+.glob .wrap{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:34px}
+/* the globe: turns from Pendik to Chile as the section passes (canvas 2D, orthographic) */
+.glob .wrap.gl{display:grid;grid-template-columns:1fr 1.1fr;align-items:center;gap:clamp(24px,5vw,72px)}
+.globe{position:relative;width:100%;max-width:560px;aspect-ratio:1;justify-self:end}
+.globe canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.globe .now{position:absolute;left:50%;bottom:2%;transform:translateX(-50%);font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-secondary);white-space:nowrap}
+.globe .now b{color:var(--text-primary);font-weight:400}
+.glob .legend{margin:22px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-secondary)}
+.glob .legend li{display:flex;align-items:center;gap:10px}
+.glob .legend i{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.glob .legend i.o{background:#fff;box-shadow:0 0 0 3px rgba(76,183,255,.35)}
+@media (max-width:900px){.glob .wrap.gl{grid-template-columns:1fr}.globe{justify-self:center;max-width:440px}}
+.marq{position:relative;white-space:nowrap;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.marq .track{display:inline-flex;gap:0}
+.marq.live .track{animation:marq 48s linear infinite}
+.marq span{font-family:var(--display);font-stretch:112%;font-weight:700;font-size:clamp(28px,4vw,56px);line-height:1;padding:0 28px;color:var(--silver);display:inline-flex;align-items:center;gap:28px}
+.marq span::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);opacity:.8}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* F faq */
+.faq{padding:96px 0}
+.faq .wrap{max-width:820px}
+details{border-top:1px solid var(--line)}
+details:last-of-type{border-bottom:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;padding:22px 0;display:flex;justify-content:space-between;align-items:baseline;gap:20px;font-family:var(--display);font-stretch:112%;font-weight:700;font-size:clamp(18px,1.5vw,22px);line-height:1.25}
+summary::-webkit-details-marker{display:none}
+summary .pm{flex:none;width:22px;height:22px;position:relative;align-self:center}
+summary .pm::before,summary .pm::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:2px;background:var(--accent);transform:translate(-50%,-50%);transition:transform .4s var(--ease)}
+summary .pm::after{transform:translate(-50%,-50%) rotate(90deg)}
+details[open] summary .pm::after{transform:translate(-50%,-50%) rotate(0)}
+details p{margin:0 0 24px;color:var(--text-secondary);max-width:62ch}
+
+/* G quote */
+.quote{padding:96px 0 110px;background:var(--canvas-2)}
+.quote .cols{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(32px,6vw,96px)}
+form{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px}
+.f{display:flex;flex-direction:column;gap:7px}
+.f.full{grid-column:1/-1}
+label{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-secondary)}
+input,textarea{appearance:none;background:var(--canvas);border:1px solid var(--line-strong);border-radius:10px;color:var(--text-primary);font:400 16px var(--body);padding:13px 14px;transition:border-color .3s var(--ease),box-shadow .3s var(--ease)}
+input:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-muted)}
+textarea{min-height:130px;resize:vertical}
+.success{display:none;grid-column:1/-1;padding:18px 20px;border:1px solid var(--accent);border-radius:12px;background:var(--accent-muted)}
+form.sent .success{display:block}
+form.sent .f,form.sent .btn{display:none}
+.contact{border-left:1px solid var(--line);padding-left:clamp(20px,3vw,40px)}
+.contact h3{font-family:var(--display);font-stretch:112%;font-weight:700;font-size:20px;margin:0 0 20px}
+.contact dl{margin:0;display:grid;gap:16px}
+.contact dt{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-secondary)}
+.contact dd{margin:3px 0 0;font-size:17px}
+.contact a{text-decoration:none;border-bottom:1px solid var(--line-strong);transition:border-color .3s var(--ease)}
+.contact a:hover{border-color:var(--accent)}
+@media (max-width:900px){.quote .cols{grid-template-columns:1fr}.contact{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:32px}}
+@media (max-width:600px){form{grid-template-columns:1fr}}
+
+/* scroll flow (GSAP ScrollTrigger): scrubbed, reversible reveals replace the one-shot transitions */
+.gs .rv .part{transition:none}
+.stage .xout{position:absolute;inset:0;background:var(--canvas);opacity:0;pointer-events:none;z-index:4}
+.p3d .sweep{position:absolute;inset:0;pointer-events:none;opacity:0;background:linear-gradient(100deg,transparent 40%,rgba(120,200,255,.26) 48%,rgba(255,255,255,.38) 50%,rgba(120,200,255,.26) 52%,transparent 60%);background-size:300% 100%;background-repeat:no-repeat;background-position:calc(100% - var(--sx,0) * 100%) 0;mix-blend-mode:screen}
+@media (prefers-reduced-motion: reduce){.p3d .sweep,.stage .xout{display:none}}
+.nav-end{display:flex;align-items:center;gap:14px}
+.langs{display:flex;gap:2px;font-family:var(--mono);font-size:12px;letter-spacing:.08em}
+.langs a{text-decoration:none;color:var(--text-secondary);padding:8px 7px;border-radius:6px;transition:color .3s var(--ease),background .3s var(--ease)}
+.langs a:hover{color:var(--text-primary)}
+.langs a[aria-current]{color:var(--text-primary);background:rgba(255,255,255,.06)}
+@media (max-width:560px){.nav-end{gap:6px}.langs a{padding:8px 5px}.nav .btn-sm{padding:10px 12px;font-size:13px}}
+/* footer */
+footer{position:relative;z-index:1;background:var(--canvas);border-top:1px solid var(--line);padding:48px 0 32px;color:var(--text-secondary);font-size:14px}
+footer .row{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
+footer ul{list-style:none;margin:0;padding:0;display:flex;gap:22px;flex-wrap:wrap}
+footer a{text-decoration:none;transition:color .3s var(--ease)}
+footer a:hover{color:var(--text-primary)}
+footer .fine{margin-top:28px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:12px}
+footer .credit{margin:16px 0 0;text-align:right;font-family:var(--mono);font-size:12px}
+footer .credit a{text-decoration:underline;text-underline-offset:3px}
+
+/* reduced motion: everything in its final state */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;transition-delay:0s!important}
+  body{opacity:1}
+  .rv .part{opacity:1;transform:none}
+  .rv .stat::after{width:36px}
+  .spec li::after{transform:scaleY(1)}
+  .marq .track{transform:none}
+  .band-l,.band-ll,.band-r{transform:translateY(-50%)}
+  .band-settle{transform:translateX(-50%)}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">İçeriğe geç</a>
+<div class="env" aria-hidden="true"></div>
+
+<nav class="nav" aria-label="Ana menü">
+  <a class="brand" href="#top" aria-label="Alufortis, ana sayfa"><img src="assets/logo-dark.svg" alt="Alufortis Aluminium Engineering Solutions" width="879" height="435">
+  </a>
+  <ul>
+    <li><a href="#uretim">Üretim</a></li>
+    <li><a href="#urunler">Ürünler</a></li>
+    <li><a href="#kalite">Kalite</a></li>
+    <li><a href="#sss">SSS</a></li>
+    <li><a href="#teklif">İletişim</a></li>
+  </ul>
+  <div class="nav-end"><div class="langs" role="group" aria-label="Dil seçimi"><a href="./" hreflang="tr" lang="tr" title="Türkçe" aria-current="page">TR</a><a href="en/" hreflang="en" lang="en" title="English">EN</a><a href="de/" hreflang="de" lang="de" title="Deutsch">DE</a></div><a class="btn btn-primary btn-sm" href="#teklif">Teklif İsteyin</a></div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="stage" id="stage">
+    <canvas id="scene" aria-hidden="true"></canvas>
+    <div class="poster" aria-hidden="true"></div>
+    <video id="hero" preload="none" muted playsinline aria-hidden="true" tabindex="-1"></video>
+    <div class="scrim" aria-hidden="true"></div>
+    <i class="xout" aria-hidden="true"></i>
+
+    <div class="band band-l band-1 e-grid" data-a="0" data-b="0.13" data-first="1" data-spread="0.5">
+      <h1 data-split="chars">Sipariş bir tıkla başlar.</h1>
+      <p class="sub">Nerede olursanız olun.</p>
+    </div>
+    <div class="band band-ll band-2 e-depth" data-a="0.25" data-b="0.40" data-ramp="0.04">
+      <h2 class="hl"><span class="soft" aria-hidden="true">Saniyeler içinde fabrikada.</span>Saniyeler içinde fabrikada.</h2>
+      <p class="sub">Ön kapıdan biyet olarak girer.</p>
+    </div>
+    <div class="band band-r band-3 e-drift" data-a="0.455" data-b="0.55" data-ramp="0.04">
+      <h2 data-split="words">700'den 4.500 tona.</h2>
+      <p class="sub">Beş pres. Tek basınç.</p>
+    </div>
+    <div class="band band-ll band-4 e-punch" data-a="0.565" data-b="0.65" data-ramp="0.04">
+      <h2 data-split="words">Kalıpta forma bürünür.</h2>
+      <p class="sub">Kesit doğruysa, her şey doğrudur.</p>
+    </div>
+    <div class="band band-l band-5 e-settle" data-a="0.665" data-b="0.775" data-ramp="0.05">
+      <h2 data-split="words">Paketlenir, Alufortis tırlarına yüklenir.</h2>
+      <p class="sub">Ara korumalı demetler, çemberli paletler. Yola hazır.</p>
+    </div>
+    <div class="band band-settle band-6 e-settle" data-a="0.895" data-b="1" data-last="1" data-ramp="0.05">
+      <h2 data-split="words">11 ülkeye dağılır.</h2>
+      <p class="sub">Alüminyumda güvenilir çözüm ortağınız.</p>
+      <div class="cta-row"><a class="btn btn-primary" href="#teklif">Teklif İsteyin</a><a class="btn btn-ghost" href="#uretim">Üretimi Keşfet</a></div>
+    </div>
+
+    <div class="static">
+      <h1>Sipariş bir tıkla başlar, 11 ülkeye dağılır.</h1>
+      <p>1996'dan beri alüminyum profil. Ekstrüzyon, eloksal, toz boya ve mekanik işlem tek çatı altında.</p>
+      <a class="btn btn-primary" href="#teklif">Teklif İsteyin</a>
+    </div>
+
+    <div class="cue" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6l5 5 5-5"/></svg>Kaydırın</div>
+    <svg class="ring" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="126" style="stroke-dashoffset:var(--ld,126)"/></svg>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+  <section class="stats rv" aria-labelledby="stats-h">
+    <div class="wrap">
+      <p class="kicker part">Ölçülebilir</p>
+      <h2 id="stats-h" class="vh">Rakamlarla Alufortis</h2>
+      <div class="grid">
+        <div class="stat part"><div class="n" data-to="30" data-suffix="+">0</div><div class="l">yıl tecrübe</div></div>
+        <div class="stat part"><div class="n" data-to="20000">0</div><div class="l">ton/yıl ekstrüzyon</div></div>
+        <div class="stat part"><div class="n" data-to="22000">0</div><div class="l">ton/yıl eloksal</div></div>
+        <div class="stat part"><div class="n" data-to="25000">0</div><div class="l">ton/yıl toz boya</div></div>
+        <div class="stat part"><div class="n" data-to="13.5" data-dec="1" data-suffix=" m">0</div><div class="l">maksimum profil boyu</div></div>
+        <div class="stat part"><div class="n" data-to="4500">0</div><div class="l">ton pres gücü</div></div>
+      </div>
+    </div>
+  </section>
+  <div class="rule" aria-hidden="true"></div>
+
+  <section class="prod" id="uretim" aria-labelledby="prod-h">
+    <div class="pinp">
+    <div class="wrap">
+      <div class="rv">
+        <p class="kicker part">Üretim</p>
+        <h2 id="prod-h" class="t part">Kalıptan kesite, beş adım.</h2>
+        <p class="lede part">Profil bizim elimizde başlar, bizim elimizde biter. Dışarıya iş vermeyiz.</p>
+      </div>
+      <div class="cols" style="margin-top:48px">
+        <figure class="p3d rv" style="margin:0" aria-label="7800-1 profili, üretim adımlarıyla birlikte dönen 3D model">
+          <div class="view">
+            <div class="grid3d" aria-hidden="true"></div>
+            <canvas id="p3d" aria-hidden="true"></canvas>
+            <i class="sweep" aria-hidden="true"></i>
+            <span class="tag" aria-hidden="true">Kesit 7800-1</span>
+            <span class="drag" aria-hidden="true">Sürükleyin</span>
+          </div>
+          <div class="p3d-ui" aria-live="polite">
+            <span class="ix" id="p3d-ix">01</span>
+            <span class="nm" id="p3d-nm">Kalıphane</span>
+            <span class="fx"><i class="sw" id="p3d-sw"></i><span id="p3d-fx">Çizimden kesite</span></span>
+          </div>
+          <div class="p3d-bar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+          <figcaption class="p3d-note">Temsili 3D model. Kesit, 7800-1 teknik çiziminden alınmıştır; renkler yüzey seçeneklerini gösterir.</figcaption>
+        </figure>
+        <div class="tlwin">
+        <div class="timeline rv">
+          <svg class="tl" aria-hidden="true"><line x1="1" y1="0" x2="1" y2="100%"/><line class="draw" x1="1" y1="0" x2="1" y2="100%" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg>
+          <div class="step part"><span class="dot">01</span><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><rect x="8" y="8" width="8" height="8"/></svg>Kalıphane</h3><p>Kesit çizimden kalıba dönüşür. Kalıp bizde, bilgi bizde kalır.</p></div>
+          <div class="step part"><span class="dot">02</span><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h8v8H3zM11 10h10M11 14h10"/></svg>Ekstrüzyon</h3><p>6063, 6082, 6005, 6463 alaşımları. 4" ile 10" arası biyet. 700 ile 4.500 ton arası beş pres. 13,5 metreye kadar boy.</p></div>
+          <div class="step part"><span class="dot">03</span><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 18h16M6 18V8l6-4 6 4v10"/><path d="M9 18v-5h6v5"/></svg>Eloksal</h3><p>Qualanod sertifikalı iki tesis. Natürel, siyah, bronz, kahve, sarı. Parlatma, satinaj, kumlama. 7 metreye kadar.</p></div>
+          <div class="step part"><span class="dot">04</span><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20l6-6M14 4l6 6-9 9-6-6z"/><path d="M12 6l6 6"/></svg>Elektrostatik toz boya</h3><p>Qualicoat sertifikalı. Tüm RAL kodları ve özel renk eşleme. İki dikey, bir yatay kabin. 7 metreye kadar.</p></div>
+          <div class="step part"><span class="dot">05</span><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M19 5l-3 3M8 16l-3 3"/></svg>Mekanik işlem</h3><p>Kesim, delme, punch, CNC. Profil montaja hazır çıkar.</p></div>
+        </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <section class="sys" id="urunler" aria-labelledby="sys-h">
+    <div class="pin">
+    <div class="wrap">
+      <div class="head rv">
+        <div><p class="kicker part">Ürün sistemleri</p><h2 id="sys-h" class="t part" style="margin:0">Kataloglarımız.</h2></div>
+        <p class="lede part" style="max-width:36ch">Her sistem kendi kesit ailesiyle gelir. Kataloğu seçin, teklifle birlikte gönderelim.</p>
+      </div>
+    </div>
+    <div class="drum">
+      <div class="floor" aria-hidden="true"></div>
+      <div class="cards rv">
+        <a class="card part" href="#teklif" data-catalog="Kapı-Pencere Sistemi"><span class="ix">01</span><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="10" y="8" width="44" height="48" rx="2"/><rect x="18" y="16" width="28" height="32"/><path d="M32 16v32M18 32h28"/></svg><h3>Kapı-Pencere Sistemi</h3><span>Kataloğu isteyin</span></a>
+        <a class="card part" href="#teklif" data-catalog="Sürme Kapı-Pencere Sistemi"><span class="ix">02</span><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="6" y="10" width="52" height="44" rx="2"/><rect x="12" y="16" width="24" height="32"/><rect x="28" y="16" width="24" height="32"/><path d="M20 54v4M44 54v4"/></svg><h3>Sürme Kapı-Pencere Sistemi</h3><span>Kataloğu isteyin</span></a>
+        <a class="card part" href="#teklif" data-catalog="Cephe Sistemleri"><span class="ix">03</span><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 8h48v48H8z"/><path d="M8 24h48M8 40h48M24 8v48M40 8v48"/></svg><h3>Cephe Sistemleri</h3><span>Kataloğu isteyin</span></a>
+        <a class="card part" href="#teklif" data-catalog="Küpeşte Aksesuarları"><span class="ix">04</span><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="32" cy="14" r="6"/><path d="M32 20v36M20 56h24M14 36h36"/><circle cx="14" cy="36" r="3"/><circle cx="50" cy="36" r="3"/></svg><h3>Küpeşte Aksesuarları</h3><span>Kataloğu isteyin</span></a>
+        <a class="card part" href="#teklif" data-catalog="Doğrama ve Cam Balkon Aksesuarları"><span class="ix">05</span><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 54h52M10 54V12l10 4v38M22 54V16l10 4v34M34 54V20l10 4v30M46 54V24l10 4v26"/></svg><h3>Doğrama ve Cam Balkon Aksesuarları</h3><span>Kataloğu isteyin</span></a>
+        <a class="card part" href="#teklif" data-catalog="EPDM Fitil"><span class="ix">06</span><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 44c0-16 8-24 20-24s20 8 20 24"/><path d="M20 44c0-10 4-16 12-16s12 6 12 16"/><path d="M8 44h48M8 50h48"/></svg><h3>EPDM Fitil</h3><span>Kataloğu isteyin</span></a>
+      </div>
+    </div>
+    <div class="wrap ring-meta" aria-hidden="true">
+      <span class="count"><b id="ring-n">01</b> / 06</span>
+      <span class="dots"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></span>
+      <span>Kaydırdıkça döner</span>
+    </div>
+    </div>
+  </section>
+
+  <section class="qual" id="kalite" aria-labelledby="qual-h">
+    <div class="glow" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="cols">
+        <div class="rv">
+          <p class="kicker part">Kalite</p>
+          <h2 id="qual-h" class="t part">Toleransı tahmin etmeyiz. Ölçeriz.</h2>
+          <p class="lede part">Her profil DIN EN 755-9 toleransında çıkar. Yüzeyde Qualanod ve Qualicoat standardı. Üretime başlamadan numune, teslimatta ölçüm raporu.</p>
+        </div>
+        <ul class="spec rv" aria-label="Teknik özellikler">
+          <li class="part"><span>Özellik</span><span>Değer</span></li>
+          <li class="part"><span>Tolerans standardı</span><span>DIN EN 755-9</span></li>
+          <li class="part"><span>Alaşımlar</span><span>6063, 6082, 6005, 6463</span></li>
+          <li class="part"><span>Eloksal</span><span>Qualanod</span></li>
+          <li class="part"><span>Toz boya</span><span>Qualicoat</span></li>
+          <li class="part"><span>Maks. profil boyu</span><span>13,5 m</span></li>
+          <li class="part"><span>Maks. kaplama boyu</span><span>7 m</span></li>
+          <li class="part"><span>Pres gücü</span><span>700 - 4.500 ton</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="glob" aria-labelledby="glob-h">
+    <div class="gpin"><div class="gstick">
+    <div class="wrap gl">
+      <div class="rv">
+        <p class="kicker part">Global</p><h2 id="glob-h" class="t part">11 ülkede iş ortağı.</h2>
+        <p class="lede part" style="max-width:40ch">İthalat ve ihracatta uçtan uca: üretim, tesis kurulumu, satış ve finans danışmanlığı.</p>
+        <ul class="legend part" aria-hidden="true"><li><i class="o"></i>Pendik, İstanbul: üretim</li><li><i></i>İş ortağı ülke</li></ul>
+      </div>
+      <div class="globe" aria-hidden="true">
+        <canvas id="globe"></canvas>
+        <span class="now">Şimdi: <b id="globe-now">Türkiye</b></span>
+      </div>
+    </div>
+    </div></div>
+    <div class="marq" id="marq" aria-label="İş ortağı ülkeler: Almanya, Romanya, Hollanda, Yunanistan, Ürdün, Bulgaristan, Fransa, Çekya, Litvanya, Estonya, Şili">
+      <div class="track" aria-hidden="true">
+        <span>Almanya</span><span>Romanya</span><span>Hollanda</span><span>Yunanistan</span><span>Ürdün</span><span>Bulgaristan</span><span>Fransa</span><span>Çekya</span><span>Litvanya</span><span>Estonya</span><span>Şili</span>
+        <span>Almanya</span><span>Romanya</span><span>Hollanda</span><span>Yunanistan</span><span>Ürdün</span><span>Bulgaristan</span><span>Fransa</span><span>Çekya</span><span>Litvanya</span><span>Estonya</span><span>Şili</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq" id="sss" aria-labelledby="faq-h">
+    <div class="wrap rv">
+      <p class="kicker part">Sık sorulanlar</p>
+      <h2 id="faq-h" class="t part">Teklif öncesi en çok sorulanlar.</h2>
+      <div class="part" style="margin-top:28px">
+        <details><summary>Özel kesit için kalıp ne kadar sürer?<span class="pm"></span></summary><p>Kalıphane kendi bünyemizde. Standart bir kesit için kalıp genellikle iki ila dört hafta içinde hazır olur. Karmaşık kesitlerde süreyi teklifte net yazarız.</p></details>
+        <details><summary>Minimum sipariş var mı?<span class="pm"></span></summary><p>Kesite ve alaşıma göre değişir. Küçük partiler için de teklif veriyoruz; çizimi gönderin, net rakamı yazalım.</p></details>
+        <details><summary>Renk tutarlılığını nasıl sağlıyorsunuz?<span class="pm"></span></summary><p>Qualicoat tesisimizde RAL koduyla çalışırız, özel renk için numune onayı alırız. Parti farkı yaşatmayız.</p></details>
+        <details><summary>Teslimat süresi?<span class="pm"></span></summary><p>Stok kesitlerde günler, yeni kalıpta kalıp süresi artı üretim. Teklifte tarih veririz ve tutarız.</p></details>
+        <details><summary>Numune alabilir miyim?<span class="pm"></span></summary><p>Evet. Üretime başlamadan önce profil numunesini onayınıza sunarız.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="quote" id="teklif" aria-labelledby="quote-h">
+    <div class="wrap">
+      <div class="cols">
+        <div class="rv">
+          <p class="kicker part">Teklif</p>
+          <h2 id="quote-h" class="t part">Çizimi gönderin, rakamı alın.</h2>
+          <p class="lede part">Kesit, alaşım, yüzey ve adet yeterli. Bir iş günü içinde dönüş yaparız.</p>
+          <form id="qform" class="part" novalidate>
+            <div class="f"><label for="ad">Ad Soyad</label><input id="ad" name="ad" placeholder="Adınız" autocomplete="name" required></div>
+            <div class="f"><label for="firma">Firma</label><input id="firma" name="firma" placeholder="Firma adı" autocomplete="organization"></div>
+            <div class="f"><label for="eposta">E-posta</label><input id="eposta" name="eposta" type="email" placeholder="ornek@firma.com" autocomplete="email" required></div>
+            <div class="f"><label for="tel">Telefon</label><input id="tel" name="tel" type="tel" placeholder="+90" autocomplete="tel"></div>
+            <div class="f full"><label for="mesaj">Kesit / ihtiyaç</label><textarea id="mesaj" name="mesaj" placeholder="Kesit, alaşım, yüzey, adet. Çizim varsa e-postaya ekleyin."></textarea></div>
+            <div class="f full" style="flex-direction:row;align-items:center;gap:16px;flex-wrap:wrap"><button class="btn btn-primary" type="submit">Teklif İsteyin</button><span style="font-size:13px;color:var(--text-secondary)">Mesaj kendi e-posta uygulamanızdan info@alufortis.com adresine gider.</span></div>
+            <div class="success" role="status">E-posta uygulamanız açıldı. Mesajı gönderdiğinizde en geç bir iş günü içinde dönüş yaparız.</div>
+          </form>
+        </div>
+        <aside class="contact rv">
+          <h3 class="part">İletişim</h3>
+          <dl>
+            <div class="part"><dt>Adres</dt><dd>Batı Mah. Hatboyu Cad. No:42/100<br>Pendik / İstanbul, Türkiye<br><a href="https://www.google.com/maps/search/?api=1&query=Bat%C4%B1+Mah.+Hatboyu+Cad.+No:42%2F100+Pendik+%C4%B0stanbul" target="_blank" rel="noopener">Yol tarifi</a></dd></div>
+            <div class="part"><dt>Telefon</dt><dd><a href="tel:+905334184245">+90 (533) 418 42 45</a></dd></div>
+            <div class="part"><dt>E-posta</dt><dd><a href="mailto:info@alufortis.com">info@alufortis.com</a></dd></div>
+            <div class="part"><dt>Çalışma saatleri</dt><dd>Hafta içi 08:30 - 18:00</dd></div>
+          </dl>
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="row">
+      <a class="brand" href="#top" aria-label="Alufortis, başa dön"><img src="assets/logo-dark.svg" alt="Alufortis Aluminium Engineering Solutions" width="879" height="435" loading="lazy"></a>
+      <ul>
+        <li><a href="#uretim">Üretim</a></li>
+        <li><a href="#urunler">Ürünler</a></li>
+        <li><a href="#kalite">Kalite</a></li>
+        <li><a href="#sss">SSS</a></li>
+        <li><a href="#teklif">İletişim</a></li>
+      </ul>
+    </div>
+    <div class="fine">
+      <span>Alufortis.com | Tüm hakları saklıdır.</span>
+      <span>Batı Mah. Hatboyu Cad. No:42/100, Pendik / İstanbul</span>
+    </div>
+    <p class="credit">designed by <a href="https://gkhdigital.ro" target="_blank" rel="noopener">gkhdigital.ro</a> &amp; <a href="https://gkhdigital.com" target="_blank" rel="noopener">gkhdigital.com</a></p>
+  </div>
+</footer>
+
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/vendor/ScrollTrigger.min.js"></script>
+<script>
+(() => {
+'use strict';
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+const smooth = (p, e0, e1) => { const t = clamp((p - e0) / (e1 - e0), 0, 1); return t * t * (3 - 2 * t); };
+const D = Math.PI / 180;
+const RM = matchMedia('(prefers-reduced-motion: reduce)');
+const HAS_GSAP = !!(window.gsap && window.ScrollTrigger);
+let FLOW = null, flowRefreshT = 0;
+function refreshFlow() { if (!HAS_GSAP || !FLOW) return; clearTimeout(flowRefreshT); flowRefreshT = setTimeout(() => ScrollTrigger.refresh(), 60); }
+function rng(seed) { let s = seed >>> 0; return () => (s = (s * 1664525 + 1013904223) >>> 0) / 4294967296; }
+
+/* ============ the 3D extruder (hand-written, canvas 2D) ============ */
+class Extruder {
+  constructor(cv) {
+    this.cv = cv; this.ctx = cv.getContext('2d');
+    this.rings = [[1, .78], [.6, .44], [.28, .15]]; this.core = .06;
+    const r = rng(7);
+    this.pts = Array.from({ length: 70 }, () => ({ x: r() * 7 - 3.5, y: r() * 4.4 - 2.2, z: r() * 3, v: .00005 + r() * .00009, s: .5 + r() * 1.3, ph: r() * 6.28 }));
+    this.w = 0; this.h = 0; this.dpr = 1;
+    this.resize();
+  }
+  resize() {
+    const b = this.cv.getBoundingClientRect();
+    this.dpr = Math.min(2, devicePixelRatio || 1);
+    this.w = Math.max(1, b.width); this.h = Math.max(1, b.height);
+    this.cv.width = Math.round(this.w * this.dpr); this.cv.height = Math.round(this.h * this.dpr);
+  }
+  render(s) {
+    const { ctx, w, h, dpr } = this;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, w, h);
+    const f = Math.min(w, h) * (s.fScale || .85);
+    const cy = Math.cos(s.yaw), sy = Math.sin(s.yaw), cp = Math.cos(s.pitch), sp = Math.sin(s.pitch);
+    const z0 = .6;
+    const rot = p => {
+      const x = p[0], y = p[1], z = p[2] - z0;
+      const x1 = x * cy + z * sy, z1 = -x * sy + z * cy;
+      const y2 = y * cp - z1 * sp, z2 = y * sp + z1 * cp;
+      return [x1 + s.ox, y2 + s.oy, z2 + z0];
+    };
+    const proj = v => { const d = Math.max(.25, s.camZ - v[2]); const k = f / d; return [w / 2 + v[0] * k, h / 2 - v[1] * k, d]; };
+    const L = s.L;
+    const light = norm([-.35, .55, .76]);
+    const faces = [];
+    const sq = (a, z) => [[-a, -a, z], [a, -a, z], [a, a, z], [-a, a, z]];
+    const push = (pts, base, hole) => faces.push({ pts, base, hole });
+    // die plate: drawn first, always behind
+    const plate = sq(4.6, 0).map(rot).map(proj);
+    ctx.beginPath(); poly(ctx, plate); ctx.closePath();
+    ctx.fillStyle = '#161D27'; ctx.fill();
+    const g0 = rot([0, 0, 0]), c0 = proj(g0);
+    const grd = ctx.createRadialGradient(c0[0], c0[1], 0, c0[0], c0[1], f / s.camZ * 2.6);
+    grd.addColorStop(0, 'rgba(76,183,255,' + (.26 * (s.glow == null ? 1 : s.glow)) + ')');
+    grd.addColorStop(.45, 'rgba(60,120,170,.08)');
+    grd.addColorStop(1, 'rgba(22,29,39,0)');
+    ctx.fillStyle = grd; ctx.beginPath(); poly(ctx, plate); ctx.closePath(); ctx.fill();
+    ctx.strokeStyle = 'rgba(150,170,195,.16)'; ctx.lineWidth = 1;
+    for (const a of [1.14, 1.3, 1.7]) { ctx.beginPath(); poly(ctx, sq(a, 0).map(rot).map(proj)); ctx.closePath(); ctx.stroke(); }
+    // particles, dim ones behind
+    this.drawParticles(s, rot, proj, f, 0);
+    // profile faces
+    for (const [a, b] of this.rings) {
+      const o0 = sq(a, 0), o1 = sq(a, L), i0 = sq(b, 0), i1 = sq(b, L);
+      for (let i = 0; i < 4; i++) {
+        const j = (i + 1) % 4;
+        push([o0[i], o0[j], o1[j], o1[i]], [196, 206, 218]);
+        push([i0[i], i1[i], i1[j], i0[j]], [150, 162, 176]);
+      }
+      push(o1, [222, 228, 236], i1);
+    }
+    const c = this.core, k0 = sq(c, 0), k1 = sq(c, L);
+    for (let i = 0; i < 4; i++) { const j = (i + 1) % 4; push([k0[i], k0[j], k1[j], k1[i]], [196, 206, 218]); }
+    push(k1, [222, 228, 236]);
+    const cam = [0, 0, s.camZ];
+    const out = [];
+    for (const fc of faces) {
+      const r3 = fc.pts.map(rot);
+      const n = norm(cross(sub(r3[1], r3[0]), sub(r3[2], r3[0])));
+      const cen = r3.reduce((acc, p) => [acc[0] + p[0] / r3.length, acc[1] + p[1] / r3.length, acc[2] + p[2] / r3.length], [0, 0, 0]);
+      const view = sub(cam, cen);
+      if (dot(n, view) <= 0) continue;
+      const vd = norm(view);
+      const ndl = Math.max(0, dot(n, light));
+      const hv = norm([light[0] + vd[0], light[1] + vd[1], light[2] + vd[2]]);
+      const spec = Math.pow(Math.max(0, dot(n, hv)), 42) * .55;
+      const sh = .26 + .74 * ndl;
+      const col = fc.base.map(v => Math.min(255, Math.round(v * sh + 255 * spec)));
+      out.push({ p: r3.map(proj), hole: fc.hole ? fc.hole.map(rot).map(proj) : null, col, depth: dist(cam, cen) });
+    }
+    out.sort((a, b2) => b2.depth - a.depth);
+    for (const fc of out) {
+      ctx.beginPath(); poly(ctx, fc.p); ctx.closePath();
+      if (fc.hole) { poly(ctx, fc.hole, true); ctx.closePath(); }
+      ctx.fillStyle = 'rgb(' + fc.col.join(',') + ')';
+      ctx.fill(fc.hole ? 'evenodd' : 'nonzero');
+      ctx.strokeStyle = 'rgba(235,242,250,.10)'; ctx.lineWidth = 1; ctx.stroke();
+    }
+    this.drawParticles(s, rot, proj, f, 1);
+  }
+  drawParticles(s, rot, proj, f, layer) {
+    const { ctx } = this; const t = s.t || 0;
+    for (const p of this.pts) {
+      const yy = ((p.y + t * p.v) % 4.4 + 4.4) % 4.4 - 2.2;
+      const front = p.z > 1.4;
+      if ((layer === 1) !== front) continue;
+      const q = proj([p.x, yy, p.z]);
+      const a = (.10 + .22 * (p.z / 3)) * (0.75 + .25 * Math.sin(t / 1600 + p.ph));
+      ctx.fillStyle = 'rgba(214,224,236,' + a.toFixed(3) + ')';
+      ctx.beginPath(); ctx.arc(q[0], q[1], p.s * f / q[2] * .012, 0, 6.283); ctx.fill();
+    }
+  }
+}
+function poly(ctx, pts, rev) { const a = rev ? [...pts].reverse() : pts; ctx.moveTo(a[0][0], a[0][1]); for (let i = 1; i < a.length; i++) ctx.lineTo(a[i][0], a[i][1]); }
+function sub(a, b) { return [a[0] - b[0], a[1] - b[1], a[2] - b[2]]; }
+function cross(a, b) { return [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]]; }
+function dot(a, b) { return a[0] * b[0] + a[1] * b[1] + a[2] * b[2]; }
+function norm(a) { const l = Math.hypot(a[0], a[1], a[2]) || 1; return [a[0] / l, a[1] / l, a[2] / l]; }
+function dist(a, b) { return Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]); }
+
+/* ============ hero: the scene state as a function of scroll ============ */
+const hero = $('.hero'), stage = $('#stage'), sceneCv = $('#scene'), video = $('#hero');
+const scene = new Extruder(sceneCv);
+let mx = 0, my = 0, smx = 0, smy = 0;
+function sceneState(p, t) {
+  const e = p * p * (3 - 2 * p);
+  const s1 = smooth(p, .18, .30), s2 = smooth(p, .46, .54), s3 = smooth(p, .74, .82), sEnd = smooth(p, .5, .95);
+  return {
+    camZ: 6.3 - 1.4 * e,
+    L: .15 + 2.1 * p,
+    yaw: (-30 + 30 * sEnd) * D + smx * 4 * D + Math.sin(t / 4200) * 1.1 * D,
+    pitch: (11 - 11 * sEnd) * D + smy * 3 * D + Math.cos(t / 5100) * .7 * D,
+    ox: 1.6 * (1 - s1) + .45 * (s1 - s2) - .45 * (s2 - s3),
+    oy: -.12 - .58 * smooth(p, .6, .95),
+    glow: .6 + .4 * Math.sin(t / 2600) * .5 + .2,
+    t
+  };
+}
+// the composed still for phones and reduced motion: profile in the upper half, copy below
+function staticState() {
+  const portrait = innerHeight > innerWidth;
+  return { camZ: 5.6, L: 1.5, yaw: -28 * D, pitch: 12 * D, ox: portrait ? .15 : .9, oy: portrait ? .6 : .35, glow: .8, fScale: portrait ? 1.5 : .95, t: 0 };
+}
+
+/* ============ captions: language. The film carries no words; the bands follow <html lang> (tr is the markup itself) ============ */
+const HERO_I18N = {
+  en: [['Every order starts with one click.', 'Wherever you are.'], ['At the factory within seconds.', 'It enters through the main door as a billet.'], ['From 700 to 4,500 tonnes.', 'Five presses. One pressure.'], ['Shaped in the die.', 'Get the section right, and everything is right.'], ['Bundled and loaded onto Alufortis trucks.', 'Protected bundles, strapped pallets. Ready for the road.'], ['Delivered to 11 countries.', 'Your trusted partner in aluminium.', 'Request a Quote', 'Explore Production']],
+  de: [['Jeder Auftrag beginnt mit einem Klick.', 'Wo immer Sie sind.'], ['In Sekunden im Werk.', 'Durch das Haupttor kommt er als Pressbolzen an.'], ['Von 700 bis 4.500 Tonnen.', 'Fünf Pressen. Ein Druck.'], ['In der Matrize geformt.', 'Stimmt der Querschnitt, stimmt alles.'], ['Gebündelt und auf Alufortis-Lkw verladen.', 'Geschützte Bündel, umreifte Paletten. Bereit für die Straße.'], ['In 11 Länder geliefert.', 'Ihr zuverlässiger Partner für Aluminium.', 'Angebot anfordern', 'Produktion entdecken']]
+}[(document.documentElement.lang || 'tr').slice(0, 2)];
+if (HERO_I18N) $$('.stage .band').forEach((band, i) => {
+  const [h, sub, cta1, cta2] = HERO_I18N[i] || [];
+  const head = band.querySelector('h1,h2');
+  if (h && head) { if (head.dataset.split) head.textContent = h; else head.querySelectorAll('.soft').length ? (head.innerHTML = '<span class="soft" aria-hidden="true"></span>', head.firstChild.textContent = h, head.append(h)) : (head.textContent = h); }
+  const p = band.querySelector('.sub'); if (sub && p) p.textContent = sub;
+  const btns = band.querySelectorAll('.btn'); if (cta1 && btns[0]) btns[0].textContent = cta1; if (cta2 && btns[1]) btns[1].textContent = cta2;
+});
+
+/* ============ captions: split, bands, pacing ============ */
+const R = rng(1977);
+$$('[data-split]').forEach(el => {
+  const text = el.textContent.trim();
+  const mode = el.dataset.split;
+  const band = el.closest('.band');
+  const spread = parseFloat(band.dataset.spread || '0.5');
+  el.innerHTML = '';
+  const sr = document.createElement('span'); sr.className = 'vh'; sr.textContent = text; el.appendChild(sr);
+  const vis = document.createElement('span'); vis.setAttribute('aria-hidden', 'true');
+  const words = text.split(' ');
+  if (mode === 'chars') {
+    const total = text.replace(/ /g, '').length; let idx = 0;
+    words.forEach((wd, wi) => {
+      const w = document.createElement('span'); w.className = 'w';
+      for (const ch of wd) {
+        const c = document.createElement('span'); c.className = 'c'; c.textContent = ch;
+        c.style.setProperty('--th', (idx / total * spread + R() * .06).toFixed(3));
+        c.style.setProperty('--jx', (30 + R() * 40).toFixed(0) + 'px');
+        w.appendChild(c); idx++;
+      }
+      vis.appendChild(w);
+      if (wi < words.length - 1) { const sp = document.createElement('span'); sp.className = 'sp'; sp.textContent = ' '; vis.appendChild(sp); }
+    });
+  } else {
+    words.forEach((wd, wi) => {
+      const w = document.createElement('span'); w.className = 'w'; w.textContent = wd;
+      w.style.setProperty('--th', (wi / words.length * spread + R() * .05).toFixed(3));
+      vis.appendChild(w);
+      if (wi < words.length - 1) { const sp = document.createElement('span'); sp.className = 'sp'; sp.textContent = ' '; vis.appendChild(sp); }
+    });
+  }
+  el.appendChild(vis);
+});
+const bands = $$('.band').map(el => ({ el, a: +el.dataset.a, b: +el.dataset.b, ramp: +(el.dataset.ramp || 0), first: !!el.dataset.first, last: !!el.dataset.last, op: -1, k: -1, on: null }));
+let loadK = 0, loadStart = 0;
+function updateCaptions(p) {
+  for (const b of bands) {
+    const f = Math.min(.02, (b.b - b.a) / 3);
+    const op = (b.first ? 1 : smooth(p, b.a, b.a + f)) * (b.last ? 1 : 1 - smooth(p, b.b - f, b.b));
+    let k = clamp((p - b.a) / (b.ramp || Math.min(.025, (b.b - b.a) * .35)), 0, 1);
+    if (b.first) k = Math.max(k, loadK);
+    if (Math.abs(op - b.op) > .01 || (op === 0 && b.op !== 0) || (op === 1 && b.op !== 1)) { b.op = op; b.el.style.opacity = op.toFixed(3); }
+    if (Math.abs(k - b.k) > .008 || (k === 1 && b.k !== 1) || (k === 0 && b.k !== 0)) { b.k = k; b.el.style.setProperty('--k', k.toFixed(3)); }
+    const on = op > .05; if (on !== b.on) { b.on = on; b.el.classList.toggle('on', on); }
+  }
+}
+
+/* ============ the drive loop (rests when converged) ============ */
+let target = 0, shown = 0, rafId = null, lastTick = 0, heroOnScreen = true, breath = null, scrubOn = false, lastScrolledCls = null;
+function heroProgress() { const range = hero.offsetHeight - innerHeight; if (range <= 0) return 0; return clamp(-hero.getBoundingClientRect().top / range, 0, 1); }
+function tick(now) {
+  const dt = Math.min(100, now - (lastTick || now)); lastTick = now;
+  const k = .16;
+  shown += (target - shown) * (1 - Math.pow(1 - k, dt / 16.667));
+  smx += (mx - smx) * (1 - Math.pow(.9, dt / 16.667));
+  smy += (my - smy) * (1 - Math.pow(.9, dt / 16.667));
+  if (loadStart) loadK = Math.min(1, (now - loadStart) / 1400);
+  const converged = Math.abs(target - shown) < .0005 && Math.abs(mx - smx) < .002 && Math.abs(my - smy) < .002 && loadK >= 1;
+  if (converged) { shown = target; rafId = null; lastTick = 0; }
+  else rafId = requestAnimationFrame(tick);
+  if (!videoReady) scene.render(sceneState(shown, now));   // the 3D scene carries the hero until the footage is in, and whenever it fails
+  if (videoReady && video.duration) requestSeek(shown * video.duration);
+  updateCaptions(shown);
+  const sc = shown > .04; if (sc !== lastScrolledCls) { lastScrolledCls = sc; stage.classList.toggle('scrolled', sc); }
+  if (converged && heroOnScreen && !RM.matches && !document.hidden) { clearTimeout(breath); breath = setTimeout(wake, 42); }
+}
+function wake() { if (rafId === null && heroOnScreen && scrubOn) rafId = requestAnimationFrame(tick); }
+function onScroll() { target = heroProgress(); wake(); }
+new IntersectionObserver(en => { heroOnScreen = en[0].isIntersecting; if (heroOnScreen) wake(); else { clearTimeout(breath); } }, { threshold: 0 }).observe(hero);
+stage.addEventListener('pointermove', e => { mx = (e.clientX / innerWidth - .5) * 2; my = (e.clientY / innerHeight - .5) * -2; wake(); }, { passive: true });
+stage.addEventListener('pointerleave', () => { mx = 0; my = 0; wake(); });
+
+/* ============ the video (optional: set HERO_VIDEO when the scrub footage exists) ============ */
+const HERO_VIDEO = 'assets/hero-scrub-v4.mp4', HERO_POSTER = 'assets/hero-poster.jpg', VIDEO_BYTES = 6973457;
+let seekBusy = false, pendingTime = null, heroInited = false, videoReady = false, heroBlobTry = false;
+function requestSeek(t) { if (!video.duration) return; if (seekBusy) { pendingTime = t; return; } seekBusy = true; video.currentTime = t; }
+video.addEventListener('seeked', () => { seekBusy = false; if (pendingTime !== null) { const t = pendingTime; pendingTime = null; requestSeek(t); } });
+video.addEventListener('error', () => { seekBusy = false; pendingTime = null; if (heroBlobTry) return; failVideo(); });
+function failVideo() { stage.classList.remove('loading'); stage.classList.add('video-failed'); videoReady = false; wake(); }
+function initHeroOnce() {
+  if (heroInited) return; heroInited = true;
+  loadStart = performance.now();
+  if (!HERO_VIDEO) return;
+  const posterLayer = $('.poster');
+  posterLayer.style.backgroundImage = "url('" + HERO_POSTER + "')";
+  let started = false;
+  const start = () => { if (started) return; started = true; loadHeroBlob().catch(failVideo); };
+  const img = new Image(); img.onload = () => { stage.classList.add('has-poster'); start(); }; img.onerror = start; img.src = HERO_POSTER;
+  setTimeout(start, 4000);
+}
+async function loadHeroBlob() {
+  const ring = $('.ring'); stage.classList.add('loading');
+  const ctrl = new AbortController(); let wd = setTimeout(() => ctrl.abort(), 20000);
+  const res = await fetch(HERO_VIDEO, { priority: 'low', signal: ctrl.signal });
+  const total = Number(res.headers.get('Content-Length')) || VIDEO_BYTES || 1;
+  const reader = res.body.getReader(); const chunks = []; let got = 0, lastRing = 0;
+  for (;;) {
+    const { done, value } = await reader.read(); if (done) break;
+    clearTimeout(wd); wd = setTimeout(() => ctrl.abort(), 20000);
+    chunks.push(value); got += value.length;
+    const frac = Math.min(1, got / total), now = performance.now();
+    if (now - lastRing > 100 || frac === 1) { lastRing = now; ring.style.setProperty('--ld', Math.round(126 * (1 - frac))); }
+  }
+  clearTimeout(wd); ring.style.setProperty('--ld', 0);
+  attachHeroSource(URL.createObjectURL(new Blob(chunks, { type: 'video/mp4' })), true);
+}
+// Safari (macOS, iPadOS) can refuse a blob video: then the same file plays from its URL, which the download above has just put in the cache
+function attachHeroSource(src, isBlob) {
+  heroBlobTry = isBlob;
+  let done = false, kick = 0;
+  const off = () => { video.removeEventListener('canplay', ok); video.removeEventListener('loadeddata', ok); video.removeEventListener('error', bad); clearTimeout(kick); };
+  const ok = () => {
+    if (done) return; done = true; off(); heroBlobTry = false;
+    if (!video.paused) video.pause();
+    videoReady = true; requestSeek(heroProgress() * video.duration);
+    stage.classList.remove('loading', 'video-failed'); stage.classList.add('video-ready'); wake();
+  };
+  const bad = () => {
+    if (done) return; done = true; off();
+    if (isBlob) { URL.revokeObjectURL(src); attachHeroSource(HERO_VIDEO, false); }
+    else { heroBlobTry = false; failVideo(); }
+  };
+  video.addEventListener('canplay', ok); video.addEventListener('loadeddata', ok); video.addEventListener('error', bad);
+  video.muted = true; video.playsInline = true; video.preload = 'auto';
+  video.src = src; video.load();
+  // iPadOS buffers nothing until the video is asked to play: a muted inline play, paused at once, starts it
+  kick = setTimeout(() => { if (!done && video.readyState < 2) { const p = video.play(); if (p && p.catch) p.catch(() => {}); } }, 1500);
+}
+
+/* ============ the five gates, decided live ============ */
+const GATES = [
+  '(max-width: 720px)',
+  '(orientation: portrait) and (max-width: 1024px)',
+  '(orientation: portrait) and (pointer: coarse)',
+  '(orientation: landscape) and (pointer: coarse) and (max-height: 560px)',
+  '(prefers-reduced-motion: reduce)'
+];
+function enableScrub() {
+  if (scrubOn) return; scrubOn = true;
+  if (mobilePlayInited) { video.pause(); video.loop = false; video.autoplay = false; video.removeAttribute('src'); video.load(); stage.classList.remove('mobile-play'); mobilePlayInited = false; heroInited = false; }
+  scene.resize(); initHeroOnce();
+  if (!HAS_GSAP) addEventListener('scroll', onScroll, { passive: true });
+  bands.forEach(b => { b.op = -1; b.k = -1; b.on = null; });
+  unpinFinalStates();
+  target = heroProgress(); updateCaptions(target); wake();
+}
+function disableScrub() {
+  if (scrubOn) {
+    scrubOn = false;
+    if (!HAS_GSAP) removeEventListener('scroll', onScroll);
+    if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; }
+    clearTimeout(breath);
+  }
+  scene.resize(); scene.render(staticState());   // one composed still for the static hero, also on a first load that lands here
+  startMobilePlay();
+}
+// phones and small screens: the 20 second film plays muted on its own behind the static copy (about 7 MB); the 3D still stays underneath as the fallback
+let mobilePlayInited = false;
+function startMobilePlay() {
+  if (mobilePlayInited || !HERO_VIDEO || RM.matches) return;
+  mobilePlayInited = true;
+  const posterLayer = $('.poster');
+  posterLayer.style.backgroundImage = "url('" + HERO_POSTER + "')";
+  video.setAttribute('poster', HERO_POSTER);
+  video.loop = true; video.muted = true; video.autoplay = true; video.playsInline = true; video.preload = 'auto';
+  video.src = HERO_VIDEO;
+  const onPlaying = () => { stage.classList.add('mobile-play'); };
+  video.addEventListener('playing', onPlaying, { once: true });
+  video.addEventListener('error', () => { stage.classList.remove('mobile-play'); }, { once: true });
+  const p = video.play(); if (p && p.catch) p.catch(() => { /* autoplay refused: the 3D still carries the hero */ });
+}
+function applyHeroMode() { if (GATES.some(q => matchMedia(q).matches)) disableScrub(); else enableScrub(); }
+const MQLS = GATES.map(q => matchMedia(q));
+MQLS.forEach(m => m.addEventListener('change', applyHeroMode));
+
+/* ============ below the fold ============ */
+const nav = $('.nav'); let navScrolled = null;
+const onNav = () => { const s = scrollY > 24; if (s !== navScrolled) { navScrolled = s; nav.classList.toggle('scrolled', s); } };
+
+const rvObs = new IntersectionObserver(en => en.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); setTimeout(() => e.target.classList.add('settled'), 1800); rvObs.unobserve(e.target); } }), { rootMargin: '0px 0px -12% 0px' });
+if (!HAS_GSAP) $$('.rv').forEach(el => rvObs.observe(el));
+
+// counters
+const fmt = (v, dec) => dec ? v.toFixed(dec).replace('.', ',') : Math.round(v).toLocaleString('tr-TR');
+function runCounter(el) {
+  const to = parseFloat(el.dataset.to), dec = +(el.dataset.dec || 0), suf = el.dataset.suffix || '';
+  if (RM.matches) { el.textContent = fmt(to, dec) + suf; return; }
+  const t0 = performance.now(), dur = 1600; let last = '', lastAt = 0;
+  const step = now => {
+    const t = clamp((now - t0) / dur, 0, 1), e = 1 - Math.pow(1 - t, 3);
+    const s = fmt(to * e, dec) + suf;
+    if ((now - lastAt > 100 && s !== last) || t === 1) { last = s; lastAt = now; el.textContent = s; }
+    if (t < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+const cObs = new IntersectionObserver(en => en.forEach(e => { if (e.isIntersecting) { runCounter(e.target); cObs.unobserve(e.target); } }), { threshold: .4 });
+if (!HAS_GSAP) $$('.stat .n').forEach(el => cObs.observe(el));
+
+// the timeline draws itself with scroll
+const prod = $('.prod'), tlLine = $('.tl .draw'); let tlLast = -1, tlTicking = false;
+function drawTimeline() {
+  tlTicking = false;
+  if (RM.matches) return;
+  const r = prod.getBoundingClientRect();
+  const p = prodPinned ? clamp(pinProgress(prod) / .9, 0, 1) : clamp((innerHeight * .85 - r.top - 140) / (r.height * .85), 0, 1);
+  if (Math.abs(p - tlLast) > .004) { tlLast = p; tlLine.style.strokeDashoffset = (1 - p).toFixed(3); }
+}
+const onTimeline = () => { if (!tlTicking) { tlTicking = true; requestAnimationFrame(drawTimeline); } };
+
+/* ============ the 7800-1 profile turns through the five steps (three.js, loaded when the section comes near) ============ */
+const steps = $$('.prod .step'), p3dCv = $('#p3d'), p3dBar = $$('.p3d-bar i');
+const P3D_UI = [
+  ['01', 'Kalıphane', () => ['Çizimden kesite', '#4CB7FF']],
+  ['02', 'Ekstrüzyon', () => ['Presten ham yüzey', '#D9DDE2']],
+  ['03', 'Eloksal', f => f < .36 ? ['Natürel eloksal', '#C9CED3'] : f < .7 ? ['Bronz eloksal', '#7A6248'] : ['Siyah eloksal', '#2A2B2E']],
+  ['04', 'Elektrostatik toz boya', f => f < .5 ? ['RAL 7016 antrasit', '#383E42'] : ['RAL 9016 beyaz', '#F1F0EA']],
+  ['05', 'Mekanik işlem', () => ['Ölçüye kesim', '#F1F0EA']]
+];
+let p3d = null, p3dTarget = 0, p3dShown = 0, p3dRaf = null, p3dLast = 0, p3dVisible = false, p3dDrag = 0, p3dVel = 0, p3dUiKey = '', stepOn = -1;
+// where the reading line sits among the five steps: 0 at the first dot, 4.999 past the last
+const tlEl = $('.prod .timeline'), tlWin = $('.prod .tlwin');
+let prodPinned = false, tyLast = null;
+function pinProgress(el) { const range = el.offsetHeight - innerHeight; return range > 0 ? clamp(-el.getBoundingClientRect().top / range, 0, 1) : 0; }
+function prodStepPos() {
+  if (prodPinned) {
+    // the last tenth of the pin rests on the finished, cut profile
+    const p = pinProgress(prod), q = clamp(p / .9, 0, 1);
+    const over = Math.max(0, tlEl.offsetHeight - tlWin.clientHeight);
+    const ty = -Math.round(over * smooth(q, .08, .92));
+    if (ty !== tyLast) { tyLast = ty; tlEl.style.setProperty('--ty', ty + 'px'); }
+    return Math.min(4.999, q * 5);
+  }
+  const line = innerHeight * (innerWidth <= 900 ? .66 : .5);
+  const tops = steps.map(s => s.getBoundingClientRect().top + 20);
+  if (line <= tops[0]) return 0;
+  for (let i = 0; i < tops.length - 1; i++) if (line < tops[i + 1]) return i + (line - tops[i]) / (tops[i + 1] - tops[i]);
+  const last = steps[steps.length - 1].getBoundingClientRect();
+  return Math.min(4.999, 4 + (line - tops[4]) / Math.max(1, last.height * .8));
+}
+function setStepUi(s) {
+  const i = Math.min(4, Math.floor(s)), f = s - i;
+  if (i !== stepOn) { stepOn = i; steps.forEach((el, k) => el.classList.toggle('on', k <= i)); }
+  const [ix, nm, fx] = P3D_UI[i], [label, sw] = fx(f), key = ix + label;
+  if (key !== p3dUiKey) { p3dUiKey = key; $('#p3d-ix').textContent = ix; $('#p3d-nm').textContent = nm; $('#p3d-fx').textContent = label; $('#p3d-sw').style.setProperty('--sw', sw); }
+  p3dBar.forEach((b, k) => b.style.setProperty('--f', clamp(s - k, 0, 1).toFixed(3)));
+  stepSweep(s);
+}
+async function initP3D() {
+  const T = await import('three');
+  const { RoomEnvironment } = await import('three/addons/environments/RoomEnvironment.js');
+  const P = await (await fetch('assets/profile-7800-1.json')).json();
+  const renderer = new T.WebGLRenderer({ canvas: p3dCv, antialias: true, alpha: true, powerPreference: 'low-power' });
+  renderer.toneMapping = T.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
+  const scene = new T.Scene();
+  const pm = new T.PMREMGenerator(renderer); scene.environment = pm.fromScene(new RoomEnvironment(), .04).texture; pm.dispose();
+  scene.add(new T.HemisphereLight(0xdfe8f2, 0x1a2230, .9));
+  const key = new T.DirectionalLight(0xffffff, 2.4); key.position.set(260, 420, 380); scene.add(key);
+  const rim = new T.DirectionalLight(0x4cb7ff, 1.4); rim.position.set(-380, 120, -300); scene.add(rim);
+  // the section exactly as drawn: outer contour plus the nine chambers, millimetres
+  const shape = new T.Shape(), outer = P.polys.find(p => !p.hole);
+  outer.pts.forEach(([x, y], i) => i ? shape.lineTo(x, y) : shape.moveTo(x, y));
+  P.polys.filter(p => p.hole).forEach(p => { const h = new T.Path(); p.pts.forEach(([x, y], i) => i ? h.lineTo(x, y) : h.moveTo(x, y)); shape.holes.push(h); });
+  const PIECE = 200, cx = P.w / 2, cy = P.h / 2;
+  const geo = new T.ExtrudeGeometry(shape, { depth: PIECE, bevelEnabled: false, curveSegments: 4 }); geo.translate(-cx, -cy, 0);
+  const side = new T.MeshPhysicalMaterial({ color: 0xd9dde2, metalness: .8, roughness: .35, envMapIntensity: 1.5, clearcoat: 0, transparent: true });
+  const cap = new T.MeshStandardMaterial({ color: 0xc4c9ce, metalness: .65, roughness: .45, envMapIntensity: 1.3, transparent: true });
+  const group = new T.Group(), body = new T.Group(); group.add(body); scene.add(group);
+  const pieces = [0, 1, 2].map(i => { const m = new T.Mesh(geo, [cap, side]); body.add(m); return m; });
+  // one seamless bar until the saw; the three pieces only appear at the cutting step
+  const fullGeo = new T.ExtrudeGeometry(shape, { depth: PIECE * 3, bevelEnabled: false, curveSegments: 4 }); fullGeo.translate(-cx, -cy, 0);
+  const bar = new T.Mesh(fullGeo, [cap, side]); body.add(bar);
+  // the drawing: the section's own edges in blueprint blue, shown at the die step
+  const flat = new T.ShapeGeometry(shape, 4); flat.translate(-cx, -cy, 0);
+  const lines = new T.LineSegments(new T.EdgesGeometry(flat), new T.LineBasicMaterial({ color: 0x4cb7ff, transparent: true }));
+  group.add(lines);
+  const cam = new T.PerspectiveCamera(30, 1, 5, 20000);
+  const C = (h) => new T.Color(h);
+  const FIN = { mill: [C('#d9dde2'), .82, .34], nat: [C('#c9ced3'), .86, .22], bronze: [C('#7a6248'), .78, .26], black: [C('#2a2b2e'), .7, .3], r7016: [C('#383e42'), .08, .58], r9016: [C('#f1f0ea'), .05, .5] };
+  const tmp = new T.Color();
+  function finish(a, b, k) { const A = FIN[a], B = FIN[b]; tmp.copy(A[0]).lerp(B[0], k); side.color.copy(tmp); cap.color.copy(tmp).multiplyScalar(.9); side.metalness = A[1] + (B[1] - A[1]) * k; side.roughness = A[2] + (B[2] - A[2]) * k; cap.metalness = side.metalness * .85; cap.roughness = Math.min(1, side.roughness + .1); }
+  function size() { const w = Math.max(1, p3dCv.clientWidth), h = Math.max(1, p3dCv.clientHeight); renderer.setPixelRatio(Math.min(2, devicePixelRatio || 1)); renderer.setSize(w, h, false); cam.aspect = w / h; cam.updateProjectionMatrix(); }
+  function draw(s, t) {
+    const i = Math.min(4, Math.floor(s)), f = s - i;
+    // length: a thin slice of the section at the die, then the profile comes out of it
+    const grow = i === 0 ? .03 : i === 1 ? .03 + .97 * smooth(f, 0, .75) : 1;
+    const gap = i === 4 ? 46 * smooth(f, .15, .8) : 0;
+    const cut = i === 4 && gap > .2;
+    bar.visible = !cut; bar.scale.z = grow; bar.position.z = -1.5 * PIECE * grow;
+    pieces.forEach((m, k) => { m.visible = cut; m.scale.z = grow; m.position.z = (k - 1.5) * PIECE * grow + (k - 1) * gap; });
+    const ghost = i === 0 ? .18 + .5 * smooth(f, .55, 1) : 1;
+    side.opacity = cap.opacity = ghost; side.depthWrite = cap.depthWrite = ghost > .95;
+    lines.material.opacity = i === 0 ? 1 : i === 1 ? 1 - smooth(f, 0, .3) : 0; lines.visible = lines.material.opacity > .01;
+    lines.position.z = PIECE * 1.5 * grow + .2;
+    if (i <= 1) finish('mill', 'mill', 0);
+    else if (i === 2) f < .36 ? finish('mill', 'nat', smooth(f, 0, .2)) : f < .7 ? finish('nat', 'bronze', smooth(f, .36, .5)) : finish('bronze', 'black', smooth(f, .7, .84));
+    else if (i === 3) f < .5 ? finish('black', 'r7016', smooth(f, 0, .18)) : finish('r7016', 'r9016', smooth(f, .5, .66));
+    else finish('r9016', 'r9016', 0);
+    // the turn: face-on at the die, then three-quarter, and the bar rolls about its own axis through the finishes so the section keeps facing you
+    const face = 1 - smooth(s, .55, 1.4), on = 1 - face;
+    group.rotation.y = (-.58 - .14 * Math.sin(Math.max(0, s - 1) * .8)) * on + .18 * face + p3dDrag + Math.sin(t / 4200) * .03;
+    group.rotation.x = .3 * on + .06 * face;
+    group.rotation.z = -.34 * Math.max(0, s - 1.2) * on;
+    const dist = 330 + (1000 - 330) * smooth(s, .6, 1.7) + 180 * smooth(s, 4.1, 4.8);
+    cam.position.set(0, 40 * (1 - face), dist); cam.lookAt(0, 0, 0);
+    renderer.render(scene, cam);
+  }
+  size();
+  p3d = { draw, size };
+  p3dCv.classList.add('ready');
+}
+function p3dTick(now) {
+  const dt = Math.min(100, now - (p3dLast || now)); p3dLast = now;
+  p3dShown += (p3dTarget - p3dShown) * (1 - Math.pow(.86, dt / 16.667));
+  if (!dragging) { p3dDrag += p3dVel; p3dVel *= .94; }
+  setStepUi(RM.matches ? p3dTarget : p3dShown);
+  if (p3d) p3d.draw(RM.matches ? p3dTarget : p3dShown, RM.matches ? 0 : now);
+  const busy = Math.abs(p3dTarget - p3dShown) > .0008 || Math.abs(p3dVel) > .0004 || dragging;
+  if (p3dVisible && !document.hidden && (busy || !RM.matches)) p3dRaf = requestAnimationFrame(p3dTick);
+  else { p3dRaf = null; p3dLast = 0; }
+}
+function wakeP3D() { if (p3dRaf === null) p3dRaf = requestAnimationFrame(p3dTick); }
+let dragging = false, dragX = 0;
+p3dCv.addEventListener('pointerdown', e => { dragging = true; dragX = e.clientX; p3dVel = 0; try { p3dCv.setPointerCapture(e.pointerId); } catch (_) {} wakeP3D(); });
+p3dCv.addEventListener('pointermove', e => { if (!dragging) return; const dx = (e.clientX - dragX) * .008; dragX = e.clientX; p3dDrag += dx; p3dVel = dx; });
+const dragEnd = () => { if (!dragging) return; dragging = false; wakeP3D(); };
+p3dCv.addEventListener('pointerup', dragEnd); p3dCv.addEventListener('pointercancel', dragEnd); p3dCv.addEventListener('lostpointercapture', dragEnd);
+let p3dLoading = false;
+new IntersectionObserver(en => {
+  if (en[0].isIntersecting && !p3dLoading) { p3dLoading = true; initP3D().then(wakeP3D).catch(() => { $('.p3d .view').classList.add('no3d'); }); }
+}, { rootMargin: '600px 0px' }).observe(prod);
+new IntersectionObserver(en => { p3dVisible = en[0].isIntersecting; if (p3dVisible) wakeP3D(); }, { threshold: 0 }).observe(prod);
+// pin on desktop only; phones keep the sticky card over the scrolling steps
+function applyProdPin() {
+  const want = !RM.matches && innerWidth > 900 && innerHeight >= 600;
+  if (want === prodPinned) return;
+  prodPinned = want; prod.classList.toggle('pinned', want); refreshFlow();
+  if (!want) { tlEl.style.removeProperty('--ty'); tyLast = null; }
+  if (p3d) p3d.size();
+}
+function onProdScroll() { p3dTarget = prodStepPos(); if (RM.matches || !p3dVisible) setStepUi(p3dTarget); wakeP3D(); }
+
+
+/* ============ the catalogue ring: the drum turns one card per stretch of scroll, and rests on each ============ */
+const sys = $('.sys'), drumCards = $('.sys .cards'), ringCards = $$('.sys .card'), ringDots = $$('.ring-meta .dots i');
+let ringOn = false, ringRaf = null, ringTarget = 0, ringShown = 0, ringLast = 0, ringFront = -1;
+function ringLayout() {
+  if (!ringOn) return;
+  const cw = ringCards[0].offsetWidth;
+  drumCards.style.setProperty('--r', Math.round(cw / 2 / Math.tan(Math.PI / 6) * 1.18) + 'px');
+}
+function ringProgress() { const r = sys.getBoundingClientRect(), range = sys.offsetHeight - innerHeight; return range > 0 ? clamp(-r.top / range, 0, 1) : 0; }
+function ringDraw(p) {
+  // five turns; each one dwells on its card before moving on
+  const x = p * 5, k = Math.min(4, Math.floor(x)), turn = k + smooth(x - k, .22, .78);
+  const rot = -turn * 60;
+  drumCards.style.setProperty('--rot', rot.toFixed(2) + 'deg');
+  let front = 0, best = 1e9;
+  ringCards.forEach((c, i) => {
+    let a = ((i * 60 + rot) % 360 + 540) % 360 - 180;
+    const vis = Math.max(0, Math.cos(a * D));
+    c.style.opacity = (.12 + .88 * Math.pow(vis, 1.6)).toFixed(3);
+    if (Math.abs(a) < best) { best = Math.abs(a); front = i; }
+  });
+  if (front !== ringFront) { ringFront = front; ringCards.forEach((c, i) => c.classList.toggle('front', i === front)); ringDots.forEach((d, i) => d.classList.toggle('on', i === front)); $('#ring-n').textContent = String(front + 1).padStart(2, '0'); }
+}
+function ringTick(now) {
+  const dt = Math.min(100, now - (ringLast || now)); ringLast = now;
+  ringShown += (ringTarget - ringShown) * (1 - Math.pow(.84, dt / 16.667));
+  ringDraw(ringShown);
+  if (Math.abs(ringTarget - ringShown) > .0004) ringRaf = requestAnimationFrame(ringTick); else { ringShown = ringTarget; ringDraw(ringShown); ringRaf = null; ringLast = 0; }
+}
+function onRingScroll() { if (!ringOn) return; ringTarget = ringProgress(); if (ringRaf === null) ringRaf = requestAnimationFrame(ringTick); }
+function applyRing() {
+  const want = !RM.matches;
+  if (want === ringOn) return;
+  ringOn = want; sys.classList.toggle('spin', want); refreshFlow();
+  if (want) { ringCards.forEach((c, i) => c.style.setProperty('--a', i * 60 + 'deg')); ringLayout(); ringShown = ringTarget = ringProgress(); ringDraw(ringShown); }
+  else { ringCards.forEach(c => { c.style.opacity = ''; c.classList.remove('front'); }); drumCards.style.removeProperty('--rot'); }
+}
+// keyboard: a focused card turns to the front
+ringCards.forEach((c, i) => c.addEventListener('focus', () => { if (!ringOn) return; const range = sys.offsetHeight - innerHeight; scrollTo({ top: sys.getBoundingClientRect().top + scrollY + range * i / 5, behavior: 'instant' }); }));
+
+/* ============ the globe: Pendik to eleven countries; land as dots from Natural Earth (world-atlas), turned by the scroll ============ */
+const PLACES = [['Almanya', 51.2, 10.4], ['Romanya', 45.9, 25.0], ['Hollanda', 52.2, 5.3], ['Yunanistan', 39.1, 21.8], ['Ürdün', 31.2, 36.5], ['Bulgaristan', 42.7, 25.5], ['Fransa', 46.6, 2.4], ['Çekya', 49.8, 15.5], ['Litvanya', 55.2, 23.9], ['Estonya', 58.6, 25.0], ['Şili', -35.7, -71.5]];
+const HOME = ['Türkiye', 40.88, 29.23];
+const globeCv = $('#globe'), globeNow = $('#globe-now');
+class Globe {
+  constructor(cv) { this.cv = cv; this.ctx = cv.getContext('2d'); this.land = []; this.resize(); this.arcs = PLACES.map(p => this.arc(HOME, p)); }
+  resize() { this.dpr = Math.min(2, devicePixelRatio || 1); this.w = Math.max(1, this.cv.clientWidth); this.h = Math.max(1, this.cv.clientHeight); this.cv.width = Math.round(this.w * this.dpr); this.cv.height = Math.round(this.h * this.dpr); }
+  static v(lat, lon) { const a = lat * D, b = lon * D; return [Math.cos(a) * Math.cos(b), Math.cos(a) * Math.sin(b), Math.sin(a)]; }
+  arc(A, B) {
+    const a = Globe.v(A[1], A[2]), b = Globe.v(B[1], B[2]), om = Math.acos(clamp(dot(a, b), -1, 1)), n = Math.max(12, Math.round(om * 40)), out = [];
+    for (let i = 0; i <= n; i++) { const t = i / n, s0 = Math.sin((1 - t) * om) / Math.sin(om), s1 = Math.sin(t * om) / Math.sin(om), lift = 1 + Math.sin(Math.PI * t) * Math.min(.32, om * .16); out.push([(a[0] * s0 + b[0] * s1) * lift, (a[1] * s0 + b[1] * s1) * lift, (a[2] * s0 + b[2] * s1) * lift]); }
+    return out;
+  }
+  // orthographic view with the centre at (lat0, lon0)
+  setView(lat0, lon0) { this.sl = Math.sin(lat0 * D); this.cl = Math.cos(lat0 * D); this.so = Math.sin(lon0 * D); this.co = Math.cos(lon0 * D); }
+  proj(p) {
+    const x1 = p[0] * this.co + p[1] * this.so, y1 = -p[0] * this.so + p[1] * this.co, z = p[2];
+    const depth = x1 * this.cl + z * this.sl, up = -x1 * this.sl + z * this.cl;
+    return [y1, up, depth];
+  }
+  render(p, t) {
+    const { ctx, w, h, dpr } = this, R = Math.min(w, h) * .4, cx = w / 2, cy = h * .47;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, w, h);
+    // from Pendik westward over Europe and the Atlantic; the turn ends with Chile in the middle
+    const e = smooth(p, 0, 1), lon0 = 32 - 103.5 * e + Math.sin(t / 7000) * (1 - e) * 2, lat0 = 36 - 71.7 * smooth(p, .35, 1);
+    this.setView(lat0, lon0);
+    const S = q => [cx + q[0] * R, cy - q[1] * R];
+    // body and halo
+    const g = ctx.createRadialGradient(cx - R * .35, cy - R * .4, R * .1, cx, cy, R);
+    g.addColorStop(0, '#1E2A37'); g.addColorStop(1, '#0F161E');
+    ctx.fillStyle = g; ctx.beginPath(); ctx.arc(cx, cy, R, 0, 6.283); ctx.fill();
+    const halo = ctx.createRadialGradient(cx, cy, R * .96, cx, cy, R * 1.22); halo.addColorStop(0, 'rgba(76,183,255,.22)'); halo.addColorStop(1, 'rgba(76,183,255,0)');
+    ctx.fillStyle = halo; ctx.beginPath(); ctx.arc(cx, cy, R * 1.22, 0, 6.283); ctx.fill();
+    // graticule
+    ctx.lineWidth = 1; ctx.strokeStyle = 'rgba(154,167,182,.10)';
+    for (let lat = -60; lat <= 60; lat += 30) this.line(Array.from({ length: 73 }, (_, i) => Globe.v(lat, i * 5 - 180)), S);
+    for (let lon = -180; lon < 180; lon += 30) this.line(Array.from({ length: 37 }, (_, i) => Globe.v(i * 5 - 90, lon)), S);
+    // land
+    for (const d of this.land) { const q = this.proj(d); if (q[2] <= 0) continue; const s = S(q); ctx.fillStyle = 'rgba(201,209,219,' + (.12 + .5 * q[2]).toFixed(2) + ')'; ctx.fillRect(s[0] - .9, s[1] - .9, 1.8, 1.8); }
+    ctx.strokeStyle = 'rgba(201,209,219,.18)'; ctx.beginPath(); ctx.arc(cx, cy, R, 0, 6.283); ctx.stroke();
+    // routes draw in one after another as the section arrives
+    let near = HOME[0], nearZ = -1;
+    this.arcs.forEach((a, k) => {
+      const reveal = clamp(p * 3.2 - k * .12, 0, 1); if (reveal <= 0) return;
+      const n = Math.max(2, Math.round(a.length * reveal));
+      ctx.lineWidth = 1.4; ctx.beginPath(); let pen = false;
+      for (let i = 0; i < n; i++) { const q = this.proj(a[i]); if (q[2] < -.05) { pen = false; continue; } const s = S(q); pen ? ctx.lineTo(s[0], s[1]) : ctx.moveTo(s[0], s[1]); pen = true; }
+      ctx.strokeStyle = 'rgba(76,183,255,.75)'; ctx.stroke();
+      const pl = PLACES[k], q = this.proj(Globe.v(pl[1], pl[2]));
+      if (reveal >= 1 && q[2] > 0) {
+        const s = S(q), pulse = (t / 1800 + k * .13) % 1;
+        ctx.fillStyle = '#4CB7FF'; ctx.beginPath(); ctx.arc(s[0], s[1], 3.2, 0, 6.283); ctx.fill();
+        ctx.strokeStyle = 'rgba(76,183,255,' + (.6 * (1 - pulse)).toFixed(2) + ')'; ctx.beginPath(); ctx.arc(s[0], s[1], 3 + pulse * 10, 0, 6.283); ctx.stroke();
+        if (q[2] > nearZ) { nearZ = q[2]; near = pl[0]; }
+      }
+    });
+    const hq = this.proj(Globe.v(HOME[1], HOME[2]));
+    if (hq[2] > 0) { const s = S(hq); ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(s[0], s[1], 4, 0, 6.283); ctx.fill(); ctx.strokeStyle = 'rgba(76,183,255,.55)'; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(s[0], s[1], 7, 0, 6.283); ctx.stroke(); if (hq[2] > nearZ) near = HOME[0]; }
+    return near;
+  }
+  line(pts, S) { const { ctx } = this; ctx.beginPath(); let pen = false; for (const v of pts) { const q = this.proj(v); if (q[2] < 0) { pen = false; continue; } const s = S(q); pen ? ctx.lineTo(s[0], s[1]) : ctx.moveTo(s[0], s[1]); pen = true; } ctx.stroke(); }
+}
+// decode the world-atlas TopoJSON land into rings, then sample a dot grid inside them
+function topoPolys(topo) {
+  const [sx, sy] = topo.transform.scale, [tx, ty] = topo.transform.translate;
+  const arcs = topo.arcs.map(a => { let x = 0, y = 0; return a.map(([dx, dy]) => { x += dx; y += dy; return [x * sx + tx, y * sy + ty]; }); });
+  const ring = ids => { const out = []; ids.forEach((i, k) => { const pts = i >= 0 ? arcs[i] : arcs[~i].slice().reverse(); out.push(...(k ? pts.slice(1) : pts)); }); return out; };
+  const o = topo.objects.land, gs = o.type === 'GeometryCollection' ? o.geometries : [o], polys = [];
+  gs.forEach(g => { if (g.type === 'Polygon') polys.push(g.arcs.map(ring)); else if (g.type === 'MultiPolygon') g.arcs.forEach(p => polys.push(p.map(ring))); });
+  return polys.map(rs => { let a = 180, b = 90, c = -180, d = -90; rs[0].forEach(([x, y]) => { a = Math.min(a, x); b = Math.min(b, y); c = Math.max(c, x); d = Math.max(d, y); }); return { rs, bb: [a, b, c, d] }; });
+}
+function inRing(r, x, y) { let c = false; for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if ((yi > y) !== (yj > y) && x < (xj - xi) * (y - yi) / (yj - yi) + xi) c = !c; } return c; }
+function landDots(polys) {
+  const out = [];
+  for (let lat = -56; lat <= 78; lat += 1.9) {
+    const n = Math.max(1, Math.round(360 * Math.cos(lat * D) / 1.9));
+    for (let k = 0; k < n; k++) {
+      const lon = -180 + k * 360 / n;
+      for (const p of polys) { if (lon < p.bb[0] || lon > p.bb[2] || lat < p.bb[1] || lat > p.bb[3]) continue; let c = false; for (const r of p.rs) if (inRing(r, lon, lat)) c = !c; if (c) { out.push(Globe.v(lat, lon)); break; } }
+    }
+  }
+  return out;
+}
+const globe = new Globe(globeCv), glob = $('.glob');
+let globeRaf = null, globeVisible = false, globeTarget = 0, globeShown = 0, globeLast = 0, globeLabel = '', globeLoading = false;
+// 0 as the globe's top edge enters, 1 when the whole globe sits high in the view
+const gpin = $('.glob .gpin');
+let globePinned = false;
+function applyGlobePin() { const want = !RM.matches; if (want === globePinned) return; globePinned = want; glob.classList.toggle('pinned', want); globe.resize(); refreshFlow(); }
+function globeProgress() {
+  if (globePinned) return clamp(pinProgress(gpin) / .85, 0, 1);   // the last stretch holds on Chile
+  const r = globeCv.getBoundingClientRect(); return clamp((innerHeight - r.top) / Math.max(1, innerHeight * .92 - Math.max(0, r.height - innerHeight * .8)), 0, 1); }
+function globeTick(now) {
+  const dt = Math.min(100, now - (globeLast || now)); globeLast = now;
+  globeShown += (globeTarget - globeShown) * (1 - Math.pow(.88, dt / 16.667));
+  const near = globe.render(RM.matches ? .55 : globeShown, RM.matches ? 0 : now);
+  if (near !== globeLabel) { globeLabel = near; globeNow.textContent = near; }
+  if (globeVisible && !document.hidden && !RM.matches) globeRaf = requestAnimationFrame(globeTick); else { globeRaf = null; globeLast = 0; }
+}
+function wakeGlobe() { if (globeRaf === null) globeRaf = requestAnimationFrame(globeTick); }
+new IntersectionObserver(en => {
+  globeVisible = en[0].isIntersecting;
+  if (globeVisible && !globeLoading) {
+    globeLoading = true;
+    fetch('assets/land-110m.json').then(r => r.json()).then(t => { globe.land = landDots(topoPolys(t)); wakeGlobe(); }).catch(() => { /* the graticule and routes carry the globe on their own */ });
+  }
+  if (globeVisible) { globe.resize(); globeTarget = globeShown = globeProgress(); wakeGlobe(); }
+}, { rootMargin: '300px 0px' }).observe(glob);
+const onGlobeScroll = () => { if (!globeVisible) return; globeTarget = globeProgress(); wakeGlobe(); };
+
+// marquee lives only on screen
+const marq = $('#marq');
+new IntersectionObserver(en => marq.classList.toggle('live', en[0].isIntersecting)).observe(marq);
+
+// catalog cards prefill the one form
+$$('.card[data-catalog]').forEach(c => c.addEventListener('click', () => { const m = $('#mesaj'); if (!m.value) m.value = c.dataset.catalog + ' kataloğunu rica ediyorum.'; }));
+
+// the form: mailto, honestly
+const form = $('#qform');
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const v = id => $('#' + id).value.trim();
+  if (!v('ad') || !v('eposta')) { ($('#ad').value ? $('#eposta') : $('#ad')).focus(); return; }
+  const body = 'Ad Soyad: ' + v('ad') + '\nFirma: ' + v('firma') + '\nE-posta: ' + v('eposta') + '\nTelefon: ' + v('tel') + '\n\n' + v('mesaj');
+  location.href = 'mailto:info@alufortis.com?subject=' + encodeURIComponent('Teklif talebi: ' + (v('firma') || v('ad'))) + '&body=' + encodeURIComponent(body);
+  form.classList.add('sent');
+});
+
+/* ============ reduced motion, both directions; hidden tab ============ */
+function pinToFinalStates() {
+  if (FLOW) FLOW.still();
+  $$('.rv').forEach(el => el.classList.add('in', 'settled'));
+  $$('.stat .n').forEach(el => { el.textContent = fmt(parseFloat(el.dataset.to), +(el.dataset.dec || 0)) + (el.dataset.suffix || ''); cObs.unobserve(el); });
+  tlLine.style.strokeDashoffset = '0'; tlLast = 1;
+  prod.classList.remove('live'); applyRing(); applyProdPin(); applyGlobePin(); onProdScroll();
+  bands.forEach(b => { b.el.style.opacity = ''; b.el.style.removeProperty('--k'); b.op = -1; b.k = -1; });
+}
+function unpinFinalStates() {
+  if (FLOW) FLOW.live();
+  if (tlLast === 1 && !RM.matches) { tlLast = -1; drawTimeline(); }
+  if (!RM.matches) prod.classList.add('live');
+  applyRing(); applyProdPin(); applyGlobePin(); onProdScroll(); wakeGlobe();
+}
+RM.addEventListener('change', e => { if (e.matches) { pinToFinalStates(); applyHeroMode(); } else { unpinFinalStates(); applyHeroMode(); } });
+document.addEventListener('visibilitychange', () => { document.body.classList.toggle('paused', document.hidden); if (!document.hidden) { wake(); wakeP3D(); wakeGlobe(); } });
+let rsz; addEventListener('resize', () => { clearTimeout(rsz); rsz = setTimeout(() => { scene.resize(); if (scrubOn) { target = heroProgress(); wake(); } else scene.render(staticState()); applyProdPin(); if (p3d) p3d.size(); ringLayout(); onRingScroll(); globe.resize(); onProdScroll(); wakeGlobe(); }, 120); });
+
+/* ============ the scroll flow: GSAP ScrollTrigger is the one scroll system of the page ============
+   The hero, the production pin, the catalogue ring and the globe keep their own easing loops (they were built for that);
+   ScrollTrigger only tells them where the scroll is. Everything else on the page is a scrubbed tween: it follows the
+   scroll, runs backwards when you scroll back, and stops the moment the scroll stops. */
+const sweepEl = $('.p3d .sweep');
+let sweepKey = '';
+function stepSweep(s) {
+  if (!sweepEl || RM.matches) return;
+  // across each boundary between two steps a band of light passes over the model; its position is the scroll position
+  const k = Math.round(s), d = s - k, W = .16;
+  let x = 0, v = 0;
+  if (k >= 1 && k <= 4 && Math.abs(d) < W) { x = (d + W) / (2 * W); v = Math.sin(Math.PI * x); }
+  const key = x.toFixed(3) + v.toFixed(2);
+  if (key === sweepKey) return; sweepKey = key;
+  sweepEl.style.opacity = v.toFixed(3); sweepEl.style.setProperty('--sx', x.toFixed(3));
+}
+function initFlow() {
+  gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ ignoreMobileResize: true });
+  document.documentElement.classList.add('gs');
+  const T = {};
+  // progress sources (no tweens): they report, the sections ease
+  T.nav = ScrollTrigger.create({ start: 0, end: 'max', onUpdate: onNav });
+  T.hero = ScrollTrigger.create({ trigger: hero, start: 'top top', end: 'bottom bottom', onUpdate: () => { if (scrubOn) onScroll(); }, onRefresh: () => { if (scrubOn) onScroll(); } });
+  T.prod = ScrollTrigger.create({ trigger: prod, start: 'top bottom', end: 'bottom top', onUpdate: () => { onProdScroll(); onTimeline(); }, onRefresh: () => { onProdScroll(); onTimeline(); } });
+  T.ring = ScrollTrigger.create({ trigger: sys, start: 'top bottom', end: 'bottom top', onUpdate: onRingScroll, onRefresh: onRingScroll });
+  T.globe = ScrollTrigger.create({ trigger: glob, start: 'top bottom', end: 'bottom top', onUpdate: onGlobeScroll, onRefresh: onGlobeScroll });
+
+  // elements inside a sticky box are measured from their section, never from the sticky box itself
+  const anchor = el => el.closest('.prod, .sys, .glob') || el;
+  const mm = gsap.matchMedia();
+  mm.add({ motion: '(prefers-reduced-motion: no-preference)', small: '(max-width: 900px)' }, ctx => {
+    const { motion, small } = ctx.conditions;
+    if (!motion) { $$('.rv').forEach(el => el.classList.add('in', 'settled')); return; }
+    const rise = small ? 24 : 40;
+
+    // 1. reveals: each block's parts rise in one after another with the scroll, and go back the same way
+    $$('.rv').forEach(el => {
+      const trig = anchor(el), inSticky = trig !== el;
+      const st = { trigger: trig, start: inSticky ? 'top 88%' : 'top 92%', end: inSticky ? 'top 30%' : 'top 58%', scrub: .5,
+        onEnter: () => el.classList.add('in'), onLeaveBack: () => el.classList.remove('in'), onRefresh: self => el.classList.toggle('in', self.progress > 0) };
+      if (el.matches('.sys .cards')) { ScrollTrigger.create(st); return; }   // the drum sets its own card opacity
+      const parts = [...el.querySelectorAll('.part')];
+      if (!parts.length) { ScrollTrigger.create(st); return; }
+      gsap.fromTo(parts, { opacity: 0, y: rise }, { opacity: 1, y: 0, ease: 'none', stagger: .14, scrollTrigger: st });
+    });
+    $$('.rv').forEach(el => el.classList.add('settled'));
+
+    // 2. the counters count with the scroll (and back)
+    $$('.stat .n').forEach(el => {
+      const to = parseFloat(el.dataset.to), dec = +(el.dataset.dec || 0), suf = el.dataset.suffix || '', o = { v: 0 };
+      let last = '';
+      gsap.to(o, { v: to, ease: 'power2.out', scrollTrigger: { trigger: el, start: 'top 95%', end: 'top 55%', scrub: .4 },
+        onUpdate: () => { const s = fmt(o.v, dec) + suf; if (s !== last) { last = s; el.textContent = s; } } });
+    });
+
+    // 3. the film hands over to the page: the last stretch of the hero darkens into the page colour as it leaves
+    gsap.fromTo('.stage .xout', { opacity: 0 }, { opacity: .92, ease: 'none', scrollTrigger: { trigger: hero, start: 'bottom bottom', end: 'bottom 30%', scrub: true } });
+
+    // 4. section to section: each pinned scene steps back as the next one comes up over it
+    const leave = (box, trig) => gsap.fromTo(box, { opacity: 1, scale: 1, y: 0 }, { opacity: .25, scale: small ? 1 : .94, y: small ? -30 : -50, ease: 'none', immediateRender: false,
+      scrollTrigger: { trigger: trig, start: 'bottom bottom', end: 'bottom 30%', scrub: true } });
+    leave('.prod .pinp', prod);
+    leave('.sys .pin', sys);
+    leave('.glob .gstick', glob);
+    // the drum and the globe arrive from below the fold with depth
+    gsap.fromTo('.sys .drum', { opacity: 0, y: small ? 40 : 90, rotateX: small ? 0 : 14, transformPerspective: 1200 }, { opacity: 1, y: 0, rotateX: 0, ease: 'none',
+      scrollTrigger: { trigger: sys, start: 'top 85%', end: 'top 15%', scrub: .5 } });
+    gsap.fromTo('#globe', { opacity: .15, y: small ? 40 : 110 }, { opacity: 1, y: 0, ease: 'none', scrollTrigger: { trigger: glob, start: 'top 90%', end: 'top 10%', scrub: .5 } });
+    // the quality glow drifts against the text
+    gsap.fromTo('.qual .glow', { y: -90 }, { y: 90, ease: 'none', scrollTrigger: { trigger: '.qual', start: 'top bottom', end: 'bottom top', scrub: true } });
+
+    return () => { sweepEl && (sweepEl.style.opacity = '0'); };
+  });
+
+  // re-measure once media and fonts have settled (the pins change the page height)
+  video.addEventListener('loadedmetadata', refreshFlow);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(refreshFlow);
+  addEventListener('load', refreshFlow, { once: true });
+  addEventListener('orientationchange', refreshFlow);
+  FLOW = { T, mm, still() {}, live() {} };
+}
+
+/* ============ go ============ */
+if (HAS_GSAP) initFlow();
+else { [onNav, onTimeline, onProdScroll, onRingScroll, onGlobeScroll].forEach(f => addEventListener('scroll', f, { passive: true })); }
+onNav();
+if (RM.matches) pinToFinalStates(); else unpinFinalStates();
+applyHeroMode();
+})();
+</script>
+</body>
+</html>

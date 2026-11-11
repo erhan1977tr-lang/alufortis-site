@@ -265,7 +265,7 @@ function alan_adi(array $a, array $TUR_AD): string
 body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
 a{color:var(--acc)}
 .top{background:var(--dark);color:#fff;display:flex;align-items:center;gap:20px;padding:12px 24px;border-bottom:3px solid var(--org);position:sticky;top:0;z-index:5}
-.top img{height:44px;display:block}
+.top img{height:66px;display:block}
 .top nav{display:flex;gap:4px;flex:1}
 .top nav a{color:#C9D1DB;text-decoration:none;padding:8px 14px;border-radius:6px;font-weight:600}
 .top nav a.on,.top nav a:hover{background:rgba(255,255,255,.08);color:#fff}
@@ -301,7 +301,7 @@ textarea.chg{border-color:var(--org);background:#FFF8F2}
 .search{margin:0 0 12px}
 .login{max-width:380px;margin:12vh auto;background:var(--panel);border-radius:12px;overflow:hidden;box-shadow:0 10px 40px rgba(15,20,27,.12)}
 .login .hd{background:var(--dark);padding:26px;text-align:center;border-bottom:3px solid var(--org)}
-.login .hd img{height:70px}
+.login .hd img{height:105px}
 .login form{padding:26px}
 table.l{width:100%;border-collapse:collapse}table.l td{padding:10px 8px;border-top:1px solid var(--line)}
 @media (max-width:900px){.lay{grid-template-columns:1fr}.groups{position:static;max-height:none}.row{grid-template-columns:1fr}.grid2{grid-template-columns:1fr}.top{flex-wrap:wrap}}

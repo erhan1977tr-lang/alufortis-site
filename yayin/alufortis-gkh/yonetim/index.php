@@ -78,6 +78,33 @@ if (!empty($_SESSION['giris'])) $_SESSION['son'] = time();
 $girisli = !empty($_SESSION['giris']);
 $s = (string)($_GET['s'] ?? 'yazilar');
 
+// ---------- ilk kurulum: şifre yoksa, elle yüklemede verilen tek kullanımlık kodla şifre belirlenir ----------
+function kurulum_dosyasi(): string { return veri_dizini() . '/kurulum.php'; }
+function kurulum_bilgi(): array
+{
+    if (sifre_hash() !== '' || !is_file(kurulum_dosyasi())) return [];
+    $a = include kurulum_dosyasi();
+    if (!is_array($a) || empty($a['kod_hash'])) return [];
+    if (time() - (int)strtotime((string)($a['tarih'] ?? '')) > 7 * 86400) return [];
+    return $a;
+}
+if (!$girisli && $_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['islem'] ?? '') === 'kurulum') {
+    csrf_dogrula();
+    $kalan = kilitli_mi();
+    if ($kalan > 0) { bildir('hata', 'Çok fazla hatalı deneme. Lütfen ' . ceil($kalan / 60) . ' dakika sonra tekrar deneyin.'); yonlendir('giris'); }
+    $k = kurulum_bilgi();
+    $kod = strtoupper(preg_replace('/[^A-Za-z0-9]/', '', (string)($_POST['kod'] ?? '')) ?? '');
+    if (!$k || !hash_equals((string)$k['kod_hash'], hash('sha256', $kod))) { hatali_giris(); usleep(random_int(300000, 700000)); bildir('hata', 'Kurulum kodu hatalı.'); yonlendir('giris'); }
+    $yeni = (string)($_POST['yeni'] ?? '');
+    if (mb_strlen($yeni) < 12) { bildir('hata', 'Şifre en az 12 karakter olmalı.'); yonlendir('giris'); }
+    if ($yeni !== (string)($_POST['yeni2'] ?? '')) { bildir('hata', 'Şifreler aynı değil.'); yonlendir('giris'); }
+    sifre_kaydet($yeni);
+    @unlink(kurulum_dosyasi());
+    session_regenerate_id(true);
+    $_SESSION = ['giris' => true, 'son' => time(), 'csrf' => bin2hex(random_bytes(32)), 'bildirim' => ['tamam', 'Şifreniz belirlendi. Panele hoş geldiniz.']];
+    yonlendir('yazilar');
+}
+
 // ---------- giriş / çıkış ----------
 if (!$girisli && $_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['islem'] ?? '') === 'giris') {
     csrf_dogrula();
@@ -288,7 +315,14 @@ table.l{width:100%;border-collapse:collapse}table.l td{padding:10px 8px;border-t
     <h1>Yönetim paneli</h1>
     <p class="mut">alufortis.gkh.ro</p>
     <?php if ($bildirim): ?><div class="msg <?= h($bildirim[0]) ?>"><?= h($bildirim[1]) ?></div><?php endif; ?>
-    <?php if (sifre_hash() === ''): ?>
+    <?php if (sifre_hash() === '' && kurulum_bilgi()): ?>
+      <p>İlk kurulum: yükleme betiğinin gösterdiği kurulum kodunu girin ve panel şifrenizi belirleyin.</p>
+      <input type="hidden" name="csrf" value="<?= h(csrf()) ?>"><input type="hidden" name="islem" value="kurulum">
+      <div class="f"><label for="kod">Kurulum kodu</label><input id="kod" type="text" name="kod" autocomplete="off" required autofocus></div>
+      <div class="f" style="margin-top:10px"><label for="yeni">Yeni şifre (en az 12 karakter)</label><input id="yeni" type="password" name="yeni" autocomplete="new-password" minlength="12" required></div>
+      <div class="f" style="margin-top:10px"><label for="yeni2">Yeni şifre (tekrar)</label><input id="yeni2" type="password" name="yeni2" autocomplete="new-password" minlength="12" required></div>
+      <p><button class="btn" type="submit" style="width:100%">Şifreyi belirle</button></p>
+    <?php elseif (sifre_hash() === ''): ?>
       <div class="msg hata">Panel şifresi henüz tanımlanmamış.</div>
     <?php else: ?>
       <input type="hidden" name="csrf" value="<?= h(csrf()) ?>"><input type="hidden" name="islem" value="giris">

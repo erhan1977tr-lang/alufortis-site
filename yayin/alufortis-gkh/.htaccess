@@ -18,3 +18,4 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
   </FilesMatch>
 </IfModule>
 AddType video/mp4 .mp4
+AddType image/webp .webp

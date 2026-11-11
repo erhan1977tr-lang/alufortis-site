@@ -355,6 +355,93 @@ form.sent .f,form.sent .btn{display:none}
 .stage .xout{position:absolute;inset:0;background:var(--canvas);opacity:0;pointer-events:none;z-index:4}
 .p3d .sweep{position:absolute;inset:0;pointer-events:none;opacity:0;background:linear-gradient(100deg,transparent 40%,rgba(120,200,255,.26) 48%,rgba(255,255,255,.38) 50%,rgba(120,200,255,.26) 52%,transparent 60%);background-size:300% 100%;background-repeat:no-repeat;background-position:calc(100% - var(--sx,0) * 100%) 0;mix-blend-mode:screen}
 @media (prefers-reduced-motion: reduce){.p3d .sweep,.stage .xout{display:none}}
+/* image sections: A (chapters) and B (sectors) */
+.chap{position:relative}
+.chap .cstick{position:relative}
+.cf{margin:0;position:relative;overflow:hidden;background:var(--canvas-2)}
+.cf img{display:block;width:100%;height:100%;object-fit:cover}
+.cf .edge{display:none}
+.cscrim{display:none}
+.chap .kicker{margin-bottom:22px}
+.ct{font-family:var(--display);font-stretch:112%;font-weight:700;line-height:1.04;letter-spacing:-.012em;margin:0 0 14px;color:var(--text-primary)}
+h2.ct{font-size:clamp(32px,4.2vw,62px);max-width:14ch}
+h3.ct{font-size:clamp(28px,3vw,46px);max-width:16ch}
+.ct .m{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
+.ct .mi{display:block}
+.cp{color:var(--silver);font-size:clamp(16px,1.25vw,19px);max-width:40ch;margin:0}
+.ix{font-family:var(--mono);font-size:13px;letter-spacing:.08em;color:var(--text-secondary);margin:0 0 16px}
+.ix b{color:var(--accent);font-weight:400}
+.tags{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px;max-width:44ch}
+.tags li{font-size:13.5px;line-height:1;padding:9px 12px;border-radius:999px;border:1px solid rgba(201,209,219,.28);color:var(--text-primary);background:rgba(15,20,27,.42);backdrop-filter:blur(6px)}
+.hint{display:flex;align-items:center;gap:10px;margin:30px 0 0;color:var(--text-secondary);font-size:14px}
+.hint svg{width:16px;height:16px;animation:hintb 2.2s var(--ease) infinite}
+@keyframes hintb{50%{transform:translateY(4px)}}
+.cnote{font-size:12.5px;color:var(--text-secondary);margin:0}
+.crail{display:none}
+/* static (no script, or reduced motion): one image and its text after another */
+.chap:not(.live) .cstick{padding:clamp(72px,10vw,120px) 0 40px}
+.chap:not(.live) .cfigs{display:none}
+.chap:not(.live) .cc{display:grid;grid-template-columns:minmax(0,1fr);gap:0;margin:0 0 56px}
+.chap:not(.live) .cc::before{content:"";display:block;aspect-ratio:16/9;border-radius:14px;margin-bottom:22px;background:var(--bg) center/cover no-repeat var(--canvas-2)}
+.chap:not(.live) .cfoot{padding-top:0}
+/* live: the stage sticks to the screen and the scroll moves through the chapters */
+.chap.live{height:calc(100vh + 10 * 78vh)}
+.chap.live .cstick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;isolation:isolate}
+.chap.live .cfigs{position:absolute;inset:0;z-index:0}
+.chap.live .cf{position:absolute;inset:0;will-change:clip-path}
+.chap.live .cf img{will-change:transform;transform-origin:62% 50%}
+.chap.live .cf .edge{display:block;position:absolute;top:0;bottom:0;left:0;width:2px;margin-left:-1px;background:linear-gradient(180deg,rgba(255,255,255,0),#fff 18%,#dff2ff 50%,#fff 82%,rgba(255,255,255,0));box-shadow:0 0 18px 3px rgba(124,203,255,.75),0 0 60px 10px rgba(76,183,255,.35);opacity:0;pointer-events:none}
+.chap.live .cscrim{display:block;position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(10,14,20,.94) 0%,rgba(10,14,20,.82) 26%,rgba(10,14,20,.35) 52%,rgba(10,14,20,0) 70%),linear-gradient(0deg,rgba(10,14,20,.85) 0%,rgba(10,14,20,0) 22%),linear-gradient(180deg,rgba(10,14,20,.6) 0%,rgba(10,14,20,0) 18%)}
+.chap.live .cwrap{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;padding:calc(var(--nav-h) + 12px) 0 96px}
+.chap.live .ccs{position:relative;min-height:min(420px,56vh)}
+.chap.live .cc{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);pointer-events:none}
+.chap.live .cc.on{pointer-events:auto}
+.chap.live .ct,.chap.live .cp{text-shadow:var(--tshadow)}
+.chap.live .cfoot{position:absolute;left:0;right:0;bottom:26px;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:24px;margin:0 auto}
+.chap.live .crail{display:flex;gap:6px;width:min(420px,48vw)}
+.crail i{flex:1;height:3px;border-radius:2px;background:rgba(201,209,219,.22);overflow:hidden}
+.crail b{display:block;height:100%;background:var(--accent);transform:scaleX(0);transform-origin:left}
+.chap.live .cnote{text-align:right;max-width:40ch;text-shadow:0 1px 3px rgba(5,8,12,.9)}
+@media (max-width:760px){
+  .chap.live .cscrim{background:linear-gradient(0deg,rgba(10,14,20,.96) 0%,rgba(10,14,20,.86) 40%,rgba(10,14,20,.2) 66%,rgba(10,14,20,0) 78%),linear-gradient(180deg,rgba(10,14,20,.7) 0%,rgba(10,14,20,0) 22%)}
+  .chap.live .cwrap{justify-content:flex-end;padding-bottom:84px}
+  .chap.live .ccs{min-height:300px}
+  .chap.live .cc{top:auto;bottom:0;transform:none}
+  .chap.live .cf img{transform-origin:50% 40%}
+  .chap.live .cfoot{flex-direction:column;align-items:stretch;gap:10px;bottom:20px}
+  .chap.live .crail{width:100%}
+  .chap.live .cnote{text-align:left;font-size:11.5px}
+  .tags li{font-size:12.5px;padding:8px 10px}
+  .chap .kicker{margin-bottom:auto;padding-top:8px}
+}
+/* B: sectors */
+.sect{position:relative}
+.sect .sstick{padding:clamp(72px,10vw,120px) 0 56px}
+.shead{display:flex;justify-content:space-between;align-items:end;gap:24px 48px;flex-wrap:wrap;margin-bottom:34px}
+.shead h2.t{margin:0}
+.strack{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;outline:none;padding-bottom:6px}
+.strack:focus-visible{box-shadow:0 0 0 2px var(--accent)}
+.srow{list-style:none;margin:0;padding:0 max(clamp(16px,5vw,64px),calc((100vw - 1180px)/2));display:flex;gap:clamp(14px,1.6vw,24px);width:max-content}
+.sc{scroll-snap-align:start;width:clamp(260px,32vw,460px);flex:none}
+.sc figure{margin:0;position:relative;border-radius:16px;overflow:hidden;aspect-ratio:4/5;background:var(--canvas-2);border:1px solid var(--line)}
+.sc .si{position:absolute;inset:0 -9%}
+.sc img{display:block;width:100%;height:100%;object-fit:cover}
+.sc figcaption{position:absolute;left:0;right:0;bottom:0;padding:70px 22px 20px;font-family:var(--display);font-stretch:112%;font-weight:700;font-size:clamp(20px,1.7vw,26px);line-height:1.1;color:var(--text-primary);background:linear-gradient(0deg,rgba(10,14,20,.92),rgba(10,14,20,0));text-shadow:0 1px 3px rgba(5,8,12,.9)}
+.send{display:flex;align-items:center}
+.send>div{padding:0 clamp(8px,2vw,28px)}
+.send h3{font-family:var(--display);font-stretch:112%;font-weight:700;font-size:clamp(24px,2.2vw,34px);line-height:1.08;margin:0 0 12px}
+.send p{color:var(--text-secondary);margin:0 0 22px;max-width:30ch}
+.sfoot{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-top:22px}
+.sbar{flex:1;max-width:420px;height:3px;border-radius:2px;background:rgba(201,209,219,.18);overflow:hidden;display:none}
+.sbar i{display:block;height:100%;background:var(--accent);transform:scaleX(0);transform-origin:left}
+.sect.live{height:calc(100vh + var(--sx,2400px))}
+.sect.live .sstick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:calc(var(--nav-h) + 8px) 0 24px}
+.sect.live .strack{overflow:visible;scroll-snap-type:none}
+.sect.live .srow{will-change:transform}
+.sect.live .sc figure{aspect-ratio:auto;height:min(56vh,560px)}
+.sect.live .sbar{display:block}
+@media (max-width:760px){.sect.live .sc{width:76vw}.sect.live .sc figure{height:52vh}.shead .lede{font-size:16px}.sect.live .shead{margin-bottom:20px}}
+@media (max-height:620px){.sect.live .shead .lede{display:none}}
 .nav-end{display:flex;align-items:center;gap:14px}
 .langs{display:flex;gap:2px;font-family:var(--mono);font-size:12px;letter-spacing:.08em}
 .langs a{text-decoration:none;color:var(--text-secondary);padding:8px 7px;border-radius:6px;transition:color .3s var(--ease),background .3s var(--ease)}
@@ -382,23 +469,125 @@ footer .credit a{text-decoration:underline;text-underline-offset:3px}
   .band-l,.band-ll,.band-r{transform:translateY(-50%)}
   .band-settle{transform:translateX(-50%)}
 }
+
+/* ---- düzeltme 1: büyük logo ve menü ---- */
+:root{--nav-h:92px}
+.brand img{height:69px}
+.nav ul{gap:34px}
+.nav ul a{font-size:17px;letter-spacing:.01em}
+@media (max-width:1240px){.nav ul{gap:22px}.nav ul a{font-size:16px}}
+@media (max-width:1060px){.nav ul a{font-size:15px}.nav ul{gap:16px}}
+@media (max-width:560px){:root{--nav-h:78px}.brand img{height:58px}}
+.nav ul a{color:#dfe6ee;text-shadow:0 1px 10px rgba(5,8,12,.85)}
+.nav ul a:hover{color:#fff}
+.nav:not(.scrolled){background:linear-gradient(180deg,rgba(8,12,18,.6),rgba(8,12,18,0))}
+section[id]{scroll-margin-top:calc(var(--nav-h) - 1px)}
+
+/* ---- açılış mesajları ---- */
+.intro{position:fixed;inset:0;z-index:200;display:grid;place-items:center;background:radial-gradient(120% 90% at 50% 40%,#18212d 0%,#0d1219 62%,#080b10 100%);color:var(--text-primary);overflow:hidden;
+  clip-path:inset(0 0 0 0);transition:clip-path 1.25s cubic-bezier(.76,0,.24,1),opacity .6s ease 1.1s}
+.intro.out{clip-path:inset(0 0 100% 0)}
+.intro.gone{display:none}
+.intro::before{content:"";position:absolute;inset:-20%;background:repeating-linear-gradient(100deg,rgba(214,224,236,.035) 0 1px,transparent 1px 90px);animation:introdrift 26s linear infinite;pointer-events:none}
+.intro::after{content:"";position:absolute;left:0;right:0;top:50%;height:40vh;transform:translateY(-50%);background:radial-gradient(50% 50% at 50% 50%,rgba(76,183,255,.10),transparent 70%);pointer-events:none}
+@keyframes introdrift{from{transform:translateX(0)}to{transform:translateX(90px)}}
+.intro .im{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 clamp(22px,7vw,120px);text-align:center;z-index:1}
+.intro .i-logo{width:clamp(120px,14vw,190px);height:auto;margin:0 0 clamp(28px,5vh,52px);opacity:0;transform:translateY(10px);transition:opacity 1.2s var(--ease),transform 1.2s var(--ease)}
+.intro.s1 .i-logo{opacity:.95;transform:none}
+.intro .i-main{font-family:var(--display);font-stretch:112%;font-weight:700;font-size:clamp(34px,5.6vw,88px);line-height:1.04;letter-spacing:-.018em;margin:0;max-width:16ch;text-wrap:balance}
+.intro .i-main .w{display:inline-block;opacity:0;filter:blur(14px);transform:translateY(.32em);transition:opacity 1s var(--ease),filter 1.1s var(--ease),transform 1.1s var(--ease);transition-delay:calc(var(--i)*70ms + 250ms)}
+.intro.s1 .i-main .w{opacity:1;filter:blur(0);transform:none}
+.intro .i-sub{font-family:var(--mono);font-size:clamp(13px,1.1vw,16px);letter-spacing:.32em;text-transform:uppercase;color:var(--accent);margin:clamp(22px,3.4vh,34px) 0 0;display:flex;align-items:center;gap:16px;opacity:0;transition:opacity 1.2s var(--ease) 1.5s}
+.intro .i-sub::before,.intro .i-sub::after{content:"";width:clamp(28px,4vw,56px);height:1px;background:currentColor;transform:scaleX(0);transition:transform 1.2s var(--ease) 1.7s}
+.intro.s1 .i-sub{opacity:1}.intro.s1 .i-sub::before,.intro.s1 .i-sub::after{transform:none}
+.intro .m1{transition:opacity .9s var(--ease),filter .9s var(--ease),transform .9s var(--ease)}
+.intro.s2 .m1{opacity:0;filter:blur(10px);transform:scale(1.03)}
+.intro .m2{opacity:0;pointer-events:none}
+.intro.s2 .m2{opacity:1;transition:opacity .8s var(--ease) .55s}
+.intro .i-kick{font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:12px;margin:0 0 22px;opacity:0;transform:translateY(12px);transition:opacity .9s var(--ease) .7s,transform .9s var(--ease) .7s}
+.intro .i-kick::before{content:"";width:28px;height:1px;background:currentColor}
+.intro .i-h{font-family:var(--display);font-stretch:112%;font-weight:700;font-size:clamp(28px,3.6vw,56px);line-height:1.08;letter-spacing:-.014em;margin:0 0 clamp(18px,3vh,28px);max-width:20ch;text-wrap:balance;opacity:0;transform:translateY(18px);transition:opacity 1s var(--ease) .85s,transform 1s var(--ease) .85s}
+.intro .i-p{font-family:var(--body);font-size:clamp(17px,1.45vw,22px);line-height:1.62;color:#c9d2dc;max-width:46ch;margin:0;text-wrap:pretty;opacity:0;transform:translateY(18px);transition:opacity 1.1s var(--ease) 1.4s,transform 1.1s var(--ease) 1.4s}
+.intro.s2 .i-kick,.intro.s2 .i-h,.intro.s2 .i-p{opacity:1;transform:none}
+.intro.s3 .m2{opacity:0;transition:opacity .7s var(--ease)}
+.intro .i-bar{position:absolute;left:clamp(22px,5vw,64px);right:clamp(22px,5vw,64px);bottom:clamp(26px,5vh,48px);height:1px;background:rgba(150,170,195,.18);z-index:2}
+.intro .i-bar i{position:absolute;inset:0;background:var(--accent);transform-origin:0 50%;transform:scaleX(0)}
+.intro .i-skip{position:absolute;right:clamp(22px,5vw,64px);bottom:calc(clamp(26px,5vh,48px) + 18px);z-index:3;font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-secondary);background:rgba(8,12,18,.4);border:1px solid rgba(150,170,195,.3);border-radius:999px;padding:10px 18px;cursor:pointer;display:flex;align-items:center;gap:10px;transition:color .3s var(--ease),border-color .3s var(--ease)}
+.intro .i-skip:hover,.intro .i-skip:focus-visible{color:var(--text-primary);border-color:var(--accent);outline:none}
+.intro .i-skip svg{width:14px;height:14px}
+html.intro-on,html.intro-on body{overflow:hidden}
+html.intro-on .nav{opacity:0}
+.nav{transition:background .5s var(--ease),border-color .5s var(--ease),opacity .9s var(--ease)}
+@media (max-width:560px){.intro .i-main{font-size:clamp(32px,9.4vw,44px)}.intro .i-p{font-size:17px}}
+@media (prefers-reduced-motion: reduce){
+  .intro,.intro *{transition-duration:.01s!important;transition-delay:0s!important;animation:none!important}
+  .intro .i-main .w{filter:none;transform:none}
+}
+
+/* ---- hakkımızda ---- */
+.about{padding:clamp(72px,10vw,128px) 0 clamp(64px,8vw,110px);overflow:hidden}
+.about::before{content:"";position:absolute;right:-12vw;top:8%;width:52vw;height:52vw;max-width:760px;max-height:760px;background:radial-gradient(closest-side,rgba(76,183,255,.07),transparent 70%);pointer-events:none}
+.about .ag{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,6vw,96px);align-items:start;margin-top:clamp(30px,4vw,48px)}
+.about .ab{position:relative;padding-top:26px;border-top:1px solid var(--line)}
+.about .ab::before{content:"";position:absolute;left:0;top:-1px;width:0;height:1px;background:var(--accent);transition:width 1.4s var(--ease) .3s}
+.about .rv.in .ab::before,.about .ab.in::before{width:56px}
+.about .ab .no{font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 14px}
+.about .ab h3{font-family:var(--display);font-stretch:112%;font-weight:700;font-size:clamp(22px,2.1vw,30px);line-height:1.15;letter-spacing:-.01em;margin:0 0 18px;max-width:24ch}
+.about .ab p{color:var(--text-secondary);margin:0 0 16px;max-width:58ch}
+.about .ab p:last-child{margin-bottom:0}
+.about .chips{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.about .chips li{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--text-primary);padding:7px 12px;border:1px solid var(--line-strong);border-radius:999px;background:rgba(21,28,38,.6)}
+.about .close{margin:clamp(40px,6vw,72px) 0 0;padding:clamp(22px,3vw,30px) 0 0 clamp(18px,2.4vw,28px);border-left:2px solid var(--accent);font-family:var(--display);font-stretch:112%;font-weight:700;font-size:clamp(20px,2vw,28px);line-height:1.3;letter-spacing:-.01em;max-width:44ch}
+@media (max-width:900px){.about .ag{grid-template-columns:1fr}}
+
+/* ---- dosya ekleme ---- */
+.drop{position:relative;display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:16px;border:1px dashed var(--line-strong);border-radius:10px;background:var(--canvas);transition:border-color .3s var(--ease),background .3s var(--ease)}
+.drop.over{border-color:var(--accent);background:var(--accent-muted)}
+.drop input[type=file]{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.drop .pick{font:500 14px var(--body);color:var(--text-primary);background:transparent;border:1px solid var(--line-strong);border-radius:8px;padding:10px 14px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:border-color .3s var(--ease)}
+.drop .pick:hover,.drop .pick:focus-visible{border-color:var(--accent);outline:none}
+.drop .pick svg{width:16px;height:16px}
+.drop .dt{font-size:14px;color:var(--text-secondary)}
+.drop small{flex-basis:100%;font-size:12px;color:var(--text-secondary)}
+.flist{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:6px}
+.flist:empty{display:none}
+.flist li{display:flex;align-items:center;gap:10px;font-size:14px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:rgba(21,28,38,.5)}
+.flist li .fn{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.flist li .fs{font-family:var(--mono);font-size:12px;color:var(--text-secondary)}
+.flist li button{flex:none;width:28px;height:28px;display:grid;place-items:center;border:0;border-radius:6px;background:transparent;color:var(--text-secondary);cursor:pointer}
+.flist li button:hover{color:var(--text-primary);background:rgba(150,170,195,.12)}
+.ftot{font-family:var(--mono);font-size:12px;color:var(--text-secondary);margin:6px 0 0}
+.ftot.bad,.ferr{color:#ff9b7a}
+.ferr{grid-column:1/-1;font-size:14px;margin:0;display:none}
+.ferr.on{display:block}
+.hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
+form.busy .btn{opacity:.6;pointer-events:none}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Zum Inhalt springen</a>
 <div class="env" aria-hidden="true"></div>
 
+<div class="intro" id="intro" role="region" aria-label="Alufortis Einführung">
+  <div class="im m1"><img class="i-logo" src="../assets/logo-dark.svg" alt="" width="879" height="435"><p class="i-main" aria-label="Wir schaffen Exzellenz und Vertrauen in der Technik."><span class="w" style="--i:0">Wir</span> <span class="w" style="--i:1">schaffen</span> <span class="w" style="--i:2">Exzellenz</span> <span class="w" style="--i:3">und</span> <span class="w" style="--i:4">Vertrauen</span> <span class="w" style="--i:5">in</span> <span class="w" style="--i:6">der</span> <span class="w" style="--i:7">Technik.</span></p><p class="i-sub">Jeden Tag, in jedem Projekt</p></div>
+  <div class="im m2"><p class="i-kick">Alufortis</p><h2 class="i-h">Ingenieurskompetenz und Fertigungsstärke im Aluminiumprofil.</h2><p class="i-p">Bei Alufortis führen wir jeden Schritt in unserem eigenen Werk aus, von der Werkzeugkonstruktion über die Extrusion und die Oberflächenbehandlung bis zur mechanischen Bearbeitung. Wir konstruieren das passende Profil für Ihr Projekt, fertigen es und liefern es montagefertig.</p></div>
+  <button class="i-skip" type="button">Überspringen<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 3l5 5-5 5M10 3v10"/></svg></button>
+  <div class="i-bar" aria-hidden="true"><i></i></div>
+</div>
+
+
 <nav class="nav" aria-label="Hauptmenü">
   <a class="brand" href="#top" aria-label="Alufortis, Startseite"><img src="../assets/logo-dark.svg" alt="Alufortis Aluminium Engineering Solutions" width="879" height="435">
   </a>
   <ul>
+    <li><a href="#hakkimizda">Über uns</a></li>
     <li><a href="#uretim">Produktion</a></li>
     <li><a href="#urunler">Produkte</a></li>
     <li><a href="#kalite">Qualität</a></li>
     <li><a href="#sss">FAQ</a></li>
     <li><a href="#teklif">Kontakt</a></li>
   </ul>
-  <div class="nav-end"><div class="langs" role="group" aria-label="Sprache"><a href="../" hreflang="tr" lang="tr" title="Türkçe">TR</a><a href="../en/" hreflang="en" lang="en" title="English">EN</a><a href="../de/" hreflang="de" lang="de" title="Deutsch" aria-current="page">DE</a></div><a class="btn btn-primary btn-sm" href="#teklif">Angebot anfordern</a></div>
+  <div class="nav-end"><div class="langs" role="group" aria-label="Sprache"><a href="../" hreflang="tr" lang="tr" title="Türkçe">TR</a><a href="../en/" hreflang="en" lang="en" title="English">EN</a><a href="../de/" hreflang="de" lang="de" title="Deutsch" aria-current="page">DE</a></div></div>
 </nav>
 
 <header class="hero" id="top">
@@ -410,33 +599,33 @@ footer .credit a{text-decoration:underline;text-underline-offset:3px}
     <i class="xout" aria-hidden="true"></i>
 
     <div class="band band-l band-1 e-grid" data-a="0" data-b="0.13" data-first="1" data-spread="0.5">
-      <h1 data-split="chars">Jeder Auftrag beginnt mit einem Klick.</h1>
-      <p class="sub">Wo immer Sie sind.</p>
+      <h1 data-split="chars">Ihr Auftrag in Sekunden in unserem Werk</h1>
+      <p class="sub">Wo immer Sie sind, senden Sie uns Ihren Auftrag online.</p>
     </div>
     <div class="band band-ll band-2 e-depth" data-a="0.25" data-b="0.40" data-ramp="0.04">
-      <h2 class="hl"><span class="soft" aria-hidden="true">In Sekunden im Werk.</span>In Sekunden im Werk.</h2>
-      <p class="sub">Durch das Haupttor kommt er als Pressbolzen an.</p>
+      <h2 class="hl"><span class="soft" aria-hidden="true">Unsere Produktion beginnt mit dem Pressbolzen</span>Unsere Produktion beginnt mit dem Pressbolzen</h2>
+      <p class="sub">Aluminium kommt als Pressbolzen in unser Werk</p>
     </div>
     <div class="band band-r band-3 e-drift" data-a="0.455" data-b="0.55" data-ramp="0.04">
-      <h2 data-split="words">Von 700 bis 4.500 Tonnen.</h2>
-      <p class="sub">Fünf Pressen. Ein Druck.</p>
+      <h2 data-split="words">Fünf Pressen, ein Qualitätsanspruch</h2>
+      <p class="sub">Presskräfte von 700 bis 4.500 Tonnen</p>
     </div>
     <div class="band band-ll band-4 e-punch" data-a="0.565" data-b="0.65" data-ramp="0.04">
-      <h2 data-split="words">In der Matrize geformt.</h2>
-      <p class="sub">Stimmt der Querschnitt, stimmt alles.</p>
+      <h2 data-split="words">Ihr Profil nimmt im Werkzeug Form an</h2>
+      <p class="sub">Der richtige Querschnitt, das richtige Ergebnis</p>
     </div>
     <div class="band band-l band-5 e-settle" data-a="0.665" data-b="0.775" data-ramp="0.05">
-      <h2 data-split="words">Gebündelt und auf Alufortis-Lkw verladen.</h2>
-      <p class="sub">Geschützte Bündel, umreifte Paletten. Bereit für die Straße.</p>
+      <h2 data-split="words">Ihre Profile werden für den Versand vorbereitet</h2>
+      <p class="sub">Die Profilbündel werden mit Schutzverpackung verpackt. Die Paletten werden umreift und auf Lkw verladen</p>
     </div>
     <div class="band band-settle band-6 e-settle" data-a="0.895" data-b="1" data-last="1" data-ramp="0.05">
-      <h2 data-split="words">In 11 Länder geliefert.</h2>
-      <p class="sub">Ihr zuverlässiger Partner für Aluminium.</p>
+      <h2 data-split="words">Lieferung in 11 Länder</h2>
+      <p class="sub">Ihr zuverlässiger Partner für Aluminiumprofile.</p>
       <div class="cta-row"><a class="btn btn-primary" href="#teklif">Angebot anfordern</a><a class="btn btn-ghost" href="#uretim">Produktion entdecken</a></div>
     </div>
 
     <div class="static">
-      <h1>Jeder Auftrag beginnt mit einem Klick und erreicht 11 Länder.</h1>
+      <h1>Ihr zuverlässiger Partner für Aluminiumprofile.</h1>
       <p>Aluminiumprofile seit 1996. Extrusion, Eloxieren, Pulverbeschichtung und mechanische Bearbeitung unter einem Dach.</p>
       <a class="btn btn-primary" href="#teklif">Angebot anfordern</a>
     </div>
@@ -464,12 +653,43 @@ footer .credit a{text-decoration:underline;text-underline-offset:3px}
   </section>
   <div class="rule" aria-hidden="true"></div>
 
+  <section class="about" id="hakkimizda" aria-labelledby="about-h">
+    <div class="wrap">
+      <div class="rv">
+        <p class="kicker part">Über uns</p>
+        <h2 id="about-h" class="t part">30 Jahre Erfahrung, eine starke Basis</h2>
+      </div>
+      <div class="ag">
+        <div class="ab rv"><p class="no part">01</p><p class="part">Alufortis verbindet das in über 30 Jahren in der Aluminiumbranche gewonnene Wissen und die Erfahrung mit hoher Ingenieurskompetenz und schafft so nachhaltige und effiziente Lösungen.</p><p class="part">Mit unserem Team erfahrener Ingenieure bieten wir nicht nur Standardprodukte an: Mit kundenspezifischen Lösungen in Konstruktion, Fertigung und Logistik setzen wir im In- und Ausland Akzente.</p></div>
+        <div class="ab rv"><p class="no part">02</p><h3 class="part">Ein starker Lieferpartner auf dem Weltmarkt</h3><p class="part">Unser Unternehmen hat die Marke Alufortis ins Leben gerufen, um durch die Bündelung von Fachwissen aus verschiedenen Bereichen durchgängige Leistungen in Import und Export anzubieten. Mit unserer breiten Erfahrung von der Produktion über den Anlagenaufbau und von Vertrieb und Export bis zur Management- und Finanzberatung haben wir uns in kurzer Zeit zu einem vielseitigen und zuverlässigen Lieferanten entwickelt.</p><p class="part">Heute betreuen wir unsere Partner in vielen Ländern, darunter Deutschland, Rumänien, die Niederlande, Griechenland, Jordanien, Bulgarien, Frankreich, Tschechien, Litauen, Estland und Chile, pünktlich, innovativ und lösungsorientiert, mit der Zufriedenheit unserer Kunden als Maßstab.</p><ul class="chips part" aria-hidden="true"><li>Deutschland</li><li>Rumänien</li><li>Niederlande</li><li>Griechenland</li><li>Jordanien</li><li>Bulgarien</li><li>Frankreich</li><li>Tschechien</li><li>Litauen</li><li>Estland</li><li>Chile</li></ul></div>
+      </div>
+      <p class="close rv"><span class="part" style="display:block">Dank unseres Ansatzes, der auf Zuverlässigkeit, Schnelligkeit und nachhaltigem Erfolg beruht, wachsen wir weiterhin stetig.</span></p>
+    </div>
+  </section>
+  <div class="rule" aria-hidden="true"></div>
+
+  <section class="chap" id="surec" aria-labelledby="chap-h">
+    <div class="cstick">
+      <div class="cfigs"><figure class="cf" data-i="0"><img src="../assets/gorsel/tesis.webp" alt="Alufortis-Werk bei Nacht, mit dem Alufortis-Logo an der Fassade" width="1344" height="752" loading="lazy" decoding="async"></figure><figure class="cf" data-i="1"><img src="../assets/gorsel/muhendislik.webp" alt="Profilquerschnitt und Spannungsanalyse am Bildschirm, Aluminiumprofil und Messschieber auf dem Tisch" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure><figure class="cf" data-i="2"><img src="../assets/gorsel/kalip.webp" alt="Extrusionswerkzeug aus Stahl, dahinter eine CNC-Maschine" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure><figure class="cf" data-i="3"><img src="../assets/gorsel/ekstruzyon.webp" alt="Heißes Aluminiumprofil verlässt die Presse" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure><figure class="cf" data-i="4"><img src="../assets/gorsel/yuzey.webp" alt="Eloxierte, pulverbeschichtete Profile und Profile mit Holzdekor nebeneinander" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure><figure class="cf" data-i="5"><img src="../assets/gorsel/cnc.webp" alt="Aluminiumprofil in der CNC-Bearbeitung" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure><figure class="cf" data-i="6"><img src="../assets/gorsel/lazer.webp" alt="Aluminiumprofil beim Laserschneiden, mit Funkenflug" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure><figure class="cf" data-i="7"><img src="../assets/gorsel/kalite.webp" alt="Aluminiumteil wird mit einem Messarm geprüft" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure><figure class="cf" data-i="8"><img src="../assets/gorsel/paketleme.webp" alt="Palettierte Profilbündel mit Alufortis-Etiketten" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure><figure class="cf" data-i="9"><img src="../assets/gorsel/lojistik.webp" alt="Gabelstapler belädt einen Lkw mit Alufortis-Logo mit Profilen" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure></div>
+      <div class="cscrim" aria-hidden="true"></div>
+      <div class="wrap cwrap">
+        <p class="kicker">Von der Idee bis zur Lieferung</p>
+        <div class="ccs"><article class="cc c0" data-i="0"><h2 id="chap-h" class="ct"><span class="m"><span class="mi">Hier beginnt Engineering.</span></span></h2><p class="cp">Jede Lösung beginnt damit, Ihre Anwendung vollständig zu verstehen. Von der Zeichnung bis zum Versand bleibt das Engineering bei uns.</p><p class="hint" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6l5 5 5-5"/></svg><span>Scrollen Sie durch die neun Schritte</span></p></article><article class="cc" data-i="1"><p class="ix"><b>01</b><span> / 09</span></p><h3 class="ct"><span class="m"><span class="mi">Engineering</span></span></h3><p class="cp">Jede Lösung beginnt damit, Ihre Anwendung vollständig zu verstehen.</p><ul class="tags"><li>Konstruktion</li><li>Analyse</li><li>Simulation</li><li>Optimierung</li></ul></article><article class="cc" data-i="2"><p class="ix"><b>02</b><span> / 09</span></p><h3 class="ct"><span class="m"><span class="mi">Werkzeugkonstruktion</span></span></h3><p class="cp">Individuell entwickelte Extrusionswerkzeuge für höchste Präzision und maximale Performance.</p><ul class="tags"><li>Werkzeugentwicklung</li><li>Produktion</li><li>Werkzeugtests</li></ul></article><article class="cc" data-i="3"><p class="ix"><b>03</b><span> / 09</span></p><h3 class="ct"><span class="m"><span class="mi">Präzisionsextrusion</span></span></h3><p class="cp">Leistungsstarke Pressen und moderne Fertigungsprozesse für Aluminiumprofile höchster Qualität.</p><ul class="tags"><li>Extrusion</li><li>Kühlung</li><li>Strecken</li><li>Auslagern</li></ul></article><article class="cc" data-i="4"><p class="ix"><b>04</b><span> / 09</span></p><h3 class="ct"><span class="m"><span class="mi">Oberflächenqualität für Langlebigkeit</span></span></h3><p class="cp">Modernste Oberflächenbehandlungen für Schutz, Langlebigkeit und hochwertige Optik.</p><ul class="tags"><li>Eloxieren</li><li>Pulverbeschichtung</li><li>Holzdekor</li><li>Mill Finish</li></ul></article><article class="cc" data-i="5"><p class="ix"><b>05</b><span> / 09</span></p><h3 class="ct"><span class="m"><span class="mi">Engineering über die Extrusion hinaus</span></span></h3><p class="cp">Modernste Fertigungstechnologien verwandeln Aluminiumprofile in montagefertige Systemkomponenten.</p><ul class="tags"><li>5-Achs-CNC-Bearbeitung</li><li>Bohren</li><li>Fräsen</li><li>Montage</li></ul></article><article class="cc" data-i="6"><p class="ix"><b>06</b><span> / 09</span></p><h3 class="ct"><span class="m"><span class="mi">Laserschneiden und Laserschweißen</span></span></h3><p class="cp">Präzises Schneiden und Fügen für montagefertige Aluminiumbauteile.</p><ul class="tags"><li>Laserschneiden</li><li>Laserschweißen</li><li>Montage</li><li>Qualitätskontrolle</li></ul></article><article class="cc" data-i="7"><p class="ix"><b>07</b><span> / 09</span></p><h3 class="ct"><span class="m"><span class="mi">Qualität ohne Kompromisse</span></span></h3><p class="cp">Qualität wird nicht am Ende geprüft. Sie wird in jedem einzelnen Produktionsschritt entwickelt.</p><ul class="tags"><li>Materialprüfung</li><li>3D-Messtechnik</li><li>Maßkontrolle</li><li>Endkontrolle</li></ul></article><article class="cc" data-i="8"><p class="ix"><b>08</b><span> / 09</span></p><h3 class="ct"><span class="m"><span class="mi">Sorgfältige Verpackung</span></span></h3><p class="cp">Sichere Verpackung schützt Produkte und garantiert höchste Qualität bei der Anlieferung.</p><ul class="tags"><li>Schutz</li><li>Etikettierung</li><li>Palettierung</li><li>Lagerung</li></ul></article><article class="cc" data-i="9"><p class="ix"><b>09</b><span> / 09</span></p><h3 class="ct"><span class="m"><span class="mi">Weltweite Lieferung</span></span></h3><p class="cp">Pünktliche Lieferung. Weltweit.</p><ul class="tags"><li>Logistik</li><li>Verladung</li><li>Transport</li><li>Globales Netzwerk</li></ul></article></div>
+      </div>
+      <div class="wrap cfoot">
+        <div class="crail" role="img" aria-label="Fortschritt der neun Schritte"><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i></div>
+        <p class="cnote">Symbolbilder. Produkte und Anlagen können von der tatsächlichen Fertigung abweichen.</p>
+      </div>
+    </div>
+  </section>
+  <div class="rule" aria-hidden="true"></div>
+
   <section class="prod" id="uretim" aria-labelledby="prod-h">
     <div class="pinp">
     <div class="wrap">
       <div class="rv">
         <p class="kicker part">Produktion</p>
-        <h2 id="prod-h" class="t part">Vom Werkzeug zum Profil, in fünf Schritten.</h2>
+        <h2 id="prod-h" class="t part">Fünf Schritte vom Werkzeug zum Profil</h2>
         <p class="lede part">Ein Profil beginnt und endet bei uns. Wir vergeben nichts nach außen.</p>
       </div>
       <div class="cols" style="margin-top:48px">
@@ -492,11 +712,11 @@ footer .credit a{text-decoration:underline;text-underline-offset:3px}
         <div class="tlwin">
         <div class="timeline rv">
           <svg class="tl" aria-hidden="true"><line x1="1" y1="0" x2="1" y2="100%"/><line class="draw" x1="1" y1="0" x2="1" y2="100%" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg>
-          <div class="step part"><span class="dot">01</span><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><rect x="8" y="8" width="8" height="8"/></svg>Werkzeugkonstruktion</h3><p>Aus der Zeichnung wird das Werkzeug. Werkzeug und Know-how bleiben bei uns.</p></div>
-          <div class="step part"><span class="dot">02</span><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h8v8H3zM11 10h10M11 14h10"/></svg>Extrusion</h3><p>Legierungen 6063, 6082, 6005, 6463. Pressbolzen von 4" bis 10". Fünf Pressen von 700 bis 4.500 Tonnen. Längen bis 13,5 Meter.</p></div>
-          <div class="step part"><span class="dot">03</span><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 18h16M6 18V8l6-4 6 4v10"/><path d="M9 18v-5h6v5"/></svg>Eloxieren</h3><p>Zwei Qualanod-zertifizierte Anlagen. Natur, Schwarz, Bronze, Braun, Gold. Polieren, Satinieren, Sandstrahlen. Bis 7 Meter.</p></div>
-          <div class="step part"><span class="dot">04</span><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20l6-6M14 4l6 6-9 9-6-6z"/><path d="M12 6l6 6"/></svg>Pulverbeschichtung</h3><p>Qualicoat-zertifiziert. Alle RAL-Farben und individuelle Farbabstimmung. Zwei vertikale und eine horizontale Kabine. Bis 7 Meter.</p></div>
-          <div class="step part"><span class="dot">05</span><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M19 5l-3 3M8 16l-3 3"/></svg>Mechanische Bearbeitung</h3><p>Sägen, Bohren, Stanzen, CNC. Das Profil verlässt uns montagefertig.</p></div>
+          <div class="step part"><span class="dot">01</span><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><rect x="8" y="8" width="8" height="8"/></svg>Werkzeugkonstruktion</h3><p>Ausgehend von der technischen Zeichnung des Profils konstruieren wir das Extrusionswerkzeug. Werkzeug und Fertigungs-Know-how bleiben bei Alufortis.</p></div>
+          <div class="step part"><span class="dot">02</span><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h8v8H3zM11 10h10M11 14h10"/></svg>Extrusion</h3><p>Mit unseren fünf Pressen von 700 bis 4.500 Tonnen fertigen wir Aluminiumprofile bis 13,5 Meter Länge. Wir verarbeiten Pressbolzen mit 4 bis 10 Zoll Durchmesser und die Legierungen 6063, 6082, 6005 und 6463.</p></div>
+          <div class="step part"><span class="dot">03</span><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 18h16M6 18V8l6-4 6 4v10"/><path d="M9 18v-5h6v5"/></svg>Eloxieren</h3><p>In unseren zwei QUALANOD-zertifizierten Anlagen eloxieren wir Profile bis 7 Meter Länge. Neben Natur, Schwarz, Bronze, Braun und Gold bieten wir Polieren, Satinieren und Sandstrahlen an.</p></div>
+          <div class="step part"><span class="dot">04</span><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20l6-6M14 4l6 6-9 9-6-6z"/><path d="M12 6l6 6"/></svg>Pulverbeschichtung</h3><p>Unsere QUALICOAT-zertifizierte Pulverbeschichtung erfolgt auf zwei vertikalen Beschichtungsanlagen und in einer horizontalen Kabine. Wir beschichten Profile bis 7 Meter in allen RAL-Farben und stimmen Sonderfarben nach Muster ab.</p></div>
+          <div class="step part"><span class="dot">05</span><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M19 5l-3 3M8 16l-3 3"/></svg>Mechanische Bearbeitung</h3><p>Mit Maschinen für die Solarrahmenfertigung, CNC-Bearbeitungszentren, Laserschneidanlagen, Exzenterpressen, Doppelkopfsägen, Ablängmaschinen sowie Biege- und Schweißlinien bieten wir umfassende Lösungen.</p></div>
         </div>
         </div>
       </div>
@@ -508,8 +728,8 @@ footer .credit a{text-decoration:underline;text-underline-offset:3px}
     <div class="pin">
     <div class="wrap">
       <div class="head rv">
-        <div><p class="kicker part">Produktsysteme</p><h2 id="sys-h" class="t part" style="margin:0">Unsere Kataloge.</h2></div>
-        <p class="lede part" style="max-width:36ch">Jedes System hat seine eigene Profilfamilie. Wählen Sie einen Katalog, wir senden ihn mit Ihrem Angebot.</p>
+        <div><p class="kicker part">Produktsysteme</p><h2 id="sys-h" class="t part" style="margin:0">Finden Sie das passende Profilsystem für Ihr Projekt</h2></div>
+        <p class="lede part" style="max-width:40ch">Jedes Produktsystem hat seine eigene Familie von Profilquerschnitten. Wählen Sie das System, das Sie interessiert, und wir senden Ihnen den Katalog mit unserem Angebot.</p>
       </div>
     </div>
     <div class="drum">
@@ -531,14 +751,29 @@ footer .credit a{text-decoration:underline;text-underline-offset:3px}
     </div>
   </section>
 
+
+  <section class="sect" id="sektorler" aria-labelledby="sect-h">
+    <div class="sstick">
+      <div class="wrap shead">
+        <div><p class="kicker">Branchen</p><h2 id="sect-h" class="t">Branchen, die wir bedienen.</h2></div>
+        <p class="lede">Jede Branche stellt unterschiedliche technische Anforderungen. Wir entwickeln für jedes Projekt die passende Lösung.</p>
+      </div>
+      <div class="strack" tabindex="0" aria-label="Branchen, seitlich scrollen">
+        <ul class="srow"><li class="sc"><figure><div class="si"><img src="../assets/gorsel/pergola.webp" alt="Bioklimatische Pergola über einer Terrasse im Abendlicht" loading="lazy" decoding="async"></div><figcaption>Pergolasysteme</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="../assets/gorsel/surme.webp" alt="Wohnraum mit großen Glasschiebetüren" loading="lazy" decoding="async"></div><figcaption>Schiebesysteme</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="../assets/gorsel/cephe.webp" alt="Turm mit Aluminium-Vorhangfassade" loading="lazy" decoding="async"></div><figcaption>Fassadensysteme</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="../assets/gorsel/kapi-pencere.webp" alt="Hauseingang mit Aluminiumtür und -fenstern" loading="lazy" decoding="async"></div><figcaption>Türen & Fenster</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="../assets/gorsel/ozel.webp" alt="Individuell bearbeitetes Aluminiumteil" loading="lazy" decoding="async"></div><figcaption>Sonderkonstruktionen</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="../assets/gorsel/denizcilik.webp" alt="Aluminiumreling und Luke auf einem Boot" loading="lazy" decoding="async"></div><figcaption>Marine-Anwendungen</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="../assets/gorsel/endustriyel.webp" alt="Maschinengestell aus Aluminium-Systemprofilen" loading="lazy" decoding="async"></div><figcaption>Industrieprofile</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="../assets/gorsel/gunes.webp" alt="Aluminium-Unterkonstruktion für Solarmodule" loading="lazy" decoding="async"></div><figcaption>Solarkonstruktionen</figcaption></figure></li><li class="sc send"><div><h3>Ihre Branche ist nicht dabei?</h3><p>Senden Sie uns Ihren Querschnitt. Wir planen ihn gemeinsam mit Ihnen, vom Werkzeug bis zum Versand.</p><a class="btn btn-primary" href="#teklif">Angebot anfordern</a></div></li></ul>
+      </div>
+      <div class="wrap sfoot"><div class="sbar" aria-hidden="true"><i></i></div><p class="cnote">Symbolbild</p></div>
+    </div>
+  </section>
+  <div class="rule" aria-hidden="true"></div>
+
   <section class="qual" id="kalite" aria-labelledby="qual-h">
     <div class="glow" aria-hidden="true"></div>
     <div class="wrap">
       <div class="cols">
         <div class="rv">
           <p class="kicker part">Qualität</p>
-          <h2 id="qual-h" class="t part">Toleranzen schätzen wir nicht. Wir messen sie.</h2>
-          <p class="lede part">Jedes Profil entsteht in den Toleranzen der DIN EN 755-9. An der Oberfläche gelten Qualanod- und Qualicoat-Standards. Ein Muster vor Produktionsbeginn, ein Messprotokoll bei Lieferung.</p>
+          <h2 id="qual-h" class="t part">Toleranzen schätzen wir nicht, wir messen sie</h2>
+          <p class="lede part">Maß- und Formtoleranzen unserer Profile prüfen wir nach DIN EN 755-9. Beim Eloxieren und bei der Pulverbeschichtung richten wir uns nach den Anforderungen von QUALANOD bzw. QUALICOAT. Vor der Produktion stellen wir ein Muster bereit, bei der Lieferung erhalten Sie den Messbericht.</p>
         </div>
         <ul class="spec rv" aria-label="Technische Daten">
           <li class="part"><span>Merkmal</span><span>Wert</span></li>
@@ -558,8 +793,8 @@ footer .credit a{text-decoration:underline;text-underline-offset:3px}
     <div class="gpin"><div class="gstick">
     <div class="wrap gl">
       <div class="rv">
-        <p class="kicker part">Weltweit</p><h2 id="glob-h" class="t part">Partner in 11 Ländern.</h2>
-        <p class="lede part" style="max-width:40ch">Durchgängig im Import und Export: Produktion, Anlagenaufbau, Vertrieb und Finanzberatung.</p>
+        <p class="kicker part">Internationale Partnerschaften</p><h2 id="glob-h" class="t part">Lieferung in 11 Länder</h2>
+        <p class="lede part" style="max-width:46ch">Wir liefern unsere Aluminiumprofile in 11 Länder. Unseren internationalen Partnern bieten wir neben Produktion und Anlagenaufbau Beratung in den Bereichen Import, Export, Vertrieb und Finanzierung.</p>
         <ul class="legend part" aria-hidden="true"><li><i class="o"></i>Pendik, Istanbul: Produktion</li><li><i></i>Partnerland</li></ul>
       </div>
       <div class="globe" aria-hidden="true">
@@ -602,9 +837,12 @@ footer .credit a{text-decoration:underline;text-underline-offset:3px}
             <div class="f"><label for="firma">Firma</label><input id="firma" name="firma" placeholder="Firmenname" autocomplete="organization"></div>
             <div class="f"><label for="eposta">E-Mail</label><input id="eposta" name="eposta" type="email" placeholder="name@firma.de" autocomplete="email" required></div>
             <div class="f"><label for="tel">Telefon</label><input id="tel" name="tel" type="tel" placeholder="+90" autocomplete="tel"></div>
-            <div class="f full"><label for="mesaj">Querschnitt / Bedarf</label><textarea id="mesaj" name="mesaj" placeholder="Querschnitt, Legierung, Oberfläche, Menge. Eine Zeichnung bitte an die E-Mail anhängen."></textarea></div>
-            <div class="f full" style="flex-direction:row;align-items:center;gap:16px;flex-wrap:wrap"><button class="btn btn-primary" type="submit">Angebot anfordern</button><span style="font-size:13px;color:var(--text-secondary)">Die Nachricht geht aus Ihrem eigenen E-Mail-Programm an info@alufortis.com.</span></div>
-            <div class="success" role="status">Ihr E-Mail-Programm wurde geöffnet. Nach dem Absenden antworten wir innerhalb eines Werktags.</div>
+            <div class="f full"><label for="mesaj">Querschnitt / Bedarf</label><textarea id="mesaj" name="mesaj" placeholder="Querschnitt, Legierung, Oberfläche, Menge. Eine Zeichnung können Sie unten anhängen."></textarea></div>
+            <div class="f full"><label for="dosya">Dateien anhängen</label><div class="drop"><input id="dosya" type="file" multiple tabindex="-1"><button class="pick" type="button"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M10.5 4.5l-5 5a1.8 1.8 0 002.5 2.5l5.5-5.5a3 3 0 00-4.3-4.3L3.8 7.6a4.2 4.2 0 006 6l4-4"/></svg>Dateien auswählen</button><span class="dt">oder hierher ziehen</span><small>Jedes Dateiformat. Insgesamt höchstens 15 MB.</small></div><ul class="flist"></ul><p class="ftot" aria-live="polite"></p></div>
+            <div class="hp" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
+            <p class="ferr" role="alert"></p>
+            <div class="f full" style="flex-direction:row;align-items:center;gap:16px;flex-wrap:wrap"><button class="btn btn-primary" type="submit">Angebot anfordern</button><span style="font-size:13px;color:var(--text-secondary)">Ihre Nachricht und Ihre Anhänge gehen an info@alufortis.com.</span></div>
+            <div class="success" role="status">Ihre Nachricht ist bei uns eingegangen. Wir antworten innerhalb eines Werktags.</div>
           </form>
         </div>
         <aside class="contact rv">
@@ -626,6 +864,7 @@ footer .credit a{text-decoration:underline;text-underline-offset:3px}
     <div class="row">
       <a class="brand" href="#top" aria-label="Alufortis, nach oben"><img src="../assets/logo-dark.svg" alt="Alufortis Aluminium Engineering Solutions" width="879" height="435" loading="lazy"></a>
       <ul>
+        <li><a href="#hakkimizda">Über uns</a></li>
         <li><a href="#uretim">Produktion</a></li>
         <li><a href="#urunler">Produkte</a></li>
         <li><a href="#kalite">Qualität</a></li>
@@ -790,8 +1029,8 @@ function staticState() {
 
 /* ============ captions: language. The film carries no words; the bands follow <html lang> (tr is the markup itself) ============ */
 const HERO_I18N = {
-  en: [['Every order starts with one click.', 'Wherever you are.'], ['At the factory within seconds.', 'It enters through the main door as a billet.'], ['From 700 to 4,500 tonnes.', 'Five presses. One pressure.'], ['Shaped in the die.', 'Get the section right, and everything is right.'], ['Bundled and loaded onto Alufortis trucks.', 'Protected bundles, strapped pallets. Ready for the road.'], ['Delivered to 11 countries.', 'Your trusted partner in aluminium.', 'Request a Quote', 'Explore Production']],
-  de: [['Jeder Auftrag beginnt mit einem Klick.', 'Wo immer Sie sind.'], ['In Sekunden im Werk.', 'Durch das Haupttor kommt er als Pressbolzen an.'], ['Von 700 bis 4.500 Tonnen.', 'Fünf Pressen. Ein Druck.'], ['In der Matrize geformt.', 'Stimmt der Querschnitt, stimmt alles.'], ['Gebündelt und auf Alufortis-Lkw verladen.', 'Geschützte Bündel, umreifte Paletten. Bereit für die Straße.'], ['In 11 Länder geliefert.', 'Ihr zuverlässiger Partner für Aluminium.', 'Angebot anfordern', 'Produktion entdecken']]
+  en: [['Your order reaches our factory in seconds', 'Wherever you are, you can send us your order online.'], ['Our production starts with the billet', 'Aluminium enters our factory as billets'], ['Five presses, one standard of quality', 'Press capacities from 700 to 4,500 tonnes'], ['Your profile takes shape in the die', 'The right section, the right result'], ['Your profiles are prepared for shipment', 'Profile bundles are wrapped in protective packaging. Pallets are strapped and loaded onto trucks'], ['Delivering to 11 countries', 'Your reliable partner in aluminium profiles.', 'Request a Quote', 'Explore Production']],
+  de: [['Ihr Auftrag in Sekunden in unserem Werk', 'Wo immer Sie sind, senden Sie uns Ihren Auftrag online.'], ['Unsere Produktion beginnt mit dem Pressbolzen', 'Aluminium kommt als Pressbolzen in unser Werk'], ['Fünf Pressen, ein Qualitätsanspruch', 'Presskräfte von 700 bis 4.500 Tonnen'], ['Ihr Profil nimmt im Werkzeug Form an', 'Der richtige Querschnitt, das richtige Ergebnis'], ['Ihre Profile werden für den Versand vorbereitet', 'Die Profilbündel werden mit Schutzverpackung verpackt. Die Paletten werden umreift und auf Lkw verladen'], ['Lieferung in 11 Länder', 'Ihr zuverlässiger Partner für Aluminiumprofile.', 'Angebot anfordern', 'Produktion entdecken']]
 }[(document.documentElement.lang || 'tr').slice(0, 2)];
 if (HERO_I18N) $$('.stage .band').forEach((band, i) => {
   const [h, sub, cta1, cta2] = HERO_I18N[i] || [];
@@ -875,10 +1114,17 @@ stage.addEventListener('pointermove', e => { mx = (e.clientX / innerWidth - .5) 
 stage.addEventListener('pointerleave', () => { mx = 0; my = 0; wake(); });
 
 /* ============ the video (optional: set HERO_VIDEO when the scrub footage exists) ============ */
-const HERO_VIDEO = '../assets/hero-scrub-v4.mp4', HERO_POSTER = '../assets/hero-poster.jpg', VIDEO_BYTES = 6973457;
+const HERO_VIDEO = '../assets/hero-scrub-v5.mp4', HERO_POSTER = '../assets/hero-poster.jpg', VIDEO_BYTES = 7403232;
 let seekBusy = false, pendingTime = null, heroInited = false, videoReady = false, heroBlobTry = false;
-function requestSeek(t) { if (!video.duration) return; if (seekBusy) { pendingTime = t; return; } seekBusy = true; video.currentTime = t; }
-video.addEventListener('seeked', () => { seekBusy = false; if (pendingTime !== null) { const t = pendingTime; pendingTime = null; requestSeek(t); } });
+// WebKit can leave a seek hanging during fast scrolling (no 'seeked'): after 700 ms the latest target is asked for again
+let seekDog = 0;
+function requestSeek(t) {
+  if (!video.duration) return; if (seekBusy) { pendingTime = t; return; }
+  seekBusy = true; clearTimeout(seekDog);
+  seekDog = setTimeout(() => { if (!seekBusy) return; seekBusy = false; const n = pendingTime !== null ? pendingTime : t; pendingTime = null; requestSeek(n); }, 700);
+  video.currentTime = t;
+}
+video.addEventListener('seeked', () => { clearTimeout(seekDog); seekBusy = false; if (pendingTime !== null) { const t = pendingTime; pendingTime = null; requestSeek(t); } });
 video.addEventListener('error', () => { seekBusy = false; pendingTime = null; if (heroBlobTry) return; failVideo(); });
 function failVideo() { stage.classList.remove('loading'); stage.classList.add('video-failed'); videoReady = false; wake(); }
 function initHeroOnce() {
@@ -888,7 +1134,7 @@ function initHeroOnce() {
   const posterLayer = $('.poster');
   posterLayer.style.backgroundImage = "url('" + HERO_POSTER + "')";
   let started = false;
-  const start = () => { if (started) return; started = true; loadHeroBlob().catch(failVideo); };
+  const start = () => { if (started) return; started = true; loadHeroBlob().catch(() => { stage.classList.remove('loading'); attachHeroSource(HERO_VIDEO, false); }); };
   const img = new Image(); img.onload = () => { stage.classList.add('has-poster'); start(); }; img.onerror = start; img.src = HERO_POSTER;
   setTimeout(start, 4000);
 }
@@ -1302,15 +1548,56 @@ new IntersectionObserver(en => marq.classList.toggle('live', en[0].isIntersectin
 // catalog cards prefill the one form
 $$('.card[data-catalog]').forEach(c => c.addEventListener('click', () => { const m = $('#mesaj'); if (!m.value) m.value = c.dataset.catalog + ': bitte senden Sie mir diesen Katalog.'; }));
 
-// the form: mailto, honestly
-const form = $('#qform');
-form.addEventListener('submit', e => {
+const FORM_T = { url: '../teklif.php', remove: 'Entfernen', total: 'Gesamt', big: 'Die Dateien dürfen insgesamt 15 MB nicht überschreiten. Bitte entfernen Sie einige Dateien.', sending: 'Wird gesendet…', err: 'Die Nachricht konnte gerade nicht gesendet werden. Bitte versuchen Sie es erneut oder schreiben Sie direkt an info@alufortis.com.', dec: ',' };
+
+// the form: sent with its attachments to the server, which mails info@alufortis.com
+const form = $('#qform'), fileIn = $('#dosya'), drop = $('.drop'), flist = $('.flist'), ftot = $('.ftot'), ferr = $('.ferr');
+const MAX = 15 * 1024 * 1024, files = [];
+const fmtSize = b => b < 1024 * 1024 ? Math.max(1, Math.round(b / 1024)) + ' KB' : (b / 1048576).toFixed(1).replace('.', FORM_T.dec) + ' MB';
+const total = () => files.reduce((a, f) => a + f.size, 0);
+function renderFiles() {
+  flist.innerHTML = '';
+  files.forEach((f, i) => {
+    const li = document.createElement('li');
+    const n = document.createElement('span'); n.className = 'fn'; n.textContent = f.name;
+    const s = document.createElement('span'); s.className = 'fs'; s.textContent = fmtSize(f.size);
+    const b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', FORM_T.remove + ': ' + f.name);
+    b.innerHTML = '<svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg>';
+    b.addEventListener('click', () => { files.splice(i, 1); renderFiles(); });
+    li.append(n, s, b); flist.appendChild(li);
+  });
+  const tot = total();
+  ftot.textContent = files.length ? FORM_T.total + ': ' + fmtSize(tot) + ' / 15 MB' : '';
+  ftot.classList.toggle('bad', tot > MAX);
+  if (tot <= MAX && ferr.dataset.kind === 'size') { ferr.classList.remove('on'); ferr.textContent = ''; }
+}
+function addFiles(list) { for (const f of list) if (!files.some(x => x.name === f.name && x.size === f.size && x.lastModified === f.lastModified)) files.push(f); renderFiles(); if (total() > MAX) showErr(FORM_T.big, 'size'); }
+function showErr(msg, kind) { ferr.textContent = msg; ferr.dataset.kind = kind || ''; ferr.classList.add('on'); }
+$('.drop .pick').addEventListener('click', () => fileIn.click());
+fileIn.addEventListener('change', () => { addFiles(fileIn.files); fileIn.value = ''; });
+['dragenter', 'dragover'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add('over'); }));
+['dragleave', 'drop'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.remove('over'); }));
+drop.addEventListener('drop', e => { if (e.dataTransfer && e.dataTransfer.files) addFiles(e.dataTransfer.files); });
+form.addEventListener('submit', async e => {
   e.preventDefault();
   const v = id => $('#' + id).value.trim();
-  if (!v('ad') || !v('eposta')) { ($('#ad').value ? $('#eposta') : $('#ad')).focus(); return; }
-  const body = 'Name: ' + v('ad') + '\nFirma: ' + v('firma') + '\nE-Mail: ' + v('eposta') + '\nTelefon: ' + v('tel') + '\n\n' + v('mesaj');
-  location.href = 'mailto:info@alufortis.com?subject=' + encodeURIComponent('Angebotsanfrage: ' + (v('firma') || v('ad'))) + '&body=' + encodeURIComponent(body);
-  form.classList.add('sent');
+  if (!v('ad') || !v('eposta') || !$('#eposta').checkValidity()) { (!v('ad') ? $('#ad') : $('#eposta')).focus(); return; }
+  if (total() > MAX) { showErr(FORM_T.big, 'size'); return; }
+  ferr.classList.remove('on');
+  const fd = new FormData();
+  ['ad', 'firma', 'eposta', 'tel', 'mesaj', 'website'].forEach(k => fd.append(k, v(k)));
+  fd.append('dil', document.documentElement.lang || 'tr');
+  files.forEach(f => fd.append('dosya[]', f, f.name));
+  const btn = form.querySelector('button[type=submit]'), label = btn.textContent;
+  form.classList.add('busy'); btn.textContent = FORM_T.sending;
+  try {
+    const res = await fetch(FORM_T.url, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } });
+    const out = await res.json().catch(() => ({}));
+    if (!res.ok || !out.ok) throw new Error(out.error || 'http ' + res.status);
+    form.classList.add('sent'); files.length = 0; renderFiles();
+  } catch (err) {
+    showErr(FORM_T.err, 'send');
+  } finally { form.classList.remove('busy'); btn.textContent = label; }
 });
 
 /* ============ reduced motion, both directions; hidden tab ============ */
@@ -1415,12 +1702,133 @@ function initFlow() {
   FLOW = { T, mm, still() {}, live() {} };
 }
 
+function introDone() { if (scrubOn) { loadStart = performance.now(); loadK = 0; bands.forEach(b => { b.k = -1; }); wake(); } }
+
+/* ============ açılış mesajları: ana mesaj 7 sn, detay mesaj 12 sn, sonra film. Geç düğmesi, kaydırma veya tuş atlar ============ */
+(function intro() {
+  const el = document.getElementById('intro');
+  if (!el) return;
+  const root = document.documentElement;
+  const atTop = (scrollY || 0) < 40 && (!location.hash || location.hash === '#top');
+  if (!atTop) { el.classList.add('gone'); return; }
+  root.classList.add('intro-on');
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  scrollTo(0, 0);
+  const T1 = 7000, T2 = 12000, bar = el.querySelector('.i-bar i');
+  let done = false, timers = [], t0 = performance.now(), raf = 0;
+  const setBar = () => { const f = Math.min(1, (performance.now() - t0) / (T1 + T2)); bar.style.transform = 'scaleX(' + f.toFixed(4) + ')'; if (!done && f < 1) raf = requestAnimationFrame(setBar); };
+  requestAnimationFrame(() => { el.classList.add('s1'); raf = requestAnimationFrame(setBar); });
+  timers.push(setTimeout(() => el.classList.add('s2'), T1));
+  timers.push(setTimeout(finish, T1 + T2));
+  function finish() {
+    if (done) return; done = true;
+    timers.forEach(clearTimeout); cancelAnimationFrame(raf);
+    ['wheel', 'touchmove', 'keydown'].forEach(ev => removeEventListener(ev, onUser, true));
+    el.classList.add('s3', 'out');
+    root.classList.remove('intro-on');
+    scrollTo(0, 0);
+    if (typeof introDone === 'function') introDone();
+    setTimeout(() => el.classList.add('gone'), 1500);
+  }
+  function onUser(e) {
+    if (e.type === 'keydown' && !['ArrowDown', 'PageDown', ' ', 'Spacebar', 'Enter', 'Escape', 'End'].includes(e.key)) return;
+    if (e.type === 'keydown' && e.target.closest && e.target.closest('.i-skip')) return;
+    if (e.cancelable) e.preventDefault();
+    finish();
+  }
+  ['wheel', 'touchmove', 'keydown'].forEach(ev => addEventListener(ev, onUser, { capture: true, passive: false }));
+  el.querySelector('.i-skip').addEventListener('click', finish);
+})();
+
 /* ============ go ============ */
 if (HAS_GSAP) initFlow();
 else { [onNav, onTimeline, onProdScroll, onRingScroll, onGlobeScroll].forEach(f => addEventListener('scroll', f, { passive: true })); }
 onNav();
 if (RM.matches) pinToFinalStates(); else unpinFinalStates();
 applyHeroMode();
+})();
+</script>
+<script>
+/* ============ image sections: A (nine chapters) and B (sectors) ============
+   Both are one scrubbed GSAP timeline each, driven by the section's own ScrollTrigger: the scroll is the playhead,
+   so everything runs backwards when you scroll back and stops when the scroll stops. The hero film is not involved. */
+(() => {
+const chap = document.querySelector('.chap'), sect = document.querySelector('.sect');
+if (!chap || !sect) return;
+// the static layout shows each image above its text
+chap.querySelectorAll('.cc[data-i]').forEach(a => { const f = chap.querySelector('.cf[data-i="' + a.dataset.i + '"] img'); if (f) a.style.setProperty('--bg', 'url("' + f.getAttribute('src') + '")'); });
+if (!(window.gsap && window.ScrollTrigger)) return;
+gsap.registerPlugin(ScrollTrigger);
+const figs = [...chap.querySelectorAll('.cf')], arts = [...chap.querySelectorAll('.cc')], segs = [...chap.querySelectorAll('.crail b')];
+const N = figs.length - 1;
+const mm = gsap.matchMedia();
+mm.add({ motion: '(prefers-reduced-motion: no-preference)', small: '(max-width: 760px)' }, ctx => {
+  const { motion, small } = ctx.conditions;
+  if (!motion) return;
+  chap.classList.add('live'); sect.classList.add('live');
+  figs.forEach(f => f.querySelector('img').loading = 'eager');
+
+  /* ---- A: one unit of timeline per chapter; the opening view (facility) holds for one unit ---- */
+  const tl = gsap.timeline({ defaults: { ease: 'none' }, paused: true });
+  let cur = -1;
+  const show = i => { if (i === cur) return; cur = i; arts.forEach((a, k) => a.classList.toggle('on', k === i)); };
+  figs.forEach((f, i) => {
+    const im = f.querySelector('img');
+    // slow push-in while the chapter is on screen
+    tl.fromTo(im, { scale: 1.16 }, { scale: 1.0, duration: i ? 1.35 : 1.6 }, i ? i - .05 : 0);
+    if (!i) return;
+    const edge = f.querySelector('.edge'), dir = small ? 'inset(0% 0% 0% 100%)' : 'inset(0% 0% 0% 100%)';
+    // the new image is drawn across the stage like a profile leaving the die, with a bright leading edge
+    tl.fromTo(f, { clipPath: dir }, { clipPath: 'inset(0% 0% 0% 0%)', duration: .5, ease: 'power2.inOut' }, i - .05);
+    tl.fromTo(edge, { left: '100%', opacity: 0 }, { left: '0%', duration: .5, ease: 'power2.inOut' }, i - .05);
+    tl.to(edge, { opacity: 1, duration: .06 }, i - .05);
+    tl.to(edge, { opacity: 0, duration: .12 }, i + .38);
+    // the image underneath is pushed back a little
+    tl.to(figs[i - 1].querySelector('img'), { xPercent: small ? -6 : -10, duration: .5, ease: 'power2.inOut' }, i - .05);
+    tl.fromTo(segs[i - 1], { scaleX: 0 }, { scaleX: 1, duration: 1 }, i);
+  });
+  arts.forEach((a, i) => {
+    const mi = a.querySelector('.mi'), rest = [...a.querySelectorAll('.ix, .cp, .hint')], tags = a.querySelectorAll('.tags li');
+    if (i) {   // in: the title rises out of its mask, then the text, then the tags one by one
+      tl.fromTo(mi, { yPercent: 105 }, { yPercent: 0, duration: .32, ease: 'power3.out' }, i + .14);
+      tl.fromTo(rest, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: .28, stagger: .05, ease: 'power2.out' }, i + .22);
+      if (tags.length) tl.fromTo(tags, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: .2, stagger: .045, ease: 'power2.out' }, i + .3);
+    }
+    if (i < N) {   // out: the whole card slides up and fades as the next image comes in
+      tl.fromTo(a.children, { opacity: 1, y: 0 }, { opacity: 0, y: -28, duration: .2, stagger: .02, immediateRender: false }, i + 1 - .08);
+    }
+  });
+  tl.to({}, { duration: .35 }, N + 1);   // a last beat before the section scrolls away
+  const total = tl.duration();
+  const stA = ScrollTrigger.create({ trigger: chap, start: 'top top', end: 'bottom bottom', scrub: .7, animation: tl,
+    onUpdate: self => show(Math.min(N, Math.max(0, Math.floor(self.progress * total + .12)))),
+    onRefresh: self => show(Math.min(N, Math.max(0, Math.floor(self.progress * total + .12)))) });
+  show(0);
+  // the stage arrives from the stats with a little depth and leaves the same way into the production section
+  gsap.fromTo(chap.querySelector('.cstick'), { opacity: .2 }, { opacity: 1, ease: 'none', scrollTrigger: { trigger: chap, start: 'top 90%', end: 'top top', scrub: true } });
+  gsap.fromTo(chap.querySelector('.cstick'), { opacity: 1, scale: 1 }, { opacity: .25, scale: small ? 1 : .95, ease: 'none', immediateRender: false,
+    scrollTrigger: { trigger: chap, start: 'bottom bottom', end: 'bottom 30%', scrub: true } });
+
+  /* ---- B: the row moves sideways as the page scrolls down; each image drifts inside its frame ---- */
+  const row = sect.querySelector('.srow'), bar = sect.querySelector('.sbar i');
+  const dist = () => Math.max(0, row.scrollWidth - innerWidth);
+  const setH = () => sect.style.setProperty('--sx', Math.round(dist() * (small ? 1.05 : .9)) + 'px');
+  setH();
+  const slide = gsap.to(row, { x: () => -dist(), ease: 'none',
+    scrollTrigger: { trigger: sect, start: 'top top', end: 'bottom bottom', scrub: .6, invalidateOnRefresh: true, onRefreshInit: setH,
+      onUpdate: self => gsap.set(bar, { scaleX: self.progress }) } });
+  sect.querySelectorAll('.sc .si').forEach(si => {
+    gsap.fromTo(si, { xPercent: 7 }, { xPercent: -7, ease: 'none', scrollTrigger: { trigger: si.closest('.sc'), containerAnimation: slide, start: 'left right', end: 'right left', scrub: true } });
+  });
+  sect.querySelectorAll('.sc figcaption, .send>div').forEach(c => {
+    gsap.fromTo(c, { opacity: 0, y: 24 }, { opacity: 1, y: 0, ease: 'none', scrollTrigger: { trigger: c.closest('.sc'), containerAnimation: slide, start: 'left 92%', end: 'left 62%', scrub: true } });
+  });
+  gsap.fromTo(sect.querySelector('.shead'), { opacity: 0, y: 40 }, { opacity: 1, y: 0, ease: 'none', scrollTrigger: { trigger: sect, start: 'top 85%', end: 'top 25%', scrub: .5 } });
+
+  requestAnimationFrame(() => ScrollTrigger.refresh());
+  return () => { chap.classList.remove('live'); sect.classList.remove('live'); sect.style.removeProperty('--sx'); arts.forEach(a => a.classList.remove('on')); requestAnimationFrame(() => ScrollTrigger.refresh()); };
+});
+addEventListener('load', () => ScrollTrigger.refresh(), { once: true });
 })();
 </script>
 </body>

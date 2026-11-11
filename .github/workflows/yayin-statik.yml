@@ -1,7 +1,9 @@
 name: Statik siteyi yedekle ve alufortis.gkh.ro'ya yayınla
 
-# Erhan'ın 2026-11-05 onayıyla: yayin/alufortis-gkh klasöründeki statik site
-# (düzeltilmiş açılış videosu v4 + GSAP ScrollTrigger akışı) GreenGeeks'e gider.
+# yayin/alufortis-gkh klasöründeki statik site GreenGeeks'e gider. 2026-11-11 sürümü: eski /v2 (görsel bölümlü)
+# sürüm, müşteri düzeltmeleri (alufortis_duzeltme1) ve açılış filmi v5 ile ana adrese taşınır; teklif formu
+# dosya ekleriyle teklif.php üzerinden e-posta gönderir. /v2 adresi ana siteye 301 ile yönlendirilir.
+# Yayın yalnızca Erhan'ın açık onayıyla yapılır.
 # Önce canlı dosyaların tamamı sunucudaki erişime kapalı _yedek klasörüne kopyalanır.
 # Üç dil (TR, EN, DE) birlikte yüklenir. Hiçbir dosya silinmez. FTPS: TLS zorunlu, sertifika ve ana makine adı doğrulanır.
 on:
@@ -33,8 +35,10 @@ jobs:
           GG_FTP_PASSWORD: ${{ secrets.GG_FTP_PASSWORD }}
         run: |
           cd yayin/alufortis-gkh
-          test -f index.html && test -f en/index.html && test -f de/index.html && test -f .htaccess && test -f assets/hero-scrub-v4.mp4
-          grep -q "assets/hero-scrub-v4.mp4" index.html
+          test -f index.html && test -f en/index.html && test -f de/index.html && test -f .htaccess && test -f .user.ini && test -f teklif.php && test -f assets/hero-scrub-v5.mp4 && test -f assets/gorsel/tesis.webp
+          grep -q "assets/hero-scrub-v5.mp4" index.html && grep -q "../assets/hero-scrub-v5.mp4" en/index.html && grep -q "../assets/hero-scrub-v5.mp4" de/index.html
+          if grep -q noindex index.html en/index.html de/index.html; then echo "::error::ana sitede noindex kalmış"; exit 1; fi
+          php -l teklif.php
           for v in GG_FTP_SERVER GG_FTP_USERNAME GG_FTP_PASSWORD; do
             if [ -z "${!v}" ]; then echo "::error::$v secret'ı tanımlı değil"; exit 1; fi
           done
@@ -86,15 +90,20 @@ jobs:
           GG_FTP_PASSWORD: ${{ secrets.GG_FTP_PASSWORD }}
         run: |
           set -euo pipefail
+          printf '%s\n' '# Eski ikinci surum artik ana adreste: kalici yonlendirme' 'RewriteEngine On' 'RewriteRule ^en(/.*)?$ /en/ [R=301,L]' 'RewriteRule ^de(/.*)?$ /de/ [R=301,L]' 'RewriteRule ^ / [R=301,L]' > v2.htaccess
           cd yayin/alufortis-gkh
           lftp -u "$GG_FTP_USERNAME","$GG_FTP_PASSWORD" "ftp://$GG_FTP_SERVER" -e "
             source ../../tls.lftp;
             mirror -R --no-perms --verbose=1 assets /assets;
             mirror -R --no-perms --verbose=1 en /en;
             mirror -R --no-perms --verbose=1 de /de;
+            put .user.ini -o /.user.ini;
+            put teklif.php -o /teklif.php;
             put .htaccess -o /.htaccess;
             put index.html -o /index.html;
-            cls -l /assets/hero-scrub-v4.mp4 /index.html;
+            mkdir -p -f /v2;
+            put ../../v2.htaccess -o /v2/.htaccess;
+            cls -l /assets/hero-scrub-v5.mp4 /teklif.php /index.html /v2/.htaccess;
             bye"
 
       - name: Canlıyı doğrula
@@ -104,16 +113,22 @@ jobs:
           for i in 1 2 3; do
             curl -fsS --max-time 30 https://alufortis.gkh.ro/ -o canli.html && break; sleep 5
           done
-          grep -q "assets/hero-scrub-v4.mp4" canli.html && echo "index.html yeni sürüm" || { echo "::error::index.html eski görünüyor"; ok=0; }
+          grep -q "assets/hero-scrub-v5.mp4" canli.html && echo "index.html yeni sürüm" || { echo "::error::index.html eski görünüyor"; ok=0; }
           for l in en de; do
             curl -fsS --max-time 30 "https://alufortis.gkh.ro/$l/" | grep -q "<html lang=\"$l\">" && echo "$l/ yayında" || { echo "::error::$l/ açılmadı"; ok=0; }
           done
-          for p in assets/hero-scrub-v4.mp4 assets/vendor/gsap.min.js assets/vendor/ScrollTrigger.min.js assets/vendor/three/three.module.min.js assets/logo-dark.svg assets/profile-7800-1.json assets/land-110m.json; do
+          for p in assets/hero-scrub-v5.mp4 assets/gorsel/tesis.webp assets/vendor/gsap.min.js assets/vendor/ScrollTrigger.min.js assets/vendor/three/three.module.min.js assets/logo-dark.svg assets/profile-7800-1.json assets/land-110m.json; do
             want=$(stat -c %s "yayin/alufortis-gkh/$p")
             got=$(curl -fsSI --max-time 30 "https://alufortis.gkh.ro/$p" | tr -d '\r' | awk 'tolower($1)=="content-length:"{print $2}' | tail -1)
             code=$(curl -s -o /dev/null -w '%{http_code}' -I --max-time 30 "https://alufortis.gkh.ro/$p")
             echo "$p http=$code boyut=$got beklenen=$want"
             [ "$code" = "200" ] || ok=0
+          done
+          code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 "https://alufortis.gkh.ro/teklif.php")
+          echo "teklif.php GET: http=$code (405 beklenir)"; [ "$code" = "405" ] || ok=0
+          for v in v2/ v2/en/ v2/de/; do
+            loc=$(curl -s -o /dev/null -w '%{http_code} %{redirect_url}' --max-time 30 "https://alufortis.gkh.ro/$v")
+            echo "$v -> $loc"; case "$loc" in 301*) ;; *) ok=0 ;; esac
           done
           code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 "https://alufortis.gkh.ro/$YEDEK/index.html")
           echo "yedek klasörü web'den: http=$code (403 beklenir)"

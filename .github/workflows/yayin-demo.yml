@@ -4,13 +4,9 @@ name: Görsel bölümlü ikinci sürümü alufortis.gkh.ro/v2 adresine yükle
 # adresle gösterilir: https://alufortis.gkh.ro/v2/. Yalnızca /v2 klasörüne yazılır; ana sitenin dosyalarına
 # (/index.html, /assets, /en, /de, /.htaccess) dokunulmaz. Sayfalar arama motorlarına kapalıdır (noindex). Hiçbir dosya silinmez.
 # FTPS: TLS zorunlu, sertifika ve ana makine adı doğrulanır.
+# 2026-11-11: bu sürüm ana adrese taşındı ve /v2 ana siteye yönlendiriliyor; otomatik yükleme kapatıldı.
 on:
   workflow_dispatch:
-  push:
-    branches: [claude/project-thread-3xxexf]
-    paths:
-      - "yayin/demo-alufortis/**"
-      - ".github/workflows/yayin-demo.yml"
 
 permissions:
   contents: read

@@ -1,0 +1,57 @@
+name: Teklif formunu sunucuya koy ve deneme gönderimi yap
+
+# Erhan'ın 2026-11-11 onayıyla (karar kartı): teklif.php ve .user.ini canlı köke yüklenir (ikisi de yeni dosya;
+# mevcut sitenin hiçbir dosyası değişmez), ardından formdan ekli bir deneme mesajı gönderilir. Alıcı: info@gkh.ro.
+# FTPS: TLS zorunlu, sertifika ve ana makine adı doğrulanır. Hiçbir dosya silinmez.
+on:
+  push:
+    branches: [claude/project-thread-02th8l]
+    paths:
+      - ".github/workflows/form-deneme.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  deneme:
+    runs-on: ubuntu-latest
+    environment:
+      name: greengeeks
+    concurrency:
+      group: greengeeks-deploy
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - name: lftp kur
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+      - name: teklif.php ve .user.ini yükle
+        env:
+          GG_FTP_SERVER: ${{ secrets.GG_FTP_SERVER }}
+          GG_FTP_USERNAME: ${{ secrets.GG_FTP_USERNAME }}
+          GG_FTP_PASSWORD: ${{ secrets.GG_FTP_PASSWORD }}
+        run: |
+          set -euo pipefail
+          cd yayin/alufortis-gkh
+          php -l teklif.php
+          lftp -u "$GG_FTP_USERNAME","$GG_FTP_PASSWORD" "ftp://$GG_FTP_SERVER" -e "
+            set ftp:ssl-force true; set ftp:ssl-protect-data true; set ftp:ssl-protect-list true;
+            set ssl:verify-certificate true; set ssl:check-hostname true; set ftp:passive-mode true;
+            set net:max-retries 2; set net:timeout 30;
+            put .user.ini -o /.user.ini;
+            put teklif.php -o /teklif.php;
+            cls -l /teklif.php /.user.ini;
+            bye"
+      - name: Deneme gönderimi (ekli)
+        run: |
+          set -u
+          sleep 5
+          code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 https://alufortis.gkh.ro/teklif.php)
+          echo "GET teklif.php: $code (405 beklenir)"
+          printf 'Alufortis teklif formu deneme eki.\nBu dosya otomatik deneme gönderimiyle eklendi.\n' > deneme-eki.txt
+          cp yayin/alufortis-gkh/assets/hero-poster.jpg kesit-ornegi.jpg
+          curl -sS --max-time 60 https://alufortis.gkh.ro/teklif.php \
+            -F "ad=Deneme Gönderimi (Claude)" -F "firma=Alufortis Web Test" -F "eposta=info@gkh.ro" \
+            -F "tel=+90 000 000 00 00" -F "mesaj=Bu bir deneme mesajıdır. Teklif formu ve dosya ekleri çalışıyor mu kontrol ediyoruz. 6063 alaşım, eloksal, 500 adet." \
+            -F "website=" -F "dil=tr" -F "dosya[]=@deneme-eki.txt;type=text/plain" -F "dosya[]=@kesit-ornegi.jpg;type=image/jpeg" | tee yanit.json
+          echo
+          grep -q '"ok":true' yanit.json

@@ -4,6 +4,8 @@ name: Statik siteyi yedekle ve alufortis.gkh.ro'ya yayınla
 # sürüm, müşteri düzeltmeleri (alufortis_duzeltme1) ve açılış filmi v5 ile ana adrese taşınır; teklif formu
 # dosya ekleriyle teklif.php üzerinden e-posta gönderir. /v2 adresi ana siteye 301 ile yönlendirilir.
 # Yayın yalnızca Erhan'ın açık onayıyla yapılır.
+# 2026-11-11: yönetim paneli (/yonetim). Sayfalar şablon + içerikten üretilir; panelde yapılan yazı değişiklikleri
+# (sunucudaki _yonetim-veri/icerik.json), ek sınırı, SMTP ayarları ve panel şifresi yayında korunur, üzerine yazılmaz.
 # Önce canlı dosyaların tamamı sunucudaki erişime kapalı _yedek klasörüne kopyalanır.
 # Üç dil (TR, EN, DE) birlikte yüklenir. Hiçbir dosya silinmez. FTPS: TLS zorunlu, sertifika ve ana makine adı doğrulanır.
 on:
@@ -39,6 +41,8 @@ jobs:
           grep -q "assets/hero-scrub-v5.mp4" index.html && grep -q "../assets/hero-scrub-v5.mp4" en/index.html && grep -q "../assets/hero-scrub-v5.mp4" de/index.html
           if grep -q noindex index.html en/index.html de/index.html; then echo "::error::ana sitede noindex kalmış"; exit 1; fi
           php -l teklif.php
+          for f in yonetim/*.php; do php -l "$f"; done
+          test -f _yonetim-veri/sablon-tr.html && test -f _yonetim-veri/icerik-varsayilan.json && test -f _yonetim-veri/.htaccess
           for v in GG_FTP_SERVER GG_FTP_USERNAME GG_FTP_PASSWORD; do
             if [ -z "${!v}" ]; then echo "::error::$v secret'ı tanımlı değil"; exit 1; fi
           done
@@ -83,6 +87,26 @@ jobs:
             bye"
           echo "Yedek: /_yedek/$TAG"
 
+      - name: Sayfaları sunucudaki panel içeriğiyle üret
+        env:
+          YONETIM_SIFRE: ${{ secrets.YONETIM_SIFRE }}
+        run: |
+          set -euo pipefail
+          cd yayin/alufortis-gkh
+          # yönetim panelinde yapılan yazı değişiklikleri ve ek sınırı sunucuda kalır; sayfalar onlarla üretilir
+          for f in icerik.json site-ayar.json; do
+            if [ -f "../../canli/_yonetim-veri/$f" ]; then cp "../../canli/_yonetim-veri/$f" "_yonetim-veri/$f"; echo "sunucudaki $f kullanılıyor"; fi
+          done
+          php yonetim/lib.php uret
+          php yonetim/lib.php ini
+          grep -q "assets/hero-scrub-v5.mp4" index.html
+          if ! grep -q "{{" index.html en/index.html de/index.html; then echo "yer tutucu kalmadı"; else echo "::error::doldurulmamış yer tutucu"; exit 1; fi
+          # panel şifresi: sunucuda yoksa ve secret tanımlıysa bir kez oluşturulur, varsa asla değiştirilmez
+          echo "SIFRE_YUKLE=0" >> "$GITHUB_ENV"
+          if [ ! -f ../../canli/_yonetim-veri/sifre.php ]; then
+            if [ -n "$YONETIM_SIFRE" ]; then php yonetim/lib.php sifre && echo "SIFRE_YUKLE=1" >> "$GITHUB_ENV"; else echo "::warning::Panel şifresi tanımlı değil (YONETIM_SIFRE secret'ı yok); panel girişi kapalı kalır"; fi
+          fi
+
       - name: Yeni siteyi yükle (önce varlıklar, en son index.html)
         env:
           GG_FTP_SERVER: ${{ secrets.GG_FTP_SERVER }}
@@ -92,6 +116,8 @@ jobs:
           set -euo pipefail
           printf '%s\n' '# Eski ikinci surum artik ana adreste: kalici yonlendirme' 'RewriteEngine On' 'RewriteRule ^en(/.*)?$ /en/ [R=301,L]' 'RewriteRule ^de(/.*)?$ /de/ [R=301,L]' 'RewriteRule ^ / [R=301,L]' > v2.htaccess
           cd yayin/alufortis-gkh
+          SIFRE_KOMUT=""
+          if [ "$SIFRE_YUKLE" = 1 ]; then SIFRE_KOMUT="put _yonetim-veri/sifre.php -o /_yonetim-veri/sifre.php;"; fi
           lftp -u "$GG_FTP_USERNAME","$GG_FTP_PASSWORD" "ftp://$GG_FTP_SERVER" -e "
             source ../../tls.lftp;
             mirror -R --no-perms --verbose=1 assets /assets;
@@ -99,6 +125,14 @@ jobs:
             mirror -R --no-perms --verbose=1 de /de;
             put .user.ini -o /.user.ini;
             put teklif.php -o /teklif.php;
+            mirror -R --no-perms --verbose=1 yonetim /yonetim;
+            mkdir -p -f /_yonetim-veri;
+            put _yonetim-veri/.htaccess -o /_yonetim-veri/.htaccess;
+            put _yonetim-veri/sablon-tr.html -o /_yonetim-veri/sablon-tr.html;
+            put _yonetim-veri/sablon-en.html -o /_yonetim-veri/sablon-en.html;
+            put _yonetim-veri/sablon-de.html -o /_yonetim-veri/sablon-de.html;
+            put _yonetim-veri/icerik-varsayilan.json -o /_yonetim-veri/icerik-varsayilan.json;
+            $SIFRE_KOMUT
             put .htaccess -o /.htaccess;
             put index.html -o /index.html;
             mkdir -p -f /v2;
@@ -123,6 +157,10 @@ jobs:
             code=$(curl -s -o /dev/null -w '%{http_code}' -I --max-time 30 "https://alufortis.gkh.ro/$p")
             echo "$p http=$code boyut=$got beklenen=$want"
             [ "$code" = "200" ] || ok=0
+          done
+          for u in yonetim/:200 _yonetim-veri/sablon-tr.html:403 _yonetim-veri/icerik-varsayilan.json:403 yonetim/lib.php:403 yonetim/PHPMailer/SMTP.php:403; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 "https://alufortis.gkh.ro/${u%%:*}")
+            echo "${u%%:*}: http=$code (${u##*:} beklenir)"; [ "$code" = "${u##*:}" ] || ok=0
           done
           code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 "https://alufortis.gkh.ro/teklif.php")
           echo "teklif.php GET: http=$code (405 beklenir)"; [ "$code" = "405" ] || ok=0

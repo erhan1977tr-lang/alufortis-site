@@ -1,0 +1,2970 @@
+{
+ "K0": {
+  "grup": "Sayfa başlığı ve arama motoru",
+  "tur": "t",
+  "not": "<title>",
+  "tr": "Alufortis Alüminyum",
+  "en": "Alufortis Aluminium",
+  "de": "Alufortis Aluminium"
+ },
+ "K1": {
+  "grup": "Sayfa başlığı ve arama motoru",
+  "tur": "t",
+  "not": "<meta name=\"description\" content=\"",
+  "tr": "Alufortis: 1996'dan beri alüminyum profil. Ekstrüzyon, eloksal, elektrostatik toz boya, kalıphane ve mekanik işlem tek çatı altında. Pendik, İstanbul.",
+  "en": "Alufortis: aluminium profiles since 1996. Extrusion, anodizing, powder coating, die design and mechanical processing under one roof. Pendik, Istanbul.",
+  "de": "Alufortis: Aluminiumprofile seit 1996. Extrusion, Eloxieren, Pulverbeschichtung, Werkzeugkonstruktion und mechanische Bearbeitung unter einem Dach. Pendik, Istanbul."
+ },
+ "K2": {
+  "grup": "Sayfa başlığı ve arama motoru",
+  "tur": "t",
+  "not": "<meta property=\"og:title\" content=\"",
+  "tr": "Alufortis Alüminyum",
+  "en": "Alufortis Aluminium",
+  "de": "Alufortis Aluminium"
+ },
+ "K3": {
+  "grup": "Sayfa başlığı ve arama motoru",
+  "tur": "t",
+  "not": "<meta property=\"og:description\" content=\"",
+  "tr": "Kesit doğruysa, her şey doğrudur. 1996'dan beri alüminyum profil, tek çatı altında.",
+  "en": "Get the section right, and everything is right. Aluminium profiles since 1996, under one roof.",
+  "de": "Stimmt der Querschnitt, stimmt alles. Aluminiumprofile seit 1996, unter einem Dach."
+ },
+ "K4": {
+  "grup": "Genel",
+  "tur": "t",
+  "not": "a",
+  "tr": "İçeriğe geç",
+  "en": "Skip to content",
+  "de": "Zum Inhalt springen"
+ },
+ "K5": {
+  "grup": "Giriş mesajları",
+  "tur": "w",
+  "not": "Ana mesaj (kelime kelime belirir)",
+  "tr": "Mühendislikte mükemmellik ve güven inşa ediyoruz.",
+  "en": "We build excellence and trust in engineering.",
+  "de": "Wir schaffen Exzellenz und Vertrauen in der Technik."
+ },
+ "K6": {
+  "grup": "Giriş mesajları",
+  "tur": "t",
+  "not": "p",
+  "tr": "Her gün, her projede",
+  "en": "Every day, in every project",
+  "de": "Jeden Tag, in jedem Projekt"
+ },
+ "K7": {
+  "grup": "Giriş mesajları",
+  "tur": "t",
+  "not": "p",
+  "tr": "Alufortis",
+  "en": "Alufortis",
+  "de": "Alufortis"
+ },
+ "K8": {
+  "grup": "Giriş mesajları",
+  "tur": "t",
+  "not": "h2",
+  "tr": "Alüminyum profilde mühendislik ve üretim gücü.",
+  "en": "Engineering and manufacturing strength in aluminium profiles.",
+  "de": "Ingenieurskompetenz und Fertigungsstärke im Aluminiumprofil."
+ },
+ "K9": {
+  "grup": "Giriş mesajları",
+  "tur": "t",
+  "not": "p",
+  "tr": "Alufortis’te kalıp tasarımından ekstrüzyona, yüzey işlemlerinden mekanik işlemeye kadar her aşamayı kendi tesisimizde yürütüyoruz. Projenize uygun profili tasarlıyor, üretiyor ve montaja hazır hâle getiriyoruz.",
+  "en": "At Alufortis we carry out every stage in our own facility, from die design to extrusion and from surface treatment to mechanical processing. We design the profile that suits your project, produce it and make it ready for assembly.",
+  "de": "Bei Alufortis führen wir jeden Schritt in unserem eigenen Werk aus, von der Werkzeugkonstruktion über die Extrusion und die Oberflächenbehandlung bis zur mechanischen Bearbeitung. Wir konstruieren das passende Profil für Ihr Projekt, fertigen es und liefern es montagefertig."
+ },
+ "K10": {
+  "grup": "Giriş mesajları",
+  "tur": "t",
+  "not": "button",
+  "tr": "Geç",
+  "en": "Skip",
+  "de": "Überspringen"
+ },
+ "K11": {
+  "grup": "Üst menü",
+  "tur": "a",
+  "not": "alt (img)",
+  "tr": "Alufortis Aluminium Engineering Solutions",
+  "en": "Alufortis Aluminium Engineering Solutions",
+  "de": "Alufortis Aluminium Engineering Solutions"
+ },
+ "K12": {
+  "grup": "Üst menü",
+  "tur": "t",
+  "not": "a",
+  "tr": "Hakkımızda",
+  "en": "About us",
+  "de": "Über uns"
+ },
+ "K13": {
+  "grup": "Üst menü",
+  "tur": "t",
+  "not": "a",
+  "tr": "Üretim",
+  "en": "Production",
+  "de": "Produktion"
+ },
+ "K14": {
+  "grup": "Üst menü",
+  "tur": "t",
+  "not": "a",
+  "tr": "Ürünler",
+  "en": "Products",
+  "de": "Produkte"
+ },
+ "K15": {
+  "grup": "Üst menü",
+  "tur": "t",
+  "not": "a",
+  "tr": "Kalite",
+  "en": "Quality",
+  "de": "Qualität"
+ },
+ "K16": {
+  "grup": "Üst menü",
+  "tur": "t",
+  "not": "a",
+  "tr": "SSS",
+  "en": "FAQ",
+  "de": "FAQ"
+ },
+ "K17": {
+  "grup": "Üst menü",
+  "tur": "t",
+  "not": "a",
+  "tr": "İletişim",
+  "en": "Contact",
+  "de": "Kontakt"
+ },
+ "K18": {
+  "grup": "Açılış filmi yazıları",
+  "tur": "t",
+  "not": "Film yazısı 1",
+  "tr": "Siparişiniz saniyeler içinde fabrikamızda",
+  "en": "Your order reaches our factory in seconds",
+  "de": "Ihr Auftrag in Sekunden in unserem Werk"
+ },
+ "K19": {
+  "grup": "Açılış filmi yazıları",
+  "tur": "t",
+  "not": "Film yazısı 1",
+  "tr": "Nerede olursanız olun, siparişinizi online iletebilirsiniz.",
+  "en": "Wherever you are, you can send us your order online.",
+  "de": "Wo immer Sie sind, senden Sie uns Ihren Auftrag online."
+ },
+ "K20": {
+  "grup": "Açılış filmi yazıları",
+  "tur": "t",
+  "not": "Film yazısı 2",
+  "tr": "Üretimimiz biyetle başlar",
+  "en": "Our production starts with the billet",
+  "de": "Unsere Produktion beginnt mit dem Pressbolzen"
+ },
+ "K21": {
+  "grup": "Açılış filmi yazıları",
+  "tur": "t",
+  "not": "Film yazısı 2",
+  "tr": "Alüminyum, fabrikamıza biyet olarak girer",
+  "en": "Aluminium enters our factory as billets",
+  "de": "Aluminium kommt als Pressbolzen in unser Werk"
+ },
+ "K22": {
+  "grup": "Açılış filmi yazıları",
+  "tur": "t",
+  "not": "Film yazısı 3",
+  "tr": "Beş pres, aynı kalite anlayışı",
+  "en": "Five presses, one standard of quality",
+  "de": "Fünf Pressen, ein Qualitätsanspruch"
+ },
+ "K23": {
+  "grup": "Açılış filmi yazıları",
+  "tur": "t",
+  "not": "Film yazısı 3",
+  "tr": "700 ila 4.500 ton pres kapasitesi aralığı",
+  "en": "Press capacities from 700 to 4,500 tonnes",
+  "de": "Presskräfte von 700 bis 4.500 Tonnen"
+ },
+ "K24": {
+  "grup": "Açılış filmi yazıları",
+  "tur": "t",
+  "not": "Film yazısı 4",
+  "tr": "Profiliniz kalıpta şekillenir",
+  "en": "Your profile takes shape in the die",
+  "de": "Ihr Profil nimmt im Werkzeug Form an"
+ },
+ "K25": {
+  "grup": "Açılış filmi yazıları",
+  "tur": "t",
+  "not": "Film yazısı 4",
+  "tr": "Doğru kesit, doğru sonuç",
+  "en": "The right section, the right result",
+  "de": "Der richtige Querschnitt, das richtige Ergebnis"
+ },
+ "K26": {
+  "grup": "Açılış filmi yazıları",
+  "tur": "t",
+  "not": "Film yazısı 5",
+  "tr": "Profilleriniz sevkiyata hazırlanır",
+  "en": "Your profiles are prepared for shipment",
+  "de": "Ihre Profile werden für den Versand vorbereitet"
+ },
+ "K27": {
+  "grup": "Açılış filmi yazıları",
+  "tur": "t",
+  "not": "Film yazısı 5",
+  "tr": "Profil demetleri koruyucu ambalajla paketlenir. Paletler çemberle sabitlenir ve nakliye kamyonlarına yüklenir",
+  "en": "Profile bundles are wrapped in protective packaging. Pallets are strapped and loaded onto trucks",
+  "de": "Die Profilbündel werden mit Schutzverpackung verpackt. Die Paletten werden umreift und auf Lkw verladen"
+ },
+ "K28": {
+  "grup": "Açılış filmi yazıları",
+  "tur": "t",
+  "not": "Film yazısı 6",
+  "tr": "11 ülkeye teslimat",
+  "en": "Delivering to 11 countries",
+  "de": "Lieferung in 11 Länder"
+ },
+ "K29": {
+  "grup": "Açılış filmi yazıları",
+  "tur": "t",
+  "not": "Film yazısı 6",
+  "tr": "Alüminyum profilde güvenilir iş ortağınız.",
+  "en": "Your reliable partner in aluminium profiles.",
+  "de": "Ihr zuverlässiger Partner für Aluminiumprofile."
+ },
+ "K30": {
+  "grup": "Açılış filmi yazıları",
+  "tur": "t",
+  "not": "Film yazısı 6",
+  "tr": "Teklif İsteyin",
+  "en": "Request a Quote",
+  "de": "Angebot anfordern"
+ },
+ "K31": {
+  "grup": "Açılış filmi yazıları",
+  "tur": "t",
+  "not": "Film yazısı 6",
+  "tr": "Üretimi Keşfet",
+  "en": "Explore Production",
+  "de": "Produktion entdecken"
+ },
+ "K32": {
+  "grup": "Açılış filmi yazıları",
+  "tur": "t",
+  "not": "h1",
+  "tr": "Alüminyum profilde güvenilir iş ortağınız.",
+  "en": "Your reliable partner in aluminium profiles.",
+  "de": "Ihr zuverlässiger Partner für Aluminiumprofile."
+ },
+ "K33": {
+  "grup": "Açılış filmi yazıları",
+  "tur": "t",
+  "not": "p",
+  "tr": "1996'dan beri alüminyum profil. Ekstrüzyon, eloksal, toz boya ve mekanik işlem tek çatı altında.",
+  "en": "Aluminium profiles since 1996. Extrusion, anodizing, powder coating and mechanical processing under one roof.",
+  "de": "Aluminiumprofile seit 1996. Extrusion, Eloxieren, Pulverbeschichtung und mechanische Bearbeitung unter einem Dach."
+ },
+ "K34": {
+  "grup": "Açılış filmi yazıları",
+  "tur": "t",
+  "not": "a",
+  "tr": "Teklif İsteyin",
+  "en": "Request a Quote",
+  "de": "Angebot anfordern"
+ },
+ "K35": {
+  "grup": "Açılış filmi yazıları",
+  "tur": "t",
+  "not": "svg",
+  "tr": "Kaydırın",
+  "en": "Scroll",
+  "de": "Scrollen"
+ },
+ "K36": {
+  "grup": "Rakamlar",
+  "tur": "t",
+  "not": "p",
+  "tr": "Ölçülebilir",
+  "en": "Measurable",
+  "de": "Messbar"
+ },
+ "K37": {
+  "grup": "Rakamlar",
+  "tur": "t",
+  "not": "h2",
+  "tr": "Rakamlarla Alufortis",
+  "en": "Alufortis by the numbers",
+  "de": "Alufortis in Zahlen"
+ },
+ "K38": {
+  "grup": "Rakamlar",
+  "tur": "n",
+  "not": "sayı: data-to",
+  "tr": "30",
+  "en": "30",
+  "de": "30"
+ },
+ "K39": {
+  "grup": "Rakamlar",
+  "tur": "n",
+  "not": "sayı: data-suffix",
+  "tr": "+",
+  "en": "+",
+  "de": "+"
+ },
+ "K40": {
+  "grup": "Rakamlar",
+  "tur": "t",
+  "not": "div",
+  "tr": "yıl tecrübe",
+  "en": "years of experience",
+  "de": "Jahre Erfahrung"
+ },
+ "K41": {
+  "grup": "Rakamlar",
+  "tur": "n",
+  "not": "sayı: data-to",
+  "tr": "20000",
+  "en": "20000",
+  "de": "20000"
+ },
+ "K42": {
+  "grup": "Rakamlar",
+  "tur": "t",
+  "not": "div",
+  "tr": "ton/yıl ekstrüzyon",
+  "en": "t/year extrusion",
+  "de": "t/Jahr Extrusion"
+ },
+ "K43": {
+  "grup": "Rakamlar",
+  "tur": "n",
+  "not": "sayı: data-to",
+  "tr": "22000",
+  "en": "22000",
+  "de": "22000"
+ },
+ "K44": {
+  "grup": "Rakamlar",
+  "tur": "t",
+  "not": "div",
+  "tr": "ton/yıl eloksal",
+  "en": "t/year anodizing",
+  "de": "t/Jahr Eloxieren"
+ },
+ "K45": {
+  "grup": "Rakamlar",
+  "tur": "n",
+  "not": "sayı: data-to",
+  "tr": "25000",
+  "en": "25000",
+  "de": "25000"
+ },
+ "K46": {
+  "grup": "Rakamlar",
+  "tur": "t",
+  "not": "div",
+  "tr": "ton/yıl toz boya",
+  "en": "t/year powder coating",
+  "de": "t/Jahr Pulverbeschichtung"
+ },
+ "K47": {
+  "grup": "Rakamlar",
+  "tur": "n",
+  "not": "sayı: data-to",
+  "tr": "13.5",
+  "en": "13.5",
+  "de": "13.5"
+ },
+ "K48": {
+  "grup": "Rakamlar",
+  "tur": "n",
+  "not": "sayı: data-suffix",
+  "tr": " m",
+  "en": " m",
+  "de": " m"
+ },
+ "K49": {
+  "grup": "Rakamlar",
+  "tur": "t",
+  "not": "div",
+  "tr": "maksimum profil boyu",
+  "en": "maximum profile length",
+  "de": "maximale Profillänge"
+ },
+ "K50": {
+  "grup": "Rakamlar",
+  "tur": "n",
+  "not": "sayı: data-to",
+  "tr": "4500",
+  "en": "4500",
+  "de": "4500"
+ },
+ "K51": {
+  "grup": "Rakamlar",
+  "tur": "t",
+  "not": "div",
+  "tr": "ton pres gücü",
+  "en": "tonnes press force",
+  "de": "Tonnen Presskraft"
+ },
+ "K52": {
+  "grup": "Hakkımızda",
+  "tur": "t",
+  "not": "p",
+  "tr": "Hakkımızda",
+  "en": "About us",
+  "de": "Über uns"
+ },
+ "K53": {
+  "grup": "Hakkımızda",
+  "tur": "t",
+  "not": "h2",
+  "tr": "30 Yıllık Tecrübe, Güçlü Altyapı",
+  "en": "30 Years of Experience, a Strong Foundation",
+  "de": "30 Jahre Erfahrung, eine starke Basis"
+ },
+ "K54": {
+  "grup": "Hakkımızda",
+  "tur": "t",
+  "not": "p",
+  "tr": "01",
+  "en": "01",
+  "de": "01"
+ },
+ "K55": {
+  "grup": "Hakkımızda",
+  "tur": "t",
+  "not": "p",
+  "tr": "Alufortis, alüminyum sektöründe 30 yılı aşkın süredir edindiği bilgi ve deneyimi yüksek mühendislik bilgisiyle birleştirerek, sürdürülebilir ve verimli çözümler üretmektedir.",
+  "en": "Alufortis combines the knowledge and experience gained over more than 30 years in the aluminium industry with advanced engineering expertise to create sustainable and efficient solutions.",
+  "de": "Alufortis verbindet das in über 30 Jahren in der Aluminiumbranche gewonnene Wissen und die Erfahrung mit hoher Ingenieurskompetenz und schafft so nachhaltige und effiziente Lösungen."
+ },
+ "K56": {
+  "grup": "Hakkımızda",
+  "tur": "t",
+  "not": "p",
+  "tr": "Alanında uzman mühendis kadromuzla yalnızca standart ürünler sunmuyor; aynı zamanda müşteriye özel tasarım, üretim ve lojistik çözümleriyle de yurtiçi ve yurtdışında fark yaratıyoruz.",
+  "en": "With our team of expert engineers we do more than supply standard products: with customer-specific design, production and logistics solutions we make a difference both in Türkiye and abroad.",
+  "de": "Mit unserem Team erfahrener Ingenieure bieten wir nicht nur Standardprodukte an: Mit kundenspezifischen Lösungen in Konstruktion, Fertigung und Logistik setzen wir im In- und Ausland Akzente."
+ },
+ "K57": {
+  "grup": "Hakkımızda",
+  "tur": "t",
+  "not": "p",
+  "tr": "02",
+  "en": "02",
+  "de": "02"
+ },
+ "K58": {
+  "grup": "Hakkımızda",
+  "tur": "t",
+  "not": "h3",
+  "tr": "Küresel Pazarda Güçlü Bir Tedarik Ortağı",
+  "en": "A Strong Supply Partner in the Global Market",
+  "de": "Ein starker Lieferpartner auf dem Weltmarkt"
+ },
+ "K59": {
+  "grup": "Hakkımızda",
+  "tur": "t",
+  "not": "p",
+  "tr": "Kuruluşumuz, farklı alanlardaki uzmanlıklarını birleştirerek ithalat ve ihracat süreçlerinde uçtan uca hizmet sunmak amacıyla Alufortis markasını hayata geçirmiştir. Üretimden tesis kurulumuna, satış-ihracattan yönetim ve finans danışmanlığına kadar geniş bir yelpazede edindiğimiz deneyimle, kısa sürede çok yönlü ve güvenilir bir tedarikçi konumuna ulaştık.",
+  "en": "Our company created the Alufortis brand to offer end-to-end services in import and export by bringing together expertise from different fields. With experience across a wide range, from production to plant set-up and from sales and export to management and finance consulting, we quickly became a versatile and reliable supplier.",
+  "de": "Unser Unternehmen hat die Marke Alufortis ins Leben gerufen, um durch die Bündelung von Fachwissen aus verschiedenen Bereichen durchgängige Leistungen in Import und Export anzubieten. Mit unserer breiten Erfahrung von der Produktion über den Anlagenaufbau und von Vertrieb und Export bis zur Management- und Finanzberatung haben wir uns in kurzer Zeit zu einem vielseitigen und zuverlässigen Lieferanten entwickelt."
+ },
+ "K60": {
+  "grup": "Hakkımızda",
+  "tur": "t",
+  "not": "p",
+  "tr": "Bugün; Almanya, Romanya, Hollanda, Yunanistan, Ürdün, Bulgaristan, Fransa, Çekya, Litvanya, Estonya, Şili gibi pek çok ülkedeki iş ortaklarımıza, müşteri memnuniyetini esas alan bir anlayışla zamanında, inovatif ve çözüm odaklı hizmet sunuyoruz.",
+  "en": "Today we serve our partners in many countries, including Germany, Romania, the Netherlands, Greece, Jordan, Bulgaria, France, Czechia, Lithuania, Estonia and Chile, with timely, innovative and solution-oriented service built around customer satisfaction.",
+  "de": "Heute betreuen wir unsere Partner in vielen Ländern, darunter Deutschland, Rumänien, die Niederlande, Griechenland, Jordanien, Bulgarien, Frankreich, Tschechien, Litauen, Estland und Chile, pünktlich, innovativ und lösungsorientiert, mit der Zufriedenheit unserer Kunden als Maßstab."
+ },
+ "K61": {
+  "grup": "Hakkımızda",
+  "tur": "t",
+  "not": "li",
+  "tr": "Almanya",
+  "en": "Germany",
+  "de": "Deutschland"
+ },
+ "K62": {
+  "grup": "Hakkımızda",
+  "tur": "t",
+  "not": "li",
+  "tr": "Romanya",
+  "en": "Romania",
+  "de": "Rumänien"
+ },
+ "K63": {
+  "grup": "Hakkımızda",
+  "tur": "t",
+  "not": "li",
+  "tr": "Hollanda",
+  "en": "Netherlands",
+  "de": "Niederlande"
+ },
+ "K64": {
+  "grup": "Hakkımızda",
+  "tur": "t",
+  "not": "li",
+  "tr": "Yunanistan",
+  "en": "Greece",
+  "de": "Griechenland"
+ },
+ "K65": {
+  "grup": "Hakkımızda",
+  "tur": "t",
+  "not": "li",
+  "tr": "Ürdün",
+  "en": "Jordan",
+  "de": "Jordanien"
+ },
+ "K66": {
+  "grup": "Hakkımızda",
+  "tur": "t",
+  "not": "li",
+  "tr": "Bulgaristan",
+  "en": "Bulgaria",
+  "de": "Bulgarien"
+ },
+ "K67": {
+  "grup": "Hakkımızda",
+  "tur": "t",
+  "not": "li",
+  "tr": "Fransa",
+  "en": "France",
+  "de": "Frankreich"
+ },
+ "K68": {
+  "grup": "Hakkımızda",
+  "tur": "t",
+  "not": "li",
+  "tr": "Çekya",
+  "en": "Czechia",
+  "de": "Tschechien"
+ },
+ "K69": {
+  "grup": "Hakkımızda",
+  "tur": "t",
+  "not": "li",
+  "tr": "Litvanya",
+  "en": "Lithuania",
+  "de": "Litauen"
+ },
+ "K70": {
+  "grup": "Hakkımızda",
+  "tur": "t",
+  "not": "li",
+  "tr": "Estonya",
+  "en": "Estonia",
+  "de": "Estland"
+ },
+ "K71": {
+  "grup": "Hakkımızda",
+  "tur": "t",
+  "not": "li",
+  "tr": "Şili",
+  "en": "Chile",
+  "de": "Chile"
+ },
+ "K72": {
+  "grup": "Hakkımızda",
+  "tur": "t",
+  "not": "span",
+  "tr": "Güvenilirlik, hız ve sürdürülebilir başarıya dayalı yaklaşımımız sayesinde büyümemizi istikrarlı bir şekilde sürdürmeye devam ediyoruz.",
+  "en": "Thanks to our approach built on reliability, speed and sustainable success, we continue to grow steadily.",
+  "de": "Dank unseres Ansatzes, der auf Zuverlässigkeit, Schnelligkeit und nachhaltigem Erfolg beruht, wachsen wir weiterhin stetig."
+ },
+ "K73": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "a",
+  "not": "alt (img)",
+  "tr": "Alufortis tesisinin gece görünümü, cephede Alufortis logosu",
+  "en": "Alufortis facility at night, with the Alufortis logo on the facade",
+  "de": "Alufortis-Werk bei Nacht, mit dem Alufortis-Logo an der Fassade"
+ },
+ "K74": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "a",
+  "not": "alt (img)",
+  "tr": "Ekranda profil kesiti ve gerilme analizi, masada alüminyum profil ve kumpas",
+  "en": "Profile section and stress analysis on screen, an aluminium profile and a caliper on the desk",
+  "de": "Profilquerschnitt und Spannungsanalyse am Bildschirm, Aluminiumprofil und Messschieber auf dem Tisch"
+ },
+ "K75": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "a",
+  "not": "alt (img)",
+  "tr": "Çelik ekstrüzyon kalıbı, arkada CNC tezgâhı",
+  "en": "Steel extrusion die, with a CNC machine behind it",
+  "de": "Extrusionswerkzeug aus Stahl, dahinter eine CNC-Maschine"
+ },
+ "K76": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "a",
+  "not": "alt (img)",
+  "tr": "Presten çıkan sıcak alüminyum profil",
+  "en": "Hot aluminium profile leaving the press",
+  "de": "Heißes Aluminiumprofil verlässt die Presse"
+ },
+ "K77": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "a",
+  "not": "alt (img)",
+  "tr": "Eloksal, toz boya ve ahşap desen yüzeyli profiller yan yana",
+  "en": "Anodized, powder-coated and wood-effect profiles side by side",
+  "de": "Eloxierte, pulverbeschichtete Profile und Profile mit Holzdekor nebeneinander"
+ },
+ "K78": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "a",
+  "not": "alt (img)",
+  "tr": "CNC tezgâhında işlenen alüminyum profil",
+  "en": "Aluminium profile being machined on a CNC machine",
+  "de": "Aluminiumprofil in der CNC-Bearbeitung"
+ },
+ "K79": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "a",
+  "not": "alt (img)",
+  "tr": "Lazerle kesilen alüminyum profil ve kıvılcımlar",
+  "en": "Aluminium profile being laser cut, with sparks",
+  "de": "Aluminiumprofil beim Laserschneiden, mit Funkenflug"
+ },
+ "K80": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "a",
+  "not": "alt (img)",
+  "tr": "Ölçüm kolu ile kontrol edilen alüminyum parça",
+  "en": "Aluminium part being checked with a measuring arm",
+  "de": "Aluminiumteil wird mit einem Messarm geprüft"
+ },
+ "K81": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "a",
+  "not": "alt (img)",
+  "tr": "Alufortis etiketli, paletlenmiş profil paketleri",
+  "en": "Palletized profile bundles with Alufortis labels",
+  "de": "Palettierte Profilbündel mit Alufortis-Etiketten"
+ },
+ "K82": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "a",
+  "not": "alt (img)",
+  "tr": "Alufortis logolu tıra profil yükleyen forklift",
+  "en": "Forklift loading profiles into a truck with the Alufortis logo",
+  "de": "Gabelstapler belädt einen Lkw mit Alufortis-Logo mit Profilen"
+ },
+ "K83": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "p",
+  "tr": "Fikirden teslimata",
+  "en": "From idea to delivery",
+  "de": "Von der Idee bis zur Lieferung"
+ },
+ "K84": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "span",
+  "tr": "Mühendislik burada başlar.",
+  "en": "Engineering starts here.",
+  "de": "Hier beginnt Engineering."
+ },
+ "K85": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "p",
+  "tr": "Her çözüm, uygulamanızı doğru anlamakla başlar. Çizimden sevkiyata kadar sürecin tamamında mühendislik bizde.",
+  "en": "Every solution begins with understanding your application. From drawing to shipment, the engineering stays with us.",
+  "de": "Jede Lösung beginnt damit, Ihre Anwendung vollständig zu verstehen. Von der Zeichnung bis zum Versand bleibt das Engineering bei uns."
+ },
+ "K86": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "span",
+  "tr": "Kaydırdıkça dokuz adımı izleyin",
+  "en": "Scroll through the nine steps",
+  "de": "Scrollen Sie durch die neun Schritte"
+ },
+ "K87": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "b",
+  "tr": "01",
+  "en": "01",
+  "de": "01"
+ },
+ "K88": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "span",
+  "tr": "/ 09",
+  "en": "/ 09",
+  "de": "/ 09"
+ },
+ "K89": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "span",
+  "tr": "Mühendislik",
+  "en": "Engineering",
+  "de": "Engineering"
+ },
+ "K90": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "p",
+  "tr": "Her çözüm, uygulamanızı doğru anlamakla başlar.",
+  "en": "Every solution begins with understanding your application.",
+  "de": "Jede Lösung beginnt damit, Ihre Anwendung vollständig zu verstehen."
+ },
+ "K91": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "li",
+  "tr": "Tasarım",
+  "en": "Design",
+  "de": "Konstruktion"
+ },
+ "K92": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "li",
+  "tr": "Analiz",
+  "en": "Analysis",
+  "de": "Analyse"
+ },
+ "K93": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "li",
+  "tr": "Simülasyon",
+  "en": "Simulation",
+  "de": "Simulation"
+ },
+ "K94": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "li",
+  "tr": "Optimizasyon",
+  "en": "Optimization",
+  "de": "Optimierung"
+ },
+ "K95": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "b",
+  "tr": "02",
+  "en": "02",
+  "de": "02"
+ },
+ "K96": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "span",
+  "tr": "/ 09",
+  "en": "/ 09",
+  "de": "/ 09"
+ },
+ "K97": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "span",
+  "tr": "Kalıp tasarımı ve takımlandırma",
+  "en": "Die design & tooling",
+  "de": "Werkzeugkonstruktion"
+ },
+ "K98": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "p",
+  "tr": "Maksimum performans ve hassasiyet için özel tasarlanmış ekstrüzyon kalıpları.",
+  "en": "Custom-designed dies for maximum performance and precision.",
+  "de": "Individuell entwickelte Extrusionswerkzeuge für höchste Präzision und maximale Performance."
+ },
+ "K99": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "li",
+  "tr": "Kalıp tasarımı",
+  "en": "Die design",
+  "de": "Werkzeugentwicklung"
+ },
+ "K100": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "li",
+  "tr": "Üretim",
+  "en": "Production",
+  "de": "Produktion"
+ },
+ "K101": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "li",
+  "tr": "Kalıp testleri",
+  "en": "Die testing",
+  "de": "Werkzeugtests"
+ },
+ "K102": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "b",
+  "tr": "03",
+  "en": "03",
+  "de": "03"
+ },
+ "K103": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "span",
+  "tr": "/ 09",
+  "en": "/ 09",
+  "de": "/ 09"
+ },
+ "K104": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "span",
+  "tr": "Hassas ekstrüzyon",
+  "en": "Precision extrusion",
+  "de": "Präzisionsextrusion"
+ },
+ "K105": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "p",
+  "tr": "Yüksek performanslı presler ve gelişmiş üretim süreçleri sayesinde üstün kaliteli profiller.",
+  "en": "High-performance presses and advanced processes ensure superior profiles.",
+  "de": "Leistungsstarke Pressen und moderne Fertigungsprozesse für Aluminiumprofile höchster Qualität."
+ },
+ "K106": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "li",
+  "tr": "Ekstrüzyon",
+  "en": "Extrusion",
+  "de": "Extrusion"
+ },
+ "K107": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "li",
+  "tr": "Soğutma",
+  "en": "Cooling",
+  "de": "Kühlung"
+ },
+ "K108": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "li",
+  "tr": "Germe",
+  "en": "Stretching",
+  "de": "Strecken"
+ },
+ "K109": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "li",
+  "tr": "Yaşlandırma",
+  "en": "Aging",
+  "de": "Auslagern"
+ },
+ "K110": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "b",
+  "tr": "04",
+  "en": "04",
+  "de": "04"
+ },
+ "K111": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "span",
+  "tr": "/ 09",
+  "en": "/ 09",
+  "de": "/ 09"
+ },
+ "K112": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "span",
+  "tr": "Uzun ömürlü yüzey mükemmelliği",
+  "en": "Surface excellence, built to last",
+  "de": "Oberflächenqualität für Langlebigkeit"
+ },
+ "K113": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "p",
+  "tr": "Dayanıklılık, estetik ve koruma sağlayan gelişmiş yüzey işlemleri.",
+  "en": "Advanced surface treatments for durability, aesthetics and protection.",
+  "de": "Modernste Oberflächenbehandlungen für Schutz, Langlebigkeit und hochwertige Optik."
+ },
+ "K114": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "li",
+  "tr": "Eloksal",
+  "en": "Anodizing",
+  "de": "Eloxieren"
+ },
+ "K115": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "li",
+  "tr": "Elektrostatik toz boya",
+  "en": "Powder coating",
+  "de": "Pulverbeschichtung"
+ },
+ "K116": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "li",
+  "tr": "Ahşap desen",
+  "en": "Wood effect",
+  "de": "Holzdekor"
+ },
+ "K117": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "li",
+  "tr": "Ham yüzey (mill finish)",
+  "en": "Mill finish",
+  "de": "Mill Finish"
+ },
+ "K118": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "b",
+  "tr": "05",
+  "en": "05",
+  "de": "05"
+ },
+ "K119": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "span",
+  "tr": "/ 09",
+  "en": "/ 09",
+  "de": "/ 09"
+ },
+ "K120": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "span",
+  "tr": "Ekstrüzyonun ötesinde mühendislik",
+  "en": "Engineering beyond extrusion",
+  "de": "Engineering über die Extrusion hinaus"
+ },
+ "K121": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "p",
+  "tr": "Gelişmiş mekanik işleme teknolojileri, alüminyum profilleri montaja hazır mühendislik bileşenlerine dönüştürür.",
+  "en": "Advanced machining transforms aluminium profiles into complete engineered components.",
+  "de": "Modernste Fertigungstechnologien verwandeln Aluminiumprofile in montagefertige Systemkomponenten."
+ },
+ "K122": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "li",
+  "tr": "5 eksen CNC işleme",
+  "en": "5-axis CNC machining",
+  "de": "5-Achs-CNC-Bearbeitung"
+ },
+ "K123": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "li",
+  "tr": "Delme",
+  "en": "Drilling",
+  "de": "Bohren"
+ },
+ "K124": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "li",
+  "tr": "Frezeleme",
+  "en": "Milling",
+  "de": "Fräsen"
+ },
+ "K125": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "li",
+  "tr": "Montaj",
+  "en": "Assembly",
+  "de": "Montage"
+ },
+ "K126": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "b",
+  "tr": "06",
+  "en": "06",
+  "de": "06"
+ },
+ "K127": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "span",
+  "tr": "/ 09",
+  "en": "/ 09",
+  "de": "/ 09"
+ },
+ "K128": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "span",
+  "tr": "Lazer kesim ve kaynak",
+  "en": "Laser cutting & welding",
+  "de": "Laserschneiden und Laserschweißen"
+ },
+ "K129": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "p",
+  "tr": "Montaja hazır alüminyum parçalar için hassas kesim ve birleştirme.",
+  "en": "Precision cutting and joining for ready-to-install aluminium components.",
+  "de": "Präzises Schneiden und Fügen für montagefertige Aluminiumbauteile."
+ },
+ "K130": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "li",
+  "tr": "Lazer kesim",
+  "en": "Laser cutting",
+  "de": "Laserschneiden"
+ },
+ "K131": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "li",
+  "tr": "Lazer kaynak",
+  "en": "Laser welding",
+  "de": "Laserschweißen"
+ },
+ "K132": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "li",
+  "tr": "Montaj",
+  "en": "Assembly",
+  "de": "Montage"
+ },
+ "K133": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "li",
+  "tr": "Kalite kontrol",
+  "en": "Quality control",
+  "de": "Qualitätskontrolle"
+ },
+ "K134": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "b",
+  "tr": "07",
+  "en": "07",
+  "de": "07"
+ },
+ "K135": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "span",
+  "tr": "/ 09",
+  "en": "/ 09",
+  "de": "/ 09"
+ },
+ "K136": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "span",
+  "tr": "Tavizsiz kalite",
+  "en": "Quality without compromise",
+  "de": "Qualität ohne Kompromisse"
+ },
+ "K137": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "p",
+  "tr": "Kalite üretimin sonunda kontrol edilmez. Üretimin her aşamasına mühendislikle entegre edilir.",
+  "en": "Quality is not inspected at the end, it is engineered into every step of production.",
+  "de": "Qualität wird nicht am Ende geprüft. Sie wird in jedem einzelnen Produktionsschritt entwickelt."
+ },
+ "K138": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "li",
+  "tr": "Malzeme doğrulama",
+  "en": "Material verification",
+  "de": "Materialprüfung"
+ },
+ "K139": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "li",
+  "tr": "3 boyutlu ölçüm",
+  "en": "3D metrology",
+  "de": "3D-Messtechnik"
+ },
+ "K140": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "li",
+  "tr": "Boyutsal kontrol",
+  "en": "Dimensional inspection",
+  "de": "Maßkontrolle"
+ },
+ "K141": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "li",
+  "tr": "Son kontrol",
+  "en": "Final control",
+  "de": "Endkontrolle"
+ },
+ "K142": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "b",
+  "tr": "08",
+  "en": "08",
+  "de": "08"
+ },
+ "K143": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "span",
+  "tr": "/ 09",
+  "en": "/ 09",
+  "de": "/ 09"
+ },
+ "K144": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "span",
+  "tr": "Özenli paketleme",
+  "en": "Packaging with care",
+  "de": "Sorgfältige Verpackung"
+ },
+ "K145": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "p",
+  "tr": "Güvenli paketleme ürünleri korur ve müşteriye ulaştığında aynı kaliteyi garanti eder.",
+  "en": "Secure packaging protects products and guarantees quality on arrival.",
+  "de": "Sichere Verpackung schützt Produkte und garantiert höchste Qualität bei der Anlieferung."
+ },
+ "K146": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "li",
+  "tr": "Koruma",
+  "en": "Protection",
+  "de": "Schutz"
+ },
+ "K147": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "li",
+  "tr": "Etiketleme",
+  "en": "Labeling",
+  "de": "Etikettierung"
+ },
+ "K148": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "li",
+  "tr": "Paletleme",
+  "en": "Palletizing",
+  "de": "Palettierung"
+ },
+ "K149": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "li",
+  "tr": "Depolama",
+  "en": "Storage",
+  "de": "Lagerung"
+ },
+ "K150": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "b",
+  "tr": "09",
+  "en": "09",
+  "de": "09"
+ },
+ "K151": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "span",
+  "tr": "/ 09",
+  "en": "/ 09",
+  "de": "/ 09"
+ },
+ "K152": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "span",
+  "tr": "Dünyaya teslimat",
+  "en": "Delivering to the world",
+  "de": "Weltweite Lieferung"
+ },
+ "K153": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "p",
+  "tr": "Nerede olursanız olun, zamanında teslimat.",
+  "en": "On-time delivery, anywhere you are.",
+  "de": "Pünktliche Lieferung. Weltweit."
+ },
+ "K154": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "li",
+  "tr": "Lojistik",
+  "en": "Logistics",
+  "de": "Logistik"
+ },
+ "K155": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "li",
+  "tr": "Yükleme",
+  "en": "Loading",
+  "de": "Verladung"
+ },
+ "K156": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "li",
+  "tr": "Taşıma",
+  "en": "Transport",
+  "de": "Transport"
+ },
+ "K157": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "li",
+  "tr": "Global erişim",
+  "en": "Global reach",
+  "de": "Globales Netzwerk"
+ },
+ "K158": {
+  "grup": "Fikirden teslimata (süreç)",
+  "tur": "t",
+  "not": "p",
+  "tr": "Temsili görseller. Ürünler ve tesis, gerçek üretimden farklı görünebilir.",
+  "en": "Representative images. Products and facilities may differ from actual production.",
+  "de": "Symbolbilder. Produkte und Anlagen können von der tatsächlichen Fertigung abweichen."
+ },
+ "K159": {
+  "grup": "Üretim",
+  "tur": "t",
+  "not": "p",
+  "tr": "Üretim",
+  "en": "Production",
+  "de": "Produktion"
+ },
+ "K160": {
+  "grup": "Üretim",
+  "tur": "t",
+  "not": "h2",
+  "tr": "Kalıptan profile beş adım",
+  "en": "Five steps from die to profile",
+  "de": "Fünf Schritte vom Werkzeug zum Profil"
+ },
+ "K161": {
+  "grup": "Üretim",
+  "tur": "t",
+  "not": "p",
+  "tr": "Profil bizim elimizde başlar, bizim elimizde biter. Dışarıya iş vermeyiz.",
+  "en": "A profile starts and ends in our hands. We do not outsource.",
+  "de": "Ein Profil beginnt und endet bei uns. Wir vergeben nichts nach außen."
+ },
+ "K162": {
+  "grup": "Üretim",
+  "tur": "t",
+  "not": "span",
+  "tr": "Kesit 7800-1",
+  "en": "Section 7800-1",
+  "de": "Querschnitt 7800-1"
+ },
+ "K163": {
+  "grup": "Üretim",
+  "tur": "t",
+  "not": "span",
+  "tr": "Sürükleyin",
+  "en": "Drag",
+  "de": "Ziehen"
+ },
+ "K164": {
+  "grup": "Üretim",
+  "tur": "t",
+  "not": "span",
+  "tr": "01",
+  "en": "01",
+  "de": "01"
+ },
+ "K165": {
+  "grup": "Üretim",
+  "tur": "t",
+  "not": "span",
+  "tr": "Kalıp tasarımı",
+  "en": "Die design",
+  "de": "Werkzeugkonstruktion"
+ },
+ "K166": {
+  "grup": "Üretim",
+  "tur": "t",
+  "not": "span",
+  "tr": "Çizimden kesite",
+  "en": "From drawing to section",
+  "de": "Von der Zeichnung zum Querschnitt"
+ },
+ "K167": {
+  "grup": "Üretim",
+  "tur": "t",
+  "not": "figcaption",
+  "tr": "Temsili 3D model. Kesit, 7800-1 teknik çiziminden alınmıştır; renkler yüzey seçeneklerini gösterir.",
+  "en": "Representative 3D model. The section is taken from the 7800-1 technical drawing; the colours show surface options.",
+  "de": "Repräsentatives 3D-Modell. Der Querschnitt stammt aus der technischen Zeichnung 7800-1; die Farben zeigen Oberflächenoptionen."
+ },
+ "K168": {
+  "grup": "Üretim",
+  "tur": "t",
+  "not": "span",
+  "tr": "01",
+  "en": "01",
+  "de": "01"
+ },
+ "K169": {
+  "grup": "Üretim",
+  "tur": "t",
+  "not": "svg",
+  "tr": "Kalıp tasarımı",
+  "en": "Die design",
+  "de": "Werkzeugkonstruktion"
+ },
+ "K170": {
+  "grup": "Üretim",
+  "tur": "t",
+  "not": "p",
+  "tr": "Profilin teknik çiziminden yola çıkarak ekstrüzyon kalıbını tasarlıyoruz. Kalıp ve üretim bilgisi Alufortis bünyesinde kalıyor.",
+  "en": "Starting from the technical drawing of the profile, we design the extrusion die. The die and the production know-how stay within Alufortis.",
+  "de": "Ausgehend von der technischen Zeichnung des Profils konstruieren wir das Extrusionswerkzeug. Werkzeug und Fertigungs-Know-how bleiben bei Alufortis."
+ },
+ "K171": {
+  "grup": "Üretim",
+  "tur": "t",
+  "not": "span",
+  "tr": "02",
+  "en": "02",
+  "de": "02"
+ },
+ "K172": {
+  "grup": "Üretim",
+  "tur": "t",
+  "not": "svg",
+  "tr": "Ekstrüzyon",
+  "en": "Extrusion",
+  "de": "Extrusion"
+ },
+ "K173": {
+  "grup": "Üretim",
+  "tur": "t",
+  "not": "p",
+  "tr": "700 ila 4.500-ton kapasiteli beş presimizle 13,5 metreye kadar alüminyum profil üretiyoruz. Üretimde 4 ila 10 inç çapında biyetler ve 6063, 6082, 6005, 6463 alaşımları kullanıyoruz.",
+  "en": "With our five presses from 700 to 4,500 tonnes we produce aluminium profiles up to 13.5 metres long. We use billets from 4 to 10 inches in diameter and the alloys 6063, 6082, 6005 and 6463.",
+  "de": "Mit unseren fünf Pressen von 700 bis 4.500 Tonnen fertigen wir Aluminiumprofile bis 13,5 Meter Länge. Wir verarbeiten Pressbolzen mit 4 bis 10 Zoll Durchmesser und die Legierungen 6063, 6082, 6005 und 6463."
+ },
+ "K174": {
+  "grup": "Üretim",
+  "tur": "t",
+  "not": "span",
+  "tr": "03",
+  "en": "03",
+  "de": "03"
+ },
+ "K175": {
+  "grup": "Üretim",
+  "tur": "t",
+  "not": "svg",
+  "tr": "Eloksal kaplama",
+  "en": "Anodizing",
+  "de": "Eloxieren"
+ },
+ "K176": {
+  "grup": "Üretim",
+  "tur": "t",
+  "not": "p",
+  "tr": "QUALANOD sertifikalı iki tesisimizde 7 metreye kadar profillere eloksal kaplama uyguluyoruz. Doğal, siyah, bronz, kahverengi ve altın renk seçeneklerinin yanı sıra polisaj, saten yüzey ve kumlama uygulamaları sunuyoruz.",
+  "en": "In our two QUALANOD-certified plants we anodize profiles up to 7 metres long. Besides natural, black, bronze, brown and gold finishes, we offer polishing, satin finishing and sandblasting.",
+  "de": "In unseren zwei QUALANOD-zertifizierten Anlagen eloxieren wir Profile bis 7 Meter Länge. Neben Natur, Schwarz, Bronze, Braun und Gold bieten wir Polieren, Satinieren und Sandstrahlen an."
+ },
+ "K177": {
+  "grup": "Üretim",
+  "tur": "t",
+  "not": "span",
+  "tr": "04",
+  "en": "04",
+  "de": "04"
+ },
+ "K178": {
+  "grup": "Üretim",
+  "tur": "t",
+  "not": "svg",
+  "tr": "Toz boya",
+  "en": "Powder coating",
+  "de": "Pulverbeschichtung"
+ },
+ "K179": {
+  "grup": "Üretim",
+  "tur": "t",
+  "not": "p",
+  "tr": "QUALICOAT sertifikalı toz boya uygulamalarımızı iki dikey boya hattı ve bir yatay boya kabininde gerçekleştiriyoruz. 7 metreye kadar profilleri tüm RAL renklerinde boyuyor, numuneye göre özel renk eşleştirmesi yapıyoruz.",
+  "en": "We carry out our QUALICOAT-certified powder coating on two vertical coating lines and one horizontal coating booth. We coat profiles up to 7 metres in all RAL colours and match custom colours to your sample.",
+  "de": "Unsere QUALICOAT-zertifizierte Pulverbeschichtung erfolgt auf zwei vertikalen Beschichtungsanlagen und in einer horizontalen Kabine. Wir beschichten Profile bis 7 Meter in allen RAL-Farben und stimmen Sonderfarben nach Muster ab."
+ },
+ "K180": {
+  "grup": "Üretim",
+  "tur": "t",
+  "not": "span",
+  "tr": "05",
+  "en": "05",
+  "de": "05"
+ },
+ "K181": {
+  "grup": "Üretim",
+  "tur": "t",
+  "not": "svg",
+  "tr": "Mekanik işleme",
+  "en": "Mechanical processing",
+  "de": "Mechanische Bearbeitung"
+ },
+ "K182": {
+  "grup": "Üretim",
+  "tur": "t",
+  "not": "p",
+  "tr": "Solar Çerçeve Üretim Makinaları, CNC İşleme Merkezleri, lazer kesim tezgahları, eksantrik presler, çift kafa testereler, dilimleme makineleri, bükme ve kaynak hatlarımızla kapsamlı çözümler sunuyoruz.",
+  "en": "With solar frame production machines, CNC machining centres, laser cutting machines, eccentric presses, double-head saws, slicing machines, and bending and welding lines, we offer comprehensive solutions.",
+  "de": "Mit Maschinen für die Solarrahmenfertigung, CNC-Bearbeitungszentren, Laserschneidanlagen, Exzenterpressen, Doppelkopfsägen, Ablängmaschinen sowie Biege- und Schweißlinien bieten wir umfassende Lösungen."
+ },
+ "K183": {
+  "grup": "Ürün sistemleri",
+  "tur": "t",
+  "not": "p",
+  "tr": "Ürün sistemleri",
+  "en": "Product systems",
+  "de": "Produktsysteme"
+ },
+ "K184": {
+  "grup": "Ürün sistemleri",
+  "tur": "t",
+  "not": "h2",
+  "tr": "Projenize uygun profil sistemini bulun",
+  "en": "Find the right profile system for your project",
+  "de": "Finden Sie das passende Profilsystem für Ihr Projekt"
+ },
+ "K185": {
+  "grup": "Ürün sistemleri",
+  "tur": "t",
+  "not": "p",
+  "tr": "Her ürün sisteminin kendine özgü bir profil kesiti ailesi bulunur. İlgilendiğiniz sistemi seçin, kataloğunu teklifimizle birlikte gönderelim.",
+  "en": "Each product system has its own family of profile sections. Choose the system you are interested in and we will send its catalogue with our quote.",
+  "de": "Jedes Produktsystem hat seine eigene Familie von Profilquerschnitten. Wählen Sie das System, das Sie interessiert, und wir senden Ihnen den Katalog mit unserem Angebot."
+ },
+ "K186": {
+  "grup": "Ürün sistemleri",
+  "tur": "a",
+  "not": "data-catalog (a)",
+  "tr": "Kapı-Pencere Sistemi",
+  "en": "Door and Window System",
+  "de": "Tür- und Fenstersystem"
+ },
+ "K187": {
+  "grup": "Ürün sistemleri",
+  "tur": "t",
+  "not": "span",
+  "tr": "01",
+  "en": "01",
+  "de": "01"
+ },
+ "K188": {
+  "grup": "Ürün sistemleri",
+  "tur": "t",
+  "not": "h3",
+  "tr": "Kapı-Pencere Sistemi",
+  "en": "Door and Window System",
+  "de": "Tür- und Fenstersystem"
+ },
+ "K189": {
+  "grup": "Ürün sistemleri",
+  "tur": "t",
+  "not": "span",
+  "tr": "Kataloğu isteyin",
+  "en": "Request the catalogue",
+  "de": "Katalog anfordern"
+ },
+ "K190": {
+  "grup": "Ürün sistemleri",
+  "tur": "a",
+  "not": "data-catalog (a)",
+  "tr": "Sürme Kapı-Pencere Sistemi",
+  "en": "Sliding Door and Window System",
+  "de": "Schiebetür- und Schiebefenstersystem"
+ },
+ "K191": {
+  "grup": "Ürün sistemleri",
+  "tur": "t",
+  "not": "span",
+  "tr": "02",
+  "en": "02",
+  "de": "02"
+ },
+ "K192": {
+  "grup": "Ürün sistemleri",
+  "tur": "t",
+  "not": "h3",
+  "tr": "Sürme Kapı-Pencere Sistemi",
+  "en": "Sliding Door and Window System",
+  "de": "Schiebetür- und Schiebefenstersystem"
+ },
+ "K193": {
+  "grup": "Ürün sistemleri",
+  "tur": "t",
+  "not": "span",
+  "tr": "Kataloğu isteyin",
+  "en": "Request the catalogue",
+  "de": "Katalog anfordern"
+ },
+ "K194": {
+  "grup": "Ürün sistemleri",
+  "tur": "a",
+  "not": "data-catalog (a)",
+  "tr": "Cephe Sistemleri",
+  "en": "Facade Systems",
+  "de": "Fassadensysteme"
+ },
+ "K195": {
+  "grup": "Ürün sistemleri",
+  "tur": "t",
+  "not": "span",
+  "tr": "03",
+  "en": "03",
+  "de": "03"
+ },
+ "K196": {
+  "grup": "Ürün sistemleri",
+  "tur": "t",
+  "not": "h3",
+  "tr": "Cephe Sistemleri",
+  "en": "Facade Systems",
+  "de": "Fassadensysteme"
+ },
+ "K197": {
+  "grup": "Ürün sistemleri",
+  "tur": "t",
+  "not": "span",
+  "tr": "Kataloğu isteyin",
+  "en": "Request the catalogue",
+  "de": "Katalog anfordern"
+ },
+ "K198": {
+  "grup": "Ürün sistemleri",
+  "tur": "a",
+  "not": "data-catalog (a)",
+  "tr": "Küpeşte Aksesuarları",
+  "en": "Handrail Accessories",
+  "de": "Handlaufzubehör"
+ },
+ "K199": {
+  "grup": "Ürün sistemleri",
+  "tur": "t",
+  "not": "span",
+  "tr": "04",
+  "en": "04",
+  "de": "04"
+ },
+ "K200": {
+  "grup": "Ürün sistemleri",
+  "tur": "t",
+  "not": "h3",
+  "tr": "Küpeşte Aksesuarları",
+  "en": "Handrail Accessories",
+  "de": "Handlaufzubehör"
+ },
+ "K201": {
+  "grup": "Ürün sistemleri",
+  "tur": "t",
+  "not": "span",
+  "tr": "Kataloğu isteyin",
+  "en": "Request the catalogue",
+  "de": "Katalog anfordern"
+ },
+ "K202": {
+  "grup": "Ürün sistemleri",
+  "tur": "a",
+  "not": "data-catalog (a)",
+  "tr": "Doğrama ve Cam Balkon Aksesuarları",
+  "en": "Joinery and Glass Balcony Accessories",
+  "de": "Zubehör für Fensterbau und Glasbalkone"
+ },
+ "K203": {
+  "grup": "Ürün sistemleri",
+  "tur": "t",
+  "not": "span",
+  "tr": "05",
+  "en": "05",
+  "de": "05"
+ },
+ "K204": {
+  "grup": "Ürün sistemleri",
+  "tur": "t",
+  "not": "h3",
+  "tr": "Doğrama ve Cam Balkon Aksesuarları",
+  "en": "Joinery and Glass Balcony Accessories",
+  "de": "Zubehör für Fensterbau und Glasbalkone"
+ },
+ "K205": {
+  "grup": "Ürün sistemleri",
+  "tur": "t",
+  "not": "span",
+  "tr": "Kataloğu isteyin",
+  "en": "Request the catalogue",
+  "de": "Katalog anfordern"
+ },
+ "K206": {
+  "grup": "Ürün sistemleri",
+  "tur": "a",
+  "not": "data-catalog (a)",
+  "tr": "EPDM Fitil",
+  "en": "EPDM Gaskets",
+  "de": "EPDM-Dichtungen"
+ },
+ "K207": {
+  "grup": "Ürün sistemleri",
+  "tur": "t",
+  "not": "span",
+  "tr": "06",
+  "en": "06",
+  "de": "06"
+ },
+ "K208": {
+  "grup": "Ürün sistemleri",
+  "tur": "t",
+  "not": "h3",
+  "tr": "EPDM Fitil",
+  "en": "EPDM Gaskets",
+  "de": "EPDM-Dichtungen"
+ },
+ "K209": {
+  "grup": "Ürün sistemleri",
+  "tur": "t",
+  "not": "span",
+  "tr": "Kataloğu isteyin",
+  "en": "Request the catalogue",
+  "de": "Katalog anfordern"
+ },
+ "K210": {
+  "grup": "Ürün sistemleri",
+  "tur": "t",
+  "not": "b",
+  "tr": "01",
+  "en": "01",
+  "de": "01"
+ },
+ "K211": {
+  "grup": "Ürün sistemleri",
+  "tur": "t",
+  "not": "b",
+  "tr": "/ 06",
+  "en": "/ 06",
+  "de": "/ 06"
+ },
+ "K212": {
+  "grup": "Ürün sistemleri",
+  "tur": "t",
+  "not": "span",
+  "tr": "Kaydırdıkça döner",
+  "en": "Turns as you scroll",
+  "de": "Dreht sich beim Scrollen"
+ },
+ "K213": {
+  "grup": "Sektörler",
+  "tur": "t",
+  "not": "p",
+  "tr": "Sektörler",
+  "en": "Industries",
+  "de": "Branchen"
+ },
+ "K214": {
+  "grup": "Sektörler",
+  "tur": "t",
+  "not": "h2",
+  "tr": "Hizmet verdiğimiz sektörler.",
+  "en": "Industries we serve.",
+  "de": "Branchen, die wir bedienen."
+ },
+ "K215": {
+  "grup": "Sektörler",
+  "tur": "t",
+  "not": "p",
+  "tr": "Her sektörün mühendislik ihtiyacı farklıdır. Her projeye kendi çözümünü geliştiriyoruz.",
+  "en": "Every industry has different engineering requirements. We develop the right solution for each project.",
+  "de": "Jede Branche stellt unterschiedliche technische Anforderungen. Wir entwickeln für jedes Projekt die passende Lösung."
+ },
+ "K216": {
+  "grup": "Sektörler",
+  "tur": "a",
+  "not": "alt (img)",
+  "tr": "Bioklimatik pergola, akşam ışığında teras",
+  "en": "Bioclimatic pergola over a terrace in evening light",
+  "de": "Bioklimatische Pergola über einer Terrasse im Abendlicht"
+ },
+ "K217": {
+  "grup": "Sektörler",
+  "tur": "t",
+  "not": "figcaption",
+  "tr": "Pergola sistemleri",
+  "en": "Pergola systems",
+  "de": "Pergolasysteme"
+ },
+ "K218": {
+  "grup": "Sektörler",
+  "tur": "a",
+  "not": "alt (img)",
+  "tr": "Geniş sürme cam kapılı salon",
+  "en": "Living room with large sliding glass doors",
+  "de": "Wohnraum mit großen Glasschiebetüren"
+ },
+ "K219": {
+  "grup": "Sektörler",
+  "tur": "t",
+  "not": "figcaption",
+  "tr": "Sürme sistemleri",
+  "en": "Sliding systems",
+  "de": "Schiebesysteme"
+ },
+ "K220": {
+  "grup": "Sektörler",
+  "tur": "a",
+  "not": "alt (img)",
+  "tr": "Alüminyum giydirme cepheli kule",
+  "en": "Tower with an aluminium curtain wall",
+  "de": "Turm mit Aluminium-Vorhangfassade"
+ },
+ "K221": {
+  "grup": "Sektörler",
+  "tur": "t",
+  "not": "figcaption",
+  "tr": "Cephe sistemleri",
+  "en": "Facade systems",
+  "de": "Fassadensysteme"
+ },
+ "K222": {
+  "grup": "Sektörler",
+  "tur": "a",
+  "not": "alt (img)",
+  "tr": "Alüminyum kapı ve pencereli ev girişi",
+  "en": "House entrance with aluminium door and windows",
+  "de": "Hauseingang mit Aluminiumtür und -fenstern"
+ },
+ "K223": {
+  "grup": "Sektörler",
+  "tur": "t",
+  "not": "figcaption",
+  "tr": "Kapı ve pencere sistemleri",
+  "en": "Doors & windows",
+  "de": "Türen & Fenster"
+ },
+ "K224": {
+  "grup": "Sektörler",
+  "tur": "a",
+  "not": "alt (img)",
+  "tr": "Özel işlenmiş alüminyum parça",
+  "en": "Custom-machined aluminium part",
+  "de": "Individuell bearbeitetes Aluminiumteil"
+ },
+ "K225": {
+  "grup": "Sektörler",
+  "tur": "t",
+  "not": "figcaption",
+  "tr": "Özel projeler",
+  "en": "Custom projects",
+  "de": "Sonderkonstruktionen"
+ },
+ "K226": {
+  "grup": "Sektörler",
+  "tur": "a",
+  "not": "alt (img)",
+  "tr": "Teknede alüminyum küpeşte ve kapak",
+  "en": "Aluminium railing and hatch on a boat",
+  "de": "Aluminiumreling und Luke auf einem Boot"
+ },
+ "K227": {
+  "grup": "Sektörler",
+  "tur": "t",
+  "not": "figcaption",
+  "tr": "Denizcilik uygulamaları",
+  "en": "Marine applications",
+  "de": "Marine-Anwendungen"
+ },
+ "K228": {
+  "grup": "Sektörler",
+  "tur": "a",
+  "not": "alt (img)",
+  "tr": "Alüminyum sigma profillerden makine iskeleti",
+  "en": "Machine frame built from aluminium system profiles",
+  "de": "Maschinengestell aus Aluminium-Systemprofilen"
+ },
+ "K229": {
+  "grup": "Sektörler",
+  "tur": "t",
+  "not": "figcaption",
+  "tr": "Endüstriyel profiller",
+  "en": "Industrial profiles",
+  "de": "Industrieprofile"
+ },
+ "K230": {
+  "grup": "Sektörler",
+  "tur": "a",
+  "not": "alt (img)",
+  "tr": "Güneş paneli taşıyıcı alüminyum konstrüksiyon",
+  "en": "Aluminium substructure carrying solar panels",
+  "de": "Aluminium-Unterkonstruktion für Solarmodule"
+ },
+ "K231": {
+  "grup": "Sektörler",
+  "tur": "t",
+  "not": "figcaption",
+  "tr": "Güneş enerjisi sistemleri",
+  "en": "Solar structures",
+  "de": "Solarkonstruktionen"
+ },
+ "K232": {
+  "grup": "Sektörler",
+  "tur": "t",
+  "not": "h3",
+  "tr": "Sektörünüz listede yok mu?",
+  "en": "Don't see your industry?",
+  "de": "Ihre Branche ist nicht dabei?"
+ },
+ "K233": {
+  "grup": "Sektörler",
+  "tur": "t",
+  "not": "p",
+  "tr": "Kesitinizi gönderin, kalıptan sevkiyata kadar birlikte planlayalım.",
+  "en": "Send us your section and we will plan it with you, from die to shipment.",
+  "de": "Senden Sie uns Ihren Querschnitt. Wir planen ihn gemeinsam mit Ihnen, vom Werkzeug bis zum Versand."
+ },
+ "K234": {
+  "grup": "Sektörler",
+  "tur": "t",
+  "not": "a",
+  "tr": "Teklif İsteyin",
+  "en": "Request a Quote",
+  "de": "Angebot anfordern"
+ },
+ "K235": {
+  "grup": "Sektörler",
+  "tur": "t",
+  "not": "p",
+  "tr": "Temsili görsel",
+  "en": "Representative image",
+  "de": "Symbolbild"
+ },
+ "K236": {
+  "grup": "Kalite",
+  "tur": "t",
+  "not": "p",
+  "tr": "Kalite",
+  "en": "Quality",
+  "de": "Qualität"
+ },
+ "K237": {
+  "grup": "Kalite",
+  "tur": "t",
+  "not": "h2",
+  "tr": "Toleransı tahmin etmeyiz, ölçeriz",
+  "en": "We don’t guess tolerances, we measure them",
+  "de": "Toleranzen schätzen wir nicht, wir messen sie"
+ },
+ "K238": {
+  "grup": "Kalite",
+  "tur": "t",
+  "not": "p",
+  "tr": "Profillerin ölçü ve şekil toleranslarını DIN EN 755-9’a göre kontrol ediyoruz. Eloksal ve toz boya uygulamalarımızda sırasıyla QUALANOD ve QUALICOAT gerekliliklerini esas alıyoruz. Üretim öncesinde numune sunuyor, teslimatta ölçüm raporunu paylaşıyoruz.",
+  "en": "We check the dimensional and shape tolerances of our profiles to DIN EN 755-9. For anodizing and powder coating we follow the QUALANOD and QUALICOAT requirements respectively. We provide a sample before production and share the measurement report on delivery.",
+  "de": "Maß- und Formtoleranzen unserer Profile prüfen wir nach DIN EN 755-9. Beim Eloxieren und bei der Pulverbeschichtung richten wir uns nach den Anforderungen von QUALANOD bzw. QUALICOAT. Vor der Produktion stellen wir ein Muster bereit, bei der Lieferung erhalten Sie den Messbericht."
+ },
+ "K239": {
+  "grup": "Kalite",
+  "tur": "t",
+  "not": "span",
+  "tr": "Özellik",
+  "en": "Property",
+  "de": "Merkmal"
+ },
+ "K240": {
+  "grup": "Kalite",
+  "tur": "t",
+  "not": "span",
+  "tr": "Değer",
+  "en": "Value",
+  "de": "Wert"
+ },
+ "K241": {
+  "grup": "Kalite",
+  "tur": "t",
+  "not": "span",
+  "tr": "Tolerans standardı",
+  "en": "Tolerance standard",
+  "de": "Toleranznorm"
+ },
+ "K242": {
+  "grup": "Kalite",
+  "tur": "t",
+  "not": "span",
+  "tr": "DIN EN 755-9",
+  "en": "DIN EN 755-9",
+  "de": "DIN EN 755-9"
+ },
+ "K243": {
+  "grup": "Kalite",
+  "tur": "t",
+  "not": "span",
+  "tr": "Alaşımlar",
+  "en": "Alloys",
+  "de": "Legierungen"
+ },
+ "K244": {
+  "grup": "Kalite",
+  "tur": "t",
+  "not": "span",
+  "tr": "6063, 6082, 6005, 6463",
+  "en": "6063, 6082, 6005, 6463",
+  "de": "6063, 6082, 6005, 6463"
+ },
+ "K245": {
+  "grup": "Kalite",
+  "tur": "t",
+  "not": "span",
+  "tr": "Eloksal",
+  "en": "Anodizing",
+  "de": "Eloxieren"
+ },
+ "K246": {
+  "grup": "Kalite",
+  "tur": "t",
+  "not": "span",
+  "tr": "Qualanod",
+  "en": "Qualanod",
+  "de": "Qualanod"
+ },
+ "K247": {
+  "grup": "Kalite",
+  "tur": "t",
+  "not": "span",
+  "tr": "Toz boya",
+  "en": "Powder coating",
+  "de": "Pulverbeschichtung"
+ },
+ "K248": {
+  "grup": "Kalite",
+  "tur": "t",
+  "not": "span",
+  "tr": "Qualicoat",
+  "en": "Qualicoat",
+  "de": "Qualicoat"
+ },
+ "K249": {
+  "grup": "Kalite",
+  "tur": "t",
+  "not": "span",
+  "tr": "Maks. profil boyu",
+  "en": "Max. profile length",
+  "de": "Max. Profillänge"
+ },
+ "K250": {
+  "grup": "Kalite",
+  "tur": "t",
+  "not": "span",
+  "tr": "13,5 m",
+  "en": "13.5 m",
+  "de": "13,5 m"
+ },
+ "K251": {
+  "grup": "Kalite",
+  "tur": "t",
+  "not": "span",
+  "tr": "Maks. kaplama boyu",
+  "en": "Max. coating length",
+  "de": "Max. Beschichtungslänge"
+ },
+ "K252": {
+  "grup": "Kalite",
+  "tur": "t",
+  "not": "span",
+  "tr": "7 m",
+  "en": "7 m",
+  "de": "7 m"
+ },
+ "K253": {
+  "grup": "Kalite",
+  "tur": "t",
+  "not": "span",
+  "tr": "Pres gücü",
+  "en": "Press force",
+  "de": "Presskraft"
+ },
+ "K254": {
+  "grup": "Kalite",
+  "tur": "t",
+  "not": "span",
+  "tr": "700 - 4.500 ton",
+  "en": "700 - 4,500 tonnes",
+  "de": "700 - 4.500 Tonnen"
+ },
+ "K255": {
+  "grup": "Uluslararası iş ortaklıkları",
+  "tur": "t",
+  "not": "p",
+  "tr": "Uluslararası iş ortaklıkları",
+  "en": "International partnerships",
+  "de": "Internationale Partnerschaften"
+ },
+ "K256": {
+  "grup": "Uluslararası iş ortaklıkları",
+  "tur": "t",
+  "not": "h2",
+  "tr": "11 ülkeye teslimat",
+  "en": "Delivering to 11 countries",
+  "de": "Lieferung in 11 Länder"
+ },
+ "K257": {
+  "grup": "Uluslararası iş ortaklıkları",
+  "tur": "t",
+  "not": "p",
+  "tr": "Alüminyum profillerimizi 11 ülkeye sevk ediyoruz. Uluslararası iş ortaklarımıza üretim ve tesis kurulumunun yanı sıra ithalat, ihracat, satış ve finansman alanlarında danışmanlık sunuyoruz.",
+  "en": "We ship our aluminium profiles to 11 countries. Beyond production and plant set-up, we offer our international partners consulting in import, export, sales and finance.",
+  "de": "Wir liefern unsere Aluminiumprofile in 11 Länder. Unseren internationalen Partnern bieten wir neben Produktion und Anlagenaufbau Beratung in den Bereichen Import, Export, Vertrieb und Finanzierung."
+ },
+ "K258": {
+  "grup": "Uluslararası iş ortaklıkları",
+  "tur": "t",
+  "not": "i",
+  "tr": "Pendik, İstanbul: üretim",
+  "en": "Pendik, Istanbul: production",
+  "de": "Pendik, Istanbul: Produktion"
+ },
+ "K259": {
+  "grup": "Uluslararası iş ortaklıkları",
+  "tur": "t",
+  "not": "i",
+  "tr": "İş ortağı ülke",
+  "en": "Partner country",
+  "de": "Partnerland"
+ },
+ "K260": {
+  "grup": "Uluslararası iş ortaklıkları",
+  "tur": "t",
+  "not": "span",
+  "tr": "Şimdi:",
+  "en": "Now:",
+  "de": "Jetzt:"
+ },
+ "K261": {
+  "grup": "Uluslararası iş ortaklıkları",
+  "tur": "t",
+  "not": "b",
+  "tr": "Türkiye",
+  "en": "Türkiye",
+  "de": "Türkei"
+ },
+ "K262": {
+  "grup": "Uluslararası iş ortaklıkları",
+  "tur": "t",
+  "not": "span",
+  "tr": "Almanya",
+  "en": "Germany",
+  "de": "Deutschland"
+ },
+ "K263": {
+  "grup": "Uluslararası iş ortaklıkları",
+  "tur": "t",
+  "not": "span",
+  "tr": "Romanya",
+  "en": "Romania",
+  "de": "Rumänien"
+ },
+ "K264": {
+  "grup": "Uluslararası iş ortaklıkları",
+  "tur": "t",
+  "not": "span",
+  "tr": "Hollanda",
+  "en": "Netherlands",
+  "de": "Niederlande"
+ },
+ "K265": {
+  "grup": "Uluslararası iş ortaklıkları",
+  "tur": "t",
+  "not": "span",
+  "tr": "Yunanistan",
+  "en": "Greece",
+  "de": "Griechenland"
+ },
+ "K266": {
+  "grup": "Uluslararası iş ortaklıkları",
+  "tur": "t",
+  "not": "span",
+  "tr": "Ürdün",
+  "en": "Jordan",
+  "de": "Jordanien"
+ },
+ "K267": {
+  "grup": "Uluslararası iş ortaklıkları",
+  "tur": "t",
+  "not": "span",
+  "tr": "Bulgaristan",
+  "en": "Bulgaria",
+  "de": "Bulgarien"
+ },
+ "K268": {
+  "grup": "Uluslararası iş ortaklıkları",
+  "tur": "t",
+  "not": "span",
+  "tr": "Fransa",
+  "en": "France",
+  "de": "Frankreich"
+ },
+ "K269": {
+  "grup": "Uluslararası iş ortaklıkları",
+  "tur": "t",
+  "not": "span",
+  "tr": "Çekya",
+  "en": "Czechia",
+  "de": "Tschechien"
+ },
+ "K270": {
+  "grup": "Uluslararası iş ortaklıkları",
+  "tur": "t",
+  "not": "span",
+  "tr": "Litvanya",
+  "en": "Lithuania",
+  "de": "Litauen"
+ },
+ "K271": {
+  "grup": "Uluslararası iş ortaklıkları",
+  "tur": "t",
+  "not": "span",
+  "tr": "Estonya",
+  "en": "Estonia",
+  "de": "Estland"
+ },
+ "K272": {
+  "grup": "Uluslararası iş ortaklıkları",
+  "tur": "t",
+  "not": "span",
+  "tr": "Şili",
+  "en": "Chile",
+  "de": "Chile"
+ },
+ "K273": {
+  "grup": "Uluslararası iş ortaklıkları",
+  "tur": "t",
+  "not": "span",
+  "tr": "Almanya",
+  "en": "Germany",
+  "de": "Deutschland"
+ },
+ "K274": {
+  "grup": "Uluslararası iş ortaklıkları",
+  "tur": "t",
+  "not": "span",
+  "tr": "Romanya",
+  "en": "Romania",
+  "de": "Rumänien"
+ },
+ "K275": {
+  "grup": "Uluslararası iş ortaklıkları",
+  "tur": "t",
+  "not": "span",
+  "tr": "Hollanda",
+  "en": "Netherlands",
+  "de": "Niederlande"
+ },
+ "K276": {
+  "grup": "Uluslararası iş ortaklıkları",
+  "tur": "t",
+  "not": "span",
+  "tr": "Yunanistan",
+  "en": "Greece",
+  "de": "Griechenland"
+ },
+ "K277": {
+  "grup": "Uluslararası iş ortaklıkları",
+  "tur": "t",
+  "not": "span",
+  "tr": "Ürdün",
+  "en": "Jordan",
+  "de": "Jordanien"
+ },
+ "K278": {
+  "grup": "Uluslararası iş ortaklıkları",
+  "tur": "t",
+  "not": "span",
+  "tr": "Bulgaristan",
+  "en": "Bulgaria",
+  "de": "Bulgarien"
+ },
+ "K279": {
+  "grup": "Uluslararası iş ortaklıkları",
+  "tur": "t",
+  "not": "span",
+  "tr": "Fransa",
+  "en": "France",
+  "de": "Frankreich"
+ },
+ "K280": {
+  "grup": "Uluslararası iş ortaklıkları",
+  "tur": "t",
+  "not": "span",
+  "tr": "Çekya",
+  "en": "Czechia",
+  "de": "Tschechien"
+ },
+ "K281": {
+  "grup": "Uluslararası iş ortaklıkları",
+  "tur": "t",
+  "not": "span",
+  "tr": "Litvanya",
+  "en": "Lithuania",
+  "de": "Litauen"
+ },
+ "K282": {
+  "grup": "Uluslararası iş ortaklıkları",
+  "tur": "t",
+  "not": "span",
+  "tr": "Estonya",
+  "en": "Estonia",
+  "de": "Estland"
+ },
+ "K283": {
+  "grup": "Uluslararası iş ortaklıkları",
+  "tur": "t",
+  "not": "span",
+  "tr": "Şili",
+  "en": "Chile",
+  "de": "Chile"
+ },
+ "K284": {
+  "grup": "Sıkça sorulan sorular",
+  "tur": "t",
+  "not": "p",
+  "tr": "Sık sorulanlar",
+  "en": "Frequently asked",
+  "de": "Häufige Fragen"
+ },
+ "K285": {
+  "grup": "Sıkça sorulan sorular",
+  "tur": "t",
+  "not": "h2",
+  "tr": "Teklif öncesi en çok sorulanlar.",
+  "en": "What people ask before a quote.",
+  "de": "Was vor einem Angebot am häufigsten gefragt wird."
+ },
+ "K286": {
+  "grup": "Sıkça sorulan sorular",
+  "tur": "t",
+  "not": "summary",
+  "tr": "Özel kesit için kalıp ne kadar sürer?",
+  "en": "How long does a die for a custom section take?",
+  "de": "Wie lange dauert ein Werkzeug für einen Sonderquerschnitt?"
+ },
+ "K287": {
+  "grup": "Sıkça sorulan sorular",
+  "tur": "t",
+  "not": "p",
+  "tr": "Kalıphane kendi bünyemizde. Standart bir kesit için kalıp genellikle iki ila dört hafta içinde hazır olur. Karmaşık kesitlerde süreyi teklifte net yazarız.",
+  "en": "Die design is in-house. For a standard section the die is usually ready within two to four weeks. For complex sections we state the exact time in the quote.",
+  "de": "Die Werkzeugkonstruktion ist bei uns im Haus. Für einen Standardquerschnitt ist das Werkzeug meist in zwei bis vier Wochen fertig. Bei komplexen Querschnitten nennen wir die genaue Dauer im Angebot."
+ },
+ "K288": {
+  "grup": "Sıkça sorulan sorular",
+  "tur": "t",
+  "not": "summary",
+  "tr": "Minimum sipariş var mı?",
+  "en": "Is there a minimum order?",
+  "de": "Gibt es eine Mindestbestellmenge?"
+ },
+ "K289": {
+  "grup": "Sıkça sorulan sorular",
+  "tur": "t",
+  "not": "p",
+  "tr": "Kesite ve alaşıma göre değişir. Küçük partiler için de teklif veriyoruz; çizimi gönderin, net rakamı yazalım.",
+  "en": "It depends on the section and the alloy. We also quote small batches; send the drawing and we will give you an exact figure.",
+  "de": "Das hängt von Querschnitt und Legierung ab. Wir bieten auch kleine Losgrößen an; senden Sie die Zeichnung, wir nennen Ihnen die genaue Zahl."
+ },
+ "K290": {
+  "grup": "Sıkça sorulan sorular",
+  "tur": "t",
+  "not": "summary",
+  "tr": "Renk tutarlılığını nasıl sağlıyorsunuz?",
+  "en": "How do you keep colours consistent?",
+  "de": "Wie sichern Sie gleichbleibende Farben?"
+ },
+ "K291": {
+  "grup": "Sıkça sorulan sorular",
+  "tur": "t",
+  "not": "p",
+  "tr": "Qualicoat tesisimizde RAL koduyla çalışırız, özel renk için numune onayı alırız. Parti farkı yaşatmayız.",
+  "en": "Our Qualicoat plant works to RAL codes, and for custom colours we get your approval on a sample. No differences between batches.",
+  "de": "In unserer Qualicoat-Anlage arbeiten wir mit RAL-Codes, für Sonderfarben holen wir Ihre Freigabe am Muster ein. Keine Unterschiede zwischen Chargen."
+ },
+ "K292": {
+  "grup": "Sıkça sorulan sorular",
+  "tur": "t",
+  "not": "summary",
+  "tr": "Teslimat süresi?",
+  "en": "Delivery time?",
+  "de": "Lieferzeit?"
+ },
+ "K293": {
+  "grup": "Sıkça sorulan sorular",
+  "tur": "t",
+  "not": "p",
+  "tr": "Stok kesitlerde günler, yeni kalıpta kalıp süresi artı üretim. Teklifte tarih veririz ve tutarız.",
+  "en": "Days for stock sections; for a new die, the die time plus production. We give a date in the quote and keep it.",
+  "de": "Bei Lagerquerschnitten Tage, bei neuem Werkzeug die Werkzeugzeit plus Produktion. Wir nennen im Angebot ein Datum und halten es ein."
+ },
+ "K294": {
+  "grup": "Sıkça sorulan sorular",
+  "tur": "t",
+  "not": "summary",
+  "tr": "Numune alabilir miyim?",
+  "en": "Can I get a sample?",
+  "de": "Kann ich ein Muster bekommen?"
+ },
+ "K295": {
+  "grup": "Sıkça sorulan sorular",
+  "tur": "t",
+  "not": "p",
+  "tr": "Evet. Üretime başlamadan önce profil numunesini onayınıza sunarız.",
+  "en": "Yes. Before production starts we send you a profile sample for approval.",
+  "de": "Ja. Vor Produktionsbeginn legen wir Ihnen ein Profilmuster zur Freigabe vor."
+ },
+ "K296": {
+  "grup": "Teklif formu ve iletişim",
+  "tur": "t",
+  "not": "p",
+  "tr": "Teklif",
+  "en": "Quote",
+  "de": "Angebot"
+ },
+ "K297": {
+  "grup": "Teklif formu ve iletişim",
+  "tur": "t",
+  "not": "h2",
+  "tr": "Çizimi gönderin, rakamı alın.",
+  "en": "Send the drawing, get the figure.",
+  "de": "Zeichnung senden, Preis erhalten."
+ },
+ "K298": {
+  "grup": "Teklif formu ve iletişim",
+  "tur": "t",
+  "not": "p",
+  "tr": "Kesit, alaşım, yüzey ve adet yeterli. Bir iş günü içinde dönüş yaparız.",
+  "en": "Section, alloy, surface and quantity are enough. We reply within one working day.",
+  "de": "Querschnitt, Legierung, Oberfläche und Menge genügen. Wir antworten innerhalb eines Werktags."
+ },
+ "K299": {
+  "grup": "Teklif formu ve iletişim",
+  "tur": "t",
+  "not": "label",
+  "tr": "Ad Soyad",
+  "en": "Full name",
+  "de": "Vor- und Nachname"
+ },
+ "K300": {
+  "grup": "Teklif formu ve iletişim",
+  "tur": "a",
+  "not": "placeholder (input)",
+  "tr": "Adınız",
+  "en": "Your name",
+  "de": "Ihr Name"
+ },
+ "K301": {
+  "grup": "Teklif formu ve iletişim",
+  "tur": "t",
+  "not": "label",
+  "tr": "Firma",
+  "en": "Company",
+  "de": "Firma"
+ },
+ "K302": {
+  "grup": "Teklif formu ve iletişim",
+  "tur": "a",
+  "not": "placeholder (input)",
+  "tr": "Firma adı",
+  "en": "Company name",
+  "de": "Firmenname"
+ },
+ "K303": {
+  "grup": "Teklif formu ve iletişim",
+  "tur": "t",
+  "not": "label",
+  "tr": "E-posta",
+  "en": "Email",
+  "de": "E-Mail"
+ },
+ "K304": {
+  "grup": "Teklif formu ve iletişim",
+  "tur": "a",
+  "not": "placeholder (input)",
+  "tr": "ornek@firma.com",
+  "en": "name@company.com",
+  "de": "name@firma.de"
+ },
+ "K305": {
+  "grup": "Teklif formu ve iletişim",
+  "tur": "t",
+  "not": "label",
+  "tr": "Telefon",
+  "en": "Phone",
+  "de": "Telefon"
+ },
+ "K306": {
+  "grup": "Teklif formu ve iletişim",
+  "tur": "a",
+  "not": "placeholder (input)",
+  "tr": "+90",
+  "en": "+90",
+  "de": "+90"
+ },
+ "K307": {
+  "grup": "Teklif formu ve iletişim",
+  "tur": "t",
+  "not": "label",
+  "tr": "Kesit / ihtiyaç",
+  "en": "Section / requirement",
+  "de": "Querschnitt / Bedarf"
+ },
+ "K308": {
+  "grup": "Teklif formu ve iletişim",
+  "tur": "t",
+  "not": "label",
+  "tr": "Dosya ekle",
+  "en": "Attach files",
+  "de": "Dateien anhängen"
+ },
+ "K309": {
+  "grup": "Teklif formu ve iletişim",
+  "tur": "t",
+  "not": "svg",
+  "tr": "Dosya seçin",
+  "en": "Choose files",
+  "de": "Dateien auswählen"
+ },
+ "K310": {
+  "grup": "Teklif formu ve iletişim",
+  "tur": "t",
+  "not": "span",
+  "tr": "veya buraya sürükleyin",
+  "en": "or drag them here",
+  "de": "oder hierher ziehen"
+ },
+ "K311": {
+  "grup": "Teklif formu ve iletişim",
+  "tur": "t",
+  "not": "small",
+  "tr": "Her türlü dosya formatı. Toplam en fazla {MB} MB.",
+  "en": "Any file format. Up to {MB} MB in total.",
+  "de": "Jedes Dateiformat. Insgesamt höchstens {MB} MB."
+ },
+ "K312": {
+  "grup": "Teklif formu ve iletişim",
+  "tur": "t",
+  "not": "label",
+  "tr": "Website",
+  "en": "Website",
+  "de": "Website"
+ },
+ "K313": {
+  "grup": "Teklif formu ve iletişim",
+  "tur": "t",
+  "not": "button",
+  "tr": "Teklif İsteyin",
+  "en": "Request a Quote",
+  "de": "Angebot anfordern"
+ },
+ "K314": {
+  "grup": "Teklif formu ve iletişim",
+  "tur": "t",
+  "not": "span",
+  "tr": "Mesajınız ve ekleriniz doğrudan satış ekibimize iletilir.",
+  "en": "Your message and attachments go directly to our sales team.",
+  "de": "Ihre Nachricht und Ihre Anhänge gehen direkt an unser Vertriebsteam."
+ },
+ "K315": {
+  "grup": "Teklif formu ve iletişim",
+  "tur": "t",
+  "not": "div",
+  "tr": "Mesajınız bize ulaştı. En geç bir iş günü içinde dönüş yaparız.",
+  "en": "We have received your message. We reply within one working day.",
+  "de": "Ihre Nachricht ist bei uns eingegangen. Wir antworten innerhalb eines Werktags."
+ },
+ "K316": {
+  "grup": "Teklif formu ve iletişim",
+  "tur": "t",
+  "not": "h3",
+  "tr": "İletişim",
+  "en": "Contact",
+  "de": "Kontakt"
+ },
+ "K317": {
+  "grup": "Teklif formu ve iletişim",
+  "tur": "t",
+  "not": "dt",
+  "tr": "Adres",
+  "en": "Address",
+  "de": "Adresse"
+ },
+ "K318": {
+  "grup": "Teklif formu ve iletişim",
+  "tur": "t",
+  "not": "dd",
+  "tr": "Batı Mah. Hatboyu Cad. No:42/100",
+  "en": "Batı Mah. Hatboyu Cad. No:42/100",
+  "de": "Batı Mah. Hatboyu Cad. No:42/100"
+ },
+ "K319": {
+  "grup": "Teklif formu ve iletişim",
+  "tur": "t",
+  "not": "br",
+  "tr": "Pendik / İstanbul, Türkiye",
+  "en": "Pendik / Istanbul, Türkiye",
+  "de": "Pendik / Istanbul, Türkei"
+ },
+ "K320": {
+  "grup": "Teklif formu ve iletişim",
+  "tur": "t",
+  "not": "a",
+  "tr": "Yol tarifi",
+  "en": "Directions",
+  "de": "Anfahrt"
+ },
+ "K321": {
+  "grup": "Teklif formu ve iletişim",
+  "tur": "t",
+  "not": "dt",
+  "tr": "Telefon",
+  "en": "Phone",
+  "de": "Telefon"
+ },
+ "K322": {
+  "grup": "Teklif formu ve iletişim",
+  "tur": "t",
+  "not": "a",
+  "tr": "+90 (533) 418 42 45",
+  "en": "+90 (533) 418 42 45",
+  "de": "+90 (533) 418 42 45"
+ },
+ "K323": {
+  "grup": "Teklif formu ve iletişim",
+  "tur": "t",
+  "not": "dt",
+  "tr": "E-posta",
+  "en": "Email",
+  "de": "E-Mail"
+ },
+ "K324": {
+  "grup": "Teklif formu ve iletişim",
+  "tur": "t",
+  "not": "a",
+  "tr": "info@alufortis.com",
+  "en": "info@alufortis.com",
+  "de": "info@alufortis.com"
+ },
+ "K325": {
+  "grup": "Teklif formu ve iletişim",
+  "tur": "t",
+  "not": "dt",
+  "tr": "Çalışma saatleri",
+  "en": "Opening hours",
+  "de": "Öffnungszeiten"
+ },
+ "K326": {
+  "grup": "Teklif formu ve iletişim",
+  "tur": "t",
+  "not": "dd",
+  "tr": "Hafta içi 08:30 - 18:00",
+  "en": "Weekdays 08:30 - 18:00",
+  "de": "Werktags 08:30 - 18:00"
+ },
+ "K327": {
+  "grup": "Alt bilgi",
+  "tur": "a",
+  "not": "alt (img)",
+  "tr": "Alufortis Aluminium Engineering Solutions",
+  "en": "Alufortis Aluminium Engineering Solutions",
+  "de": "Alufortis Aluminium Engineering Solutions"
+ },
+ "K328": {
+  "grup": "Alt bilgi",
+  "tur": "t",
+  "not": "a",
+  "tr": "Hakkımızda",
+  "en": "About us",
+  "de": "Über uns"
+ },
+ "K329": {
+  "grup": "Alt bilgi",
+  "tur": "t",
+  "not": "a",
+  "tr": "Üretim",
+  "en": "Production",
+  "de": "Produktion"
+ },
+ "K330": {
+  "grup": "Alt bilgi",
+  "tur": "t",
+  "not": "a",
+  "tr": "Ürünler",
+  "en": "Products",
+  "de": "Produkte"
+ },
+ "K331": {
+  "grup": "Alt bilgi",
+  "tur": "t",
+  "not": "a",
+  "tr": "Kalite",
+  "en": "Quality",
+  "de": "Qualität"
+ },
+ "K332": {
+  "grup": "Alt bilgi",
+  "tur": "t",
+  "not": "a",
+  "tr": "SSS",
+  "en": "FAQ",
+  "de": "FAQ"
+ },
+ "K333": {
+  "grup": "Alt bilgi",
+  "tur": "t",
+  "not": "a",
+  "tr": "İletişim",
+  "en": "Contact",
+  "de": "Kontakt"
+ },
+ "K334": {
+  "grup": "Alt bilgi",
+  "tur": "t",
+  "not": "span",
+  "tr": "Alufortis.com | Tüm hakları saklıdır.",
+  "en": "Alufortis.com | All rights reserved.",
+  "de": "Alufortis.com | Alle Rechte vorbehalten."
+ },
+ "K335": {
+  "grup": "Alt bilgi",
+  "tur": "t",
+  "not": "span",
+  "tr": "Batı Mah. Hatboyu Cad. No:42/100, Pendik / İstanbul",
+  "en": "Batı Mah. Hatboyu Cad. No:42/100, Pendik / İstanbul",
+  "de": "Batı Mah. Hatboyu Cad. No:42/100, Pendik / İstanbul"
+ },
+ "K336": {
+  "grup": "Alt bilgi",
+  "tur": "t",
+  "not": "p",
+  "tr": "designed by",
+  "en": "designed by",
+  "de": "designed by"
+ },
+ "K337": {
+  "grup": "Alt bilgi",
+  "tur": "t",
+  "not": "a",
+  "tr": "gkhdigital.ro",
+  "en": "gkhdigital.ro",
+  "de": "gkhdigital.ro"
+ },
+ "K338": {
+  "grup": "Alt bilgi",
+  "tur": "t",
+  "not": "a",
+  "tr": "&",
+  "en": "&",
+  "de": "&"
+ },
+ "K339": {
+  "grup": "Alt bilgi",
+  "tur": "t",
+  "not": "a",
+  "tr": "gkhdigital.com",
+  "en": "gkhdigital.com",
+  "de": "gkhdigital.com"
+ },
+ "K340": {
+  "grup": "Sayfa içi kısa metinler (3D, harita, form)",
+  "tur": "j",
+  "not": "kod metni",
+  "tr": "Kalıp tasarımı",
+  "en": "Die design",
+  "de": "Werkzeugkonstruktion"
+ },
+ "K341": {
+  "grup": "Sayfa içi kısa metinler (3D, harita, form)",
+  "tur": "j",
+  "not": "kod metni",
+  "tr": "Çizimden kesite",
+  "en": "From drawing to section",
+  "de": "Von der Zeichnung zum Querschnitt"
+ },
+ "K342": {
+  "grup": "Sayfa içi kısa metinler (3D, harita, form)",
+  "tur": "j",
+  "not": "kod metni",
+  "tr": "Ekstrüzyon",
+  "en": "Extrusion",
+  "de": "Extrusion"
+ },
+ "K343": {
+  "grup": "Sayfa içi kısa metinler (3D, harita, form)",
+  "tur": "j",
+  "not": "kod metni",
+  "tr": "Presten ham yüzey",
+  "en": "Mill finish from the press",
+  "de": "Pressblank (Mill Finish)"
+ },
+ "K344": {
+  "grup": "Sayfa içi kısa metinler (3D, harita, form)",
+  "tur": "j",
+  "not": "kod metni",
+  "tr": "Eloksal kaplama",
+  "en": "Anodizing",
+  "de": "Eloxieren"
+ },
+ "K345": {
+  "grup": "Sayfa içi kısa metinler (3D, harita, form)",
+  "tur": "j",
+  "not": "kod metni",
+  "tr": "Natürel eloksal",
+  "en": "Natural anodized",
+  "de": "Natur eloxiert"
+ },
+ "K346": {
+  "grup": "Sayfa içi kısa metinler (3D, harita, form)",
+  "tur": "j",
+  "not": "kod metni",
+  "tr": "Bronz eloksal",
+  "en": "Bronze anodized",
+  "de": "Bronze eloxiert"
+ },
+ "K347": {
+  "grup": "Sayfa içi kısa metinler (3D, harita, form)",
+  "tur": "j",
+  "not": "kod metni",
+  "tr": "Siyah eloksal",
+  "en": "Black anodized",
+  "de": "Schwarz eloxiert"
+ },
+ "K348": {
+  "grup": "Sayfa içi kısa metinler (3D, harita, form)",
+  "tur": "j",
+  "not": "kod metni",
+  "tr": "Toz boya",
+  "en": "Powder coating",
+  "de": "Pulverbeschichtung"
+ },
+ "K349": {
+  "grup": "Sayfa içi kısa metinler (3D, harita, form)",
+  "tur": "j",
+  "not": "kod metni",
+  "tr": "RAL 7016 antrasit",
+  "en": "RAL 7016 anthracite",
+  "de": "RAL 7016 Anthrazit"
+ },
+ "K350": {
+  "grup": "Sayfa içi kısa metinler (3D, harita, form)",
+  "tur": "j",
+  "not": "kod metni",
+  "tr": "RAL 9016 beyaz",
+  "en": "RAL 9016 white",
+  "de": "RAL 9016 Weiß"
+ },
+ "K351": {
+  "grup": "Sayfa içi kısa metinler (3D, harita, form)",
+  "tur": "j",
+  "not": "kod metni",
+  "tr": "Mekanik işleme",
+  "en": "Mechanical processing",
+  "de": "Mechanische Bearbeitung"
+ },
+ "K352": {
+  "grup": "Sayfa içi kısa metinler (3D, harita, form)",
+  "tur": "j",
+  "not": "kod metni",
+  "tr": "Ölçüye kesim",
+  "en": "Cut to length",
+  "de": "Auf Länge gesägt"
+ },
+ "K353": {
+  "grup": "Sayfa içi kısa metinler (3D, harita, form)",
+  "tur": "j",
+  "not": "kod metni",
+  "tr": "Almanya",
+  "en": "Germany",
+  "de": "Deutschland"
+ },
+ "K354": {
+  "grup": "Sayfa içi kısa metinler (3D, harita, form)",
+  "tur": "j",
+  "not": "kod metni",
+  "tr": "Romanya",
+  "en": "Romania",
+  "de": "Rumänien"
+ },
+ "K355": {
+  "grup": "Sayfa içi kısa metinler (3D, harita, form)",
+  "tur": "j",
+  "not": "kod metni",
+  "tr": "Hollanda",
+  "en": "Netherlands",
+  "de": "Niederlande"
+ },
+ "K356": {
+  "grup": "Sayfa içi kısa metinler (3D, harita, form)",
+  "tur": "j",
+  "not": "kod metni",
+  "tr": "Yunanistan",
+  "en": "Greece",
+  "de": "Griechenland"
+ },
+ "K357": {
+  "grup": "Sayfa içi kısa metinler (3D, harita, form)",
+  "tur": "j",
+  "not": "kod metni",
+  "tr": "Ürdün",
+  "en": "Jordan",
+  "de": "Jordanien"
+ },
+ "K358": {
+  "grup": "Sayfa içi kısa metinler (3D, harita, form)",
+  "tur": "j",
+  "not": "kod metni",
+  "tr": "Bulgaristan",
+  "en": "Bulgaria",
+  "de": "Bulgarien"
+ },
+ "K359": {
+  "grup": "Sayfa içi kısa metinler (3D, harita, form)",
+  "tur": "j",
+  "not": "kod metni",
+  "tr": "Fransa",
+  "en": "France",
+  "de": "Frankreich"
+ },
+ "K360": {
+  "grup": "Sayfa içi kısa metinler (3D, harita, form)",
+  "tur": "j",
+  "not": "kod metni",
+  "tr": "Çekya",
+  "en": "Czechia",
+  "de": "Tschechien"
+ },
+ "K361": {
+  "grup": "Sayfa içi kısa metinler (3D, harita, form)",
+  "tur": "j",
+  "not": "kod metni",
+  "tr": "Litvanya",
+  "en": "Lithuania",
+  "de": "Litauen"
+ },
+ "K362": {
+  "grup": "Sayfa içi kısa metinler (3D, harita, form)",
+  "tur": "j",
+  "not": "kod metni",
+  "tr": "Estonya",
+  "en": "Estonia",
+  "de": "Estland"
+ },
+ "K363": {
+  "grup": "Sayfa içi kısa metinler (3D, harita, form)",
+  "tur": "j",
+  "not": "kod metni",
+  "tr": "Şili",
+  "en": "Chile",
+  "de": "Chile"
+ },
+ "K364": {
+  "grup": "Sayfa içi kısa metinler (3D, harita, form)",
+  "tur": "j",
+  "not": "kod metni",
+  "tr": "Türkiye",
+  "en": "Türkiye",
+  "de": "Türkei"
+ },
+ "K365": {
+  "grup": "Sayfa içi kısa metinler (3D, harita, form)",
+  "tur": "j",
+  "not": "kod metni",
+  "tr": " kataloğunu rica ediyorum.",
+  "en": ": please send me this catalogue.",
+  "de": ": bitte senden Sie mir diesen Katalog."
+ },
+ "K366": {
+  "grup": "Sayfa içi kısa metinler (3D, harita, form)",
+  "tur": "j",
+  "not": "kod metni",
+  "tr": "Kaldır",
+  "en": "Remove",
+  "de": "Entfernen"
+ },
+ "K367": {
+  "grup": "Sayfa içi kısa metinler (3D, harita, form)",
+  "tur": "j",
+  "not": "kod metni",
+  "tr": "Toplam",
+  "en": "Total",
+  "de": "Gesamt"
+ },
+ "K368": {
+  "grup": "Sayfa içi kısa metinler (3D, harita, form)",
+  "tur": "j",
+  "not": "kod metni",
+  "tr": "Dosyaların toplamı {MB} MB’ı geçemez. Lütfen bazı dosyaları kaldırın.",
+  "en": "The files may not exceed {MB} MB in total. Please remove some files.",
+  "de": "Die Dateien dürfen insgesamt {MB} MB nicht überschreiten. Bitte entfernen Sie einige Dateien."
+ },
+ "K369": {
+  "grup": "Sayfa içi kısa metinler (3D, harita, form)",
+  "tur": "j",
+  "not": "kod metni",
+  "tr": "Gönderiliyor…",
+  "en": "Sending…",
+  "de": "Wird gesendet…"
+ },
+ "K370": {
+  "grup": "Sayfa içi kısa metinler (3D, harita, form)",
+  "tur": "j",
+  "not": "kod metni",
+  "tr": "Mesaj şu anda gönderilemedi. Lütfen tekrar deneyin ya da doğrudan info@alufortis.com adresine yazın.",
+  "en": "The message could not be sent right now. Please try again or write directly to info@alufortis.com.",
+  "de": "Die Nachricht konnte gerade nicht gesendet werden. Bitte versuchen Sie es erneut oder schreiben Sie direkt an info@alufortis.com."
+ }
+}

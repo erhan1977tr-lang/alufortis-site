@@ -2,6 +2,26 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
+<script>
+/* Dil: elle seçilen dil hatırlanır; seçilmemişse ülke (saat dilimi) ile seçilir: Almanca konuşulan ülkeler DE, Türkiye TR, diğerleri EN */
+(function () {
+  var CUR = 'tr', BASE = '', K = 'alufortis-dil';
+  try {
+    if (/bot|crawl|spider|slurp|lighthouse/i.test(navigator.userAgent)) return;
+    var want = null; try { want = localStorage.getItem(K); } catch (e) {}
+    if (want) { if (CUR !== 'tr') return; }
+    else {
+      var tz = ''; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+      var DE = ['Europe/Berlin', 'Europe/Busingen', 'Europe/Vienna', 'Europe/Zurich', 'Europe/Vaduz', 'Europe/Luxembourg'];
+      if (DE.indexOf(tz) > -1) want = 'de';
+      else if (tz === 'Europe/Istanbul' || tz === 'Asia/Istanbul') want = 'tr';
+      else if (tz) want = 'en';
+      else { var l = (navigator.language || 'en').slice(0, 2).toLowerCase(); want = l === 'de' || l === 'tr' ? l : 'en'; }
+    }
+    if (want !== CUR && /^(tr|en|de)$/.test(want)) location.replace(BASE + (want === 'tr' ? '' : want + '/') + location.hash);
+  } catch (e) {}
+})();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="alternate" hreflang="tr" href="https://alufortis.gkh.ro/">
 <link rel="alternate" hreflang="en" href="https://alufortis.gkh.ro/en/">
@@ -443,11 +463,14 @@ h3.ct{font-size:clamp(28px,3vw,46px);max-width:16ch}
 @media (max-width:760px){.sect.live .sc{width:76vw}.sect.live .sc figure{height:52vh}.shead .lede{font-size:16px}.sect.live .shead{margin-bottom:20px}}
 @media (max-height:620px){.sect.live .shead .lede{display:none}}
 .nav-end{display:flex;align-items:center;gap:14px}
-.langs{display:flex;gap:2px;font-family:var(--mono);font-size:12px;letter-spacing:.08em}
-.langs a{text-decoration:none;color:var(--text-secondary);padding:8px 7px;border-radius:6px;transition:color .3s var(--ease),background .3s var(--ease)}
-.langs a:hover{color:var(--text-primary)}
-.langs a[aria-current]{color:var(--text-primary);background:rgba(255,255,255,.06)}
-@media (max-width:560px){.nav-end{gap:6px}.langs a{padding:8px 5px}.nav .btn-sm{padding:10px 12px;font-size:13px}}
+.langs{display:flex;gap:3px;padding:3px;font-family:var(--mono);font-size:15px;font-weight:600;letter-spacing:.08em;border:1px solid rgba(76,183,255,.45);border-radius:999px;background:rgba(10,15,22,.55);box-shadow:0 0 0 0 rgba(76,183,255,.5),0 6px 20px rgba(0,0,0,.25);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);animation:langpulse 2.6s var(--ease) 1.2s 3}
+.langs a{text-decoration:none;color:#dfe6ee;padding:9px 14px;border-radius:999px;line-height:1;transition:color .3s var(--ease),background .3s var(--ease)}
+.langs a:hover{color:#fff;background:rgba(76,183,255,.18)}
+.langs a[aria-current]{color:#071019;background:var(--accent)}
+@keyframes langpulse{0%{box-shadow:0 0 0 0 rgba(76,183,255,.55),0 6px 20px rgba(0,0,0,.25)}70%{box-shadow:0 0 0 12px rgba(76,183,255,0),0 6px 20px rgba(0,0,0,.25)}100%{box-shadow:0 0 0 0 rgba(76,183,255,0),0 6px 20px rgba(0,0,0,.25)}}
+.intro .i-langs{position:absolute;top:clamp(16px,3vh,28px);right:clamp(16px,3vw,40px);z-index:3}
+@media (prefers-reduced-motion:reduce){.langs{animation:none}}
+@media (max-width:560px){.nav-end{gap:6px}.langs{font-size:13px}.langs a{padding:8px 9px}.nav .btn-sm{padding:10px 12px;font-size:13px}}
 /* footer */
 footer{position:relative;z-index:1;background:var(--canvas);border-top:1px solid var(--line);padding:48px 0 32px;color:var(--text-secondary);font-size:14px}
 footer .row{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
@@ -571,6 +594,7 @@ form.busy .btn{opacity:.6;pointer-events:none}
 <div class="intro" id="intro" role="region" aria-label="Alufortis tanıtım mesajı">
   <div class="im m1"><img class="i-logo" src="assets/logo-dark.svg" alt="" width="879" height="435"><p class="i-main" aria-label="Mühendislikte mükemmellik ve güven inşa ediyoruz."><span class="w" style="--i:0">Mühendislikte</span> <span class="w" style="--i:1">mükemmellik</span> <span class="w" style="--i:2">ve</span> <span class="w" style="--i:3">güven</span> <span class="w" style="--i:4">inşa</span> <span class="w" style="--i:5">ediyoruz.</span></p><p class="i-sub">Her gün, her projede</p></div>
   <div class="im m2"><p class="i-kick">Alufortis</p><h2 class="i-h">Alüminyum profilde mühendislik ve üretim gücü.</h2><p class="i-p">Alufortis’te kalıp tasarımından ekstrüzyona, yüzey işlemlerinden mekanik işlemeye kadar her aşamayı kendi tesisimizde yürütüyoruz. Projenize uygun profili tasarlıyor, üretiyor ve montaja hazır hâle getiriyoruz.</p></div>
+  <div class="langs i-langs" role="group" aria-label="Dil seçimi"><a href="./" hreflang="tr" lang="tr" title="Türkçe" aria-current="page">TR</a><a href="en/" hreflang="en" lang="en" title="English">EN</a><a href="de/" hreflang="de" lang="de" title="Deutsch">DE</a></div>
   <button class="i-skip" type="button">Geç<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 3l5 5-5 5M10 3v10"/></svg></button>
   <div class="i-bar" aria-hidden="true"><i></i></div>
 </div>
@@ -1830,6 +1854,9 @@ mm.add({ motion: '(prefers-reduced-motion: no-preference)', small: '(max-width: 
 });
 addEventListener('load', () => ScrollTrigger.refresh(), { once: true });
 })();
+</script>
+<script>
+document.querySelectorAll('.langs a').forEach(function (a) { a.addEventListener('click', function () { try { localStorage.setItem('alufortis-dil', a.getAttribute('hreflang')); } catch (e) {} }); });
 </script>
 </body>
 </html>

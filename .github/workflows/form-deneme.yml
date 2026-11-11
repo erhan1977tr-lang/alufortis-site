@@ -1,6 +1,6 @@
 name: Teklif formunu sunucuya koy ve deneme gönderimi yap
 
-# Erhan'ın 2026-11-11 onayıyla (karar kartı): teklif.php ve .user.ini canlı köke yüklenir (ikisi de yeni dosya;
+# Erhan'ın 2026-11-11 onayıyla (karar kartı): teklif.php, .user.ini ve e-posta logosu canlı köke yüklenir (ikisi de yeni dosya;
 # mevcut sitenin hiçbir dosyası değişmez), ardından formdan ekli bir deneme mesajı gönderilir. Alıcı: info@gkh.ro.
 # FTPS: TLS zorunlu, sertifika ve ana makine adı doğrulanır. Hiçbir dosya silinmez.
 on:
@@ -39,7 +39,8 @@ jobs:
             set net:max-retries 2; set net:timeout 30;
             put .user.ini -o /.user.ini;
             put teklif.php -o /teklif.php;
-            cls -l /teklif.php /.user.ini;
+            put assets/eposta-logo.png -o /assets/eposta-logo.png;
+            cls -l /teklif.php /.user.ini /assets/eposta-logo.png;
             bye"
       - name: Deneme gönderimi (ekli)
         run: |
@@ -47,11 +48,11 @@ jobs:
           sleep 5
           code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 https://alufortis.gkh.ro/teklif.php)
           echo "GET teklif.php: $code (405 beklenir)"
-          printf 'Alufortis teklif formu deneme eki.\nBu dosya otomatik deneme gönderimiyle eklendi.\n' > deneme-eki.txt
-          cp yayin/alufortis-gkh/assets/hero-poster.jpg kesit-ornegi.jpg
+          printf 'Alufortis teklif formu - deneme eki\nTeknik şartname örneği: 6063 T5, eloksal, 500 adet.\n' > teknik-sartname.txt
+          cp yayin/alufortis-gkh/assets/hero-poster.jpg kesit-cizimi.jpg
           curl -sS --max-time 60 https://alufortis.gkh.ro/teklif.php \
-            -F "ad=Deneme Gönderimi (Claude)" -F "firma=Alufortis Web Test" -F "eposta=info@gkh.ro" \
-            -F "tel=+90 000 000 00 00" -F "mesaj=Bu bir deneme mesajıdır. Teklif formu ve dosya ekleri çalışıyor mu kontrol ediyoruz. 6063 alaşım, eloksal, 500 adet." \
-            -F "website=" -F "dil=tr" -F "dosya[]=@deneme-eki.txt;type=text/plain" -F "dosya[]=@kesit-ornegi.jpg;type=image/jpeg" | tee yanit.json
+            -F "ad=Test Kullanıcısı" -F "firma=Alufortis Web Sitesi Deneme" -F "eposta=info@gkh.ro" \
+            -F "tel=+90 000 000 00 00" -F "mesaj=Bu bir deneme mesajıdır. Teklif formunun kurumsal e-posta şablonu ve dosya ekleri kontrol ediliyor. Örnek talep: 6063 T5 alaşım, eloksal kaplı 500 adet profil." \
+            -F "website=" -F "dil=tr" -F "dosya[]=@teknik-sartname.txt;type=text/plain" -F "dosya[]=@kesit-cizimi.jpg;type=image/jpeg" | tee yanit.json
           echo
           grep -q '"ok":true' yanit.json

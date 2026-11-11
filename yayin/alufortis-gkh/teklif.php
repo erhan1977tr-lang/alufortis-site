@@ -1,12 +1,12 @@
 <?php
 /*
- * Alufortis teklif formu: form alanlarını ve ekleri info@alufortis.com adresine e-posta olarak gönderir.
+ * Alufortis teklif formu: form alanlarını ve ekleri info@gkh.ro adresine e-posta olarak gönderir.
  * Ekler: istenen kadar dosya, her format, toplam en fazla 15 MB. Dosyalar sunucuda saklanmaz.
  * Spam koruması: gizli alan (website), IP başına saatte 8 gönderim.
  */
 declare(strict_types=1);
 
-const ALICI = 'info@alufortis.com';
+const ALICI = 'info@gkh.ro';
 const MAKS_TOPLAM = 15 * 1024 * 1024;
 const SAATLIK_SINIR = 8;
 

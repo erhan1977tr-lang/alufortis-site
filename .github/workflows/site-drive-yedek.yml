@@ -1,0 +1,46 @@
+name: Canlı site yedeğini Google Drive'a yükle
+
+# Erhan'ın 2026-11-11 isteğiyle: alufortis.gkh.ro'da yayındaki site dosyaları (yayin/alufortis-gkh) ve deponun
+# tüm geçmişi, Drive'daki "Proje Yedekleri/alufortis-site/site-yedekleri/<tarih>" klasörüne yüklenir ve doğrulanır.
+on:
+  push:
+    branches: [claude/project-thread-02th8l]
+    paths:
+      - ".github/workflows/site-drive-yedek.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  yedek:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: claude/project-thread-3xxexf
+          fetch-depth: 0
+          persist-credentials: false
+      - name: rclone kur
+        run: sudo apt-get update -qq && sudo apt-get install --yes --no-install-recommends -qq rclone zip
+      - name: Arşivleri hazırla
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/yedek"; mkdir -p "$out"
+          (cd yayin/alufortis-gkh && zip -qr -X "$out/alufortis-gkh-canli-site.zip" . )
+          git bundle create "$out/depo-gecmisi.bundle" --all
+          git bundle verify "$out/depo-gecmisi.bundle" >/dev/null
+          { echo "Canlı adres: https://alufortis.gkh.ro/"; echo "Dal: claude/project-thread-3xxexf"; echo "Commit: $(git rev-parse HEAD)"; echo "Tarih (UTC): $(date -u +%F' '%T)"; } > "$out/BILGI.txt"
+          cd "$out" && sha256sum * > SHA256SUMS && ls -l
+      - name: Drive'a yükle ve doğrula
+        env:
+          DRIVE_CONFIG: ${{ secrets.CODE_BACKUP_DRIVE_CONFIG }}
+        run: |
+          set -euo pipefail
+          if [ -z "$DRIVE_CONFIG" ]; then echo '::error::Missing CODE_BACKUP_DRIVE_CONFIG'; exit 1; fi
+          config=$(mktemp "$RUNNER_TEMP/drive.XXXXXX"); trap 'rm -f "$config"' EXIT; chmod 600 "$config"
+          printf '%s\n' "$DRIVE_CONFIG" > "$config"; unset DRIVE_CONFIG
+          destination="backup:Proje Yedekleri/alufortis-site/site-yedekleri/$(date -u +%Y-%m-%d-%H%M)-canli"
+          rclone --config "$config" copy "$RUNNER_TEMP/yedek" "$destination" --immutable --checksum --retries 5
+          rclone --config "$config" check "$RUNNER_TEMP/yedek" "$destination" --one-way
+          echo "Drive klasörü: ${destination#backup:}"

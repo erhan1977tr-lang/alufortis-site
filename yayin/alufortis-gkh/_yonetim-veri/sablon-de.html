@@ -589,6 +589,25 @@ html.intro-on .nav{opacity:0}
 .hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
 form.busy .btn{opacity:.6;pointer-events:none}
 [hidden]{display:none!important}
+/* ---- telefon ve dikey tablet menüsü (☰) ---- */
+.nav-tog{display:none}
+.nav li[hidden],.nav-tog[hidden]{display:none!important}
+@media (max-width:860px){
+  .nav-tog{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;width:46px;height:46px;padding:0;border-radius:999px;border:1px solid rgba(150,170,195,.38);background:rgba(8,12,18,.55);color:#f4f7fa;cursor:pointer;-webkit-tap-highlight-color:transparent;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:border-color .3s var(--ease),background .3s var(--ease)}
+  .nav-tog:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .nav-tog svg{width:22px;height:22px}
+  .nav-tog .x,.nav.open .nav-tog .b{display:none}
+  .nav.open .nav-tog .x{display:block}
+  .nav.open .nav-tog{border-color:var(--accent)}
+  .nav.open{background:rgba(10,14,20,.97)!important;border-color:var(--line)}
+  .nav.open ul{display:flex;flex-direction:column;align-items:stretch;gap:0;position:fixed;top:var(--nav-h);left:0;right:0;max-height:calc(100vh - var(--nav-h));max-height:calc(100dvh - var(--nav-h));overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;margin:0;padding:6px clamp(16px,4vw,48px) 20px;background:#0b1017;border-bottom:1px solid var(--line);box-shadow:0 26px 50px rgba(0,0,0,.55);animation:navin .28s var(--ease)}
+  .nav.open ul li{border-bottom:1px solid var(--line)}
+  .nav.open ul a{display:block;padding:16px 4px;font-size:20px;font-weight:500;color:#f4f7fa;text-shadow:none}
+  .nav.open ul a:active{color:var(--accent)}
+}
+@media (max-width:380px){.nav-end{gap:4px}.nav-end .langs a{padding:7px 7px}.brand img{height:50px}}
+@keyframes navin{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.nav.open ul{animation:none}}
 </style>
 </head>
 <body>
@@ -607,7 +626,7 @@ form.busy .btn{opacity:.6;pointer-events:none}
 <nav class="nav" aria-label="Hauptmenü">
   <a class="brand" href="#top" aria-label="Alufortis, Startseite"><img src="../assets/logo-dark.svg" alt="{{T:K11}}" width="879" height="435">
   </a>
-  <ul>
+  <ul id="navm">
     <li data-b="hakkimizda"><a href="#hakkimizda">{{T:K12}}</a></li>
     <li data-b="uretim"><a href="#uretim">{{T:K13}}</a></li>
     <li data-b="urunler"><a href="#urunler">{{T:K14}}</a></li>
@@ -615,7 +634,7 @@ form.busy .btn{opacity:.6;pointer-events:none}
     <li data-b="sss"><a href="#sss">{{T:K16}}</a></li>
     <li data-b="teklif"><a href="#teklif">{{T:K17}}</a></li>
   </ul>
-  <div class="nav-end"><div class="langs" role="group" aria-label="Sprache"><a href="../" hreflang="tr" lang="tr" title="Türkçe">TR</a><a href="../en/" hreflang="en" lang="en" title="English">EN</a><a href="../de/" hreflang="de" lang="de" title="Deutsch" aria-current="page">DE</a></div></div>
+  <div class="nav-end"><div class="langs" role="group" aria-label="Sprache"><a href="../" hreflang="tr" lang="tr" title="Türkçe">TR</a><a href="../en/" hreflang="en" lang="en" title="English">EN</a><a href="../de/" hreflang="de" lang="de" title="Deutsch" aria-current="page">DE</a></div><button class="nav-tog" type="button" aria-expanded="false" aria-controls="navm" aria-label="Menü öffnen" data-ac="Menü öffnen" data-kapat="Menü schließen"><svg class="b" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
 </nav>
 
 <header class="hero" id="top">
@@ -1858,6 +1877,21 @@ addEventListener('load', () => ScrollTrigger.refresh(), { once: true });
 </script>
 <script>
 document.querySelectorAll('.langs a').forEach(function (a) { a.addEventListener('click', function () { try { localStorage.setItem('alufortis-dil', a.getAttribute('hreflang')); } catch (e) {} }); });
+</script>
+<script>
+/* telefon ve dikey tablet: ☰ menü; kapalı bölümlerin bağlantıları (hidden) zaten listede görünmez */
+(function () {
+  var nav = document.querySelector('.nav'), btn = nav && nav.querySelector('.nav-tog'), ul = nav && nav.querySelector('ul');
+  if (!btn || !ul) return;
+  if (![].some.call(ul.children, function (li) { return !li.hidden; })) { btn.hidden = true; return; }
+  function set(o) { nav.classList.toggle('open', o); btn.setAttribute('aria-expanded', o ? 'true' : 'false'); btn.setAttribute('aria-label', o ? btn.getAttribute('data-kapat') : btn.getAttribute('data-ac')); }
+  btn.addEventListener('click', function (e) { e.stopPropagation(); set(!nav.classList.contains('open')); });
+  ul.addEventListener('click', function (e) { if (e.target.closest && e.target.closest('a')) set(false); });
+  document.addEventListener('click', function (e) { if (nav.classList.contains('open') && !nav.contains(e.target)) set(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && nav.classList.contains('open')) { set(false); btn.focus(); } });
+  var mq = matchMedia('(max-width: 860px)'), off = function () { if (!mq.matches) set(false); };
+  if (mq.addEventListener) mq.addEventListener('change', off); else if (mq.addListener) mq.addListener(off);
+})();
 </script>
 </body>
 </html>

@@ -588,6 +588,7 @@ html.intro-on .nav{opacity:0}
 .ferr.on{display:block}
 .hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
 form.busy .btn{opacity:.6;pointer-events:none}
+[hidden]{display:none!important}
 </style>
 </head>
 <body>
@@ -607,12 +608,12 @@ form.busy .btn{opacity:.6;pointer-events:none}
   <a class="brand" href="#top" aria-label="Alufortis, home"><img src="../assets/logo-dark.svg" alt="Alufortis Aluminium Engineering Solutions" width="879" height="435">
   </a>
   <ul>
-    <li><a href="#hakkimizda">About us</a></li>
-    <li><a href="#uretim">Production</a></li>
-    <li><a href="#urunler">Products</a></li>
-    <li><a href="#kalite">Quality</a></li>
-    <li><a href="#sss">FAQ</a></li>
-    <li><a href="#teklif">Contact</a></li>
+    <li data-b="hakkimizda"><a href="#hakkimizda">About us</a></li>
+    <li data-b="uretim"><a href="#uretim">Production</a></li>
+    <li data-b="urunler"><a href="#urunler">Products</a></li>
+    <li data-b="kalite"><a href="#kalite">Quality</a></li>
+    <li data-b="sss"><a href="#sss">FAQ</a></li>
+    <li data-b="teklif"><a href="#teklif">Contact</a></li>
   </ul>
   <div class="nav-end"><div class="langs" role="group" aria-label="Language"><a href="../" hreflang="tr" lang="tr" title="Türkçe">TR</a><a href="../en/" hreflang="en" lang="en" title="English" aria-current="page">EN</a><a href="../de/" hreflang="de" lang="de" title="Deutsch">DE</a></div></div>
 </nav>
@@ -648,13 +649,13 @@ form.busy .btn{opacity:.6;pointer-events:none}
     <div class="band band-settle band-6 e-settle" data-a="0.895" data-b="1" data-last="1" data-ramp="0.05">
       <h2 data-split="words">Delivering to 11 countries</h2>
       <p class="sub">Your reliable partner in aluminium profiles.</p>
-      <div class="cta-row"><a class="btn btn-primary" href="#teklif">Request a Quote</a><a class="btn btn-ghost" href="#uretim">Explore Production</a></div>
+      <div class="cta-row"><a class="btn btn-primary" href="#teklif" data-b="teklif">Request a Quote</a><a class="btn btn-ghost" href="#uretim" data-b="uretim">Explore Production</a></div>
     </div>
 
     <div class="static">
       <h1>Your reliable partner in aluminium profiles.</h1>
       <p>Aluminium profiles since 1996. Extrusion, anodizing, powder coating and mechanical processing under one roof.</p>
-      <a class="btn btn-primary" href="#teklif">Request a Quote</a>
+      <a class="btn btn-primary" href="#teklif" data-b="teklif">Request a Quote</a>
     </div>
 
     <div class="cue" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6l5 5 5-5"/></svg>Scroll</div>
@@ -664,7 +665,7 @@ form.busy .btn{opacity:.6;pointer-events:none}
 
 <main id="main" tabindex="-1">
 
-  <section class="stats rv" aria-labelledby="stats-h">
+  <section class="stats rv" data-bolum="rakamlar" aria-labelledby="stats-h">
     <div class="wrap">
       <p class="kicker part">Measurable</p>
       <h2 id="stats-h" class="vh">Alufortis by the numbers</h2>
@@ -680,7 +681,7 @@ form.busy .btn{opacity:.6;pointer-events:none}
   </section>
   <div class="rule" aria-hidden="true"></div>
 
-  <section class="about" id="hakkimizda" aria-labelledby="about-h">
+  <section class="about" data-bolum="hakkimizda" id="hakkimizda" aria-labelledby="about-h">
     <div class="wrap">
       <div class="rv">
         <p class="kicker part">About us</p>
@@ -695,7 +696,7 @@ form.busy .btn{opacity:.6;pointer-events:none}
   </section>
   <div class="rule" aria-hidden="true"></div>
 
-  <section class="chap" id="surec" aria-labelledby="chap-h">
+  <section class="chap" data-bolum="surec" id="surec" aria-labelledby="chap-h">
     <div class="cstick">
       <div class="cfigs"><figure class="cf" data-i="0"><img src="../assets/gorsel/tesis.webp" alt="Alufortis facility at night, with the Alufortis logo on the facade" width="1344" height="752" loading="lazy" decoding="async"></figure><figure class="cf" data-i="1"><img src="../assets/gorsel/muhendislik.webp" alt="Profile section and stress analysis on screen, an aluminium profile and a caliper on the desk" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure><figure class="cf" data-i="2"><img src="../assets/gorsel/kalip.webp" alt="Steel extrusion die, with a CNC machine behind it" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure><figure class="cf" data-i="3"><img src="../assets/gorsel/ekstruzyon.webp" alt="Hot aluminium profile leaving the press" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure><figure class="cf" data-i="4"><img src="../assets/gorsel/yuzey.webp" alt="Anodized, powder-coated and wood-effect profiles side by side" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure><figure class="cf" data-i="5"><img src="../assets/gorsel/cnc.webp" alt="Aluminium profile being machined on a CNC machine" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure><figure class="cf" data-i="6"><img src="../assets/gorsel/lazer.webp" alt="Aluminium profile being laser cut, with sparks" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure><figure class="cf" data-i="7"><img src="../assets/gorsel/kalite.webp" alt="Aluminium part being checked with a measuring arm" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure><figure class="cf" data-i="8"><img src="../assets/gorsel/paketleme.webp" alt="Palletized profile bundles with Alufortis labels" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure><figure class="cf" data-i="9"><img src="../assets/gorsel/lojistik.webp" alt="Forklift loading profiles into a truck with the Alufortis logo" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure></div>
       <div class="cscrim" aria-hidden="true"></div>
@@ -711,7 +712,7 @@ form.busy .btn{opacity:.6;pointer-events:none}
   </section>
   <div class="rule" aria-hidden="true"></div>
 
-  <section class="prod" id="uretim" aria-labelledby="prod-h">
+  <section class="prod" data-bolum="uretim" id="uretim" aria-labelledby="prod-h">
     <div class="pinp">
     <div class="wrap">
       <div class="rv">
@@ -751,7 +752,7 @@ form.busy .btn{opacity:.6;pointer-events:none}
     </div>
   </section>
 
-  <section class="sys" id="urunler" aria-labelledby="sys-h">
+  <section class="sys" data-bolum="urunler" id="urunler" aria-labelledby="sys-h">
     <div class="pin">
     <div class="wrap">
       <div class="head rv">
@@ -779,21 +780,21 @@ form.busy .btn{opacity:.6;pointer-events:none}
   </section>
 
 
-  <section class="sect" id="sektorler" aria-labelledby="sect-h">
+  <section class="sect" data-bolum="sektorler" id="sektorler" aria-labelledby="sect-h">
     <div class="sstick">
       <div class="wrap shead">
         <div><p class="kicker">Industries</p><h2 id="sect-h" class="t">Industries we serve.</h2></div>
         <p class="lede">Every industry has different engineering requirements. We develop the right solution for each project.</p>
       </div>
       <div class="strack" tabindex="0" aria-label="Industries, scroll sideways">
-        <ul class="srow"><li class="sc"><figure><div class="si"><img src="../assets/gorsel/pergola.webp" alt="Bioclimatic pergola over a terrace in evening light" loading="lazy" decoding="async"></div><figcaption>Pergola systems</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="../assets/gorsel/surme.webp" alt="Living room with large sliding glass doors" loading="lazy" decoding="async"></div><figcaption>Sliding systems</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="../assets/gorsel/cephe.webp" alt="Tower with an aluminium curtain wall" loading="lazy" decoding="async"></div><figcaption>Facade systems</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="../assets/gorsel/kapi-pencere.webp" alt="House entrance with aluminium door and windows" loading="lazy" decoding="async"></div><figcaption>Doors &amp; windows</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="../assets/gorsel/ozel.webp" alt="Custom-machined aluminium part" loading="lazy" decoding="async"></div><figcaption>Custom projects</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="../assets/gorsel/denizcilik.webp" alt="Aluminium railing and hatch on a boat" loading="lazy" decoding="async"></div><figcaption>Marine applications</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="../assets/gorsel/endustriyel.webp" alt="Machine frame built from aluminium system profiles" loading="lazy" decoding="async"></div><figcaption>Industrial profiles</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="../assets/gorsel/gunes.webp" alt="Aluminium substructure carrying solar panels" loading="lazy" decoding="async"></div><figcaption>Solar structures</figcaption></figure></li><li class="sc send"><div><h3>Don&apos;t see your industry?</h3><p>Send us your section and we will plan it with you, from die to shipment.</p><a class="btn btn-primary" href="#teklif">Request a Quote</a></div></li></ul>
+        <ul class="srow"><li class="sc"><figure><div class="si"><img src="../assets/gorsel/pergola.webp" alt="Bioclimatic pergola over a terrace in evening light" loading="lazy" decoding="async"></div><figcaption>Pergola systems</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="../assets/gorsel/surme.webp" alt="Living room with large sliding glass doors" loading="lazy" decoding="async"></div><figcaption>Sliding systems</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="../assets/gorsel/cephe.webp" alt="Tower with an aluminium curtain wall" loading="lazy" decoding="async"></div><figcaption>Facade systems</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="../assets/gorsel/kapi-pencere.webp" alt="House entrance with aluminium door and windows" loading="lazy" decoding="async"></div><figcaption>Doors &amp; windows</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="../assets/gorsel/ozel.webp" alt="Custom-machined aluminium part" loading="lazy" decoding="async"></div><figcaption>Custom projects</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="../assets/gorsel/denizcilik.webp" alt="Aluminium railing and hatch on a boat" loading="lazy" decoding="async"></div><figcaption>Marine applications</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="../assets/gorsel/endustriyel.webp" alt="Machine frame built from aluminium system profiles" loading="lazy" decoding="async"></div><figcaption>Industrial profiles</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="../assets/gorsel/gunes.webp" alt="Aluminium substructure carrying solar panels" loading="lazy" decoding="async"></div><figcaption>Solar structures</figcaption></figure></li><li class="sc send"><div><h3>Don&apos;t see your industry?</h3><p>Send us your section and we will plan it with you, from die to shipment.</p><a class="btn btn-primary" href="#teklif" data-b="teklif">Request a Quote</a></div></li></ul>
       </div>
       <div class="wrap sfoot"><div class="sbar" aria-hidden="true"><i></i></div><p class="cnote">Representative image</p></div>
     </div>
   </section>
   <div class="rule" aria-hidden="true"></div>
 
-  <section class="qual" id="kalite" aria-labelledby="qual-h">
+  <section class="qual" data-bolum="kalite" id="kalite" aria-labelledby="qual-h">
     <div class="glow" aria-hidden="true"></div>
     <div class="wrap">
       <div class="cols">
@@ -816,7 +817,7 @@ form.busy .btn{opacity:.6;pointer-events:none}
     </div>
   </section>
 
-  <section class="glob" aria-labelledby="glob-h">
+  <section class="glob" data-bolum="global" aria-labelledby="glob-h">
     <div class="gpin"><div class="gstick">
     <div class="wrap gl">
       <div class="rv">
@@ -838,7 +839,7 @@ form.busy .btn{opacity:.6;pointer-events:none}
     </div>
   </section>
 
-  <section class="faq" id="sss" aria-labelledby="faq-h">
+  <section class="faq" data-bolum="sss" id="sss" aria-labelledby="faq-h">
     <div class="wrap rv">
       <p class="kicker part">Frequently asked</p>
       <h2 id="faq-h" class="t part">What people ask before a quote.</h2>
@@ -852,7 +853,7 @@ form.busy .btn{opacity:.6;pointer-events:none}
     </div>
   </section>
 
-  <section class="quote" id="teklif" aria-labelledby="quote-h">
+  <section class="quote" data-bolum="teklif" id="teklif" aria-labelledby="quote-h">
     <div class="wrap">
       <div class="cols">
         <div class="rv">
@@ -891,12 +892,12 @@ form.busy .btn{opacity:.6;pointer-events:none}
     <div class="row">
       <a class="brand" href="#top" aria-label="Alufortis, back to top"><img src="../assets/logo-dark.svg" alt="Alufortis Aluminium Engineering Solutions" width="879" height="435" loading="lazy"></a>
       <ul>
-        <li><a href="#hakkimizda">About us</a></li>
-        <li><a href="#uretim">Production</a></li>
-        <li><a href="#urunler">Products</a></li>
-        <li><a href="#kalite">Quality</a></li>
-        <li><a href="#sss">FAQ</a></li>
-        <li><a href="#teklif">Contact</a></li>
+        <li data-b="hakkimizda"><a href="#hakkimizda">About us</a></li>
+        <li data-b="uretim"><a href="#uretim">Production</a></li>
+        <li data-b="urunler"><a href="#urunler">Products</a></li>
+        <li data-b="kalite"><a href="#kalite">Quality</a></li>
+        <li data-b="sss"><a href="#sss">FAQ</a></li>
+        <li data-b="teklif"><a href="#teklif">Contact</a></li>
       </ul>
     </div>
     <div class="fine">
@@ -1570,7 +1571,7 @@ const marq = $('#marq');
 new IntersectionObserver(en => marq.classList.toggle('live', en[0].isIntersecting)).observe(marq);
 
 // catalog cards prefill the one form
-$$('.card[data-catalog]').forEach(c => c.addEventListener('click', () => { const m = $('#mesaj'); if (!m.value) m.value = c.dataset.catalog + ': please send me this catalogue.'; }));
+$$('.card[data-catalog][href="#teklif"]').forEach(c => c.addEventListener('click', () => { const m = $('#mesaj'); if (!m.value) m.value = c.dataset.catalog + ': please send me this catalogue.'; }));
 
 const FORM_T = { url: '../teklif.php', remove: 'Remove', total: 'Total', big: 'The files may not exceed 15 MB in total. Please remove some files.', sending: 'Sending…', err: 'The message could not be sent right now. Please try again or write directly to info@alufortis.com.', dec: '.' };
 

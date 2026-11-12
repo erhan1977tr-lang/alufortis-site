@@ -588,6 +588,7 @@ html.intro-on .nav{opacity:0}
 .ferr.on{display:block}
 .hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
 form.busy .btn{opacity:.6;pointer-events:none}
+[hidden]{display:none!important}
 </style>
 </head>
 <body>
@@ -607,12 +608,12 @@ form.busy .btn{opacity:.6;pointer-events:none}
   <a class="brand" href="#top" aria-label="Alufortis, ana sayfa"><img src="assets/logo-dark.svg" alt="Alufortis Aluminium Engineering Solutions" width="879" height="435">
   </a>
   <ul>
-    <li><a href="#hakkimizda">Hakkımızda</a></li>
-    <li><a href="#uretim">Üretim</a></li>
-    <li><a href="#urunler">Ürünler</a></li>
-    <li><a href="#kalite">Kalite</a></li>
-    <li><a href="#sss">SSS</a></li>
-    <li><a href="#teklif">İletişim</a></li>
+    <li data-b="hakkimizda"><a href="#hakkimizda">Hakkımızda</a></li>
+    <li data-b="uretim"><a href="#uretim">Üretim</a></li>
+    <li data-b="urunler"><a href="#urunler">Ürünler</a></li>
+    <li data-b="kalite"><a href="#kalite">Kalite</a></li>
+    <li data-b="sss"><a href="#sss">SSS</a></li>
+    <li data-b="teklif"><a href="#teklif">İletişim</a></li>
   </ul>
   <div class="nav-end"><div class="langs" role="group" aria-label="Dil seçimi"><a href="./" hreflang="tr" lang="tr" title="Türkçe" aria-current="page">TR</a><a href="en/" hreflang="en" lang="en" title="English">EN</a><a href="de/" hreflang="de" lang="de" title="Deutsch">DE</a></div></div>
 </nav>
@@ -648,13 +649,13 @@ form.busy .btn{opacity:.6;pointer-events:none}
     <div class="band band-settle band-6 e-settle" data-a="0.895" data-b="1" data-last="1" data-ramp="0.05">
       <h2 data-split="words">11 ülkeye teslimat</h2>
       <p class="sub">Alüminyum profilde güvenilir iş ortağınız.</p>
-      <div class="cta-row"><a class="btn btn-primary" href="#teklif">Teklif İsteyin</a><a class="btn btn-ghost" href="#uretim">Üretimi Keşfet</a></div>
+      <div class="cta-row"><a class="btn btn-primary" href="#teklif" data-b="teklif">Teklif İsteyin</a><a class="btn btn-ghost" href="#uretim" data-b="uretim">Üretimi Keşfet</a></div>
     </div>
 
     <div class="static">
       <h1>Alüminyum profilde güvenilir iş ortağınız.</h1>
       <p>1996&apos;dan beri alüminyum profil. Ekstrüzyon, eloksal, toz boya ve mekanik işlem tek çatı altında.</p>
-      <a class="btn btn-primary" href="#teklif">Teklif İsteyin</a>
+      <a class="btn btn-primary" href="#teklif" data-b="teklif">Teklif İsteyin</a>
     </div>
 
     <div class="cue" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6l5 5 5-5"/></svg>Kaydırın</div>
@@ -664,7 +665,7 @@ form.busy .btn{opacity:.6;pointer-events:none}
 
 <main id="main" tabindex="-1">
 
-  <section class="stats rv" aria-labelledby="stats-h">
+  <section class="stats rv" data-bolum="rakamlar" aria-labelledby="stats-h">
     <div class="wrap">
       <p class="kicker part">Ölçülebilir</p>
       <h2 id="stats-h" class="vh">Rakamlarla Alufortis</h2>
@@ -680,7 +681,7 @@ form.busy .btn{opacity:.6;pointer-events:none}
   </section>
   <div class="rule" aria-hidden="true"></div>
 
-  <section class="about" id="hakkimizda" aria-labelledby="about-h">
+  <section class="about" data-bolum="hakkimizda" id="hakkimizda" aria-labelledby="about-h">
     <div class="wrap">
       <div class="rv">
         <p class="kicker part">Hakkımızda</p>
@@ -695,7 +696,7 @@ form.busy .btn{opacity:.6;pointer-events:none}
   </section>
   <div class="rule" aria-hidden="true"></div>
 
-  <section class="chap" id="surec" aria-labelledby="chap-h">
+  <section class="chap" data-bolum="surec" id="surec" aria-labelledby="chap-h">
     <div class="cstick">
       <div class="cfigs"><figure class="cf" data-i="0"><img src="assets/gorsel/tesis.webp" alt="Alufortis tesisinin gece görünümü, cephede Alufortis logosu" width="1344" height="752" loading="lazy" decoding="async"></figure><figure class="cf" data-i="1"><img src="assets/gorsel/muhendislik.webp" alt="Ekranda profil kesiti ve gerilme analizi, masada alüminyum profil ve kumpas" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure><figure class="cf" data-i="2"><img src="assets/gorsel/kalip.webp" alt="Çelik ekstrüzyon kalıbı, arkada CNC tezgâhı" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure><figure class="cf" data-i="3"><img src="assets/gorsel/ekstruzyon.webp" alt="Presten çıkan sıcak alüminyum profil" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure><figure class="cf" data-i="4"><img src="assets/gorsel/yuzey.webp" alt="Eloksal, toz boya ve ahşap desen yüzeyli profiller yan yana" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure><figure class="cf" data-i="5"><img src="assets/gorsel/cnc.webp" alt="CNC tezgâhında işlenen alüminyum profil" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure><figure class="cf" data-i="6"><img src="assets/gorsel/lazer.webp" alt="Lazerle kesilen alüminyum profil ve kıvılcımlar" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure><figure class="cf" data-i="7"><img src="assets/gorsel/kalite.webp" alt="Ölçüm kolu ile kontrol edilen alüminyum parça" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure><figure class="cf" data-i="8"><img src="assets/gorsel/paketleme.webp" alt="Alufortis etiketli, paletlenmiş profil paketleri" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure><figure class="cf" data-i="9"><img src="assets/gorsel/lojistik.webp" alt="Alufortis logolu tıra profil yükleyen forklift" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure></div>
       <div class="cscrim" aria-hidden="true"></div>
@@ -711,7 +712,7 @@ form.busy .btn{opacity:.6;pointer-events:none}
   </section>
   <div class="rule" aria-hidden="true"></div>
 
-  <section class="prod" id="uretim" aria-labelledby="prod-h">
+  <section class="prod" data-bolum="uretim" id="uretim" aria-labelledby="prod-h">
     <div class="pinp">
     <div class="wrap">
       <div class="rv">
@@ -751,7 +752,7 @@ form.busy .btn{opacity:.6;pointer-events:none}
     </div>
   </section>
 
-  <section class="sys" id="urunler" aria-labelledby="sys-h">
+  <section class="sys" data-bolum="urunler" id="urunler" aria-labelledby="sys-h">
     <div class="pin">
     <div class="wrap">
       <div class="head rv">
@@ -779,21 +780,21 @@ form.busy .btn{opacity:.6;pointer-events:none}
   </section>
 
 
-  <section class="sect" id="sektorler" aria-labelledby="sect-h">
+  <section class="sect" data-bolum="sektorler" id="sektorler" aria-labelledby="sect-h">
     <div class="sstick">
       <div class="wrap shead">
         <div><p class="kicker">Sektörler</p><h2 id="sect-h" class="t">Hizmet verdiğimiz sektörler.</h2></div>
         <p class="lede">Her sektörün mühendislik ihtiyacı farklıdır. Her projeye kendi çözümünü geliştiriyoruz.</p>
       </div>
       <div class="strack" tabindex="0" aria-label="Sektörler, yatay kaydırılır">
-        <ul class="srow"><li class="sc"><figure><div class="si"><img src="assets/gorsel/pergola.webp" alt="Bioklimatik pergola, akşam ışığında teras" loading="lazy" decoding="async"></div><figcaption>Pergola sistemleri</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="assets/gorsel/surme.webp" alt="Geniş sürme cam kapılı salon" loading="lazy" decoding="async"></div><figcaption>Sürme sistemleri</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="assets/gorsel/cephe.webp" alt="Alüminyum giydirme cepheli kule" loading="lazy" decoding="async"></div><figcaption>Cephe sistemleri</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="assets/gorsel/kapi-pencere.webp" alt="Alüminyum kapı ve pencereli ev girişi" loading="lazy" decoding="async"></div><figcaption>Kapı ve pencere sistemleri</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="assets/gorsel/ozel.webp" alt="Özel işlenmiş alüminyum parça" loading="lazy" decoding="async"></div><figcaption>Özel projeler</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="assets/gorsel/denizcilik.webp" alt="Teknede alüminyum küpeşte ve kapak" loading="lazy" decoding="async"></div><figcaption>Denizcilik uygulamaları</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="assets/gorsel/endustriyel.webp" alt="Alüminyum sigma profillerden makine iskeleti" loading="lazy" decoding="async"></div><figcaption>Endüstriyel profiller</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="assets/gorsel/gunes.webp" alt="Güneş paneli taşıyıcı alüminyum konstrüksiyon" loading="lazy" decoding="async"></div><figcaption>Güneş enerjisi sistemleri</figcaption></figure></li><li class="sc send"><div><h3>Sektörünüz listede yok mu?</h3><p>Kesitinizi gönderin, kalıptan sevkiyata kadar birlikte planlayalım.</p><a class="btn btn-primary" href="#teklif">Teklif İsteyin</a></div></li></ul>
+        <ul class="srow"><li class="sc"><figure><div class="si"><img src="assets/gorsel/pergola.webp" alt="Bioklimatik pergola, akşam ışığında teras" loading="lazy" decoding="async"></div><figcaption>Pergola sistemleri</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="assets/gorsel/surme.webp" alt="Geniş sürme cam kapılı salon" loading="lazy" decoding="async"></div><figcaption>Sürme sistemleri</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="assets/gorsel/cephe.webp" alt="Alüminyum giydirme cepheli kule" loading="lazy" decoding="async"></div><figcaption>Cephe sistemleri</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="assets/gorsel/kapi-pencere.webp" alt="Alüminyum kapı ve pencereli ev girişi" loading="lazy" decoding="async"></div><figcaption>Kapı ve pencere sistemleri</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="assets/gorsel/ozel.webp" alt="Özel işlenmiş alüminyum parça" loading="lazy" decoding="async"></div><figcaption>Özel projeler</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="assets/gorsel/denizcilik.webp" alt="Teknede alüminyum küpeşte ve kapak" loading="lazy" decoding="async"></div><figcaption>Denizcilik uygulamaları</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="assets/gorsel/endustriyel.webp" alt="Alüminyum sigma profillerden makine iskeleti" loading="lazy" decoding="async"></div><figcaption>Endüstriyel profiller</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="assets/gorsel/gunes.webp" alt="Güneş paneli taşıyıcı alüminyum konstrüksiyon" loading="lazy" decoding="async"></div><figcaption>Güneş enerjisi sistemleri</figcaption></figure></li><li class="sc send"><div><h3>Sektörünüz listede yok mu?</h3><p>Kesitinizi gönderin, kalıptan sevkiyata kadar birlikte planlayalım.</p><a class="btn btn-primary" href="#teklif" data-b="teklif">Teklif İsteyin</a></div></li></ul>
       </div>
       <div class="wrap sfoot"><div class="sbar" aria-hidden="true"><i></i></div><p class="cnote">Temsili görsel</p></div>
     </div>
   </section>
   <div class="rule" aria-hidden="true"></div>
 
-  <section class="qual" id="kalite" aria-labelledby="qual-h">
+  <section class="qual" data-bolum="kalite" id="kalite" aria-labelledby="qual-h">
     <div class="glow" aria-hidden="true"></div>
     <div class="wrap">
       <div class="cols">
@@ -816,7 +817,7 @@ form.busy .btn{opacity:.6;pointer-events:none}
     </div>
   </section>
 
-  <section class="glob" aria-labelledby="glob-h">
+  <section class="glob" data-bolum="global" aria-labelledby="glob-h">
     <div class="gpin"><div class="gstick">
     <div class="wrap gl">
       <div class="rv">
@@ -838,7 +839,7 @@ form.busy .btn{opacity:.6;pointer-events:none}
     </div>
   </section>
 
-  <section class="faq" id="sss" aria-labelledby="faq-h">
+  <section class="faq" data-bolum="sss" id="sss" aria-labelledby="faq-h">
     <div class="wrap rv">
       <p class="kicker part">Sık sorulanlar</p>
       <h2 id="faq-h" class="t part">Teklif öncesi en çok sorulanlar.</h2>
@@ -852,7 +853,7 @@ form.busy .btn{opacity:.6;pointer-events:none}
     </div>
   </section>
 
-  <section class="quote" id="teklif" aria-labelledby="quote-h">
+  <section class="quote" data-bolum="teklif" id="teklif" aria-labelledby="quote-h">
     <div class="wrap">
       <div class="cols">
         <div class="rv">
@@ -891,12 +892,12 @@ form.busy .btn{opacity:.6;pointer-events:none}
     <div class="row">
       <a class="brand" href="#top" aria-label="Alufortis, başa dön"><img src="assets/logo-dark.svg" alt="Alufortis Aluminium Engineering Solutions" width="879" height="435" loading="lazy"></a>
       <ul>
-        <li><a href="#hakkimizda">Hakkımızda</a></li>
-        <li><a href="#uretim">Üretim</a></li>
-        <li><a href="#urunler">Ürünler</a></li>
-        <li><a href="#kalite">Kalite</a></li>
-        <li><a href="#sss">SSS</a></li>
-        <li><a href="#teklif">İletişim</a></li>
+        <li data-b="hakkimizda"><a href="#hakkimizda">Hakkımızda</a></li>
+        <li data-b="uretim"><a href="#uretim">Üretim</a></li>
+        <li data-b="urunler"><a href="#urunler">Ürünler</a></li>
+        <li data-b="kalite"><a href="#kalite">Kalite</a></li>
+        <li data-b="sss"><a href="#sss">SSS</a></li>
+        <li data-b="teklif"><a href="#teklif">İletişim</a></li>
       </ul>
     </div>
     <div class="fine">
@@ -1570,7 +1571,7 @@ const marq = $('#marq');
 new IntersectionObserver(en => marq.classList.toggle('live', en[0].isIntersecting)).observe(marq);
 
 // catalog cards prefill the one form
-$$('.card[data-catalog]').forEach(c => c.addEventListener('click', () => { const m = $('#mesaj'); if (!m.value) m.value = c.dataset.catalog + ' kataloğunu rica ediyorum.'; }));
+$$('.card[data-catalog][href="#teklif"]').forEach(c => c.addEventListener('click', () => { const m = $('#mesaj'); if (!m.value) m.value = c.dataset.catalog + ' kataloğunu rica ediyorum.'; }));
 
 const FORM_T = { url: 'teklif.php', remove: 'Kaldır', total: 'Toplam', big: 'Dosyaların toplamı 15 MB’ı geçemez. Lütfen bazı dosyaları kaldırın.', sending: 'Gönderiliyor…', err: 'Mesaj şu anda gönderilemedi. Lütfen tekrar deneyin ya da doğrudan info@alufortis.com adresine yazın.', dec: ',' };
 

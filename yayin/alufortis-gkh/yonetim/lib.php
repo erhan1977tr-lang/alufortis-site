@@ -9,9 +9,38 @@ declare(strict_types=1);
 const DILLER = ['tr' => 'index.html', 'en' => 'en/index.html', 'de' => 'de/index.html'];
 const MB_VARSAYILAN = 15;
 const MB_EN_FAZLA = 20;
+const KATALOG_MB = 40;           // bir katalog dosyası (PDF) en fazla
+
+/** Panelden açılıp kapatılabilen bölümler (anahtar = şablondaki data-bolum / data-b değeri). Açılış filmi ve alt bilgi her zaman açıktır. */
+const BOLUMLER = [
+    'giris' => 'Giriş mesajları (filmden önceki iki yazı ekranı)',
+    'rakamlar' => 'Rakamlar',
+    'hakkimizda' => 'Hakkımızda',
+    'surec' => 'Fikirden teslimata (süreç)',
+    'uretim' => 'Üretim',
+    'urunler' => 'Ürün sistemleri',
+    'kataloglar' => 'Katalog indirme (ürün sistemlerinde yüklü kataloglar)',
+    'sektorler' => 'Sektörler',
+    'kalite' => 'Kalite',
+    'global' => 'Uluslararası iş ortaklıkları (dünya haritası)',
+    'sss' => 'Sıkça sorulan sorular',
+    'teklif' => 'Teklif formu ve iletişim',
+];
+
+/** Ürün sistemleri: şablondaki kart sırası, dosya adı kökü ve sistem adının içerik alanı. */
+const SISTEMLER = [
+    1 => ['kok' => 'kapi-pencere-sistemi', 'ad' => 'K188'],
+    2 => ['kok' => 'surme-kapi-pencere-sistemi', 'ad' => 'K192'],
+    3 => ['kok' => 'cephe-sistemleri', 'ad' => 'K196'],
+    4 => ['kok' => 'kupeste-aksesuarlari', 'ad' => 'K200'],
+    5 => ['kok' => 'dograma-cam-balkon-aksesuarlari', 'ad' => 'K204'],
+    6 => ['kok' => 'epdm-fitil', 'ad' => 'K208'],
+];
+const KATALOG_INDIR_ALANI = 'K371';
 
 function site_kok(): string { return dirname(__DIR__); }
 function veri_dizini(): string { return site_kok() . '/_yonetim-veri'; }
+function katalog_dizini(): string { return site_kok() . '/katalog'; }
 
 function json_oku(string $yol, $varsayilan = null)
 {
@@ -47,7 +76,34 @@ function site_ayar_yukle(): array
     $a = json_oku(veri_dizini() . '/site-ayar.json', []);
     $mb = (int)($a['maks_mb'] ?? MB_VARSAYILAN);
     $a['maks_mb'] = max(1, min(MB_EN_FAZLA, $mb));
+    $a['kapali'] = array_values(array_intersect(array_keys(BOLUMLER), is_array($a['kapali'] ?? null) ? $a['kapali'] : []));
     return $a;
+}
+
+/** Yüklü kataloglar: [sistem no][dil] => [dosya, ad, boyut, tarih, v]. Dosyası sunucuda olmayan kayıt yok sayılır (yayın akışında dosya kontrolü yapılmaz). */
+function katalog_yukle(bool $dosya_denetle = true): array
+{
+    $k = json_oku(veri_dizini() . '/katalog.json', []);
+    $temiz = [];
+    foreach (SISTEMLER as $n => $s) {
+        foreach (array_keys(DILLER) as $dil) {
+            $e = $k[(string)$n][$dil] ?? null;
+            if (!is_array($e) || ($e['dosya'] ?? '') !== katalog_dosya_adi($n, $dil)) continue;
+            if ($dosya_denetle && !is_file(katalog_dizini() . '/' . $e['dosya'])) continue;
+            $temiz[$n][$dil] = $e;
+        }
+    }
+    return $temiz;
+}
+
+function katalog_dosya_adi(int $n, string $dil): string { return 'alufortis-' . SISTEMLER[$n]['kok'] . '-' . $dil . '.pdf'; }
+
+/** Panelin yalnızca kilitli alanları: tasarımcı satırı her dilde aynen bulunmalı. */
+function kilitli_alanlari_denetle(string $html, string $dil): void
+{
+    foreach (['https://gkhdigital.ro">gkhdigital.ro</a>', 'https://gkhdigital.com">gkhdigital.com</a>'] as $p) {
+        if (!str_contains(str_replace(' target="_blank" rel="noopener"', '', $html), $p)) throw new RuntimeException("Tasarımcı satırı (gkhdigital) sayfada bulunamadı: $dil. Yayın durduruldu.");
+    }
 }
 
 function js_kacir(string $v): string
@@ -82,8 +138,42 @@ function sayfa_uret(string $dil, array $icerik, array $ayar): string
         return html_kacir($v);
     }, $sablon);
     $cikti = str_replace('{{MAXMB}}', $mb, (string)$cikti);
-    if (preg_match('/\{\{[A-Z]/', $cikti)) throw new RuntimeException("Doldurulmamış yer tutucu: $dil");
-    return $cikti;
+
+    // kataloglar: yüklüyse kart PDF'i açar, yoksa (teklif formu açıksa) forma götürüp kataloğu ister
+    $kapali = array_flip($ayar['kapali'] ?? []);
+    $kataloglar = isset($kapali['kataloglar']) ? [] : ($ayar['katalog'] ?? []);
+    $onek = $dil === 'tr' ? '' : '../';
+    $cikti = preg_replace_callback('/\{\{KAT:(\d)\}\}/', function ($m) use ($kataloglar, $dil, $onek, $kapali) {
+        $e = $kataloglar[(int)$m[1]][$dil] ?? null;
+        if ($e) return 'href="' . html_kacir($onek . 'katalog/' . $e['dosya'] . '?v=' . (int)($e['v'] ?? 0)) . '" target="_blank" rel="noopener" type="application/pdf" data-pdf';
+        return isset($kapali['teklif']) ? '' : 'href="#teklif"';
+    }, $cikti);
+    $cikti = preg_replace_callback('/\{\{KATY:(\d):(K\d+)\}\}/', function ($m) use ($kataloglar, $dil, $kapali, $deger) {
+        if (!empty($kataloglar[(int)$m[1]][$dil])) return html_kacir($deger(KATALOG_INDIR_ALANI));
+        return isset($kapali['teklif']) ? '' : html_kacir($deger($m[2]));
+    }, (string)$cikti);
+
+    // kapalı bölümler ve onlara giden menü / kısayol bağlantıları gizlenir
+    foreach (array_keys(BOLUMLER) as $b) {
+        if (isset($kapali[$b])) {
+            $cikti = str_replace(['data-bolum="' . $b . '"', 'data-b="' . $b . '"'], ['data-bolum="' . $b . '" hidden', 'data-b="' . $b . '" hidden'], (string)$cikti);
+        }
+    }
+    $cikti = isset($kapali['giris'])
+        ? preg_replace('/<!--B:giris-->.*?<!--\/B:giris-->/s', '', (string)$cikti)
+        : str_replace(['<!--B:giris-->', '<!--/B:giris-->'], '', (string)$cikti);
+
+    if (preg_match('/\{\{[A-Z]/', (string)$cikti)) throw new RuntimeException("Doldurulmamış yer tutucu: $dil");
+    kilitli_alanlari_denetle((string)$cikti, $dil);
+    return (string)$cikti;
+}
+
+/** Yayında kullanılan tüm ayarlar: site-ayar.json (ek sınırı, kapalı bölümler) + yüklü kataloglar. */
+function yayin_ayari(): array
+{
+    $a = site_ayar_yukle();
+    $a['katalog'] = katalog_yukle(PHP_SAPI !== 'cli');
+    return $a;
 }
 
 /** Üç dili üretip yerine yazar; önceki sayfaları geçmişe koyar. Dönen: geçmiş klasörünün adı. */
@@ -110,6 +200,18 @@ function siteyi_yayinla(array $icerik, array $ayar, bool $gecmise_al = true): st
     return $etiket;
 }
 
+/** Şablon (yükleme betiğiyle) sayfalardan daha yeni mi? Öyleyse panel “yeniden yayınla” uyarısı gösterir. */
+function sablon_yeni_mi(): bool
+{
+    clearstatcache();
+    foreach (DILLER as $dil => $dosya) {
+        $s = @filemtime(veri_dizini() . "/sablon-$dil.html");
+        $p = @filemtime(site_kok() . "/$dosya");
+        if ($s && (!$p || $s > $p + 5)) return true;
+    }
+    return false;
+}
+
 function gecmis_listesi(): array
 {
     $l = glob(veri_dizini() . '/gecmis/*', GLOB_ONLYDIR) ?: [];
@@ -129,9 +231,11 @@ function gecmisi_buda(int $tut): void
 /** Form ve sunucu yükleme sınırı: .user.ini (PHP yükleme sınırı) güncellenir. */
 function user_ini_yaz(int $mb): void
 {
-    $ini = "; Alufortis: teklif formu dosya ekleri (yönetim panelinden: toplam $mb MB)\n"
-        . 'upload_max_filesize = ' . ($mb + 1) . "M\n"
-        . 'post_max_size = ' . ($mb + 5) . "M\n"
+    // sunucu sınırı, panelden yüklenen kataloglar (en fazla KATALOG_MB) için de yeterli olmalı; teklif formu kendi toplam sınırını ayrıca uygular
+    $tek = max($mb, KATALOG_MB) + 1;
+    $ini = "; Alufortis: teklif formu dosya ekleri (yönetim panelinden: toplam $mb MB) ve katalog yükleme (dosya başına " . KATALOG_MB . " MB)\n"
+        . 'upload_max_filesize = ' . $tek . "M\n"
+        . 'post_max_size = ' . ($tek + 4) . "M\n"
         . "max_file_uploads = 50\nmax_execution_time = 60\nmemory_limit = 256M\n";
     file_put_contents(site_kok() . '/.user.ini', $ini, LOCK_EX);
 }
@@ -158,7 +262,7 @@ function gizli_ayar_yaz(array $a): void
 // komut satırı: php yonetim/lib.php uret  -> sayfaları şablon + içerikten üretir (yayın akışı kullanır)
 if (PHP_SAPI === 'cli' && isset($argv[1]) && realpath($argv[0]) === __FILE__) {
     if ($argv[1] === 'uret') {
-        $etiket = siteyi_yayinla(icerik_yukle(), site_ayar_yukle(), false);
+        $etiket = siteyi_yayinla(icerik_yukle(), yayin_ayari(), false);
         echo "Sayfalar üretildi ($etiket), en fazla ek: " . site_ayar_yukle()['maks_mb'] . " MB\n";
     }
     if ($argv[1] === 'ini') { user_ini_yaz(site_ayar_yukle()['maks_mb']); echo ".user.ini yazıldı\n"; }

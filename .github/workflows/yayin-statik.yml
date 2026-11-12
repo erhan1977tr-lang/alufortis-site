@@ -93,8 +93,8 @@ jobs:
         run: |
           set -euo pipefail
           cd yayin/alufortis-gkh
-          # yönetim panelinde yapılan yazı değişiklikleri ve ek sınırı sunucuda kalır; sayfalar onlarla üretilir
-          for f in icerik.json site-ayar.json; do
+          # yönetim panelinde yapılan yazı değişiklikleri, ek sınırı, kapalı bölümler ve yüklü kataloglar sunucuda kalır; sayfalar onlarla üretilir (/katalog klasörüne dokunulmaz)
+          for f in icerik.json site-ayar.json katalog.json; do
             if [ -f "../../canli/_yonetim-veri/$f" ]; then cp "../../canli/_yonetim-veri/$f" "_yonetim-veri/$f"; echo "sunucudaki $f kullanılıyor"; fi
           done
           php yonetim/lib.php uret

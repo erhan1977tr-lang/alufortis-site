@@ -588,31 +588,32 @@ html.intro-on .nav{opacity:0}
 .ferr.on{display:block}
 .hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
 form.busy .btn{opacity:.6;pointer-events:none}
+[hidden]{display:none!important}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">{{T:K4}}</a>
 <div class="env" aria-hidden="true"></div>
 
-<div class="intro" id="intro" role="region" aria-label="Alufortis tanıtım mesajı">
+<!--B:giris--><div class="intro" id="intro" role="region" aria-label="Alufortis tanıtım mesajı">
   <div class="im m1"><img class="i-logo" src="assets/logo-dark.svg" alt="" width="879" height="435"><p class="i-main" aria-label="{{T:K5}}">{{W:K5}}</p><p class="i-sub">{{T:K6}}</p></div>
   <div class="im m2"><p class="i-kick">{{T:K7}}</p><h2 class="i-h">{{T:K8}}</h2><p class="i-p">{{T:K9}}</p></div>
   <div class="langs i-langs" role="group" aria-label="Dil seçimi"><a href="./" hreflang="tr" lang="tr" title="Türkçe" aria-current="page">TR</a><a href="en/" hreflang="en" lang="en" title="English">EN</a><a href="de/" hreflang="de" lang="de" title="Deutsch">DE</a></div>
   <button class="i-skip" type="button">{{T:K10}}<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 3l5 5-5 5M10 3v10"/></svg></button>
   <div class="i-bar" aria-hidden="true"><i></i></div>
-</div>
+</div><!--/B:giris-->
 
 
 <nav class="nav" aria-label="Ana menü">
   <a class="brand" href="#top" aria-label="Alufortis, ana sayfa"><img src="assets/logo-dark.svg" alt="{{T:K11}}" width="879" height="435">
   </a>
   <ul>
-    <li><a href="#hakkimizda">{{T:K12}}</a></li>
-    <li><a href="#uretim">{{T:K13}}</a></li>
-    <li><a href="#urunler">{{T:K14}}</a></li>
-    <li><a href="#kalite">{{T:K15}}</a></li>
-    <li><a href="#sss">{{T:K16}}</a></li>
-    <li><a href="#teklif">{{T:K17}}</a></li>
+    <li data-b="hakkimizda"><a href="#hakkimizda">{{T:K12}}</a></li>
+    <li data-b="uretim"><a href="#uretim">{{T:K13}}</a></li>
+    <li data-b="urunler"><a href="#urunler">{{T:K14}}</a></li>
+    <li data-b="kalite"><a href="#kalite">{{T:K15}}</a></li>
+    <li data-b="sss"><a href="#sss">{{T:K16}}</a></li>
+    <li data-b="teklif"><a href="#teklif">{{T:K17}}</a></li>
   </ul>
   <div class="nav-end"><div class="langs" role="group" aria-label="Dil seçimi"><a href="./" hreflang="tr" lang="tr" title="Türkçe" aria-current="page">TR</a><a href="en/" hreflang="en" lang="en" title="English">EN</a><a href="de/" hreflang="de" lang="de" title="Deutsch">DE</a></div></div>
 </nav>
@@ -648,13 +649,13 @@ form.busy .btn{opacity:.6;pointer-events:none}
     <div class="band band-settle band-6 e-settle" data-a="0.895" data-b="1" data-last="1" data-ramp="0.05">
       <h2 data-split="words">{{T:K28}}</h2>
       <p class="sub">{{T:K29}}</p>
-      <div class="cta-row"><a class="btn btn-primary" href="#teklif">{{T:K30}}</a><a class="btn btn-ghost" href="#uretim">{{T:K31}}</a></div>
+      <div class="cta-row"><a class="btn btn-primary" href="#teklif" data-b="teklif">{{T:K30}}</a><a class="btn btn-ghost" href="#uretim" data-b="uretim">{{T:K31}}</a></div>
     </div>
 
     <div class="static">
       <h1>{{T:K32}}</h1>
       <p>{{T:K33}}</p>
-      <a class="btn btn-primary" href="#teklif">{{T:K34}}</a>
+      <a class="btn btn-primary" href="#teklif" data-b="teklif">{{T:K34}}</a>
     </div>
 
     <div class="cue" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6l5 5 5-5"/></svg>{{T:K35}}</div>
@@ -664,7 +665,7 @@ form.busy .btn{opacity:.6;pointer-events:none}
 
 <main id="main" tabindex="-1">
 
-  <section class="stats rv" aria-labelledby="stats-h">
+  <section class="stats rv" data-bolum="rakamlar" aria-labelledby="stats-h">
     <div class="wrap">
       <p class="kicker part">{{T:K36}}</p>
       <h2 id="stats-h" class="vh">{{T:K37}}</h2>
@@ -680,7 +681,7 @@ form.busy .btn{opacity:.6;pointer-events:none}
   </section>
   <div class="rule" aria-hidden="true"></div>
 
-  <section class="about" id="hakkimizda" aria-labelledby="about-h">
+  <section class="about" data-bolum="hakkimizda" id="hakkimizda" aria-labelledby="about-h">
     <div class="wrap">
       <div class="rv">
         <p class="kicker part">{{T:K52}}</p>
@@ -695,7 +696,7 @@ form.busy .btn{opacity:.6;pointer-events:none}
   </section>
   <div class="rule" aria-hidden="true"></div>
 
-  <section class="chap" id="surec" aria-labelledby="chap-h">
+  <section class="chap" data-bolum="surec" id="surec" aria-labelledby="chap-h">
     <div class="cstick">
       <div class="cfigs"><figure class="cf" data-i="0"><img src="assets/gorsel/tesis.webp" alt="{{T:K73}}" width="1344" height="752" loading="lazy" decoding="async"></figure><figure class="cf" data-i="1"><img src="assets/gorsel/muhendislik.webp" alt="{{T:K74}}" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure><figure class="cf" data-i="2"><img src="assets/gorsel/kalip.webp" alt="{{T:K75}}" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure><figure class="cf" data-i="3"><img src="assets/gorsel/ekstruzyon.webp" alt="{{T:K76}}" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure><figure class="cf" data-i="4"><img src="assets/gorsel/yuzey.webp" alt="{{T:K77}}" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure><figure class="cf" data-i="5"><img src="assets/gorsel/cnc.webp" alt="{{T:K78}}" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure><figure class="cf" data-i="6"><img src="assets/gorsel/lazer.webp" alt="{{T:K79}}" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure><figure class="cf" data-i="7"><img src="assets/gorsel/kalite.webp" alt="{{T:K80}}" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure><figure class="cf" data-i="8"><img src="assets/gorsel/paketleme.webp" alt="{{T:K81}}" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure><figure class="cf" data-i="9"><img src="assets/gorsel/lojistik.webp" alt="{{T:K82}}" loading="lazy" decoding="async"><i class="edge" aria-hidden="true"></i></figure></div>
       <div class="cscrim" aria-hidden="true"></div>
@@ -711,7 +712,7 @@ form.busy .btn{opacity:.6;pointer-events:none}
   </section>
   <div class="rule" aria-hidden="true"></div>
 
-  <section class="prod" id="uretim" aria-labelledby="prod-h">
+  <section class="prod" data-bolum="uretim" id="uretim" aria-labelledby="prod-h">
     <div class="pinp">
     <div class="wrap">
       <div class="rv">
@@ -751,7 +752,7 @@ form.busy .btn{opacity:.6;pointer-events:none}
     </div>
   </section>
 
-  <section class="sys" id="urunler" aria-labelledby="sys-h">
+  <section class="sys" data-bolum="urunler" id="urunler" aria-labelledby="sys-h">
     <div class="pin">
     <div class="wrap">
       <div class="head rv">
@@ -762,12 +763,12 @@ form.busy .btn{opacity:.6;pointer-events:none}
     <div class="drum">
       <div class="floor" aria-hidden="true"></div>
       <div class="cards rv">
-        <a class="card part" href="#teklif" data-catalog="{{T:K186}}"><span class="ix">{{T:K187}}</span><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="10" y="8" width="44" height="48" rx="2"/><rect x="18" y="16" width="28" height="32"/><path d="M32 16v32M18 32h28"/></svg><h3>{{T:K188}}</h3><span>{{T:K189}}</span></a>
-        <a class="card part" href="#teklif" data-catalog="{{T:K190}}"><span class="ix">{{T:K191}}</span><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="6" y="10" width="52" height="44" rx="2"/><rect x="12" y="16" width="24" height="32"/><rect x="28" y="16" width="24" height="32"/><path d="M20 54v4M44 54v4"/></svg><h3>{{T:K192}}</h3><span>{{T:K193}}</span></a>
-        <a class="card part" href="#teklif" data-catalog="{{T:K194}}"><span class="ix">{{T:K195}}</span><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 8h48v48H8z"/><path d="M8 24h48M8 40h48M24 8v48M40 8v48"/></svg><h3>{{T:K196}}</h3><span>{{T:K197}}</span></a>
-        <a class="card part" href="#teklif" data-catalog="{{T:K198}}"><span class="ix">{{T:K199}}</span><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="32" cy="14" r="6"/><path d="M32 20v36M20 56h24M14 36h36"/><circle cx="14" cy="36" r="3"/><circle cx="50" cy="36" r="3"/></svg><h3>{{T:K200}}</h3><span>{{T:K201}}</span></a>
-        <a class="card part" href="#teklif" data-catalog="{{T:K202}}"><span class="ix">{{T:K203}}</span><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 54h52M10 54V12l10 4v38M22 54V16l10 4v34M34 54V20l10 4v30M46 54V24l10 4v26"/></svg><h3>{{T:K204}}</h3><span>{{T:K205}}</span></a>
-        <a class="card part" href="#teklif" data-catalog="{{T:K206}}"><span class="ix">{{T:K207}}</span><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 44c0-16 8-24 20-24s20 8 20 24"/><path d="M20 44c0-10 4-16 12-16s12 6 12 16"/><path d="M8 44h48M8 50h48"/></svg><h3>{{T:K208}}</h3><span>{{T:K209}}</span></a>
+        <a class="card part" {{KAT:1}} data-catalog="{{T:K186}}"><span class="ix">{{T:K187}}</span><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="10" y="8" width="44" height="48" rx="2"/><rect x="18" y="16" width="28" height="32"/><path d="M32 16v32M18 32h28"/></svg><h3>{{T:K188}}</h3><span>{{KATY:1:K189}}</span></a>
+        <a class="card part" {{KAT:2}} data-catalog="{{T:K190}}"><span class="ix">{{T:K191}}</span><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="6" y="10" width="52" height="44" rx="2"/><rect x="12" y="16" width="24" height="32"/><rect x="28" y="16" width="24" height="32"/><path d="M20 54v4M44 54v4"/></svg><h3>{{T:K192}}</h3><span>{{KATY:2:K193}}</span></a>
+        <a class="card part" {{KAT:3}} data-catalog="{{T:K194}}"><span class="ix">{{T:K195}}</span><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 8h48v48H8z"/><path d="M8 24h48M8 40h48M24 8v48M40 8v48"/></svg><h3>{{T:K196}}</h3><span>{{KATY:3:K197}}</span></a>
+        <a class="card part" {{KAT:4}} data-catalog="{{T:K198}}"><span class="ix">{{T:K199}}</span><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="32" cy="14" r="6"/><path d="M32 20v36M20 56h24M14 36h36"/><circle cx="14" cy="36" r="3"/><circle cx="50" cy="36" r="3"/></svg><h3>{{T:K200}}</h3><span>{{KATY:4:K201}}</span></a>
+        <a class="card part" {{KAT:5}} data-catalog="{{T:K202}}"><span class="ix">{{T:K203}}</span><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 54h52M10 54V12l10 4v38M22 54V16l10 4v34M34 54V20l10 4v30M46 54V24l10 4v26"/></svg><h3>{{T:K204}}</h3><span>{{KATY:5:K205}}</span></a>
+        <a class="card part" {{KAT:6}} data-catalog="{{T:K206}}"><span class="ix">{{T:K207}}</span><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 44c0-16 8-24 20-24s20 8 20 24"/><path d="M20 44c0-10 4-16 12-16s12 6 12 16"/><path d="M8 44h48M8 50h48"/></svg><h3>{{T:K208}}</h3><span>{{KATY:6:K209}}</span></a>
       </div>
     </div>
     <div class="wrap ring-meta" aria-hidden="true">
@@ -779,21 +780,21 @@ form.busy .btn{opacity:.6;pointer-events:none}
   </section>
 
 
-  <section class="sect" id="sektorler" aria-labelledby="sect-h">
+  <section class="sect" data-bolum="sektorler" id="sektorler" aria-labelledby="sect-h">
     <div class="sstick">
       <div class="wrap shead">
         <div><p class="kicker">{{T:K213}}</p><h2 id="sect-h" class="t">{{T:K214}}</h2></div>
         <p class="lede">{{T:K215}}</p>
       </div>
       <div class="strack" tabindex="0" aria-label="Sektörler, yatay kaydırılır">
-        <ul class="srow"><li class="sc"><figure><div class="si"><img src="assets/gorsel/pergola.webp" alt="{{T:K216}}" loading="lazy" decoding="async"></div><figcaption>{{T:K217}}</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="assets/gorsel/surme.webp" alt="{{T:K218}}" loading="lazy" decoding="async"></div><figcaption>{{T:K219}}</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="assets/gorsel/cephe.webp" alt="{{T:K220}}" loading="lazy" decoding="async"></div><figcaption>{{T:K221}}</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="assets/gorsel/kapi-pencere.webp" alt="{{T:K222}}" loading="lazy" decoding="async"></div><figcaption>{{T:K223}}</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="assets/gorsel/ozel.webp" alt="{{T:K224}}" loading="lazy" decoding="async"></div><figcaption>{{T:K225}}</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="assets/gorsel/denizcilik.webp" alt="{{T:K226}}" loading="lazy" decoding="async"></div><figcaption>{{T:K227}}</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="assets/gorsel/endustriyel.webp" alt="{{T:K228}}" loading="lazy" decoding="async"></div><figcaption>{{T:K229}}</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="assets/gorsel/gunes.webp" alt="{{T:K230}}" loading="lazy" decoding="async"></div><figcaption>{{T:K231}}</figcaption></figure></li><li class="sc send"><div><h3>{{T:K232}}</h3><p>{{T:K233}}</p><a class="btn btn-primary" href="#teklif">{{T:K234}}</a></div></li></ul>
+        <ul class="srow"><li class="sc"><figure><div class="si"><img src="assets/gorsel/pergola.webp" alt="{{T:K216}}" loading="lazy" decoding="async"></div><figcaption>{{T:K217}}</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="assets/gorsel/surme.webp" alt="{{T:K218}}" loading="lazy" decoding="async"></div><figcaption>{{T:K219}}</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="assets/gorsel/cephe.webp" alt="{{T:K220}}" loading="lazy" decoding="async"></div><figcaption>{{T:K221}}</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="assets/gorsel/kapi-pencere.webp" alt="{{T:K222}}" loading="lazy" decoding="async"></div><figcaption>{{T:K223}}</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="assets/gorsel/ozel.webp" alt="{{T:K224}}" loading="lazy" decoding="async"></div><figcaption>{{T:K225}}</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="assets/gorsel/denizcilik.webp" alt="{{T:K226}}" loading="lazy" decoding="async"></div><figcaption>{{T:K227}}</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="assets/gorsel/endustriyel.webp" alt="{{T:K228}}" loading="lazy" decoding="async"></div><figcaption>{{T:K229}}</figcaption></figure></li><li class="sc"><figure><div class="si"><img src="assets/gorsel/gunes.webp" alt="{{T:K230}}" loading="lazy" decoding="async"></div><figcaption>{{T:K231}}</figcaption></figure></li><li class="sc send"><div><h3>{{T:K232}}</h3><p>{{T:K233}}</p><a class="btn btn-primary" href="#teklif" data-b="teklif">{{T:K234}}</a></div></li></ul>
       </div>
       <div class="wrap sfoot"><div class="sbar" aria-hidden="true"><i></i></div><p class="cnote">{{T:K235}}</p></div>
     </div>
   </section>
   <div class="rule" aria-hidden="true"></div>
 
-  <section class="qual" id="kalite" aria-labelledby="qual-h">
+  <section class="qual" data-bolum="kalite" id="kalite" aria-labelledby="qual-h">
     <div class="glow" aria-hidden="true"></div>
     <div class="wrap">
       <div class="cols">
@@ -816,7 +817,7 @@ form.busy .btn{opacity:.6;pointer-events:none}
     </div>
   </section>
 
-  <section class="glob" aria-labelledby="glob-h">
+  <section class="glob" data-bolum="global" aria-labelledby="glob-h">
     <div class="gpin"><div class="gstick">
     <div class="wrap gl">
       <div class="rv">
@@ -838,7 +839,7 @@ form.busy .btn{opacity:.6;pointer-events:none}
     </div>
   </section>
 
-  <section class="faq" id="sss" aria-labelledby="faq-h">
+  <section class="faq" data-bolum="sss" id="sss" aria-labelledby="faq-h">
     <div class="wrap rv">
       <p class="kicker part">{{T:K284}}</p>
       <h2 id="faq-h" class="t part">{{T:K285}}</h2>
@@ -852,7 +853,7 @@ form.busy .btn{opacity:.6;pointer-events:none}
     </div>
   </section>
 
-  <section class="quote" id="teklif" aria-labelledby="quote-h">
+  <section class="quote" data-bolum="teklif" id="teklif" aria-labelledby="quote-h">
     <div class="wrap">
       <div class="cols">
         <div class="rv">
@@ -891,19 +892,19 @@ form.busy .btn{opacity:.6;pointer-events:none}
     <div class="row">
       <a class="brand" href="#top" aria-label="Alufortis, başa dön"><img src="assets/logo-dark.svg" alt="{{T:K327}}" width="879" height="435" loading="lazy"></a>
       <ul>
-        <li><a href="#hakkimizda">{{T:K328}}</a></li>
-        <li><a href="#uretim">{{T:K329}}</a></li>
-        <li><a href="#urunler">{{T:K330}}</a></li>
-        <li><a href="#kalite">{{T:K331}}</a></li>
-        <li><a href="#sss">{{T:K332}}</a></li>
-        <li><a href="#teklif">{{T:K333}}</a></li>
+        <li data-b="hakkimizda"><a href="#hakkimizda">{{T:K328}}</a></li>
+        <li data-b="uretim"><a href="#uretim">{{T:K329}}</a></li>
+        <li data-b="urunler"><a href="#urunler">{{T:K330}}</a></li>
+        <li data-b="kalite"><a href="#kalite">{{T:K331}}</a></li>
+        <li data-b="sss"><a href="#sss">{{T:K332}}</a></li>
+        <li data-b="teklif"><a href="#teklif">{{T:K333}}</a></li>
       </ul>
     </div>
     <div class="fine">
       <span>{{T:K334}}</span>
       <span>{{T:K335}}</span>
     </div>
-    <p class="credit">{{T:K336}} <a href="https://gkhdigital.ro" target="_blank" rel="noopener">{{T:K337}}</a> {{T:K338}} <a href="https://gkhdigital.com" target="_blank" rel="noopener">{{T:K339}}</a></p>
+    <p class="credit">designed by <a href="https://gkhdigital.ro" target="_blank" rel="noopener">gkhdigital.ro</a> &amp; <a href="https://gkhdigital.com" target="_blank" rel="noopener">gkhdigital.com</a></p>
   </div>
 </footer>
 
@@ -1570,7 +1571,7 @@ const marq = $('#marq');
 new IntersectionObserver(en => marq.classList.toggle('live', en[0].isIntersecting)).observe(marq);
 
 // catalog cards prefill the one form
-$$('.card[data-catalog]').forEach(c => c.addEventListener('click', () => { const m = $('#mesaj'); if (!m.value) m.value = c.dataset.catalog + '{{J:K365}}'; }));
+$$('.card[data-catalog][href="#teklif"]').forEach(c => c.addEventListener('click', () => { const m = $('#mesaj'); if (!m.value) m.value = c.dataset.catalog + '{{J:K365}}'; }));
 
 const FORM_T = { url: 'teklif.php', remove: '{{J:K366}}', total: '{{J:K367}}', big: '{{J:K368}}', sending: '{{J:K369}}', err: '{{J:K370}}', dec: ',' };
 

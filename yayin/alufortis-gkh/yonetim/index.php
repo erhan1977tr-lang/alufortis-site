@@ -153,7 +153,7 @@ if ($girisli && $_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
             if ($degisen === 0) { bildir('bilgi', 'Değişiklik yok.'); yonlendir('yazilar', '&g=' . rawurlencode((string)($_POST['g'] ?? ''))); }
-            $etiket = siteyi_yayinla($icerik, site_ayar_yukle());
+            $etiket = siteyi_yayinla($icerik, yayin_ayari());
             json_yaz(veri_dizini() . '/icerik.json', $kayitli);
             bildir('tamam', "$degisen alan güncellendi ve sitede yayınlandı.");
             yonlendir('yazilar', '&g=' . rawurlencode((string)($_POST['g'] ?? '')));
@@ -197,7 +197,7 @@ if ($girisli && $_SERVER['REQUEST_METHOD'] === 'POST') {
             $ayar = site_ayar_yukle(); $ayar['maks_mb'] = $mb;
             json_yaz(veri_dizini() . '/site-ayar.json', $ayar);
             user_ini_yaz($mb);
-            siteyi_yayinla(icerik_yukle(), $ayar);
+            siteyi_yayinla(icerik_yukle(), yayin_ayari());
             bildir('tamam', "Ek dosya sınırı toplam $mb MB olarak ayarlandı ve sitede yayınlandı.");
             yonlendir('ayarlar');
         }
@@ -211,6 +211,66 @@ if ($girisli && $_SERVER['REQUEST_METHOD'] === 'POST') {
             bildir('tamam', 'Şifre değiştirildi.');
             yonlendir('ayarlar');
         }
+        if ($islem === 'bolumler') {
+            $acik = is_array($_POST['acik'] ?? null) ? array_map('strval', $_POST['acik']) : [];
+            $ayar = site_ayar_yukle();
+            $ayar['kapali'] = array_values(array_diff(array_keys(BOLUMLER), $acik));
+            json_yaz(veri_dizini() . '/site-ayar.json', $ayar);
+            user_ini_yaz($ayar['maks_mb']);
+            siteyi_yayinla(icerik_yukle(), yayin_ayari());
+            $n = count($ayar['kapali']);
+            bildir('tamam', $n ? "Bölüm ayarları yayınlandı. Kapalı bölüm: $n (sitede ve menüde görünmez)." : 'Bölüm ayarları yayınlandı. Tüm bölümler açık.');
+            yonlendir('bolumler');
+        }
+        if ($islem === 'yeniden') {
+            user_ini_yaz(site_ayar_yukle()['maks_mb']);
+            siteyi_yayinla(icerik_yukle(), yayin_ayari());
+            bildir('tamam', 'Site güncel şablonla yeniden yayınlandı (TR, EN, DE).');
+            yonlendir((string)($_POST['don'] ?? '') === 'yazilar' ? 'yazilar' : 'bolumler');
+        }
+        if ($islem === 'katalog') {
+            $n = (int)($_POST['n'] ?? 0);
+            if (!isset(SISTEMLER[$n])) throw new RuntimeException('Ürün sistemi bulunamadı.');
+            $kayit = json_oku(veri_dizini() . '/katalog.json', []);
+            $dizin = katalog_dizini();
+            if (!is_dir($dizin) && !mkdir($dizin, 0755, true)) throw new RuntimeException('Katalog klasörü açılamadı.');
+            if (!is_file("$dizin/.htaccess")) file_put_contents("$dizin/.htaccess", "# Alufortis kataloglari (yonetim panelinden yuklenir)\nOptions -Indexes\n<FilesMatch \"\\.(?i:php\\d?|phtml|phar|cgi|pl|py|sh)$\">\n  Require all denied\n</FilesMatch>\n<FilesMatch \"\\.pdf$\">\n  ForceType application/pdf\n</FilesMatch>\n<IfModule mod_headers.c>\n  Header set X-Content-Type-Options nosniff\n</IfModule>\n");
+            $yapilan = [];
+            foreach (array_keys(DILLER) as $dil) {
+                $hedef = "$dizin/" . katalog_dosya_adi($n, $dil);
+                $f = $_FILES['kat']['name'][$dil] ?? '';
+                $hata = (int)($_FILES['kat']['error'][$dil] ?? UPLOAD_ERR_NO_FILE);
+                if ($hata === UPLOAD_ERR_NO_FILE || $f === '') {
+                    if (!empty($_POST['sil'][$dil])) {
+                        if (is_file($hedef)) @unlink($hedef);
+                        unset($kayit[(string)$n][$dil]);
+                        $yapilan[] = strtoupper($dil) . ' kaldırıldı';
+                    }
+                    continue;
+                }
+                if ($hata === UPLOAD_ERR_INI_SIZE || $hata === UPLOAD_ERR_FORM_SIZE) throw new RuntimeException(strtoupper($dil) . ' kataloğu sunucunun yükleme sınırını aşıyor (en fazla ' . KATALOG_MB . ' MB). Önce “Siteyi yeniden yayınla” ile sınırı güncelleyip 5 dakika sonra tekrar deneyin.');
+                if ($hata !== UPLOAD_ERR_OK) throw new RuntimeException(strtoupper($dil) . " kataloğu yüklenemedi (hata kodu $hata).");
+                $gecici = (string)$_FILES['kat']['tmp_name'][$dil];
+                $boyut = (int)$_FILES['kat']['size'][$dil];
+                if (!is_uploaded_file($gecici)) throw new RuntimeException('Yükleme doğrulanamadı.');
+                if ($boyut > KATALOG_MB * 1024 * 1024) throw new RuntimeException(strtoupper($dil) . ' kataloğu ' . KATALOG_MB . ' MB sınırını aşıyor.');
+                $bas = (string)file_get_contents($gecici, false, null, 0, 1024);
+                if (!str_contains($bas, '%PDF-')) throw new RuntimeException(strtoupper($dil) . ' için seçilen dosya PDF değil. Yalnızca PDF katalog yüklenebilir.');
+                $ara = $hedef . '.tmp' . bin2hex(random_bytes(4));
+                if (!move_uploaded_file($gecici, $ara)) throw new RuntimeException('Dosya sunucuya kaydedilemedi.');
+                @chmod($ara, 0644);
+                rename($ara, $hedef);
+                $ad = preg_replace('/[^\pL\pN ._()-]+/u', '_', basename((string)$f)) ?? 'katalog.pdf';
+                $kayit[(string)$n][$dil] = ['dosya' => katalog_dosya_adi($n, $dil), 'ad' => mb_substr($ad, 0, 120), 'boyut' => $boyut, 'tarih' => gmdate('c'), 'v' => time()];
+                $yapilan[] = strtoupper($dil) . ' yüklendi';
+            }
+            if (!$yapilan) { bildir('bilgi', 'Dosya seçilmedi, değişiklik yok.'); yonlendir('bolumler', '#kat' . $n); }
+            json_yaz(veri_dizini() . '/katalog.json', $kayit);
+            siteyi_yayinla(icerik_yukle(), yayin_ayari());
+            $icr = icerik_yukle();
+            bildir('tamam', $icr[SISTEMLER[$n]['ad']]['tr'] . ': ' . implode(', ', $yapilan) . '. Sitede yayınlandı.');
+            yonlendir('bolumler', '#kat' . $n);
+        }
         if ($islem === 'geri') {
             $etiket = (string)($_POST['etiket'] ?? '');
             if (!in_array($etiket, gecmis_listesi(), true)) throw new RuntimeException('Kayıt bulunamadı.');
@@ -220,7 +280,7 @@ if ($girisli && $_SERVER['REQUEST_METHOD'] === 'POST') {
             $varsayilan = json_oku(veri_dizini() . '/icerik-varsayilan.json', []);
             foreach ($simdiki as $k => &$alan) foreach (array_keys(DILLER) as $dil) $alan[$dil] = $eski[$k][$dil] ?? $varsayilan[$k][$dil];
             unset($alan);
-            siteyi_yayinla($simdiki, site_ayar_yukle());
+            siteyi_yayinla($simdiki, yayin_ayari());
             json_yaz(veri_dizini() . '/icerik.json', $eski);
             bildir('tamam', 'Yazılar ' . $etiket . ' kaydından önceki hâline döndürüldü ve yayınlandı.');
             yonlendir('gecmis');
@@ -304,7 +364,29 @@ textarea.chg{border-color:var(--org);background:#FFF8F2}
 .login .hd img{height:105px}
 .login form{padding:26px}
 table.l{width:100%;border-collapse:collapse}table.l td{padding:10px 8px;border-top:1px solid var(--line)}
-@media (max-width:900px){.lay{grid-template-columns:1fr}.groups{position:static;max-height:none}.row{grid-template-columns:1fr}.grid2{grid-template-columns:1fr}.top{flex-wrap:wrap}}
+.guncel{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.tgl{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:8px 18px;margin:14px 0 4px}
+.sw{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;cursor:pointer;user-select:none}
+.sw.chg{border-color:var(--org);background:#FFF8F2}
+.sw input{position:absolute;opacity:0;pointer-events:none}
+.sw i{flex:none;width:42px;height:24px;border-radius:12px;background:#C5CDD6;position:relative;transition:background .2s}
+.sw i::after{content:"";position:absolute;left:3px;top:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:transform .2s;box-shadow:0 1px 2px rgba(0,0,0,.2)}
+.sw input:checked+i{background:var(--ok)}
+.sw input:checked+i::after{transform:translateX(18px)}
+.sw input:focus-visible+i{outline:2px solid var(--acc2);outline-offset:2px}
+.sw span{flex:1;font-weight:600}
+.sw em{font-style:normal;font-size:12px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.06em}
+.sw input:checked~em{color:var(--ok)}
+.krow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px 14px;padding:16px 0;border-top:1px solid var(--line)}
+.krow .lbl{grid-column:1/-1;font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--mut)}
+.krow .lbl b{color:var(--ink);font-size:15px;letter-spacing:0}
+.kc{background:#F7F9FB;border:1px solid var(--line);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
+.kc>label{font-size:11px;font-weight:700;color:var(--acc);letter-spacing:.08em}
+.kf{font-size:14px;word-break:break-word}
+.kf .sil{display:inline-flex;gap:5px;align-items:center;margin-top:4px;font-size:13px;color:var(--err)}
+.kc input[type=file]{font-size:13px;max-width:100%}
+.kb{grid-column:1/-1}
+@media (max-width:900px){.krow{grid-template-columns:1fr}.lay{grid-template-columns:1fr}.groups{position:static;max-height:none}.row{grid-template-columns:1fr}.grid2{grid-template-columns:1fr}.top{flex-wrap:wrap}}
 </style>
 </head>
 <body>
@@ -336,6 +418,7 @@ table.l{width:100%;border-collapse:collapse}table.l td{padding:10px 8px;border-t
   <img src="../assets/logo-dark.svg" alt="Alufortis">
   <nav>
     <a href="./?s=yazilar" class="<?= $s === 'yazilar' ? 'on' : '' ?>">Yazılar</a>
+    <a href="./?s=bolumler" class="<?= $s === 'bolumler' ? 'on' : '' ?>">Bölümler ve kataloglar</a>
     <a href="./?s=ayarlar" class="<?= $s === 'ayarlar' ? 'on' : '' ?>">E-posta ve ayarlar</a>
     <a href="./?s=gecmis" class="<?= $s === 'gecmis' ? 'on' : '' ?>">Geçmiş</a>
   </nav>
@@ -344,6 +427,10 @@ table.l{width:100%;border-collapse:collapse}table.l td{padding:10px 8px;border-t
 </div>
 <div class="wrap">
 <?php if ($bildirim): ?><div class="msg <?= h($bildirim[0]) ?>"><?= h($bildirim[1]) ?></div><?php endif; ?>
+<?php if (sablon_yeni_mi()): ?>
+  <form class="msg bilgi guncel" method="post" action="./?s=bolumler"><input type="hidden" name="csrf" value="<?= h(csrf()) ?>"><input type="hidden" name="islem" value="yeniden"><input type="hidden" name="don" value="<?= h($s) ?>">
+    <span>Sitenin şablonu güncellendi. Yeni özelliklerin sitede görünmesi için siteyi bir kez yeniden yayınlayın; yazılarınız korunur.</span> <button class="btn" type="submit">Siteyi yeniden yayınla</button></form>
+<?php endif; ?>
 
 <?php if ($s === 'yazilar'):
     $icerik = icerik_yukle();
@@ -444,6 +531,64 @@ table.l{width:100%;border-collapse:collapse}table.l td{padding:10px 8px;border-t
       <div class="full"><button class="btn" type="submit">Şifreyi değiştir</button></div>
     </form>
   </div>
+
+<?php elseif ($s === 'bolumler'):
+    $sa = site_ayar_yukle(); $kapali = array_flip($sa['kapali']); $kat = katalog_yukle(); $icr = icerik_yukle();
+    $sinir = ini_get('upload_max_filesize');
+?>
+  <div class="card">
+    <h1>Bölümler</h1>
+    <p class="mut">Kapattığınız bölüm üç dilde de sitede görünmez; üst menüdeki, alt bilgideki ve düğmelerdeki bağlantıları da gizlenir. Yazıları silinmez, tekrar açtığınızda aynen geri gelir. Açılış filmi ve alt bilgi her zaman açıktır.</p>
+    <form method="post" action="./?s=bolumler" id="bform">
+      <input type="hidden" name="csrf" value="<?= h(csrf()) ?>"><input type="hidden" name="islem" value="bolumler">
+      <div class="tgl">
+      <?php foreach (BOLUMLER as $b => $ad): ?>
+        <label class="sw"><input type="checkbox" name="acik[]" value="<?= h($b) ?>" <?= isset($kapali[$b]) ? '' : 'checked' ?> data-v="<?= isset($kapali[$b]) ? '0' : '1' ?>"><i></i><span><?= h($ad) ?></span><em><?= isset($kapali[$b]) ? 'Kapalı' : 'Açık' ?></em></label>
+      <?php endforeach; ?>
+      </div>
+      <div class="bar"><button class="btn" type="submit" id="bkaydet" disabled>Kaydet ve yayınla</button><span class="mut" id="bsay">Değişiklik yok</span></div>
+    </form>
+  </div>
+  <div class="card" id="kataloglar">
+    <h1>Ürün sistemi katalogları</h1>
+    <p class="mut">Her ürün sistemi için Türkçe, İngilizce ve Almanca kataloğu ayrı ayrı yükleyin (yalnızca PDF, dosya başına en fazla <?= KATALOG_MB ?> MB). Katalog yüklenen dilde kart “<?= h($icr[KATALOG_INDIR_ALANI]['tr']) ?>” düğmesine dönüşür ve PDF'i açar; o dilde katalog yoksa kart eskisi gibi teklif formuna yönlendirip kataloğu ister. Yeni dosya seçerseniz eskisinin yerine geçer.
+    <?php if (isset($kapali['kataloglar'])): ?><br><b style="color:var(--err)">“Katalog indirme” bölümü şu an kapalı: yüklü kataloglar sitede gösterilmiyor.</b><?php endif; ?></p>
+    <?php foreach (SISTEMLER as $n => $sis): ?>
+      <form class="krow" id="kat<?= $n ?>" method="post" action="./?s=bolumler" enctype="multipart/form-data">
+        <input type="hidden" name="csrf" value="<?= h(csrf()) ?>"><input type="hidden" name="islem" value="katalog"><input type="hidden" name="n" value="<?= $n ?>">
+        <div class="lbl"><?= sprintf('%02d', $n) ?> · <b><?= h($icr[$sis['ad']]['tr']) ?></b></div>
+        <?php foreach (['tr' => 'TÜRKÇE', 'en' => 'ENGLISH', 'de' => 'DEUTSCH'] as $dil => $dad): $e = $kat[$n][$dil] ?? null; ?>
+          <div class="kc">
+            <label><?= $dad ?></label>
+            <?php if ($e): $t = new DateTime((string)$e['tarih']); $t->setTimezone(new DateTimeZone('Europe/Istanbul')); ?>
+              <div class="kf"><a href="../katalog/<?= h($e['dosya']) ?>?v=<?= (int)$e['v'] ?>" target="_blank" rel="noopener"><?= h((string)$e['ad']) ?></a><br><span class="mut"><?= number_format($e['boyut'] / 1048576, 1, ',', '.') ?> MB · <?= h($t->format('d.m.Y H:i')) ?></span>
+              <label class="sil"><input type="checkbox" name="sil[<?= $dil ?>]" value="1"> Kaldır</label></div>
+            <?php else: ?><div class="kf mut">Katalog yok</div><?php endif; ?>
+            <input type="file" name="kat[<?= $dil ?>]" accept="application/pdf,.pdf">
+          </div>
+        <?php endforeach; ?>
+        <div class="kb"><button class="btn sec" type="submit">Yükle / kaydet ve yayınla</button></div>
+      </form>
+    <?php endforeach; ?>
+    <p class="mut">Sunucunun şu anki tek dosya yükleme sınırı: <?= h((string)$sinir) ?>. Bu değer <?= KATALOG_MB ?> MB'tan küçükse önce “Siteyi yeniden yayınla” düğmesine basın (veya bölümleri bir kez kaydedin); sınır birkaç dakika içinde güncellenir.</p>
+    <form method="post" action="./?s=bolumler"><input type="hidden" name="csrf" value="<?= h(csrf()) ?>"><input type="hidden" name="islem" value="yeniden"><button class="btn sec" type="submit">Siteyi yeniden yayınla</button></form>
+  </div>
+  <script>
+  (function () {
+    var f = document.getElementById('bform'), b = document.getElementById('bkaydet'), say = document.getElementById('bsay');
+    f.addEventListener('change', function () {
+      var n = 0; f.querySelectorAll('input[type=checkbox]').forEach(function (c) { var d = (c.checked ? '1' : '0') !== c.dataset.v; c.closest('label').classList.toggle('chg', d); c.closest('label').querySelector('em').textContent = c.checked ? 'Açık' : 'Kapalı'; if (d) n++; });
+      b.disabled = n === 0; say.textContent = n ? n + ' bölüm değişti' : 'Değişiklik yok';
+    });
+    document.querySelectorAll('.krow').forEach(function (k) {
+      k.addEventListener('submit', function (e) {
+        var big = [].some.call(k.querySelectorAll('input[type=file]'), function (i) { return i.files[0] && i.files[0].size > <?= KATALOG_MB ?> * 1048576; });
+        if (big) { e.preventDefault(); alert('Dosya <?= KATALOG_MB ?> MB sınırını aşıyor.'); return; }
+        k.querySelector('button').disabled = true; k.querySelector('button').textContent = 'Yükleniyor…';
+      });
+    });
+  })();
+  </script>
 
 <?php elseif ($s === 'gecmis'): $l = gecmis_listesi(); ?>
   <div class="card">

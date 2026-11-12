@@ -1679,6 +1679,14 @@
   "en": "Request the catalogue",
   "de": "Katalog anfordern"
  },
+ "K371": {
+  "grup": "Ürün sistemleri",
+  "tur": "t",
+  "not": "Katalog indirme düğmesi (katalog yüklüyse)",
+  "tr": "Kataloğu indirin",
+  "en": "Download the catalogue",
+  "de": "Katalog herunterladen"
+ },
  "K210": {
   "grup": "Ürün sistemleri",
   "tur": "t",
@@ -2686,38 +2694,6 @@
   "tr": "Batı Mah. Hatboyu Cad. No:42/100, Pendik / İstanbul",
   "en": "Batı Mah. Hatboyu Cad. No:42/100, Pendik / İstanbul",
   "de": "Batı Mah. Hatboyu Cad. No:42/100, Pendik / İstanbul"
- },
- "K336": {
-  "grup": "Alt bilgi",
-  "tur": "t",
-  "not": "p",
-  "tr": "designed by",
-  "en": "designed by",
-  "de": "designed by"
- },
- "K337": {
-  "grup": "Alt bilgi",
-  "tur": "t",
-  "not": "a",
-  "tr": "gkhdigital.ro",
-  "en": "gkhdigital.ro",
-  "de": "gkhdigital.ro"
- },
- "K338": {
-  "grup": "Alt bilgi",
-  "tur": "t",
-  "not": "a",
-  "tr": "&",
-  "en": "&",
-  "de": "&"
- },
- "K339": {
-  "grup": "Alt bilgi",
-  "tur": "t",
-  "not": "a",
-  "tr": "gkhdigital.com",
-  "en": "gkhdigital.com",
-  "de": "gkhdigital.com"
  },
  "K340": {
   "grup": "Sayfa içi kısa metinler (3D, harita, form)",

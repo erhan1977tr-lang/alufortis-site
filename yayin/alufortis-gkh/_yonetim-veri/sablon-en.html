@@ -714,7 +714,7 @@ form.busy .btn{opacity:.6;pointer-events:none}
       </div>
       <div class="ag">
         <div class="ab rv"><p class="no part">{{T:K54}}</p><p class="part">{{T:K55}}</p><p class="part">{{T:K56}}</p></div>
-        <div class="ab rv"><p class="no part">{{T:K57}}</p><h3 class="part">{{T:K58}}</h3><p class="part">{{T:K59}}</p><p class="part">{{T:K60}}</p><ul class="chips part" aria-hidden="true"><li>{{T:K61}}</li><li>{{T:K62}}</li><li>{{T:K63}}</li><li>{{T:K64}}</li><li>{{T:K65}}</li><li>{{T:K66}}</li><li>{{T:K67}}</li><li>{{T:K68}}</li><li>{{T:K69}}</li><li>{{T:K70}}</li><li>{{T:K71}}</li></ul></div>
+        <div class="ab rv"><p class="no part">{{T:K57}}</p><h3 class="part">{{T:K58}}</h3><p class="part">{{T:K59}}</p><p class="part">{{T:K60}}</p><ul class="chips part" aria-hidden="true"{{ULKEBOS:K372}}>{{ULKE:K372:li}}</ul></div>
       </div>
       <p class="close rv"><span class="part" style="display:block">{{T:K72}}</span></p>
     </div>
@@ -768,8 +768,8 @@ form.busy .btn{opacity:.6;pointer-events:none}
           <div class="step part"><span class="dot">{{T:K168}}</span><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><rect x="8" y="8" width="8" height="8"/></svg>{{T:K169}}</h3><p>{{T:K170}}</p></div>
           <div class="step part"><span class="dot">{{T:K171}}</span><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h8v8H3zM11 10h10M11 14h10"/></svg>{{T:K172}}</h3><p>{{T:K173}}</p></div>
           <div class="step part"><span class="dot">{{T:K174}}</span><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 18h16M6 18V8l6-4 6 4v10"/><path d="M9 18v-5h6v5"/></svg>{{T:K175}}</h3><p>{{T:K176}}</p></div>
-          <div class="step part"><span class="dot">{{T:K177}}</span><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20l6-6M14 4l6 6-9 9-6-6z"/><path d="M12 6l6 6"/></svg>{{T:K178}}</h3><p>{{T:K179}}</p></div>
-          <div class="step part"><span class="dot">{{T:K180}}</span><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M19 5l-3 3M8 16l-3 3"/></svg>{{T:K181}}</h3><p>{{T:K182}}</p></div>
+          <div class="step part"><span class="dot">{{T:K177}}</span><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M19 5l-3 3M8 16l-3 3"/></svg>{{T:K178}}</h3><p>{{T:K179}}</p></div>
+          <div class="step part"><span class="dot">{{T:K180}}</span><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/></svg>{{T:K181}}</h3><p>{{T:K182}}</p></div>
         </div>
         </div>
       </div>
@@ -855,11 +855,8 @@ form.busy .btn{opacity:.6;pointer-events:none}
       </div>
     </div>
     </div></div>
-    <div class="marq" id="marq" aria-label="Partner countries: Germany, Romania, the Netherlands, Greece, Jordan, Bulgaria, France, Czechia, Lithuania, Estonia, Chile">
-      <div class="track" aria-hidden="true">
-        <span>{{T:K262}}</span><span>{{T:K263}}</span><span>{{T:K264}}</span><span>{{T:K265}}</span><span>{{T:K266}}</span><span>{{T:K267}}</span><span>{{T:K268}}</span><span>{{T:K269}}</span><span>{{T:K270}}</span><span>{{T:K271}}</span><span>{{T:K272}}</span>
-        <span>{{T:K273}}</span><span>{{T:K274}}</span><span>{{T:K275}}</span><span>{{T:K276}}</span><span>{{T:K277}}</span><span>{{T:K278}}</span><span>{{T:K279}}</span><span>{{T:K280}}</span><span>{{T:K281}}</span><span>{{T:K282}}</span><span>{{T:K283}}</span>
-      </div>
+    <div class="marq" id="marq"{{ULKEBOS:K372}} aria-label="Partner countries: {{ULKEA:K372}}">
+      <div class="track" aria-hidden="true">{{ULKE:K372:serit}}</div>
     </div>
   </section>
 
@@ -1316,9 +1313,9 @@ const steps = $$('.prod .step'), p3dCv = $('#p3d'), p3dBar = $$('.p3d-bar i');
 const P3D_UI = [
   ['01', '{{J:K340}}', () => ['{{J:K341}}', '#4CB7FF']],
   ['02', '{{J:K342}}', () => ['{{J:K343}}', '#D9DDE2']],
-  ['03', '{{J:K344}}', f => f < .36 ? ['{{J:K345}}', '#C9CED3'] : f < .7 ? ['{{J:K346}}', '#7A6248'] : ['{{J:K347}}', '#2A2B2E']],
-  ['04', '{{J:K348}}', f => f < .5 ? ['{{J:K349}}', '#383E42'] : ['{{J:K350}}', '#F1F0EA']],
-  ['05', '{{J:K351}}', () => ['{{J:K352}}', '#F1F0EA']]
+  ['03', '{{J:K344}}', f => f < .2 ? ['{{J:K345}}', '#C9CED3'] : f < .4 ? ['{{J:K346}}', '#7A6248'] : f < .6 ? ['{{J:K347}}', '#2A2B2E'] : f < .8 ? ['{{J:K349}}', '#383E42'] : ['{{J:K350}}', '#F1F0EA']],
+  ['04', '{{J:K348}}', () => ['{{J:K352}}', '#F1F0EA']],
+  ['05', '{{J:K351}}', () => ['{{J:K373}}', '#F1F0EA']]
 ];
 let p3d = null, p3dTarget = 0, p3dShown = 0, p3dRaf = null, p3dLast = 0, p3dVisible = false, p3dDrag = 0, p3dVel = 0, p3dUiKey = '', stepOn = -1;
 // where the reading line sits among the five steps: 0 at the first dot, 4.999 past the last
@@ -1386,6 +1383,14 @@ async function initP3D() {
   // one seamless bar until the saw; the three pieces only appear at the cutting step
   const fullGeo = new T.ExtrudeGeometry(shape, { depth: PIECE * 3, bevelEnabled: false, curveSegments: 4 }); fullGeo.translate(-cx, -cy, 0);
   const bar = new T.Mesh(fullGeo, [cap, side]); body.add(bar);
+
+  // packaging: the three cut pieces gather into a bundle, protective film wraps it and two straps close it
+  const wrapMat = new T.MeshStandardMaterial({ color: 0x8fbfe6, metalness: .1, roughness: .2, transparent: true, opacity: 0, depthWrite: false, side: T.DoubleSide, envMapIntensity: 1.2 });
+  const wrap = new T.Mesh(new T.BoxGeometry(P.w + 8, 3 * P.h + 16, PIECE + 8), wrapMat);
+  const wrapEdge = new T.LineSegments(new T.EdgesGeometry(wrap.geometry), new T.LineBasicMaterial({ color: 0xcfe3f5, transparent: true, opacity: 0 }));
+  const strapMat = new T.MeshStandardMaterial({ color: 0x2b3440, metalness: .3, roughness: .6, transparent: true, opacity: 0 });
+  const straps = [-.3, .3].map(z => { const m = new T.Mesh(new T.BoxGeometry(P.w + 11, 3 * P.h + 19, 7), strapMat); m.position.z = z * PIECE; return m; });
+  const pack = new T.Group(); pack.add(wrap, wrapEdge, ...straps); pack.visible = false; body.add(pack);
   // the drawing: the section's own edges in blueprint blue, shown at the die step
   const flat = new T.ShapeGeometry(shape, 4); flat.translate(-cx, -cy, 0);
   const lines = new T.LineSegments(new T.EdgesGeometry(flat), new T.LineBasicMaterial({ color: 0x4cb7ff, transparent: true }));
@@ -1400,32 +1405,42 @@ async function initP3D() {
     const i = Math.min(4, Math.floor(s)), f = s - i;
     // length: a thin slice of the section at the die, then the profile comes out of it
     const grow = i === 0 ? .03 : i === 1 ? .03 + .97 * smooth(f, 0, .75) : 1;
-    const gap = i === 4 ? 46 * smooth(f, .15, .8) : 0;
-    const cut = i === 4 && gap > .2;
+    // machining (step 4) cuts the bar into three pieces; packaging (step 5) gathers them into one bundle
+    const gap = i === 3 ? 46 * smooth(f, .1, .5) : i === 4 ? 46 : 0;
+    const cut = i >= 3 && gap > .2;
+    const bun = i === 4 ? smooth(f, .08, .5) : 0;
     bar.visible = !cut; bar.scale.z = grow; bar.position.z = -1.5 * PIECE * grow;
-    pieces.forEach((m, k) => { m.visible = cut; m.scale.z = grow; m.position.z = (k - 1.5) * PIECE * grow + (k - 1) * gap; });
+    pieces.forEach((m, k) => {
+      m.visible = cut; m.scale.z = grow;
+      const z0 = (k - 1.5) * PIECE * grow + (k - 1) * gap;
+      m.position.z = z0 + (-PIECE / 2 - z0) * bun;
+      m.position.y = (k - 1) * (P.h + 3) * bun;
+    });
     const ghost = i === 0 ? .18 + .5 * smooth(f, .55, 1) : 1;
     side.opacity = cap.opacity = ghost; side.depthWrite = cap.depthWrite = ghost > .95;
     lines.material.opacity = i === 0 ? 1 : i === 1 ? 1 - smooth(f, 0, .3) : 0; lines.visible = lines.material.opacity > .01;
     lines.position.z = PIECE * 1.5 * grow + .2;
+    // surface treatment: anodizing colours, then powder coating colours
     if (i <= 1) finish('mill', 'mill', 0);
-    else if (i === 2) f < .36 ? finish('mill', 'nat', smooth(f, 0, .2)) : f < .7 ? finish('nat', 'bronze', smooth(f, .36, .5)) : finish('bronze', 'black', smooth(f, .7, .84));
-    else if (i === 3) f < .5 ? finish('black', 'r7016', smooth(f, 0, .18)) : finish('r7016', 'r9016', smooth(f, .5, .66));
+    else if (i === 2) f < .2 ? finish('mill', 'nat', smooth(f, 0, .1)) : f < .4 ? finish('nat', 'bronze', smooth(f, .2, .28)) : f < .6 ? finish('bronze', 'black', smooth(f, .4, .48)) : f < .8 ? finish('black', 'r7016', smooth(f, .6, .68)) : finish('r7016', 'r9016', smooth(f, .8, .88));
     else finish('r9016', 'r9016', 0);
     // the holes are drilled one after another once the pieces are cut
     holes.forEach(({ h, g }, k) => {
-      const a = .46 + k * .028, hp = i === 4 ? smooth(f, a, a + .05) : 0;
+      const a = .5 + k * .034, hp = i === 3 ? smooth(f, a, a + .05) : i === 4 ? 1 : 0;
       h.visible = hp > .01; h.scale.setScalar(.2 + .8 * hp);
-      g.material.opacity = i === 4 ? .9 * smooth(f, a, a + .03) * (1 - smooth(f, a + .05, a + .16)) : 0;
+      g.material.opacity = i === 3 ? .9 * smooth(f, a, a + .03) * (1 - smooth(f, a + .05, a + .16)) : 0;
     });
+    const w = i === 4 ? smooth(f, .5, .8) : 0, st = i === 4 ? smooth(f, .78, .95) : 0;
+    pack.visible = w > .01; wrapMat.opacity = .38 * w; wrapEdge.material.opacity = .9 * w; strapMat.opacity = st; straps.forEach(m => { m.visible = st > .01; });
     // the turn: face-on at the die, then three-quarter, and the bar rolls about its own axis through the finishes so the section keeps facing you
     const face = 1 - smooth(s, .55, 1.4), on = 1 - face;
     group.rotation.y = (-.58 - .14 * Math.sin(Math.max(0, s - 1) * .8)) * on + .18 * face + p3dDrag + Math.sin(t / 4200) * .03;
     group.rotation.x = .3 * on + .06 * face;
-    const show = smooth(s, 4.35, 4.75);
-    group.rotation.z = (-.34 * Math.max(0, s - 1.2) * (1 - show) - 1.02 * show) * on;
-    group.rotation.x += .32 * show;
-    const dist = 330 + (1000 - 330) * smooth(s, .6, 1.7) + 30 * smooth(s, 4.1, 4.8);
+    // machining turns the drilled face towards the viewer; packaging rolls back so the bundle reads as a stack
+    const show = smooth(s, 3.3, 3.7), back = smooth(s, 4.05, 4.45);
+    group.rotation.z = (-.34 * Math.max(0, s - 1.2) * (1 - show) + (-1.02 * (1 - back) - .22 * back) * show) * on;
+    group.rotation.x += .32 * show * (1 - back);
+    const dist = 330 + (1000 - 330) * smooth(s, .6, 1.7) + 30 * smooth(s, 3.1, 3.8) + 60 * smooth(s, 4.1, 4.6);
     cam.position.set(0, 40 * (1 - face), dist); cam.lookAt(0, 0, 0);
     renderer.render(scene, cam);
   }
@@ -1617,7 +1632,7 @@ const onGlobeScroll = () => { if (!globeVisible) return; globeTarget = globeProg
 
 // marquee lives only on screen
 const marq = $('#marq');
-new IntersectionObserver(en => marq.classList.toggle('live', en[0].isIntersecting)).observe(marq);
+if (marq) new IntersectionObserver(en => marq.classList.toggle('live', en[0].isIntersecting)).observe(marq);
 
 // catalog cards prefill the one form
 $$('.card[data-catalog][href="#teklif"]').forEach(c => c.addEventListener('click', () => { const m = $('#mesaj'); if (!m.value) m.value = c.dataset.catalog + '{{J:K365}}'; }));

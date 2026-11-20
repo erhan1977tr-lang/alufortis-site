@@ -479,93 +479,14 @@
   "en": "Today we serve our partners in many countries, including Germany, Romania, the Netherlands, Greece, Jordan, Bulgaria, France, Czechia, Lithuania, Estonia and Chile, with timely, innovative and solution-oriented service built around customer satisfaction.",
   "de": "Heute betreuen wir unsere Partner in vielen Ländern, darunter Deutschland, Rumänien, die Niederlande, Griechenland, Jordanien, Bulgarien, Frankreich, Tschechien, Litauen, Estland und Chile, pünktlich, innovativ und lösungsorientiert, mit der Zufriedenheit unserer Kunden als Maßstab."
  },
- "K61": {
+ "K372": {
   "grup": "Hakkımızda",
   "tur": "t",
-  "not": "li",
-  "tr": "Almanya",
-  "en": "Germany",
-  "de": "Deutschland"
- },
- "K62": {
-  "grup": "Hakkımızda",
-  "tur": "t",
-  "not": "li",
-  "tr": "Romanya",
-  "en": "Romania",
-  "de": "Rumänien"
- },
- "K63": {
-  "grup": "Hakkımızda",
-  "tur": "t",
-  "not": "li",
-  "tr": "Hollanda",
-  "en": "Netherlands",
-  "de": "Niederlande"
- },
- "K64": {
-  "grup": "Hakkımızda",
-  "tur": "t",
-  "not": "li",
-  "tr": "Yunanistan",
-  "en": "Greece",
-  "de": "Griechenland"
- },
- "K65": {
-  "grup": "Hakkımızda",
-  "tur": "t",
-  "not": "li",
-  "tr": "Ürdün",
-  "en": "Jordan",
-  "de": "Jordanien"
- },
- "K66": {
-  "grup": "Hakkımızda",
-  "tur": "t",
-  "not": "li",
-  "tr": "Bulgaristan",
-  "en": "Bulgaria",
-  "de": "Bulgarien"
- },
- "K67": {
-  "grup": "Hakkımızda",
-  "tur": "t",
-  "not": "li",
-  "tr": "Fransa",
-  "en": "France",
-  "de": "Frankreich"
- },
- "K68": {
-  "grup": "Hakkımızda",
-  "tur": "t",
-  "not": "li",
-  "tr": "Çekya",
-  "en": "Czechia",
-  "de": "Tschechien"
- },
- "K69": {
-  "grup": "Hakkımızda",
-  "tur": "t",
-  "not": "li",
-  "tr": "Litvanya",
-  "en": "Lithuania",
-  "de": "Litauen"
- },
- "K70": {
-  "grup": "Hakkımızda",
-  "tur": "t",
-  "not": "li",
-  "tr": "Estonya",
-  "en": "Estonia",
-  "de": "Estland"
- },
- "K71": {
-  "grup": "Hakkımızda",
-  "tur": "t",
-  "not": "li",
-  "tr": "Şili",
-  "en": "Chile",
-  "de": "Chile"
+  "not": "Ülke listesi",
+  "aciklama": "Ülkeleri virgülle ayırarak yazın (ör. Almanya, Romanya, Hollanda). Hakkımızda bölümündeki ülke kutucukları ve “Uluslararası iş ortaklıkları” bölümünün altındaki kayan ülke şeridi bu listeden oluşur; ülke ekleyip çıkardığınızda ikisi de birlikte güncellenir.",
+  "tr": "Almanya, Romanya, Hollanda, Yunanistan, Ürdün, Bulgaristan, Fransa, Çekya, Litvanya, Estonya, Şili",
+  "en": "Germany, Romania, Netherlands, Greece, Jordan, Bulgaria, France, Czechia, Lithuania, Estonia, Chile",
+  "de": "Deutschland, Rumänien, Niederlande, Griechenland, Jordanien, Bulgarien, Frankreich, Tschechien, Litauen, Estland, Chile"
  },
  "K72": {
   "grup": "Hakkımızda",
@@ -1315,9 +1236,9 @@
   "grup": "Üretim",
   "tur": "t",
   "not": "span",
-  "tr": "Kalıp tasarımı",
-  "en": "Die design",
-  "de": "Werkzeugkonstruktion"
+  "tr": "Kalıp tasarımı ve üretimi",
+  "en": "Die design and manufacturing",
+  "de": "Werkzeugkonstruktion und -fertigung"
  },
  "K166": {
   "grup": "Üretim",
@@ -1347,9 +1268,9 @@
   "grup": "Üretim",
   "tur": "t",
   "not": "svg",
-  "tr": "Kalıp tasarımı",
-  "en": "Die design",
-  "de": "Werkzeugkonstruktion"
+  "tr": "Kalıp Tasarımı ve Üretimi",
+  "en": "Die Design and Manufacturing",
+  "de": "Werkzeugkonstruktion und -fertigung"
  },
  "K170": {
   "grup": "Üretim",
@@ -1395,17 +1316,17 @@
   "grup": "Üretim",
   "tur": "t",
   "not": "svg",
-  "tr": "Eloksal kaplama",
-  "en": "Anodizing",
-  "de": "Eloxieren"
+  "tr": "Yüzey İşlem (Eloksal veya Toz Boya)",
+  "en": "Surface Treatment (Anodizing or Powder Coating)",
+  "de": "Oberflächenbehandlung (Eloxieren oder Pulverbeschichtung)"
  },
  "K176": {
   "grup": "Üretim",
   "tur": "t",
   "not": "p",
-  "tr": "QUALANOD sertifikalı iki tesisimizde 7 metreye kadar profillere eloksal kaplama uyguluyoruz. Doğal, siyah, bronz, kahverengi ve altın renk seçeneklerinin yanı sıra polisaj, saten yüzey ve kumlama uygulamaları sunuyoruz.",
-  "en": "In our two QUALANOD-certified plants we anodize profiles up to 7 metres long. Besides natural, black, bronze, brown and gold finishes, we offer polishing, satin finishing and sandblasting.",
-  "de": "In unseren zwei QUALANOD-zertifizierten Anlagen eloxieren wir Profile bis 7 Meter Länge. Neben Natur, Schwarz, Bronze, Braun und Gold bieten wir Polieren, Satinieren und Sandstrahlen an."
+  "tr": "QUALANOD sertifikalı iki tesisimizde 7 metreye kadar profillere eloksal kaplama uyguluyoruz. Doğal, siyah, bronz, kahverengi ve altın renk seçeneklerinin yanı sıra polisaj, saten yüzey ve kumlama uygulamaları sunuyoruz. QUALICOAT sertifikalı toz boya uygulamalarımızı iki dikey boya hattı ve bir yatay boya kabininde gerçekleştiriyoruz. 7 metreye kadar profilleri tüm RAL renklerinde boyuyor, numuneye göre özel renk eşleştirmesi yapıyoruz.",
+  "en": "In our two QUALANOD-certified plants we anodize profiles up to 7 metres long. Besides natural, black, bronze, brown and gold finishes, we offer polishing, satin finishing and sandblasting. We carry out our QUALICOAT-certified powder coating on two vertical coating lines and one horizontal coating booth. We coat profiles up to 7 metres in all RAL colours and match custom colours to your sample.",
+  "de": "In unseren zwei QUALANOD-zertifizierten Anlagen eloxieren wir Profile bis 7 Meter Länge. Neben Natur, Schwarz, Bronze, Braun und Gold bieten wir Polieren, Satinieren und Sandstrahlen an. Unsere QUALICOAT-zertifizierte Pulverbeschichtung erfolgt auf zwei vertikalen Beschichtungsanlagen und in einer horizontalen Kabine. Wir beschichten Profile bis 7 Meter in allen RAL-Farben und stimmen Sonderfarben nach Muster ab."
  },
  "K177": {
   "grup": "Üretim",
@@ -1419,17 +1340,17 @@
   "grup": "Üretim",
   "tur": "t",
   "not": "svg",
-  "tr": "Toz boya",
-  "en": "Powder coating",
-  "de": "Pulverbeschichtung"
+  "tr": "Mekanik İşleme",
+  "en": "Mechanical Processing",
+  "de": "Mechanische Bearbeitung"
  },
  "K179": {
   "grup": "Üretim",
   "tur": "t",
   "not": "p",
-  "tr": "QUALICOAT sertifikalı toz boya uygulamalarımızı iki dikey boya hattı ve bir yatay boya kabininde gerçekleştiriyoruz. 7 metreye kadar profilleri tüm RAL renklerinde boyuyor, numuneye göre özel renk eşleştirmesi yapıyoruz.",
-  "en": "We carry out our QUALICOAT-certified powder coating on two vertical coating lines and one horizontal coating booth. We coat profiles up to 7 metres in all RAL colours and match custom colours to your sample.",
-  "de": "Unsere QUALICOAT-zertifizierte Pulverbeschichtung erfolgt auf zwei vertikalen Beschichtungsanlagen und in einer horizontalen Kabine. Wir beschichten Profile bis 7 Meter in allen RAL-Farben und stimmen Sonderfarben nach Muster ab."
+  "tr": "Solar Çerçeve Üretim Makinaları, CNC İşleme Merkezleri, lazer kesim tezgahları, eksantrik presler, çift kafa testereler, dilimleme makineleri, bükme ve kaynak hatlarımızla kapsamlı çözümler sunuyoruz.",
+  "en": "With solar frame production machines, CNC machining centres, laser cutting machines, eccentric presses, double-head saws, slicing machines, and bending and welding lines, we offer comprehensive solutions.",
+  "de": "Mit Maschinen für die Solarrahmenfertigung, CNC-Bearbeitungszentren, Laserschneidanlagen, Exzenterpressen, Doppelkopfsägen, Ablängmaschinen sowie Biege- und Schweißlinien bieten wir umfassende Lösungen."
  },
  "K180": {
   "grup": "Üretim",
@@ -1443,17 +1364,17 @@
   "grup": "Üretim",
   "tur": "t",
   "not": "svg",
-  "tr": "Mekanik işleme",
-  "en": "Mechanical processing",
-  "de": "Mechanische Bearbeitung"
+  "tr": "Paketleme",
+  "en": "Packaging",
+  "de": "Verpackung"
  },
  "K182": {
   "grup": "Üretim",
   "tur": "t",
   "not": "p",
-  "tr": "Solar Çerçeve Üretim Makinaları, CNC İşleme Merkezleri, lazer kesim tezgahları, eksantrik presler, çift kafa testereler, dilimleme makineleri, bükme ve kaynak hatlarımızla kapsamlı çözümler sunuyoruz.",
-  "en": "With solar frame production machines, CNC machining centres, laser cutting machines, eccentric presses, double-head saws, slicing machines, and bending and welding lines, we offer comprehensive solutions.",
-  "de": "Mit Maschinen für die Solarrahmenfertigung, CNC-Bearbeitungszentren, Laserschneidanlagen, Exzenterpressen, Doppelkopfsägen, Ablängmaschinen sowie Biege- und Schweißlinien bieten wir umfassende Lösungen."
+  "tr": "Profillerinizi koruyucu folyo ve ambalajla paketliyor, etiketleyip paletliyoruz. Ürünleriniz size fabrikamızdan çıktığı kalitede ulaşır.",
+  "en": "We wrap your profiles in protective film and packaging, then label and palletise them. Your products reach you in the same quality in which they left our factory.",
+  "de": "Wir verpacken Ihre Profile mit Schutzfolie und Verpackung, etikettieren und palettieren sie. So erreichen Ihre Produkte Sie in derselben Qualität, in der sie unser Werk verlassen haben."
  },
  "K183": {
   "grup": "Ürün sistemleri",
@@ -2079,182 +2000,6 @@
   "en": "Partner country",
   "de": "Partnerland"
  },
- "K262": {
-  "grup": "Uluslararası iş ortaklıkları",
-  "tur": "t",
-  "not": "span",
-  "tr": "Almanya",
-  "en": "Germany",
-  "de": "Deutschland"
- },
- "K263": {
-  "grup": "Uluslararası iş ortaklıkları",
-  "tur": "t",
-  "not": "span",
-  "tr": "Romanya",
-  "en": "Romania",
-  "de": "Rumänien"
- },
- "K264": {
-  "grup": "Uluslararası iş ortaklıkları",
-  "tur": "t",
-  "not": "span",
-  "tr": "Hollanda",
-  "en": "Netherlands",
-  "de": "Niederlande"
- },
- "K265": {
-  "grup": "Uluslararası iş ortaklıkları",
-  "tur": "t",
-  "not": "span",
-  "tr": "Yunanistan",
-  "en": "Greece",
-  "de": "Griechenland"
- },
- "K266": {
-  "grup": "Uluslararası iş ortaklıkları",
-  "tur": "t",
-  "not": "span",
-  "tr": "Ürdün",
-  "en": "Jordan",
-  "de": "Jordanien"
- },
- "K267": {
-  "grup": "Uluslararası iş ortaklıkları",
-  "tur": "t",
-  "not": "span",
-  "tr": "Bulgaristan",
-  "en": "Bulgaria",
-  "de": "Bulgarien"
- },
- "K268": {
-  "grup": "Uluslararası iş ortaklıkları",
-  "tur": "t",
-  "not": "span",
-  "tr": "Fransa",
-  "en": "France",
-  "de": "Frankreich"
- },
- "K269": {
-  "grup": "Uluslararası iş ortaklıkları",
-  "tur": "t",
-  "not": "span",
-  "tr": "Çekya",
-  "en": "Czechia",
-  "de": "Tschechien"
- },
- "K270": {
-  "grup": "Uluslararası iş ortaklıkları",
-  "tur": "t",
-  "not": "span",
-  "tr": "Litvanya",
-  "en": "Lithuania",
-  "de": "Litauen"
- },
- "K271": {
-  "grup": "Uluslararası iş ortaklıkları",
-  "tur": "t",
-  "not": "span",
-  "tr": "Estonya",
-  "en": "Estonia",
-  "de": "Estland"
- },
- "K272": {
-  "grup": "Uluslararası iş ortaklıkları",
-  "tur": "t",
-  "not": "span",
-  "tr": "Şili",
-  "en": "Chile",
-  "de": "Chile"
- },
- "K273": {
-  "grup": "Uluslararası iş ortaklıkları",
-  "tur": "t",
-  "not": "span",
-  "tr": "Almanya",
-  "en": "Germany",
-  "de": "Deutschland"
- },
- "K274": {
-  "grup": "Uluslararası iş ortaklıkları",
-  "tur": "t",
-  "not": "span",
-  "tr": "Romanya",
-  "en": "Romania",
-  "de": "Rumänien"
- },
- "K275": {
-  "grup": "Uluslararası iş ortaklıkları",
-  "tur": "t",
-  "not": "span",
-  "tr": "Hollanda",
-  "en": "Netherlands",
-  "de": "Niederlande"
- },
- "K276": {
-  "grup": "Uluslararası iş ortaklıkları",
-  "tur": "t",
-  "not": "span",
-  "tr": "Yunanistan",
-  "en": "Greece",
-  "de": "Griechenland"
- },
- "K277": {
-  "grup": "Uluslararası iş ortaklıkları",
-  "tur": "t",
-  "not": "span",
-  "tr": "Ürdün",
-  "en": "Jordan",
-  "de": "Jordanien"
- },
- "K278": {
-  "grup": "Uluslararası iş ortaklıkları",
-  "tur": "t",
-  "not": "span",
-  "tr": "Bulgaristan",
-  "en": "Bulgaria",
-  "de": "Bulgarien"
- },
- "K279": {
-  "grup": "Uluslararası iş ortaklıkları",
-  "tur": "t",
-  "not": "span",
-  "tr": "Fransa",
-  "en": "France",
-  "de": "Frankreich"
- },
- "K280": {
-  "grup": "Uluslararası iş ortaklıkları",
-  "tur": "t",
-  "not": "span",
-  "tr": "Çekya",
-  "en": "Czechia",
-  "de": "Tschechien"
- },
- "K281": {
-  "grup": "Uluslararası iş ortaklıkları",
-  "tur": "t",
-  "not": "span",
-  "tr": "Litvanya",
-  "en": "Lithuania",
-  "de": "Litauen"
- },
- "K282": {
-  "grup": "Uluslararası iş ortaklıkları",
-  "tur": "t",
-  "not": "span",
-  "tr": "Estonya",
-  "en": "Estonia",
-  "de": "Estland"
- },
- "K283": {
-  "grup": "Uluslararası iş ortaklıkları",
-  "tur": "t",
-  "not": "span",
-  "tr": "Şili",
-  "en": "Chile",
-  "de": "Chile"
- },
  "K284": {
   "grup": "Sıkça sorulan sorular",
   "tur": "t",
@@ -2675,9 +2420,9 @@
   "grup": "Sayfa içi kısa metinler (3D, harita, form)",
   "tur": "j",
   "not": "kod metni",
-  "tr": "Kalıp tasarımı",
-  "en": "Die design",
-  "de": "Werkzeugkonstruktion"
+  "tr": "Kalıp tasarımı ve üretimi",
+  "en": "Die design and manufacturing",
+  "de": "Werkzeugkonstruktion und -fertigung"
  },
  "K341": {
   "grup": "Sayfa içi kısa metinler (3D, harita, form)",
@@ -2707,9 +2452,9 @@
   "grup": "Sayfa içi kısa metinler (3D, harita, form)",
   "tur": "j",
   "not": "kod metni",
-  "tr": "Eloksal kaplama",
-  "en": "Anodizing",
-  "de": "Eloxieren"
+  "tr": "Yüzey işlem",
+  "en": "Surface treatment",
+  "de": "Oberflächenbehandlung"
  },
  "K345": {
   "grup": "Sayfa içi kısa metinler (3D, harita, form)",
@@ -2739,9 +2484,9 @@
   "grup": "Sayfa içi kısa metinler (3D, harita, form)",
   "tur": "j",
   "not": "kod metni",
-  "tr": "Toz boya",
-  "en": "Powder coating",
-  "de": "Pulverbeschichtung"
+  "tr": "Mekanik işleme",
+  "en": "Mechanical processing",
+  "de": "Mechanische Bearbeitung"
  },
  "K349": {
   "grup": "Sayfa içi kısa metinler (3D, harita, form)",
@@ -2763,9 +2508,9 @@
   "grup": "Sayfa içi kısa metinler (3D, harita, form)",
   "tur": "j",
   "not": "kod metni",
-  "tr": "Mekanik işleme",
-  "en": "Mechanical processing",
-  "de": "Mechanische Bearbeitung"
+  "tr": "Paketleme",
+  "en": "Packaging",
+  "de": "Verpackung"
  },
  "K352": {
   "grup": "Sayfa içi kısa metinler (3D, harita, form)",
@@ -2774,6 +2519,14 @@
   "tr": "Kesim ve delik delme",
   "en": "Cutting and drilling",
   "de": "Sägen und Bohren"
+ },
+ "K373": {
+  "grup": "Sayfa içi kısa metinler (3D, harita, form)",
+  "tur": "j",
+  "not": "kod metni",
+  "tr": "Koruyucu ambalaj",
+  "en": "Protective packaging",
+  "de": "Schutzverpackung"
  },
  "K353": {
   "grup": "Sayfa içi kısa metinler (3D, harita, form)",

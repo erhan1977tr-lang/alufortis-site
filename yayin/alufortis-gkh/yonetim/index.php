@@ -364,6 +364,7 @@ textarea.chg{border-color:var(--org);background:#FFF8F2}
 .login .hd img{height:105px}
 .login form{padding:26px}
 table.l{width:100%;border-collapse:collapse}table.l td{padding:10px 8px;border-top:1px solid var(--line)}
+.ipucu{font-weight:400;font-size:12.5px;line-height:1.45;color:var(--mut);margin-top:4px;text-transform:none;letter-spacing:0;background:#FFF7E8;border:1px solid #F5D9A6;border-radius:6px;padding:6px 8px}
 .gd-oz{font-size:13px;color:var(--mut);margin-top:2px}.gd{margin-top:8px}.gd summary{cursor:pointer;color:var(--acc);font-size:13px;font-weight:600}.gd-b{font-size:13px;margin:8px 0}
 .gd-t{width:100%;border-collapse:collapse;margin-top:8px;font-size:13px;table-layout:fixed}.gd-t th{text-align:left;font-weight:600;padding:6px 8px;background:var(--bg)}.gd-t td{padding:6px 8px;border-top:1px solid var(--line);vertical-align:top;overflow-wrap:anywhere}.gd-t th:nth-child(2),.gd-t td:nth-child(2){width:44px}.gd-t th:first-child{width:24%}.gd-e{color:#8a3b30;background:#fdf3f1}.gd-y{color:#1d5f3e;background:#f1faf5}
 .guncel{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
@@ -458,7 +459,7 @@ table.l{width:100%;border-collapse:collapse}table.l td{padding:10px 8px;border-t
               $etiket = alan_adi($a, $TUR_AD);
               if (str_starts_with((string)$a['not'], 'Film yazısı')) { $film[$a['not']] = ($film[$a['not']] ?? 0) + 1; $etiket .= ' · ' . (['', 'büyük başlık', 'alt yazı', 'düğme 1', 'düğme 2'][$film[$a['not']]] ?? ''); } ?>
             <div class="row" data-ara="<?= h(mb_strtolower($a['tr'] . ' ' . $a['en'] . ' ' . $a['de'])) ?>">
-              <div class="lbl"><?= h($etiket) ?></div>
+              <div class="lbl"><?= h($etiket) ?><?php if (!empty($a['aciklama'])): ?><div class="ipucu"><?= h((string)$a['aciklama']) ?></div><?php endif; ?></div>
               <?php foreach (['tr' => 'TÜRKÇE', 'en' => 'ENGLISH', 'de' => 'DEUTSCH'] as $dil => $dad): ?>
                 <div class="fld"><label><?= $dad ?></label><textarea name="a[<?= h($k) ?>][<?= $dil ?>]" rows="<?= $uzun > 160 ? 5 : ($uzun > 60 ? 3 : 1) ?>" data-v="<?= h($a[$dil]) ?>" lang="<?= $dil ?>"><?= h($a[$dil]) ?></textarea></div>
               <?php endforeach; ?>

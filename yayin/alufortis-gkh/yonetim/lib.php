@@ -116,6 +116,12 @@ function html_kacir(string $v): string
     return htmlspecialchars($v, ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML5, 'UTF-8');
 }
 
+/** Virgülle (ya da satır sonuyla) ayrılmış ülke adları; boşlar atılır. */
+function ulke_listesi(string $v): array
+{
+    return array_values(array_filter(array_map('trim', preg_split('/[,\n;]+/u', $v) ?: []), fn($u) => $u !== ''));
+}
+
 /** Bir dilin sayfasını üretir. */
 function sayfa_uret(string $dil, array $icerik, array $ayar): string
 {
@@ -138,6 +144,20 @@ function sayfa_uret(string $dil, array $icerik, array $ayar): string
         return html_kacir($v);
     }, $sablon);
     $cikti = str_replace('{{MAXMB}}', $mb, (string)$cikti);
+
+    // ülke listesi (virgülle ayrılmış tek alan): Hakkımızda kutucukları ve kayan şerit
+    $cikti = preg_replace_callback('/\{\{ULKE(BOS|A)?:(K\d+)(?::(li|serit))?\}\}/', function ($m) use ($deger) {
+        $ulkeler = ulke_listesi($deger($m[2]));
+        if ($m[1] === 'BOS') return $ulkeler ? '' : ' hidden';
+        if ($m[1] === 'A') return html_kacir(implode(', ', $ulkeler));
+        if (!$ulkeler) return '';
+        if (($m[3] ?? '') === 'li') return implode('', array_map(fn($u) => '<li>' . html_kacir($u) . '</li>', $ulkeler));
+        // şerit sonsuz döngüde kayar: yarısı en az 12 ad olacak kadar tekrarlanır, sonra iki kopya
+        $yarim = [];
+        while (count($yarim) < 12) $yarim = array_merge($yarim, $ulkeler);
+        $span = implode('', array_map(fn($u) => '<span>' . html_kacir($u) . '</span>', $yarim));
+        return $span . "\n        " . $span;
+    }, (string)$cikti);
 
     // kataloglar: yüklüyse kart PDF'i açar, yoksa (teklif formu açıksa) forma götürüp kataloğu ister
     $kapali = array_flip($ayar['kapali'] ?? []);

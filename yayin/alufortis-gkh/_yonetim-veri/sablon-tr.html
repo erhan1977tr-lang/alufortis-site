@@ -1164,7 +1164,7 @@ stage.addEventListener('pointermove', e => { mx = (e.clientX / innerWidth - .5) 
 stage.addEventListener('pointerleave', () => { mx = 0; my = 0; wake(); });
 
 /* ============ the video (optional: set HERO_VIDEO when the scrub footage exists) ============ */
-const HERO_VIDEO = 'assets/hero-scrub-v6.mp4', HERO_POSTER = 'assets/hero-poster.jpg', VIDEO_BYTES = 7403232;
+const HERO_VIDEO = 'assets/hero-scrub-v7.mp4', HERO_POSTER = 'assets/hero-poster.jpg', VIDEO_BYTES = 7403232;
 let seekBusy = false, pendingTime = null, heroInited = false, videoReady = false, heroBlobTry = false;
 // WebKit can leave a seek hanging during fast scrolling (no 'seeked'): after 700 ms the latest target is asked for again
 let seekDog = 0;
@@ -1394,6 +1394,12 @@ async function initP3D() {
     if (c === OWN[0] && l === OWN[1]) continue;
     const m = new T.Mesh(fullGeo, [cap, side]); m.position.set(slotX(c), slotY(l), -1.5 * PIECE); m.visible = false; body.add(m); stack.push({ m, y: slotY(l) });
   }
+  // every profile in the bundle carries the same drilled holes on its U base
+  stack.forEach(({ m }) => [.5, 1.5, 2.5].forEach(k => [50, 150].forEach(z => {
+    const h = new T.Group(), d = new T.Mesh(holeGeo, holeMat), r = new T.Mesh(rimGeo, rimMat);
+    d.position.z = .06; r.position.z = .09; h.add(d, r); h.rotation.y = Math.PI / 2;
+    h.position.set(P.w - cx, 30 - cy, (k - .5) * PIECE + z); m.add(h);
+  })));
   const SW = COLS * SX, SH = ROWS * SY, bottom = -SH / 2;
   const wood = new T.MeshStandardMaterial({ color: 0xc9a46c, metalness: 0, roughness: .82 });
   const pallet = new T.Group();

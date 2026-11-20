@@ -55,14 +55,6 @@
   "en": "Every day, in every project",
   "de": "Jeden Tag, in jedem Projekt"
  },
- "K7": {
-  "grup": "Giriş mesajları",
-  "tur": "t",
-  "not": "p",
-  "tr": "Alufortis",
-  "en": "Alufortis",
-  "de": "Alufortis"
- },
  "K8": {
   "grup": "Giriş mesajları",
   "tur": "t",
@@ -2086,22 +2078,6 @@
   "tr": "İş ortağı ülke",
   "en": "Partner country",
   "de": "Partnerland"
- },
- "K260": {
-  "grup": "Uluslararası iş ortaklıkları",
-  "tur": "t",
-  "not": "span",
-  "tr": "Şimdi:",
-  "en": "Now:",
-  "de": "Jetzt:"
- },
- "K261": {
-  "grup": "Uluslararası iş ortaklıkları",
-  "tur": "t",
-  "not": "b",
-  "tr": "Türkiye",
-  "en": "Türkiye",
-  "de": "Türkei"
  },
  "K262": {
   "grup": "Uluslararası iş ortaklıkları",

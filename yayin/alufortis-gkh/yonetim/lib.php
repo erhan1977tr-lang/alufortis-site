@@ -177,7 +177,7 @@ function yayin_ayari(): array
 }
 
 /** Üç dili üretip yerine yazar; önceki sayfaları geçmişe koyar. Dönen: geçmiş klasörünün adı. */
-function siteyi_yayinla(array $icerik, array $ayar, bool $gecmise_al = true): string
+function siteyi_yayinla(array $icerik, array $ayar, bool $gecmise_al = true, string $aciklama = ''): string
 {
     $kok = site_kok();
     $uretilen = [];
@@ -189,6 +189,8 @@ function siteyi_yayinla(array $icerik, array $ayar, bool $gecmise_al = true): st
         if (!is_dir($g) && !mkdir($g, 0750, true)) throw new RuntimeException('Geçmiş klasörü açılamadı');
         foreach (DILLER as $dil => $dosya) if (is_file("$kok/$dosya")) copy("$kok/$dosya", "$g/$dil.html");
         if (is_file(veri_dizini() . '/icerik.json')) copy(veri_dizini() . '/icerik.json', "$g/icerik.json");
+        if (is_file(veri_dizini() . '/site-ayar.json')) copy(veri_dizini() . '/site-ayar.json', "$g/site-ayar.json");
+        file_put_contents("$g/islem.json", json_encode(['aciklama' => $aciklama], JSON_UNESCAPED_UNICODE));
         gecmisi_buda(30);
     }
     foreach (DILLER as $dil => $dosya) {
@@ -217,6 +219,42 @@ function gecmis_listesi(): array
     $l = glob(veri_dizini() . '/gecmis/*', GLOB_ONLYDIR) ?: [];
     rsort($l);
     return array_map('basename', $l);
+}
+
+/**
+ * Bir geçmiş kaydının ayrıntısı: o yayında hangi yazı alanı (dil dil) ve hangi bölüm ayarı değişti.
+ * Kayıt klasörü yayından ÖNCEKİ hâli tutar; sonraki hâl bir yeni kayıttan (yoksa şimdiki içerikten) okunur.
+ */
+function gecmis_detay(string $etiket): array
+{
+    $liste = gecmis_listesi();                       // yeniden eskiye
+    $i = array_search($etiket, $liste, true);
+    if ($i === false) return [];
+    $vd = veri_dizini();
+    $varsayilan = json_oku("$vd/icerik-varsayilan.json", []);
+    $once = json_oku("$vd/gecmis/$etiket/icerik.json", []);
+    $sonra = $i === 0 ? json_oku("$vd/icerik.json", []) : json_oku("$vd/gecmis/{$liste[$i - 1]}/icerik.json", []);
+    $yazilar = [];
+    foreach ($varsayilan as $k => $alan) {
+        foreach (array_keys(DILLER) as $dil) {
+            $e = is_string($once[$k][$dil] ?? null) ? $once[$k][$dil] : (string)$alan[$dil];
+            $y = is_string($sonra[$k][$dil] ?? null) ? $sonra[$k][$dil] : (string)$alan[$dil];
+            if ($e !== $y) $yazilar[] = ['k' => $k, 'grup' => (string)($alan['grup'] ?? ''), 'alan' => $alan, 'dil' => $dil, 'eski' => $e, 'yeni' => $y];
+        }
+    }
+    $bolumler = null;                                // eski kayıtlarda bölüm anlık görüntüsü yok
+    $ao = "$vd/gecmis/$etiket/site-ayar.json";
+    $as = $i === 0 ? "$vd/site-ayar.json" : "$vd/gecmis/{$liste[$i - 1]}/site-ayar.json";
+    if (is_file($ao) && ($i === 0 || is_file($as))) {
+        $ko = json_oku($ao, [])['kapali'] ?? []; $ks = json_oku($as, [])['kapali'] ?? [];
+        $bolumler = [];
+        foreach (BOLUMLER as $b => $ad) {
+            $o = in_array($b, $ko, true); $n = in_array($b, $ks, true);
+            if ($o !== $n) $bolumler[] = $ad . ($n ? ': kapatıldı' : ': açıldı');
+        }
+    }
+    $islem = json_oku("$vd/gecmis/$etiket/islem.json", []);
+    return ['aciklama' => (string)($islem['aciklama'] ?? ''), 'yazilar' => $yazilar, 'bolumler' => $bolumler];
 }
 
 function gecmisi_buda(int $tut): void

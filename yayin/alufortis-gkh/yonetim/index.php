@@ -153,7 +153,7 @@ if ($girisli && $_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
             if ($degisen === 0) { bildir('bilgi', 'Değişiklik yok.'); yonlendir('yazilar', '&g=' . rawurlencode((string)($_POST['g'] ?? ''))); }
-            $etiket = siteyi_yayinla($icerik, yayin_ayari());
+            $etiket = siteyi_yayinla($icerik, yayin_ayari(), true, "Yazılar düzenlendi ($degisen alan)");
             json_yaz(veri_dizini() . '/icerik.json', $kayitli);
             bildir('tamam', "$degisen alan güncellendi ve sitede yayınlandı.");
             yonlendir('yazilar', '&g=' . rawurlencode((string)($_POST['g'] ?? '')));
@@ -197,7 +197,7 @@ if ($girisli && $_SERVER['REQUEST_METHOD'] === 'POST') {
             $ayar = site_ayar_yukle(); $ayar['maks_mb'] = $mb;
             json_yaz(veri_dizini() . '/site-ayar.json', $ayar);
             user_ini_yaz($mb);
-            siteyi_yayinla(icerik_yukle(), yayin_ayari());
+            siteyi_yayinla(icerik_yukle(), yayin_ayari(), true, "Ek dosya sınırı $mb MB yapıldı");
             bildir('tamam', "Ek dosya sınırı toplam $mb MB olarak ayarlandı ve sitede yayınlandı.");
             yonlendir('ayarlar');
         }
@@ -217,14 +217,14 @@ if ($girisli && $_SERVER['REQUEST_METHOD'] === 'POST') {
             $ayar['kapali'] = array_values(array_diff(array_keys(BOLUMLER), $acik));
             json_yaz(veri_dizini() . '/site-ayar.json', $ayar);
             user_ini_yaz($ayar['maks_mb']);
-            siteyi_yayinla(icerik_yukle(), yayin_ayari());
+            siteyi_yayinla(icerik_yukle(), yayin_ayari(), true, 'Bölümler açıldı / kapatıldı');
             $n = count($ayar['kapali']);
             bildir('tamam', $n ? "Bölüm ayarları yayınlandı. Kapalı bölüm: $n (sitede ve menüde görünmez)." : 'Bölüm ayarları yayınlandı. Tüm bölümler açık.');
             yonlendir('bolumler');
         }
         if ($islem === 'yeniden') {
             user_ini_yaz(site_ayar_yukle()['maks_mb']);
-            siteyi_yayinla(icerik_yukle(), yayin_ayari());
+            siteyi_yayinla(icerik_yukle(), yayin_ayari(), true, 'Site yeniden yayınlandı (şablon güncellemesi)');
             bildir('tamam', 'Site güncel şablonla yeniden yayınlandı (TR, EN, DE).');
             yonlendir((string)($_POST['don'] ?? '') === 'yazilar' ? 'yazilar' : 'bolumler');
         }
@@ -266,8 +266,8 @@ if ($girisli && $_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             if (!$yapilan) { bildir('bilgi', 'Dosya seçilmedi, değişiklik yok.'); yonlendir('bolumler', '#kat' . $n); }
             json_yaz(veri_dizini() . '/katalog.json', $kayit);
-            siteyi_yayinla(icerik_yukle(), yayin_ayari());
             $icr = icerik_yukle();
+            siteyi_yayinla($icr, yayin_ayari(), true, 'Katalog: ' . $icr[SISTEMLER[$n]['ad']]['tr'] . ' (' . implode(', ', $yapilan) . ')');
             bildir('tamam', $icr[SISTEMLER[$n]['ad']]['tr'] . ': ' . implode(', ', $yapilan) . '. Sitede yayınlandı.');
             yonlendir('bolumler', '#kat' . $n);
         }
@@ -280,7 +280,7 @@ if ($girisli && $_SERVER['REQUEST_METHOD'] === 'POST') {
             $varsayilan = json_oku(veri_dizini() . '/icerik-varsayilan.json', []);
             foreach ($simdiki as $k => &$alan) foreach (array_keys(DILLER) as $dil) $alan[$dil] = $eski[$k][$dil] ?? $varsayilan[$k][$dil];
             unset($alan);
-            siteyi_yayinla($simdiki, yayin_ayari());
+            siteyi_yayinla($simdiki, yayin_ayari(), true, 'Geri dönüldü: ' . $etiket . ' kaydından önceki hâl');
             json_yaz(veri_dizini() . '/icerik.json', $eski);
             bildir('tamam', 'Yazılar ' . $etiket . ' kaydından önceki hâline döndürüldü ve yayınlandı.');
             yonlendir('gecmis');
@@ -364,6 +364,8 @@ textarea.chg{border-color:var(--org);background:#FFF8F2}
 .login .hd img{height:105px}
 .login form{padding:26px}
 table.l{width:100%;border-collapse:collapse}table.l td{padding:10px 8px;border-top:1px solid var(--line)}
+.gd-oz{font-size:13px;color:var(--mut);margin-top:2px}.gd{margin-top:8px}.gd summary{cursor:pointer;color:var(--acc);font-size:13px;font-weight:600}.gd-b{font-size:13px;margin:8px 0}
+.gd-t{width:100%;border-collapse:collapse;margin-top:8px;font-size:13px;table-layout:fixed}.gd-t th{text-align:left;font-weight:600;padding:6px 8px;background:var(--bg)}.gd-t td{padding:6px 8px;border-top:1px solid var(--line);vertical-align:top;overflow-wrap:anywhere}.gd-t th:nth-child(2),.gd-t td:nth-child(2){width:44px}.gd-t th:first-child{width:24%}.gd-e{color:#8a3b30;background:#fdf3f1}.gd-y{color:#1d5f3e;background:#f1faf5}
 .guncel{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
 .tgl{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:8px 18px;margin:14px 0 4px}
 .sw{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;cursor:pointer;user-select:none}
@@ -593,12 +595,32 @@ table.l{width:100%;border-collapse:collapse}table.l td{padding:10px 8px;border-t
 <?php elseif ($s === 'gecmis'): $l = gecmis_listesi(); ?>
   <div class="card">
     <h1>Geçmiş</h1>
-    <p class="mut">Her yayından önce sitenin o anki hâli saklanır (son 30 kayıt). “Geri dön” yazıları o kayıttan önceki hâline döndürür ve yayınlar.</p>
+    <p class="mut">Her yayından önce sitenin o anki hâli saklanır (son 30 kayıt). “Detaylar” o yayında hangi yazının nasıl değiştiğini gösterir (önceki ve yeni hâli). “Geri dön” yazıları o kayıttan önceki hâline döndürür ve yayınlar.</p>
     <?php if (!$l): ?><p>Henüz kayıt yok.</p><?php else: ?>
     <table class="l">
       <?php foreach ($l as $e): $t = DateTime::createFromFormat('Y-m-d-His', substr($e, 0, 17), new DateTimeZone('UTC')); if ($t) $t->setTimezone(new DateTimeZone('Europe/Istanbul')); ?>
-        <tr><td><?= h($t ? $t->format('d.m.Y H:i:s') . ' (İstanbul)' : $e) ?></td>
-        <td style="text-align:right"><form method="post" action="./?s=gecmis" onsubmit="return confirm('Yazılar bu kayıttan önceki hâline döndürülüp yayınlanacak. Devam edilsin mi?')"><input type="hidden" name="csrf" value="<?= h(csrf()) ?>"><input type="hidden" name="islem" value="geri"><input type="hidden" name="etiket" value="<?= h($e) ?>"><button class="btn sec" type="submit">Geri dön</button></form></td></tr>
+        <?php $d = gecmis_detay($e); $yz = $d['yazilar'] ?? []; $bl = $d['bolumler'] ?? null;
+          $ozet = $d['aciklama'] ?? '';
+          if ($ozet === '') $ozet = $yz ? count($yz) . ' yazı değişikliği' : ($bl ? 'Bölüm ayarı değişikliği' : 'Yazı değişikliği yok (katalog, ayar ya da yeniden yayın)'); ?>
+        <tr><td><?= h($t ? $t->format('d.m.Y H:i:s') . ' (İstanbul)' : $e) ?>
+          <div class="gd-oz"><?= h($ozet) ?></div>
+          <?php if ($yz || $bl): ?>
+          <details class="gd"><summary>Detaylar<?= $yz ? ' (' . count($yz) . ' yazı)' : '' ?></summary>
+            <?php if ($bl): ?><p class="gd-b"><b>Bölümler:</b> <?= h(implode(', ', $bl)) ?></p><?php endif; ?>
+            <?php if ($yz): ?>
+            <table class="gd-t"><thead><tr><th>Bölüm / alan</th><th>Dil</th><th>Önceki</th><th>Yeni</th></tr></thead><tbody>
+            <?php foreach ($yz as $x): ?>
+              <tr><td><b><?= h($x['grup']) ?></b><br><span class="mut"><?= h(alan_adi($x['alan'], $TUR_AD)) ?></span></td>
+              <td><?= h(strtoupper($x['dil'])) ?></td>
+              <td class="gd-e"><?= $x['eski'] === '' ? '<i class="mut">(boş)</i>' : nl2br(h($x['eski'])) ?></td>
+              <td class="gd-y"><?= $x['yeni'] === '' ? '<i class="mut">(boş)</i>' : nl2br(h($x['yeni'])) ?></td></tr>
+            <?php endforeach; ?>
+            </tbody></table>
+            <?php endif; ?>
+          </details>
+          <?php endif; ?>
+        </td>
+        <td style="text-align:right;vertical-align:top"><form method="post" action="./?s=gecmis" onsubmit="return confirm('Yazılar bu kayıttan önceki hâline döndürülüp yayınlanacak. Devam edilsin mi?')"><input type="hidden" name="csrf" value="<?= h(csrf()) ?>"><input type="hidden" name="islem" value="geri"><input type="hidden" name="etiket" value="<?= h($e) ?>"><button class="btn sec" type="submit">Geri dön</button></form></td></tr>
       <?php endforeach; ?>
     </table>
     <?php endif; ?>

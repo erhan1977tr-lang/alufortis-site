@@ -1368,29 +1368,40 @@ async function initP3D() {
   const group = new T.Group(), body = new T.Group(); group.add(body); scene.add(group);
   const pieces = [0, 1, 2].map(i => { const m = new T.Mesh(geo, [cap, side]); body.add(m); return m; });
 
-  // mechanical processing: drilled holes on the top face of each cut piece (representative positions, not from a drawing)
+  // mechanical processing: drilled holes on the closed short side of the U (the base), representative positions, not from a drawing
   const HOLE_R = 4.8, holeGeo = new T.CircleGeometry(HOLE_R, 32), rimGeo = new T.RingGeometry(HOLE_R, HOLE_R + 1.2, 32);
   const holeMat = new T.MeshBasicMaterial({ color: 0x06080b }), rimMat = new T.MeshStandardMaterial({ color: 0xf2f4f6, metalness: .92, roughness: .16, envMapIntensity: 1.9 });
   const glowMat = new T.MeshBasicMaterial({ color: 0x4cb7ff, transparent: true, opacity: 0, depthWrite: false });
   const holes = [];
-  pieces.forEach(m => [[-30, 52], [30, 52], [-30, 148], [30, 148]].forEach(([x, z]) => {
+  pieces.forEach(m => [[30, 50], [30, 150]].forEach(([y, z]) => {
     const h = new T.Group();
     const d = new T.Mesh(holeGeo, holeMat), r = new T.Mesh(rimGeo, rimMat), g = new T.Mesh(rimGeo, glowMat);
-    d.position.y = .06; r.position.y = .09; g.position.y = .12; g.scale.setScalar(1.25);
-    [d, r, g].forEach(o => { o.rotation.x = -Math.PI / 2; h.add(o); });
-    h.position.set(x, P.h - cy, z); h.visible = false; m.add(h); holes.push({ h, g });
+    d.position.z = .06; r.position.z = .09; g.position.z = .12; g.scale.setScalar(1.25);
+    [d, r, g].forEach(o => { h.add(o); });
+    h.rotation.y = Math.PI / 2;
+    h.position.set(P.w - cx, y - cy, z); h.visible = false; m.add(h); holes.push({ h, g });
   }));
   // one seamless bar until the saw; the three pieces only appear at the cutting step
   const fullGeo = new T.ExtrudeGeometry(shape, { depth: PIECE * 3, bevelEnabled: false, curveSegments: 4 }); fullGeo.translate(-cx, -cy, 0);
   const bar = new T.Mesh(fullGeo, [cap, side]); body.add(bar);
 
-  // packaging: the three cut pieces gather into a bundle, protective film wraps it and two straps close it
-  const wrapMat = new T.MeshStandardMaterial({ color: 0x8fbfe6, metalness: .1, roughness: .2, transparent: true, opacity: 0, depthWrite: false, side: T.DoubleSide, envMapIntensity: 1.2 });
-  const wrap = new T.Mesh(new T.BoxGeometry(P.w + 8, 3 * P.h + 16, PIECE + 8), wrapMat);
-  const wrapEdge = new T.LineSegments(new T.EdgesGeometry(wrap.geometry), new T.LineBasicMaterial({ color: 0xcfe3f5, transparent: true, opacity: 0 }));
-  const strapMat = new T.MeshStandardMaterial({ color: 0x2b3440, metalness: .3, roughness: .6, transparent: true, opacity: 0 });
-  const straps = [-.3, .3].map(z => { const m = new T.Mesh(new T.BoxGeometry(P.w + 11, 3 * P.h + 19, 7), strapMat); m.position.z = z * PIECE; return m; });
-  const pack = new T.Group(); pack.add(wrap, wrapEdge, ...straps); pack.visible = false; body.add(pack);
+  // packaging, as at the end of the opening film: profiles laid side by side and in layers on a wooden pallet, closed with blue straps
+  const COLS = 4, ROWS = 3, SX = P.w + 2, SY = P.h + 2;
+  const slotX = c => (c - (COLS - 1) / 2) * SX, slotY = l => (l - (ROWS - 1) / 2) * SY;
+  const OWN = [1, ROWS - 1];
+  const stack = [];
+  for (let l = 0; l < ROWS; l++) for (let c = 0; c < COLS; c++) {
+    if (c === OWN[0] && l === OWN[1]) continue;
+    const m = new T.Mesh(fullGeo, [cap, side]); m.position.set(slotX(c), slotY(l), -1.5 * PIECE); m.visible = false; body.add(m); stack.push({ m, y: slotY(l) });
+  }
+  const SW = COLS * SX, SH = ROWS * SY, bottom = -SH / 2;
+  const wood = new T.MeshStandardMaterial({ color: 0xc9a46c, metalness: 0, roughness: .82 });
+  const pallet = new T.Group();
+  [-.45, -.225, 0, .225, .45].forEach(z => { const b = new T.Mesh(new T.BoxGeometry(SW + 10, 9, 70), wood); b.position.set(0, bottom - 4.5, z * 3 * PIECE); pallet.add(b); });
+  [-.4, 0, .4].forEach(x => { const r = new T.Mesh(new T.BoxGeometry(56, 34, 3 * PIECE + 20), wood); r.position.set(x * SW, bottom - 9 - 17, 0); pallet.add(r); });
+  pallet.visible = false; body.add(pallet);
+  const strapMat = new T.MeshStandardMaterial({ color: 0x1f5fd0, metalness: .15, roughness: .45 });
+  const straps = [-.36, 0, .36].map(z => { const m = new T.Mesh(new T.BoxGeometry(SW + 5, SH + 5, 13), strapMat); m.position.z = z * 3 * PIECE; m.visible = false; body.add(m); return m; });
   // the drawing: the section's own edges in blueprint blue, shown at the die step
   const flat = new T.ShapeGeometry(shape, 4); flat.translate(-cx, -cy, 0);
   const lines = new T.LineSegments(new T.EdgesGeometry(flat), new T.LineBasicMaterial({ color: 0x4cb7ff, transparent: true }));
@@ -1406,15 +1417,16 @@ async function initP3D() {
     // length: a thin slice of the section at the die, then the profile comes out of it
     const grow = i === 0 ? .03 : i === 1 ? .03 + .97 * smooth(f, 0, .75) : 1;
     // machining (step 4) cuts the bar into three pieces; packaging (step 5) gathers them into one bundle
-    const gap = i === 3 ? 46 * smooth(f, .1, .5) : i === 4 ? 46 : 0;
+    const bun = i === 4 ? smooth(f, 0, .18) : 0;
+    const gap = i === 3 ? 46 * smooth(f, .1, .5) : i === 4 ? 1 + 45 * (1 - bun) : 0;
     const cut = i >= 3 && gap > .2;
-    const bun = i === 4 ? smooth(f, .08, .5) : 0;
     bar.visible = !cut; bar.scale.z = grow; bar.position.z = -1.5 * PIECE * grow;
     pieces.forEach((m, k) => {
       m.visible = cut; m.scale.z = grow;
       const z0 = (k - 1.5) * PIECE * grow + (k - 1) * gap;
-      m.position.z = z0 + (-PIECE / 2 - z0) * bun;
-      m.position.y = (k - 1) * (P.h + 3) * bun;
+      m.position.z = z0;
+      m.position.x = slotX(OWN[0]) * bun;
+      m.position.y = slotY(OWN[1]) * bun;
     });
     const ghost = i === 0 ? .18 + .5 * smooth(f, .55, 1) : 1;
     side.opacity = cap.opacity = ghost; side.depthWrite = cap.depthWrite = ghost > .95;
@@ -1426,21 +1438,24 @@ async function initP3D() {
     else finish('r9016', 'r9016', 0);
     // the holes are drilled one after another once the pieces are cut
     holes.forEach(({ h, g }, k) => {
-      const a = .5 + k * .034, hp = i === 3 ? smooth(f, a, a + .05) : i === 4 ? 1 : 0;
+      const a = .5 + k * .06, hp = i === 3 ? smooth(f, a, a + .05) : i === 4 ? 1 : 0;
       h.visible = hp > .01; h.scale.setScalar(.2 + .8 * hp);
       g.material.opacity = i === 3 ? .9 * smooth(f, a, a + .03) * (1 - smooth(f, a + .05, a + .16)) : 0;
     });
-    const w = i === 4 ? smooth(f, .5, .8) : 0, st = i === 4 ? smooth(f, .78, .95) : 0;
-    pack.visible = w > .01; wrapMat.opacity = .38 * w; wrapEdge.material.opacity = .9 * w; strapMat.opacity = st; straps.forEach(m => { m.visible = st > .01; });
+    // the pallet comes in under the bar, the other profiles are laid on it layer by layer, then the straps close the bundle
+    const pal = i === 4 ? smooth(f, .08, .24) : 0;
+    pallet.visible = pal > .01; pallet.position.y = -260 * (1 - pal);
+    stack.forEach(({ m, y }, k) => { const a = .2 + k * .036, d = i === 4 ? smooth(f, a, a + .12) : 0; m.visible = d > .01; m.position.y = y + 320 * (1 - d); });
+    straps.forEach((m, k) => { const a = .7 + k * .06, d = i === 4 ? smooth(f, a, a + .1) : 0; m.visible = d > .01; m.scale.set(1, d, 1); });
     // the turn: face-on at the die, then three-quarter, and the bar rolls about its own axis through the finishes so the section keeps facing you
     const face = 1 - smooth(s, .55, 1.4), on = 1 - face;
     group.rotation.y = (-.58 - .14 * Math.sin(Math.max(0, s - 1) * .8)) * on + .18 * face + p3dDrag + Math.sin(t / 4200) * .03;
     group.rotation.x = .3 * on + .06 * face;
-    // machining turns the drilled face towards the viewer; packaging rolls back so the bundle reads as a stack
+    // machining turns the drilled face towards the viewer; packaging rolls back level so the bundle sits flat on its pallet
     const show = smooth(s, 3.3, 3.7), back = smooth(s, 4.05, 4.45);
-    group.rotation.z = (-.34 * Math.max(0, s - 1.2) * (1 - show) + (-1.02 * (1 - back) - .22 * back) * show) * on;
+    group.rotation.z = (-.34 * Math.max(0, s - 1.2) * (1 - show) + (.9 * (1 - back)) * show) * on;
     group.rotation.x += .32 * show * (1 - back);
-    const dist = 330 + (1000 - 330) * smooth(s, .6, 1.7) + 30 * smooth(s, 3.1, 3.8) + 60 * smooth(s, 4.1, 4.6);
+    const dist = 330 + (1000 - 330) * smooth(s, .6, 1.7) + 30 * smooth(s, 3.1, 3.8) + 380 * smooth(s, 4.1, 4.6);
     cam.position.set(0, 40 * (1 - face), dist); cam.lookAt(0, 0, 0);
     renderer.render(scene, cam);
   }
